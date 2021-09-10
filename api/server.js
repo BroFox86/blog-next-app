@@ -1,7 +1,6 @@
 import { createServer, Model } from "miragejs"
 import { posts } from "~/components/posts/posts"
 
-// Borrowed from: miragejs.com/quickstarts/nextjs/develop-an-app/
 export function makeServer({ environment = "test" } = {}) {
   const TIMING = 2000
   const server = createServer({
@@ -25,13 +24,6 @@ export function makeServer({ environment = "test" } = {}) {
 
     routes() {
       this.namespace = "fakeApi"
-      
-      // Solution: github.com/vercel/next.js/issues/16874#issuecomment-723488275
-      this.passthrough((request) => {
-        if (request.url === "/_next/static/development/_devPagesManifest.json") {
-          return true
-        }
-      })
 
       this.get("/posts", (schema) => {
         return schema.posts.all()
@@ -56,6 +48,10 @@ export function makeServer({ environment = "test" } = {}) {
       
         return schema.posts.find(id).destroy()
       }, { timing: TIMING })
+
+      this.namespace = ""
+
+      this.passthrough()
     },
   })
 

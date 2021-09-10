@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app"
 import { Provider } from "react-redux"
+import { makeServer } from "~/api/server"
 import store from "~/store"
 import Head from "next/head"
 
@@ -9,8 +10,6 @@ import "../styles/global.scss"
 import "../styles/typography.scss"
 import "../styles/variables.css"
 import "../styles/quill.css"
-
-import { makeServer } from "~/api/server"
 
 // if (process.env.NODE_ENV === "development") {
 makeServer({ environment: "development" })
