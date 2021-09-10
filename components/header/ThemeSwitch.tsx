@@ -24,6 +24,7 @@ export function ThemeSwitch() {
     <button
       className={clsx(s.component, isThemeDark && s.hasDarkTheme)}
       type="button"
+      aria-label="Toggle night mode"
       onClick={handleClick}
     >
       <span className={s.moon}>🌛</span>
