@@ -8,7 +8,7 @@
 }
 
 .title {
-  margin-bottom: 60px;
+  margin: 0 0 30px;
   text-align: center;
   font-size: 35px;
 }
@@ -55,7 +55,7 @@
   left: 15px;
   padding: 3px 10px;
   border-radius: 5px;
-  background: color.scale(black, $alpha: -40%);
+  background: color.scale(black, $alpha: -20%);
   color: white;
   font-size: .9em;
 }
