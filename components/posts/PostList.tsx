@@ -44,9 +44,13 @@ export function PostList() {
 function Post({ id, date, image, title, content }: PostState) {
   // Add space instead of a closing tag, remove all tags, trim and reduce the text.
   let excerpt = content.replace(/<\/[^>]*>/gm, " ").replace(/<[^>]*>/gm, "")
+  excerpt = excerpt.slice(0, 200)
   excerpt = excerpt.trim()
-  excerpt = excerpt.slice(0, 200) + "..."
   
+  if (excerpt.length >= 190) {
+    excerpt += "..."
+  }
+   
   return (
     <article className={s.post}>
       <div className={s.imageWrapper}>
