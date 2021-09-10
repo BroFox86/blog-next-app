@@ -1,0 +1,19 @@
+/* CSS Variables */
+body {
+  --header-height: 70px;
+
+  --main-bg-color: white;
+  --main-text-color: black;
+  --secondary-text-color: crimson;
+  --color-primary: #5031aa;
+  --color-secondary: #2e7d32;
+  --quill-toolbar-bg-color: white;
+}
+
+body.hasDarkTheme {
+  --main-bg-color: black;
+  --main-text-color: white;
+  --color-primary: #5e3aca;
+  --secondary-text-color: rgb(252, 135, 158);
+  --quill-toolbar-bg-color: lightGray;
+}

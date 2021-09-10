@@ -1,0 +1,94 @@
+@use "sass:math";
+@use "sass:color";
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.container {
+  @include multiscreenContainer();
+}
+
+.title {
+  margin-bottom: 60px;
+  text-align: center;
+  font-size: 35px;
+}
+
+.noPostsMessage {
+  text-align: center;
+}
+
+.postList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(auto, 340px));
+  justify-content: center;
+  gap: 30px;
+
+  @media (min-width: $large-screen) {
+    grid-template-columns: repeat(auto-fill, 432px);
+  }
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: $shadow-medium;
+
+  .container.hasDarkTheme & {
+    background: #222;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  height: 150px;
+
+  @media (min-width: $medium-screen) {
+    height: 200px;
+  }
+}
+
+.date {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 3px 10px;
+  border-radius: 5px;
+  background: color.scale(black, $alpha: -40%);
+  color: white;
+  font-size: .9em;
+}
+
+.postInner {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 20px;
+
+  @media (min-width: $medium-screen) {
+    padding: 30px;
+  }
+}
+
+.postHeading {
+  margin: 0 0 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.excerpt {
+  margin-top: 0;
+}
+
+.button {
+  align-self: start;
+  margin-top: auto;
+}

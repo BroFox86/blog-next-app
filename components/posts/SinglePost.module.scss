@@ -1,0 +1,67 @@
+@use "sass:math";
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.spinner {
+  @include position(center);
+  transform: scale(1.2);
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  height: 150px;
+  margin: auto;
+
+  @media (min-width: $medium-screen) {
+    height: 300px;
+  }
+
+  @media (min-width: $large-screen) {
+    height: 350px;
+  }
+}
+
+.inner {
+  @include multiscreenContainer();
+}
+
+.title {
+  margin: 30px 0 0;
+  font-size: 25px;
+
+  @media (min-width: $medium-screen) {
+    font-size: 35px;
+  }
+}
+
+.postInfo {
+  color: #777;
+}
+
+.editedDate {
+  font-style: italic;
+}
+
+.author {
+  color: var(--secondary-text-color);
+}
+
+.editForm {
+  display: grid;
+  gap: 30px;
+  padding: 30px 0;
+}
+
+.buttonsDivider {
+  margin: 45px 0 30px;
+}
+
+.buttons {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  gap: 20px;
+}
+

@@ -1,0 +1,44 @@
+@use "sass:math";
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.component {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  margin-left: auto;
+  border-radius: 30px;
+  background: #555;
+}
+
+.slider {
+  @include circle(30px);
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background: white;
+  transition: all 150ms;
+
+  .component:hover & {
+    box-shadow: 0 0 2px 3px var(--color-secondary);
+  }
+
+  .component.hasDarkTheme & {
+    left: calc(100% - 30px);
+  }
+}
+
+.moon {
+  @include position(left, 3px);
+  z-index: 1;
+  font-size: 20px;
+  line-height: 31px;
+}
+
+.sun {
+  @include position(right, 3px);
+  z-index: 1;
+  font-size: 20px;
+  line-height: 31px;
+}

@@ -1,0 +1,51 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss"; 
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--header-height);
+  background: var(--color-primary);
+  box-shadow: $shadow-small;
+  color: white;
+
+  @media print { 
+    display: none;
+  }
+}
+
+.headerContainer {
+  @include multiscreenContainer();
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.linkToHome {
+  display: flex;
+  align-items: center;
+  fill: white;
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    opacity: .9;
+  }
+}
+
+.logoWrapper {
+  @include circle(40px);
+  @include place-center();
+  margin-right: 10px;
+  background: white;
+}
+
+.logo {
+  flex-shrink: 0;
+  fill: var(--color-primary);
+}
+

@@ -1,0 +1,23 @@
+@use "sass:math";
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.container {
+  @include multiscreenContainer();
+  margin-bottom: 60px;
+}
+
+.title {
+  margin: 40px 0;
+  text-align: center;
+  font-size: 35px;
+}
+
+.form {
+  display: grid;
+  gap: 30px;
+}
+
+.button {
+  justify-self: start;
+}

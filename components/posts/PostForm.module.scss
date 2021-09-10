@@ -1,0 +1,19 @@
+@use "sass:math";
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.editorWrapper {
+  height: 450px;
+
+  @media (min-width: $medium-screen) {
+    height: 300px;
+  }
+}
+
+.editor {
+  height: calc(100% - 80px);
+
+  @media (min-width: $medium-screen) {
+    height: calc(100% - 50px);
+  }
+}

@@ -1,0 +1,12 @@
+.postBody * {
+  margin: 0;
+}
+
+.ql-container {
+  font-size: inherit !important;
+  line-height: inherit;
+}
+
+.ql-toolbar {
+  background: var(--quill-toolbar-bg-color);
+}
