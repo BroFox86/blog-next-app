@@ -2,7 +2,7 @@ import { createServer, Model } from "miragejs"
 import { posts } from "~/components/posts/posts"
 
 export function makeServer({ environment = "test" } = {}) {
-  const TIMING = 2000
+  const TIMING = 3000
   const server = createServer({
 
     environment,
