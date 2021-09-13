@@ -98,12 +98,13 @@ const postsSlice = createSlice({
 
       // Edit posts
       .addCase(editPost.fulfilled, (state, action) => {
-        const { id, title, content } = action.payload
+        const { id, title, content, editedDate } = action.payload
         const post = state.list.find(post => post.id === id)
 
         if (post) {
           post.title = title
           post.content = content
+          post.editedDate = editedDate
         }
       })
       .addCase(editPost.pending, (state) => {
