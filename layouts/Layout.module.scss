@@ -3,16 +3,10 @@
 
 .layout {
   overflow-x: hidden;
-  box-sizing: border-box;
-  background: var(--main-bg-color);
   color: var(--main-text-color);
   font-family: $font-primary;
   font-size: $font-size-medium;
   line-height: $line-height;
-  word-wrap: break-word;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .main {

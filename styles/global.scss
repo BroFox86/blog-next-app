@@ -1,3 +1,17 @@
+body {
+  box-sizing: border-box;
+  background: var(--main-bg-color);
+  word-wrap: break-word;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  &.isFixedByModal,
+  &.isFixedByNav {
+    overflow: hidden;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -8,13 +22,6 @@
     color: black !important;
     box-shadow: none !important;
     text-shadow: none !important;
-  }
-}
-
-body {
-  &.isFixedByModal,
-  &.isFixedByNav {
-    overflow: hidden;
   }
 }
 
