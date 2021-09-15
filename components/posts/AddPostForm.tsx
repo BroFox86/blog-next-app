@@ -11,7 +11,7 @@ export function AddPostForm() {
   const [content, setContent] = useState<string>("")
   const dispatch = useAppDispatch()
   const postsStatus = useAppSelector((state) => state.posts.status)
-  const isStatusPending = postsStatus === "pending" ? true : false
+  const isStatusPending = postsStatus === "update-database" ? true : false
   const isFormValid: boolean = Boolean(title) && Boolean(content)
 
   async function handlePostAdding() {

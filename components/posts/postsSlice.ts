@@ -17,7 +17,7 @@ export interface PostState {
 
 export interface PostsState {
   list: PostState[],
-  status: "idle" | "loading" | "pending" | "fulfilled"
+  status: "idle" | "loading" | "update-database" | "fulfilled"
 }
 
 const initialState: PostsState = {
@@ -93,7 +93,7 @@ const postsSlice = createSlice({
         state.list.unshift(action.payload)
       })
       .addCase(addPost.pending, (state) => {
-        state.status = "pending"
+        state.status = "update-database"
       })
 
       // Edit posts
@@ -108,7 +108,7 @@ const postsSlice = createSlice({
         }
       })
       .addCase(editPost.pending, (state) => {
-        state.status = "pending"
+        state.status = "update-database"
       })
 
       // Delete posts
@@ -118,13 +118,13 @@ const postsSlice = createSlice({
         state.list = updatedList
       })
       .addCase(deletePost.pending, (state) => {
-        state.status = "pending"
+        state.status = "update-database"
       })
 
       // .addMatcher<PendingAction>(
       //   (action) => action.type.endsWith("/pending"),
       //   (state) => {
-      //     state.status = "pending"
+      //     state.status = "update-database"
       //   }
       // )
       .addMatcher<FulfilledAction>(

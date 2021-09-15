@@ -17,7 +17,7 @@ export function DeletionModal(props: Props) {
   const dispatch = useAppDispatch()
   const router = useRouter()
   const postsStatus = useAppSelector((state) => state.posts.status)
-  const isStatusPending = postsStatus === "pending" ? true : false
+  const isStatusPending = postsStatus === "update-database" ? true : false
 
   async function handlePostDeletion() {
     try {
