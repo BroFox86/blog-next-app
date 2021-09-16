@@ -15,7 +15,7 @@ export function PostList() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (postsStatus === "idle") {
+    if (postsStatus === "init") {
       dispatch(fetchPosts())
     }
   }, [postsStatus, dispatch])
@@ -23,14 +23,14 @@ export function PostList() {
   return (
     <section className={clsx(s.container, hasDarkTheme && s.hasDarkTheme)}>
       <h2 className={s.title}>
-        {postsStatus === "loading" ?
+        {postsStatus !== "fulfilled" ?
           "Your Posts" 
           :
           posts.list.length ? "Your Posts" : "You have no posts!"
         }
       </h2>
 
-      {postsStatus === "loading" ?
+      {postsStatus === "fetch" ?
         <Spinner />
         :
         <div className={s.postList}>

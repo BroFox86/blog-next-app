@@ -17,19 +17,13 @@ export interface PostState {
 
 export interface PostsState {
   list: PostState[],
-  status: "idle" | "loading" | "update-database" | "fulfilled"
+  status: "init" | "fetch" | "update" | "fulfilled"
 }
 
 const initialState: PostsState = {
   list: [],
-  status: "idle",
+  status: "init",
 }
-
-const dateFormatter = new Intl.DateTimeFormat("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric"
-})
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const response = await fetchData("/fakeApi/posts", "GET")
@@ -43,6 +37,11 @@ export const addPost = createAsyncThunk("posts/addPost", async (payload: {
   title: string
 }) => {
   const updatedPayload: PostState = Object.assign(payload)
+  const dateFormatter = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  })
 
   updatedPayload.id = nanoid()
   updatedPayload.date = dateFormatter.format(new Date())
@@ -60,6 +59,11 @@ export const editPost = createAsyncThunk("posts/editPost", async (payload: {
 }) => {
   const id = payload.id
   const updatedPayload: PostState = Object.assign(payload)
+  const dateFormatter = new Intl.DateTimeFormat("en-US", {
+    year: "2-digit",
+    month: "2-digit",
+    day: "2-digit"
+  })
 
   updatedPayload.editedDate = dateFormatter.format(new Date())
 
@@ -85,7 +89,7 @@ const postsSlice = createSlice({
         state.list = action.payload
       })
       .addCase(fetchPosts.pending, (state) => {
-        state.status = "loading"
+        state.status = "fetch"
       })
       
       // Add posts
@@ -93,7 +97,7 @@ const postsSlice = createSlice({
         state.list.unshift(action.payload)
       })
       .addCase(addPost.pending, (state) => {
-        state.status = "update-database"
+        state.status = "update"
       })
 
       // Edit posts
@@ -108,7 +112,7 @@ const postsSlice = createSlice({
         }
       })
       .addCase(editPost.pending, (state) => {
-        state.status = "update-database"
+        state.status = "update"
       })
 
       // Delete posts
@@ -118,13 +122,12 @@ const postsSlice = createSlice({
         state.list = updatedList
       })
       .addCase(deletePost.pending, (state) => {
-        state.status = "update-database"
+        state.status = "update"
       })
-
       // .addMatcher<PendingAction>(
       //   (action) => action.type.endsWith("/pending"),
       //   (state) => {
-      //     state.status = "update-database"
+      //     state.status = "update"
       //   }
       // )
       .addMatcher<FulfilledAction>(

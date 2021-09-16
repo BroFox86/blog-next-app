@@ -23,7 +23,7 @@ export function SinglePost() {
   const postId = String(router.query.postId)
   const post: PostState | undefined = useAppSelector(state => selectPostById(state, postId))
   const postsStatus = useAppSelector((state) => state.posts.status)
-  const isStatusPending = postsStatus === "update-database" ? true : false
+  const isStatusPending = postsStatus === "update" ? true : false
   const isFormValid: boolean = Boolean(title) && Boolean(content)
   const dispatch = useAppDispatch()
 
