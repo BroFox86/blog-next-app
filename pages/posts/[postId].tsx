@@ -10,7 +10,7 @@ const PostPage: NextPage = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (postsStatus === "idle") {
+    if (postsStatus === "init") {
       dispatch(fetchPosts())
     }
   },[postsStatus, dispatch])
