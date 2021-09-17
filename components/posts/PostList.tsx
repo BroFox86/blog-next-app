@@ -22,21 +22,18 @@ export function PostList() {
 
   return (
     <section className={clsx(s.container, hasDarkTheme && s.hasDarkTheme)}>
-      <h2 className={s.title}>
-        {postsStatus !== "fulfilled" ?
-          "Your Posts" 
-          :
-          posts.list.length ? "Your Posts" : "You have no posts!"
-        }
-      </h2>
+      <h2 className={s.title}>Your Posts</h2>
 
-      {postsStatus === "fetch" ?
+      {postsStatus === "fetch" ? (
         <Spinner />
-        :
-        <div className={s.postList}>
-          {posts.list.map((post, index) => <Post key={index} {...post} />)}
-        </div>
-      }
+      ) :
+        posts.list.length ? (
+          <div className={s.postList}>
+            {posts.list.map((post, index) => <Post key={index} {...post} />)}
+          </div>
+        ) : (
+          <p className={s.noPostsMessage}>You have no posts!</p>
+        )}
     </section>
   )
 }
@@ -46,11 +43,11 @@ function Post({ id, date, image, title, content }: PostState) {
   let excerpt = content.replace(/<\/[^>]*>/gm, " ").replace(/<[^>]*>/gm, "")
   excerpt = excerpt.slice(0, 200)
   excerpt = excerpt.trim()
-  
+
   if (excerpt.length >= 190) {
     excerpt += "..."
   }
-   
+
   return (
     <article className={s.post}>
       <div className={s.imageWrapper}>

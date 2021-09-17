@@ -127,7 +127,7 @@ const postsSlice = createSlice({
       // .addMatcher<PendingAction>(
       //   (action) => action.type.endsWith("/pending"),
       //   (state) => {
-      //     state.status = "update"
+      //     state.status = ""
       //   }
       // )
       .addMatcher<FulfilledAction>(

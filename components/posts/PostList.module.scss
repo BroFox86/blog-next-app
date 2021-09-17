@@ -80,7 +80,7 @@
   color: inherit;
 
   &:hover {
-    text-decoration: underline;
+    color: var(--color-primary);
   }
 }
 
@@ -91,4 +91,8 @@
 .button {
   align-self: start;
   margin-top: auto;
+}
+
+.noPostsMessage {
+  text-align: center;
 }
