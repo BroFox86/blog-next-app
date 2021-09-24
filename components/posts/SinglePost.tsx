@@ -73,7 +73,7 @@ export function SinglePost() {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{post.title}</title>
       </Head>
       <>
         <div className={s.image}>
