@@ -2,11 +2,10 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import Head from "next/head"
 import Image from "next/image"
-import { unwrapResult } from "@reduxjs/toolkit"
-import { useAppSelector, useAppDispatch } from "~/hooks/redux"
-import { PostState, deletePost, editPost, selectPostById } from "./postsSlice"
 import parse from "html-react-parser"
+import { useGetPostQuery, useUpdatePostMutation, useGetAllPostsQuery } from "~/app/services/postApi"
 import { useScrollLock } from "~/utilities/useScrollLock"
+import { formatDate } from "~/utilities/formatDate"
 import { PostForm } from "./PostForm"
 import { Button } from "../common/Button"
 import { DeletionModal } from "./DeletionModal"
@@ -18,14 +17,26 @@ export function SinglePost() {
   const [title, setTitle] = useState<string>("")
   const [content, setContent] = useState<string>("")
   const [isModalActive, setIsModalActive] = useState<boolean>(false)
+  const [isDeleting, setIsDeleting] = useState<boolean>(false)
 
   const router = useRouter()
   const postId = String(router.query.postId)
-  const post: PostState | undefined = useAppSelector(state => selectPostById(state, postId))
-  const postsStatus = useAppSelector((state) => state.posts.status)
-  const isStatusPending = postsStatus === "update" ? true : false
+  const { data, isLoading } = useGetPostQuery(postId)
+  const [updatePost, { isLoading: isUpdating }] = useUpdatePostMutation()
+
+  // Update PostList after editing
+  useGetAllPostsQuery()
+
+  const isPending = isUpdating || isDeleting
+  const post = data?.post
   const isFormValid: boolean = Boolean(title) && Boolean(content)
-  const dispatch = useAppDispatch()
+
+  useEffect(()=>{
+    if (post) {
+      setTitle(post.title)
+      setContent(post.content)
+    }
+  }, [post])
 
   useScrollLock("isFixedByModal", isModalActive)
 
@@ -33,43 +44,30 @@ export function SinglePost() {
     setIsModalActive(isModalActive ? false : true)
   }
 
-  useEffect(() => {
-    if (post) {
-      setTitle(post.title)
-      setContent(post.content)
-    }
-  }, [post])
-
-  async function handlePostEditing() {
-
+  async function handlePostUpdate() {
     if (!isFormValid) return
 
-    try {
-      const resultAction = await dispatch(editPost({ id: postId, title, content }))
-      unwrapResult(resultAction)
-      setIsEditMode(false)
-
-    } catch (error: any) {
-      alert(error.message)
-    }
+    await updatePost({
+      id: postId,
+      updatedDate: new Date().toISOString(),
+      title,
+      content
+    })
+    
+    setIsEditMode(false)
   }
 
-  function handleCancelEditing() {
+  function cancelEditing() {
     if (!post) return
-
     setIsEditMode(false)
     setTitle(post.title)
     setContent(post.content)
   }
 
-  if (!post) {
-    return (
-      <div className={s.inner}>
-        <Spinner extraStyles={s.spinner} />
-      </div>
-    )
+  if (!post || isLoading) {
+    return <Spinner extraStyles={s.spinner} />
   }
-
+  
   return (
     <>
       <Head>
@@ -93,7 +91,7 @@ export function SinglePost() {
                 {title}
               </h1>
               <p className={s.postInfo}>
-                {post.date}{" "}<span className={s.editedDate}>{post.editedDate && `(edited on ${post.editedDate})`}</span> by&nbsp;<span className={s.author}>Guest</span>
+                {formatDate(post.date)}{" "}<span className={s.updatedDate}>{post.updatedDate && `(edited on ${formatDate(post.updatedDate, true)})`}</span>{" "}by&nbsp;<span className={s.author}>Guest</span>
               </p>
               <hr />
               <div className="postBody">
@@ -106,7 +104,7 @@ export function SinglePost() {
                   label="Edit"
                   variant="primary"
                   type="button"
-                  isDisabled={isStatusPending}
+                  isDisabled={isPending}
                   onClick={() => setIsEditMode(true)}
                 />
                 <Button
@@ -114,14 +112,15 @@ export function SinglePost() {
                   label="Delete"
                   variant="primary"
                   type="button"
-                  isDisabled={isStatusPending}
+                  isDisabled={isPending}
                   onClick={toggleModal}
                 />
               </div>
-              <DeletionModal 
-                isActive={isModalActive} 
-                toggleModal={toggleModal} 
+              <DeletionModal
+                isActive={isModalActive}
+                toggleModal={toggleModal}
                 postId={postId}
+                setIsDeleting={setIsDeleting}
               />
             </>
           ) : (
@@ -138,17 +137,17 @@ export function SinglePost() {
                   label="Save"
                   variant="primary"
                   type="button"
-                  isDisabled={!isFormValid || isStatusPending}
-                  isPending={isStatusPending}
-                  onClick={handlePostEditing}
+                  isDisabled={!isFormValid || isPending}
+                  isPending={isPending}
+                  onClick={handlePostUpdate}
                 />
                 <Button
                   extraStyles={s.button}
                   label="Cancel"
                   variant="primary"
                   type="button"
-                  isDisabled={isStatusPending}
-                  onClick={handleCancelEditing}
+                  isDisabled={isPending}
+                  onClick={cancelEditing}
                 />
               </div>
             </form>

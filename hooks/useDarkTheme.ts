@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import { AppDispatch } from "~/store"
+import { AppDispatch } from "~/app/store"
 import { useAppDispatch } from "~/hooks/redux"
-import { setDarkTheme } from "~/components/header/darkThemeSlice"
+import { setDarkTheme } from "~/app/services/darkThemeSlice"
 import { loadState } from "~/utilities/sessionStorage"
 
 export function handleDarkTheme(dispatchFunc: AppDispatch, isThemeDark: boolean) {

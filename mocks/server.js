@@ -1,8 +1,8 @@
 import { createServer, Model } from "miragejs"
-import { posts } from "~/components/posts/posts"
+import { posts } from "~/mocks/posts"
 
-export function makeServer({ environment = "test" } = {}) {
-  const TIMING = 2000
+export function createMirageServer({ environment = "test" } = {}) {
+  const TIMING = 1500
   const server = createServer({
 
     environment,
@@ -29,8 +29,15 @@ export function makeServer({ environment = "test" } = {}) {
         return schema.posts.all()
       }, { timing: TIMING })
       
+      this.get("/posts/:id", (schema, request) => {
+        const id = request.params.id
+        return schema.posts.find(id)
+      }, { timing: TIMING })
+      
       this.post("/posts", (schema, request) => {
         const attrs = JSON.parse(request.requestBody)
+
+        console.log(attrs)
 
         return schema.posts.create(attrs )
       }, { timing: TIMING })
@@ -39,6 +46,7 @@ export function makeServer({ environment = "test" } = {}) {
         const id = request.params.id
         // const attrs = this.normalizedRequestAttrs()
         const attrs = JSON.parse(request.requestBody)
+        console.log(attrs)
 
         return schema.posts.find(id).update(attrs)
       }, { timing: TIMING })

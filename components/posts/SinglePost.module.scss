@@ -3,7 +3,8 @@
 @import "../../styles/mixins.scss";
 
 .spinner {
-  @include position(center);
+  position: relative;
+  top: 40vh;
   transform: scale(1.2);
 }
 

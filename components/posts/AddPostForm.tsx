@@ -1,7 +1,6 @@
 import { useState } from "react"
-import { unwrapResult } from "@reduxjs/toolkit"
-import { useAppDispatch, useAppSelector } from "~/hooks/redux"
-import { addPost } from "./postsSlice"
+import { nanoid } from "@reduxjs/toolkit"
+import { useAddPostMutation } from "~/app/services/postApi"
 import { PostForm } from "./PostForm"
 import { Button } from "../common/Button"
 import s from "./AddPostForm.module.scss"
@@ -9,26 +8,24 @@ import s from "./AddPostForm.module.scss"
 export function AddPostForm() {
   const [title, setTitle] = useState<string>("")
   const [content, setContent] = useState<string>("")
-  const dispatch = useAppDispatch()
-  const postsStatus = useAppSelector((state) => state.posts.status)
-  const isStatusPending = postsStatus === "update" ? true : false
+  const [addPost, { isLoading }] = useAddPostMutation()
   const isFormValid: boolean = Boolean(title) && Boolean(content)
 
   async function handlePostAdding() {
-    if (isFormValid) {
-      try {
-        const resultAction = await dispatch(addPost({
-          title: title,
-          content: content
-        }))
-        unwrapResult(resultAction)
-        setTitle("")
-        setContent("")
-        
-      } catch (error: any) {
-        alert(error.message)
-      }
+    if (!isFormValid) {
+      return
     }
+
+    await addPost({
+      id: nanoid(),
+      date: new Date().toISOString(),
+      image: "/images/cover-7.jpg",
+      title: title,
+      content: content
+    })
+    
+    setTitle("")
+    setContent("")
   }
 
   return (
@@ -46,8 +43,8 @@ export function AddPostForm() {
           label="Add Post"
           variant="primary"
           type="button"
-          isDisabled={!isFormValid || isStatusPending}
-          isPending={isStatusPending}
+          isDisabled={!isFormValid || isLoading}
+          isPending={isLoading}
           onClick={handlePostAdding}
         />
       </form>

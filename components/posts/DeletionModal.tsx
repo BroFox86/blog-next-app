@@ -1,8 +1,6 @@
-import { MouseEventHandler } from "react"
+import { MouseEventHandler, useEffect } from "react"
 import { useRouter } from "next/router"
-import { unwrapResult } from "@reduxjs/toolkit"
-import { useAppSelector, useAppDispatch} from "~/hooks/redux"
-import { deletePost } from "./postsSlice"
+import { useDeletePostMutation } from "~/app/services/postApi"
 import { Modal } from "../modal/Modal"
 import { Button } from "../common/Button"
 import s from "./DeletionModal.module.scss"
@@ -10,28 +8,22 @@ import s from "./DeletionModal.module.scss"
 interface Props {
   isActive: boolean,
   toggleModal: MouseEventHandler,
+  setIsDeleting: Function,
   postId: string
 }
 
 export function DeletionModal(props: Props) {
-  const dispatch = useAppDispatch()
+  const [deletePost, { isLoading: isDeleting }] = useDeletePostMutation()
   const router = useRouter()
-  const postsStatus = useAppSelector((state) => state.posts.status)
-  const isStatusPending = postsStatus === "update" ? true : false
 
   async function handlePostDeletion() {
-    try {
-      const resultAction = await dispatch(deletePost(props.postId)) 
-
-      unwrapResult(resultAction)
-
-      router.push("/")
-
-    } catch (error: any) {
-
-      alert(error.message)
-    }
+    await deletePost(props.postId)
+    router.push("/")
   }
+
+  useEffect(()=> {
+    props.setIsDeleting(isDeleting)
+  },[props, isDeleting])
 
   return (
     <Modal
@@ -48,8 +40,8 @@ export function DeletionModal(props: Props) {
           label="Delete"
           variant="danger"
           type="button"
-          isPending={isStatusPending}
-          isDisabled={isStatusPending}
+          isPending={isDeleting}
+          isDisabled={isDeleting}
           onClick={handlePostDeletion}
         />
       </div>

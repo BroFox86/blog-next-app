@@ -1,10 +1,10 @@
 import { sentence, paragraph } from "txtgen"
-import { PostState } from "./postsSlice"
+import { PostState } from "~/app/services/postApi"
 
 export const posts: PostState[] = [
   {
-    date: "July 17, 2021",
-    editedDate: null,
+    date: "2021-09-14",
+    updatedDate: null,
     image: "/images/cover_1.jpg",
     title: sentence(),
     content: `
@@ -20,8 +20,8 @@ export const posts: PostState[] = [
       `
   },
   {
-    date: "July 15, 2021",
-    editedDate: null,
+    date: "2021-08-24",
+    updatedDate: null,
     image: "/images/cover_2.jpg",
     title: sentence(),
     content: `
@@ -37,8 +37,8 @@ export const posts: PostState[] = [
       `
   },
   {
-    date: "June 15, 2021",
-    editedDate: null,
+    date: "2021-08-20",
+    updatedDate: null,
     image: "/images/cover_3.jpg",
     title: sentence(),
     content: `
@@ -54,8 +54,8 @@ export const posts: PostState[] = [
       `
   },
   {
-    date: "December 20, 2020",
-    editedDate: null,
+    date: "2021-08-13",
+    updatedDate: null,
     image: "/images/cover_4.jpg",
     title: sentence(),
     content: `
@@ -65,8 +65,8 @@ export const posts: PostState[] = [
       `
   },
   {
-    date: "December 17, 2020",
-    editedDate: null,
+    date: "2021-07-18",
+    updatedDate: null,
     image: "/images/cover_5.jpg",
     title: sentence(),
     content: `
@@ -82,8 +82,8 @@ export const posts: PostState[] = [
       `
   },
   {
-    date: "November 15, 2020",
-    editedDate: null,
+    date: "2020-09-25",
+    updatedDate: null,
     image: "/images/cover_6.jpg",
     title: sentence(),
     content: `
@@ -97,8 +97,8 @@ export const posts: PostState[] = [
       `
   },
   {
-    date: "November 15, 2020",
-    editedDate: null,
+    date: "2020-09-23",
+    updatedDate: null,
     image: "/images/cover_1.jpg",
     title: sentence(),
     content: `
@@ -114,8 +114,8 @@ export const posts: PostState[] = [
       `
   },
   {
-    date: "November 13, 2020",
-    editedDate: null,
+    date: "2020-08-11",
+    updatedDate: null,
     image: "/images/cover_2.jpg",
     title: sentence(),
     content: `

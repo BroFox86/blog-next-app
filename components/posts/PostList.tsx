@@ -1,44 +1,47 @@
-import { useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useAppSelector, useAppDispatch } from "~/hooks/redux"
-import { fetchPosts, PostState } from "./postsSlice"
 import clsx from "clsx"
+import { useGetAllPostsQuery, PostState } from "~/app/services/postApi"
+import { useAppSelector } from "~/hooks/redux"
+import { formatDate } from "~/utilities/formatDate"
 import { Button } from "../common/Button"
 import { Spinner } from "../common/Spinner"
 import s from "./PostList.module.scss"
 
 export function PostList() {
+  const { data, isLoading } = useGetAllPostsQuery()
   const hasDarkTheme = useAppSelector(state => state.darkTheme)
-  const posts = useAppSelector((state) => state.posts)
-  const postsStatus = useAppSelector((state) => state.posts.status)
-  const dispatch = useAppDispatch()
+  const posts = data?.posts
+  let sortedPosts
 
-  useEffect(() => {
-    if (postsStatus === "init") {
-      dispatch(fetchPosts())
-    }
-  }, [postsStatus, dispatch])
+  if (posts) {
+    sortedPosts = posts.slice().sort((a, b) => {
+      return (b.date).localeCompare(a.date)
+    })
+  }
 
   return (
     <section className={clsx(s.container, hasDarkTheme && s.hasDarkTheme)}>
       <h2 className={s.title}>Your Posts</h2>
 
-      {postsStatus === "fetch" ? (
+      {isLoading ? (
         <Spinner />
-      ) :
-        posts.list.length ? (
-          <div className={s.postList}>
-            {posts.list.map((post, index) => <Post key={index} {...post} />)}
-          </div>
-        ) : (
-          <p className={s.noPostsMessage}>You have no posts!</p>
-        )}
+      ) : sortedPosts ? (
+        <div className={s.postList}>
+          {sortedPosts.map((post, index) =>
+            <Post key={index} {...post} />
+          )}
+        </div>
+      ) : (
+        <p className={s.noPostsMessage}>You have no posts!</p>
+      )}
     </section>
   )
 }
 
 function Post({ id, date, image, title, content }: PostState) {
+  const formattedDate = formatDate(date)
+
   // Add space instead of a closing tag, remove all tags, trim and reduce the text.
   let excerpt = content.replace(/<\/[^>]*>/gm, " ").replace(/<[^>]*>/gm, "")
   excerpt = excerpt.slice(0, 200)
@@ -59,7 +62,7 @@ function Post({ id, date, image, title, content }: PostState) {
           alt=""
         />
         <div className={s.date}>
-          {date}
+          {formattedDate}
         </div>
       </div>
       <div className={s.postInner}>

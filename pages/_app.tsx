@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app"
 import { Provider } from "react-redux"
-import { makeServer } from "~/api/server"
-import store from "~/store"
+import { createMirageServer } from "~/mocks/server"
+import store from "~/app/store"
 import Head from "next/head"
 
 // Import global styles
@@ -12,7 +12,7 @@ import "../styles/variables.css"
 import "../styles/quill.css"
 
 // if (process.env.NODE_ENV === "development") {
-makeServer({ environment: "development" })
+createMirageServer({ environment: "development" })
 // }
 
 function MyApp({ Component, pageProps }: AppProps) {
