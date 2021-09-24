@@ -11,11 +11,11 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   loading: () => <Spinner label="Loading Quill editor" />,
 })
 
-interface Props {
-  title: string,
-  content: string,
-  setTitle: Dispatch<SetStateAction<string>>,
-  setContent: any,
+type Props = {
+  title: string
+  content: string
+  setTitle: Dispatch<SetStateAction<string>>
+  setContent: any
 }
 
 export function PostForm(props: Props) {

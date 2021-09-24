@@ -2,7 +2,7 @@ import Link from "next/link"
 import clsx from "clsx"
 import s from "./Button.module.scss"
 
-interface Props {
+type Props = {
   extraStyles?: any
   variant: string
   label: string

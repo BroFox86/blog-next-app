@@ -1,11 +1,11 @@
 import { useState, useRef } from "react"
 import { useAppSelector } from "~/hooks/redux"
-import { useModal } from "~/utilities/useModal"
+import { useAccessibleModal } from "~/utilities/useAccessibleModal"
 import { getTransitionDuration } from "~/utilities/getStyleValue"
 import clsx from "clsx"
 import s from "./Modal.module.scss"
 
-interface Props {
+type Props = {
   extraStyles?: string
   isActive: boolean
   toggleModal: React.MouseEventHandler
@@ -40,7 +40,7 @@ export function Modal(props: Props) {
     setTimeout(() => setIsInitiated(false), duration)
   }
 
-  useModal(isActive, modalRef, toggleModal)
+  useAccessibleModal(isActive, modalRef, toggleModal)
 
   return (
     (isInitiated ? 

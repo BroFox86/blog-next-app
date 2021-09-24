@@ -1,16 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-export interface PostState {
-  id?: string,
-  date: string,
-  updatedDate: string | null,
-  image: string,
-  title: string,
-  content: string,
+export type PostState = {
+  id?: string
+  date: string
+  updatedDate: string | null
+  image: string
+  title: string
+  content: string
 }
 
 type PostResponse = {
-  post?: PostState,
+  post?: PostState
   posts?: PostState[]
 }
 

@@ -1,8 +1,8 @@
 import clsx from "clsx"
 import s from "./Spinner.module.scss"
 
-interface Props {
-  extraStyles?: string,
+type Props = {
+  extraStyles?: string
   label?: string
 }
 

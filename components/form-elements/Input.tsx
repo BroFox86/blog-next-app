@@ -2,7 +2,7 @@ import React from "react"
 import clsx from "clsx"
 import s from "./styles.module.scss"
 
-export interface Props {
+export type Props = {
   extraStyles?: string
   label?: string
   name: string

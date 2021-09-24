@@ -3,7 +3,7 @@ import { useEffect } from "react"
 /**
  * Trap focus within a DOM node.
  */
-export function useModal(isActive: boolean, ref: any, closeModal: Function) {
+export function useAccessibleModal(isActive: boolean, ref: any, closeModal: Function) {
   useEffect(() => {
     let lastActiveElement: any
     let pressed: Set<string>

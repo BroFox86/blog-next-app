@@ -5,10 +5,10 @@ import { Modal } from "../modal/Modal"
 import { Button } from "../common/Button"
 import s from "./DeletionModal.module.scss"
 
-interface Props {
-  isActive: boolean,
-  toggleModal: MouseEventHandler,
-  setIsDeleting: Function,
+type Props = {
+  isActive: boolean
+  toggleModal: MouseEventHandler
+  setIsDeleting: Function
   postId: string
 }
 

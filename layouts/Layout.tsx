@@ -3,7 +3,7 @@ import { Header } from "~/components/header/Header"
 import { Footer } from "~/components/footer/Footer"
 import s from "./Layout.module.scss"
 
-interface Props {
+type Props = {
   children: JSX.Element | JSX.Element[]
 }
 
