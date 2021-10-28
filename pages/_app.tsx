@@ -21,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="robots" content="noindex" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <meta name="theme-color" content="#5031aa" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="crossorigin" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
