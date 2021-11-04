@@ -24,8 +24,7 @@
   gap: 20px;
 
   @media (min-width: $medium-screen) {
-    grid-template-columns: repeat(auto-fill, 315px);
-    
+    grid-template-columns: repeat(auto-fill, 48%);
   }
 
   @media (min-width: $large-screen) {
