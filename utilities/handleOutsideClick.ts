@@ -15,5 +15,5 @@ export function handleOutsideClick(name: string, stateHandler: Function): false 
     } else {
       stateHandler(false)
     }
-  };
+  }
 }
