@@ -1,16 +1,17 @@
-import React from "react"
-import clsx from "clsx"
-import s from "./styles.module.scss"
+import clsx from 'clsx'
+import React from 'react'
+
+import s from './styles.module.scss'
 
 export type Props = {
   extraStyles?: string
   label?: string
   name: string
-  type?: "text" | "email" | "number" | "button" | "submit" | "password"
+  type?: 'text' | 'email' | 'number' | 'button' | 'submit' | 'password'
   maxLength?: number
   min?: number
   max?: number
-  inputMode?: "text" | "none" | "url" | "tel" | "email" | "numeric" | "decimal" | "search"
+  inputMode?: 'text' | 'none' | 'url' | 'tel' | 'email' | 'numeric' | 'decimal' | 'search'
   pattern?: string
   autoComplete?: string
   placeholder?: string
@@ -29,18 +30,18 @@ export type Props = {
 export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   return (
     <div className={clsx(s.formField, props.extraStyles)}>
-      {props.label &&
+      {props.label && (
         <label className={s.label} htmlFor={props.name}>
           {props.label}
         </label>
-      }
+      )}
       <div className={s.inputGroup}>
         <input
           ref={ref}
           className={s.input}
           name={props.name}
           id={props.name}
-          type={props.type || "text"}
+          type={props.type || 'text'}
           maxLength={props.maxLength}
           min={props.min}
           max={props.max}
@@ -64,4 +65,4 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   )
 })
 
-Input.displayName = "Input"
+Input.displayName = 'Input'

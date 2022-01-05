@@ -1,9 +1,11 @@
-import { MouseEventHandler, useEffect } from "react"
-import { useRouter } from "next/router"
-import { useDeletePostMutation } from "~/app/services/postApi"
-import { Modal } from "../modal/Modal"
-import { Button } from "../common/Button"
-import s from "./DeletionModal.module.scss"
+import { useRouter } from 'next/router'
+import { MouseEventHandler, useEffect } from 'react'
+
+import { useDeletePostMutation } from '~/app/services/postApi'
+
+import { Button } from '../common/Button'
+import { Modal } from '../modal/Modal'
+import s from './DeletionModal.module.scss'
 
 type Props = {
   isActive: boolean
@@ -18,28 +20,24 @@ export function DeletionModal(props: Props) {
 
   async function handlePostDeletion() {
     await deletePost(props.postId)
-    router.push("/")
+    router.push('/')
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     props.setIsDeleting(isDeleting)
-  },[props, isDeleting])
+  }, [props, isDeleting])
 
   return (
-    <Modal
-      isActive={props.isActive}
-      toggleModal={props.toggleModal}
-      ariaLabelledby="modalHeading"
-    >
-      <h2 className={s.heading} id="modalHeading">
+    <Modal isActive={props.isActive} toggleModal={props.toggleModal} ariaLabelledby='modalHeading'>
+      <h2 className={s.heading} id='modalHeading'>
         Do you want to delete this post?
       </h2>
       <div className={s.buttonWrapper}>
         <Button
           extraStyles={s.buttonWrapper}
-          label="Delete"
-          variant="danger"
-          type="button"
+          label='Delete'
+          variant='danger'
+          type='button'
           isPending={isDeleting}
           isDisabled={isDeleting}
           onClick={handlePostDeletion}

@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export type PostState = {
   id?: string
@@ -15,51 +15,51 @@ type PostResponse = {
 }
 
 export const postApi = createApi({
-  reducerPath: "postApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "/fakeApi/" }),
-  tagTypes: ["PostState"],
-  endpoints: (builder) => ({
+  reducerPath: 'postApi',
+  baseQuery: fetchBaseQuery({ baseUrl: '/fakeApi/' }),
+  tagTypes: ['PostState'],
+  endpoints: builder => ({
     getAllPosts: builder.query<PostResponse, void>({
-      query: () => "posts/",
-      providesTags: ["PostState"],
+      query: () => 'posts/',
+      providesTags: ['PostState'],
     }),
     getPost: builder.query<PostResponse, string>({
-      query: (id) => `posts/${id}`,
-      providesTags: ["PostState"],
+      query: id => `posts/${id}`,
+      providesTags: ['PostState'],
     }),
     addPost: builder.mutation<PostResponse, Partial<PostState>>({
-      query: (body) => ({
-        url: "posts/",
-        method: "POST",
+      query: body => ({
+        url: 'posts/',
+        method: 'POST',
         body,
       }),
-      invalidatesTags: ["PostState"],
+      invalidatesTags: ['PostState'],
     }),
     updatePost: builder.mutation<PostResponse, Partial<PostState>>({
       query(data) {
         const { id, ...body } = data
         return {
           url: `posts/${id}`,
-          method: "PUT",
+          method: 'PUT',
           body,
         }
       },
-      invalidatesTags: ["PostState"],
+      invalidatesTags: ['PostState'],
     }),
     deletePost: builder.mutation<PostResponse, string>({
       query(id) {
         return {
           url: `posts/${id}`,
-          method: "DELETE",
+          method: 'DELETE',
         }
       },
-      invalidatesTags: ["PostState"],
+      invalidatesTags: ['PostState'],
     }),
   }),
 })
 
-export const { 
-  useGetAllPostsQuery, 
+export const {
+  useGetAllPostsQuery,
   useAddPostMutation,
   useGetPostQuery,
   useUpdatePostMutation,
