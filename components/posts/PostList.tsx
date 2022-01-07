@@ -12,7 +12,7 @@ import s from './PostList.module.scss'
 
 export function PostList() {
   const { data, isLoading } = useGetAllPostsQuery()
-  const hasDarkTheme = useAppSelector(state => state.darkTheme)
+  const hasDarkTheme = useAppSelector(state => state.app.darkTheme)
   const posts = data?.posts
   let sortedPosts
 

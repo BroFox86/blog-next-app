@@ -1,0 +1,65 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 16px;
+  opacity: 0;
+  border: thin solid transparent;
+  border-radius: 4px;
+  font-weight: 500;
+  transform: scale(0.9);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+  will-change: transform;
+
+  &.isVisible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &.success {
+    border-color: #badbcc;
+    background: #d1e7dd;
+    color: #0f5132;
+  }
+
+  &.warning {
+    border-color: #ffecb5;
+    background: #fff3cd;
+    color: #664d03;
+  }
+
+  &.danger {
+    border-color: #f5c2c7;
+    background: #f8d7da;
+    color: #842029;
+  }
+}
+
+.closeButton {
+  @include place-center;
+  margin-left: 1rem;
+  padding: 3px;
+  border-radius: 50%;
+  background: transparent;
+
+  @include hasHoverSupport {
+    .alert.success & {
+      background: #badbcc;
+    }
+
+    .alert.warning & {
+      background: #ffecb5;
+    }
+    
+    .alert.danger & {
+      background: #f5c2c7;
+    }
+  }
+}
+
+.closeIcon {
+  fill: grey;
+}

@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router'
 import { MouseEventHandler, useEffect } from 'react'
 
+import { setdeletionAlert } from '~/app/services/appSlice'
 import { useDeletePostMutation } from '~/app/services/postApi'
+import { useAppDispatch } from '~/hooks/redux'
 
 import { Button } from '../common/Button'
 import { Modal } from '../modal/Modal'
@@ -12,15 +14,20 @@ type Props = {
   toggleModal: MouseEventHandler
   setIsDeleting: Function
   postId: string
+  postTitle: string
 }
 
 export function DeletionModal(props: Props) {
   const [deletePost, { isLoading: isDeleting }] = useDeletePostMutation()
   const router = useRouter()
+  const dispatch = useAppDispatch()
 
   async function handlePostDeletion() {
-    await deletePost(props.postId)
-    router.push('/')
+    try {
+      await deletePost(props.postId)
+      dispatch(setdeletionAlert({ isActive: true, title: props.postTitle }))
+      router.push('/')
+    } catch (e: any) {}
   }
 
   useEffect(() => {
@@ -29,13 +36,13 @@ export function DeletionModal(props: Props) {
 
   return (
     <Modal isActive={props.isActive} toggleModal={props.toggleModal} ariaLabelledby='modalHeading'>
-      <h2 className={s.heading} id='modalHeading'>
+      <p className={s.heading} id='modalHeading'>
         Do you want to delete this post?
-      </h2>
+      </p>
       <div className={s.buttonWrapper}>
         <Button
           extraStyles={s.buttonWrapper}
-          label='Delete'
+          label='Confirm'
           variant='danger'
           type='button'
           isPending={isDeleting}

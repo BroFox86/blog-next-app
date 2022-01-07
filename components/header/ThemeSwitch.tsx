@@ -8,7 +8,7 @@ import { saveState } from '~/utilities/sessionStorage'
 import s from './ThemeSwitch.module.scss'
 
 export function ThemeSwitch() {
-  const isStateThemeDark = useAppSelector(state => state.darkTheme)
+  const isStateThemeDark = useAppSelector(state => state.app.darkTheme)
   const [isThemeDark, setIsThemeDark] = useState<boolean>(isStateThemeDark)
   const dispatch = useAppDispatch()
 

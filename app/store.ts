@@ -2,12 +2,12 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import { postApi } from '~/app/services/postApi'
 
-import darkThemeReducer from './services/darkThemeSlice'
+import appReducer from './services/appSlice'
 
 const store = configureStore({
   reducer: {
     [postApi.reducerPath]: postApi.reducer,
-    darkTheme: darkThemeReducer,
+    app: appReducer,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(postApi.middleware),
 })

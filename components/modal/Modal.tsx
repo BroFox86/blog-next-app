@@ -22,7 +22,7 @@ export function Modal(props: Props) {
   const [isVisible, setIsVisible] = useState<boolean>(false)
   const isOpening = isActive && !isInitiated && !isVisible
   const isClosing = !isActive && isInitiated && isVisible
-  const hasDarkTheme = useAppSelector(state => state.darkTheme)
+  const hasDarkTheme = useAppSelector(state => state.app.darkTheme)
 
   if (isOpening) {
     setIsInitiated(true)

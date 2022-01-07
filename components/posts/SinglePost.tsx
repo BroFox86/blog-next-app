@@ -8,6 +8,7 @@ import { useGetAllPostsQuery, useGetPostQuery, useUpdatePostMutation } from '~/a
 import { formatDate } from '~/utilities/formatDate'
 import { useScrollLock } from '~/utilities/useScrollLock'
 
+import { Alert } from '../common/Alert'
 import { Button } from '../common/Button'
 import { Spinner } from '../common/Spinner'
 import { DeletionModal } from './DeletionModal'
@@ -20,6 +21,7 @@ export function SinglePost() {
   const [content, setContent] = useState<string>('')
   const [isModalActive, setIsModalActive] = useState<boolean>(false)
   const [isDeleting, setIsDeleting] = useState<boolean>(false)
+  const [alertMesages, setAlertMessages] = useState<Array<JSX.Element>>([])
 
   const router = useRouter()
   const postId = String(router.query.postId)
@@ -49,14 +51,19 @@ export function SinglePost() {
   async function handlePostUpdate() {
     if (!isFormValid) return
 
-    await updatePost({
-      id: postId,
-      updatedDate: new Date().toISOString(),
-      title,
-      content,
-    })
-
-    setIsEditMode(false)
+    try {
+      await updatePost({
+        id: postId,
+        updatedDate: new Date().toISOString(),
+        title,
+        content,
+      })
+      setIsEditMode(false)
+      setAlertMessages(alertMesages.concat(<Alert variant='success'>Post has been updated.</Alert>))
+    } catch (e: any) {
+      console.log(e.message)
+      setAlertMessages(alertMesages.concat(<Alert variant='danger'>Error: Something went wrong...</Alert>))
+    }
   }
 
   function cancelEditing() {
@@ -77,9 +84,14 @@ export function SinglePost() {
       </Head>
       <>
         <div className={s.image}>
-          <Image src={post.image} sizes='100vw' layout='fill' objectFit='cover' priority={true} alt='' />
+          <Image src={post.image} sizes='100vw' layout='fill' objectFit='cover' priority alt='' />
         </div>
         <div className={s.inner}>
+          {alertMesages.length !== 0 && (
+            <div className={s.alertBox} hidden={isEditMode ? true : false}>
+              {alertMesages}
+            </div>
+          )}
           {!isEditMode ? (
             <>
               <h1 className={s.title}>{title}</h1>
@@ -115,6 +127,7 @@ export function SinglePost() {
                 isActive={isModalActive}
                 toggleModal={toggleModal}
                 postId={postId}
+                postTitle={title}
                 setIsDeleting={setIsDeleting}
               />
             </>
