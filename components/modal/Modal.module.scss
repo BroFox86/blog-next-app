@@ -38,18 +38,18 @@
 
 .modalContainer {
   z-index: 10;
-  width: var(--modal-width, 85%);
+  width: var(--modal-width, 95%);
   max-width: var(--modal-max-width, 450px);
   margin: 3vh auto 10px;
-  padding: 30px 70px;
+  padding: 30px;
   transform: translate(0, -25%);
   transition: transform .3s ease-out;
-  border-radius: 16px;
+  border-radius: 12px;
   background: white;
 
   @media (min-width: $medium-screen) {
     margin: 30px auto;
-    padding: 60px 40px;
+    padding: 40px;
   }
 
   .modal.isVisible > & {
@@ -63,19 +63,27 @@
 
 .closeBtnInner {
   @include place-center();
-  @include circle(36px);
+  @include circle(26px);
   @include scale-on-active();
   position: absolute; 
   top: 10px;
   right: 10px;
-  background: whitesmoke;
+  background: none;
+
+  @media (min-width: $medium-screen) {
+    @include circle(36px);
+  }
   
   @include hasHoverSupport {
-    background: gainsboro;
+    background: whitesmoke;
   }
 }
 
 .closeIcon {  
-  @include square(30px);
+  @include square(25px);
   fill: grey;
+
+  @media (min-width: $medium-screen) {
+    @include square(30px);
+  }
 }
