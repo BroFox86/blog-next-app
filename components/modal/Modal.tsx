@@ -9,7 +9,7 @@ import { useScrollLock } from '~/utilities/useScrollLock'
 import s from './Modal.module.scss'
 
 type Props = {
-  extraStyles?: string
+  className?: string
   isActive: boolean
   toggleModal: React.MouseEventHandler
   ariaLabelledby: string
@@ -17,7 +17,7 @@ type Props = {
 }
 
 export function Modal(props: Props) {
-  const { extraStyles, isActive, toggleModal, children, ariaLabelledby } = props
+  const { className, isActive, toggleModal, children, ariaLabelledby } = props
   const modalRef = useRef<HTMLDivElement>(null)
   const [isInitiated, setIsInitiated] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -42,7 +42,7 @@ export function Modal(props: Props) {
 
   return isInitiated ? (
     <div
-      className={clsx(s.modal, extraStyles, hasDarkTheme && s.hasDarkTheme, isVisible && s.isVisible)}
+      className={clsx(s.modal, className, hasDarkTheme && s.hasDarkTheme, isVisible && s.isVisible)}
       ref={modalRef}
       role='dialog'
       aria-labelledby={ariaLabelledby}

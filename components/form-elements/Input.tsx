@@ -4,7 +4,7 @@ import React from 'react'
 import s from './styles.module.scss'
 
 export type Props = {
-  extraStyles?: string
+  className?: string
   label?: string
   name: string
   type?: 'text' | 'email' | 'number' | 'button' | 'submit' | 'password'
@@ -29,7 +29,7 @@ export type Props = {
 
 export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   return (
-    <div className={clsx(s.formField, props.extraStyles)}>
+    <div className={clsx(s.formField, props.className)}>
       {props.label && (
         <label className={s.label} htmlFor={props.name}>
           {props.label}

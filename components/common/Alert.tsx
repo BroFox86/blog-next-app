@@ -6,12 +6,12 @@ import { getTransitionDuration } from '~/utilities/getStyleValue'
 import s from './Alert.module.scss'
 
 interface Props {
-  extraStyles?: string
+  className?: string
   variant: 'success' | 'warning' | 'danger'
   children: string | string[] | JSX.Element
 }
 
-export function Alert({ extraStyles, variant, children }: Props) {
+export function Alert({ className, variant, children }: Props) {
   const [isMounted, setIsMounted] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
   const alertRef = useRef<HTMLDivElement>(null)
@@ -34,7 +34,7 @@ export function Alert({ extraStyles, variant, children }: Props) {
   }
 
   return isMounted ? (
-    <div className={clsx(s.alert, extraStyles, s[variant], isVisible && s.isVisible)} ref={alertRef} role='alert'>
+    <div className={clsx(s.alert, className, s[variant], isVisible && s.isVisible)} ref={alertRef} role='alert'>
       <span>{children}</span>
       <button className={s.closeButton} type='button' aria-label='Close alert' onClick={handleClosing}>
         <CloseIcon className={s.closeIcon} />

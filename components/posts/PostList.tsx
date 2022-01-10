@@ -70,7 +70,7 @@ function Post({ id, date, image, title, content }: PostState) {
         <p className={s.excerpt} suppressHydrationWarning>
           {excerpt}
         </p>
-        <Button extraStyles={s.button} as='link' variant='primary' label='View post' href={`/posts/${id}`} />
+        <Button className={s.button} as='link' variant='primary' label='View post' href={`/posts/${id}`} />
       </div>
     </article>
   )

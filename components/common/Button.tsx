@@ -4,7 +4,7 @@ import Link from 'next/link'
 import s from './Button.module.scss'
 
 type Props = {
-  extraStyles?: any
+  className?: any
   variant: string
   label: string
   as?: string
@@ -17,7 +17,7 @@ type Props = {
 }
 
 export function Button(props: Props) {
-  const { extraStyles, as, label, type, href, isDisabled, isPending, onClick } = props
+  const { className, as, label, type, href, isDisabled, isPending, onClick } = props
   const variant: string = props.variant.toLowerCase()
   let buttonType
 
@@ -27,7 +27,7 @@ export function Button(props: Props) {
 
   return as !== 'link' ? (
     <button
-      className={clsx(s.button, s[variant], extraStyles)}
+      className={clsx(s.button, s[variant], className)}
       type={buttonType}
       disabled={isDisabled}
       onClick={onClick}
@@ -37,7 +37,7 @@ export function Button(props: Props) {
     </button>
   ) : (
     <Link href={href || '/'}>
-      <a className={clsx(s.button, s[variant], extraStyles)}>{label}</a>
+      <a className={clsx(s.button, s[variant], className)}>{label}</a>
     </Link>
   )
 }

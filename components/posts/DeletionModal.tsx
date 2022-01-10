@@ -41,7 +41,7 @@ export function DeletionModal(props: Props) {
       </p>
       <div className={s.buttonWrapper}>
         <Button
-          extraStyles={s.buttonWrapper}
+          className={s.buttonWrapper}
           label='Confirm'
           variant='danger'
           type='button'

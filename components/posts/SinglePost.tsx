@@ -73,7 +73,7 @@ export function SinglePost() {
   }
 
   if (!post || isLoading) {
-    return <Spinner extraStyles={s.spinner} />
+    return <Spinner className={s.spinner} />
   }
 
   return (
@@ -108,7 +108,7 @@ export function SinglePost() {
               <hr className={s.buttonsDivider} />
               <div className={s.buttons}>
                 <Button
-                  extraStyles={s.button}
+                  className={s.button}
                   label='Edit'
                   variant='primary'
                   type='button'
@@ -116,7 +116,7 @@ export function SinglePost() {
                   onClick={() => setIsEditMode(true)}
                 />
                 <Button
-                  extraStyles={s.button}
+                  className={s.button}
                   label='Delete'
                   variant='primary'
                   type='button'
@@ -146,7 +146,7 @@ export function SinglePost() {
               <Editor content={content} setContent={setContent} />
               <div className={s.buttons}>
                 <Button
-                  extraStyles={s.button}
+                  className={s.button}
                   label='Save'
                   variant='primary'
                   type='button'
@@ -155,7 +155,7 @@ export function SinglePost() {
                   onClick={handlePostUpdate}
                 />
                 <Button
-                  extraStyles={s.button}
+                  className={s.button}
                   label='Cancel'
                   variant='primary'
                   type='button'

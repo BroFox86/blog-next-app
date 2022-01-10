@@ -91,7 +91,7 @@ export function AddPostForm() {
         />
         <Editor content={content} setContent={setContent} />
         <Button
-          extraStyles={s.button}
+          className={s.button}
           label='Add Post'
           variant='primary'
           type='button'
