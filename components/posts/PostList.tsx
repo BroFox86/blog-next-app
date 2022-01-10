@@ -3,11 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { PostState, useGetAllPostsQuery } from '~/app/services/postApi'
+import { Button } from '~/components/common/Button'
+import { Spinner } from '~/components/common/Spinner'
 import { useAppSelector } from '~/hooks/redux'
 import { formatDate } from '~/utilities/formatDate'
 
-import { Button } from '../common/Button'
-import { Spinner } from '../common/Spinner'
 import s from './PostList.module.scss'
 
 export function PostList() {

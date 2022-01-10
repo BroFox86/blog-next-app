@@ -3,9 +3,9 @@ import { MouseEventHandler, useEffect } from 'react'
 
 import { setdeletionAlert } from '~/app/services/appSlice'
 import { useDeletePostMutation } from '~/app/services/postApi'
+import { Button } from '~/components/common/Button'
 import { useAppDispatch } from '~/hooks/redux'
 
-import { Button } from '../common/Button'
 import { Modal } from '../modal/Modal'
 import s from './DeletionModal.module.scss'
 

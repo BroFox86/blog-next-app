@@ -6,14 +6,13 @@ import { useEffect, useState } from 'react'
 import React from 'react'
 
 import { useGetAllPostsQuery, useGetPostQuery, useUpdatePostMutation } from '~/app/services/postApi'
+import { Alert } from '~/components/common/Alert'
+import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
+import { Spinner } from '~/components/common/Spinner'
 import { Input } from '~/components/form-elements/Input'
 import { formatDate } from '~/utilities/formatDate'
-import { useScrollLock } from '~/utilities/useScrollLock'
 
-import { Alert } from '../common/Alert'
-import { Button } from '../common/Button'
-import { Spinner } from '../common/Spinner'
 import { DeletionModal } from './DeletionModal'
 import s from './SinglePost.module.scss'
 
