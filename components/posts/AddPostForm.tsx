@@ -54,7 +54,11 @@ export function AddPostForm() {
         alertMesages.concat(
           <Alert variant='success'>
             <span>
-              Post <Link href={`/posts/${postId}`}>{title}</Link> has been added.
+              Post{' '}
+              <Link href={`/posts/${postId}`}>
+                <a className={s.alertLink}>{title}</a>
+              </Link>{' '}
+              has been added.
             </span>
           </Alert>
         )
