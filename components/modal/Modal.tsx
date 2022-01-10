@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import { useAppSelector } from '~/hooks/redux'
 import { getTransitionDuration } from '~/utilities/getStyleValue'
 import { useAccessibleModal } from '~/utilities/useAccessibleModal'
+import { useScrollLock } from '~/utilities/useScrollLock'
 
 import s from './Modal.module.scss'
 
@@ -37,6 +38,7 @@ export function Modal(props: Props) {
   }
 
   useAccessibleModal(isActive, modalRef, toggleModal)
+  useScrollLock('isFixedByModal', isActive)
 
   return isInitiated ? (
     <div

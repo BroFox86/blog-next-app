@@ -44,8 +44,6 @@ export function SinglePost() {
     }
   }, [post])
 
-  useScrollLock('isFixedByModal', isModalActive)
-
   function toggleModal() {
     setIsModalActive(isModalActive ? false : true)
   }
