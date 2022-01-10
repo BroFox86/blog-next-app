@@ -8,7 +8,7 @@ import s from './Alert.module.scss'
 interface Props {
   extraStyles?: string
   variant: 'success' | 'warning' | 'danger'
-  children: string | string[]
+  children: string | string[] | JSX.Element
 }
 
 export function Alert({ extraStyles, variant, children }: Props) {

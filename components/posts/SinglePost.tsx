@@ -3,8 +3,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import React from 'react'
 
 import { useGetAllPostsQuery, useGetPostQuery, useUpdatePostMutation } from '~/app/services/postApi'
+import { Editor } from '~/components/common/Editor'
+import { Input } from '~/components/form-elements/Input'
 import { formatDate } from '~/utilities/formatDate'
 import { useScrollLock } from '~/utilities/useScrollLock'
 
@@ -12,7 +15,6 @@ import { Alert } from '../common/Alert'
 import { Button } from '../common/Button'
 import { Spinner } from '../common/Spinner'
 import { DeletionModal } from './DeletionModal'
-import { PostForm } from './PostForm'
 import s from './SinglePost.module.scss'
 
 export function SinglePost() {
@@ -89,7 +91,9 @@ export function SinglePost() {
         <div className={s.inner}>
           {alertMesages.length !== 0 && (
             <div className={s.alertBox} hidden={isEditMode ? true : false}>
-              {alertMesages}
+              {alertMesages.map((item, index) => {
+                return <React.Fragment key={index}>{item}</React.Fragment>
+              })}
             </div>
           )}
           {!isEditMode ? (
@@ -133,7 +137,16 @@ export function SinglePost() {
             </>
           ) : (
             <form className={s.editForm}>
-              <PostForm title={title} content={content} setTitle={setTitle} setContent={setContent} />
+              <Input
+                label='Post title'
+                name='titleInput'
+                autoComplete='off'
+                placeholder=''
+                value={title}
+                onChange={(e: any) => setTitle(e.target.value)}
+                required
+              />
+              <Editor content={content} setContent={setContent} />
               <div className={s.buttons}>
                 <Button
                   extraStyles={s.button}

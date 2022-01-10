@@ -47,8 +47,6 @@ export function createMirageServer({ environment = 'test' } = {}) {
         (schema, request) => {
           const attrs = JSON.parse(request.requestBody)
 
-          console.log(attrs)
-
           return schema.posts.create(attrs)
         },
         { timing: TIMING }
@@ -60,7 +58,6 @@ export function createMirageServer({ environment = 'test' } = {}) {
           const id = request.params.id
           // const attrs = this.normalizedRequestAttrs()
           const attrs = JSON.parse(request.requestBody)
-          console.log(attrs)
 
           return schema.posts.find(id).update(attrs)
         },

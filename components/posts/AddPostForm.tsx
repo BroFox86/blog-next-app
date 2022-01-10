@@ -1,14 +1,17 @@
 import { nanoid } from '@reduxjs/toolkit'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import React from 'react'
 
 import { setdeletionAlert } from '~/app/services/appSlice'
 import { useAddPostMutation } from '~/app/services/postApi'
+import { Editor } from '~/components/common/Editor'
+import { Input } from '~/components/form-elements/Input'
 import { useAppDispatch, useAppSelector } from '~/hooks/redux'
 
 import { Alert } from '../common/Alert'
 import { Button } from '../common/Button'
 import s from './AddPostForm.module.scss'
-import { PostForm } from './PostForm'
 
 export function AddPostForm() {
   const [title, setTitle] = useState<string>('')
@@ -34,8 +37,10 @@ export function AddPostForm() {
     }
 
     try {
+      const postId = nanoid()
+
       await addPost({
-        id: nanoid(),
+        id: postId,
         date: new Date().toISOString(),
         image: '/images/cover-7.jpg',
         title: title,
@@ -45,7 +50,15 @@ export function AddPostForm() {
       setTitle('')
       setContent('')
 
-      setAlertMessages(alertMesages.concat(<Alert variant='success'>Post &quot;{title}&quot; has been added.</Alert>))
+      setAlertMessages(
+        alertMesages.concat(
+          <Alert variant='success'>
+            <span>
+              Post <Link href={`/posts/${postId}`}>{title}</Link> has been added.
+            </span>
+          </Alert>
+        )
+      )
     } catch (e: any) {
       console.log(e.message)
       setAlertMessages(alertMesages.concat(<Alert variant='danger'>Error: Something went wrong...</Alert>))
@@ -55,9 +68,24 @@ export function AddPostForm() {
   return (
     <section className={s.container}>
       <h1 className={s.title}>Add a New Post</h1>
-      {alertMesages.length !== 0 && <div className={s.alertBox}>{alertMesages}</div>}
+      {alertMesages.length !== 0 && (
+        <div className={s.alertBox}>
+          {alertMesages.map((item, index) => {
+            return <React.Fragment key={index}>{item}</React.Fragment>
+          })}
+        </div>
+      )}
       <form className={s.form}>
-        <PostForm title={title} content={content} setTitle={setTitle} setContent={setContent} />
+        <Input
+          label='Post title'
+          name='titleInput'
+          autoComplete='off'
+          placeholder=''
+          value={title}
+          onChange={(e: any) => setTitle(e.target.value)}
+          required
+        />
+        <Editor content={content} setContent={setContent} />
         <Button
           extraStyles={s.button}
           label='Add Post'
