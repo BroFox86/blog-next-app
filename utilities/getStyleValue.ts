@@ -1,7 +1,7 @@
 /**
  * Getting the CSS property value.
  * @param {HTMLElement} element DOM element.
- * @param {string} property CSS property. 
+ * @param {string} property CSS property.
  * @returns {string} CSS property value.
  */
 export function getStyleValue(element: HTMLElement, property: string) {
@@ -15,6 +15,5 @@ export function getStyleValue(element: HTMLElement, property: string) {
  * @param {HTMLElement} element DOM element.
  */
 export function getTransitionDuration(element: HTMLElement): number {
-  return getStyleValue(element, "transitionDuration") * 1000
+  return getStyleValue(element, 'transitionDuration') * 1000
 }
-

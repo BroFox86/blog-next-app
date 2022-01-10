@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect } from 'react'
 
 /**
  * Controls lock of the page scrolling through the <body> class name.
@@ -8,7 +8,7 @@ import { useEffect } from "react"
 export function useScrollLock(lockClass: string, isScrollLocked: boolean) {
   useEffect(() => {
     const body = document.body
-    const header = body.querySelector("header")
+    const header = body.querySelector('header')
     const scrollbar = window.innerWidth - document.documentElement.clientWidth
 
     function lockScrolling() {
@@ -22,10 +22,10 @@ export function useScrollLock(lockClass: string, isScrollLocked: boolean) {
 
     function unlockScrolling() {
       body.classList.remove(lockClass)
-      body.style.paddingRight = ""
+      body.style.paddingRight = ''
 
       if (header) {
-        header.style.paddingRight = ""
+        header.style.paddingRight = ''
       }
     }
 
@@ -36,6 +36,5 @@ export function useScrollLock(lockClass: string, isScrollLocked: boolean) {
     }
 
     return () => unlockScrolling()
-
   }, [lockClass, isScrollLocked])
 }

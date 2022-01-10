@@ -2,8 +2,7 @@ export function saveState(state) {
   try {
     const serializedState = JSON.stringify(state)
 
-    sessionStorage.setItem("state", serializedState)
-
+    sessionStorage.setItem('state', serializedState)
   } catch {
     // ignore write errors
   }
@@ -11,14 +10,13 @@ export function saveState(state) {
 
 export function loadState() {
   try {
-    const serializedState = sessionStorage.getItem("state")
+    const serializedState = sessionStorage.getItem('state')
 
     if (serializedState === null) {
       return undefined
     }
 
     return JSON.parse(serializedState)
-
   } catch (error) {
     return undefined
   }
