@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
+import { Layout } from '~/components/common/Layout'
 import { AddPostForm } from '~/components/posts/AddPostForm'
 import { PostList } from '~/components/posts/PostList'
-import { Layout } from '~/layouts/Layout'
 
 const Home: NextPage = () => {
   return (

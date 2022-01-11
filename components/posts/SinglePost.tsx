@@ -9,11 +9,11 @@ import { useGetAllPostsQuery, useGetPostQuery, useUpdatePostMutation } from '~/a
 import { Alert } from '~/components/common/Alert'
 import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
+import { Input } from '~/components/common/Input'
 import { Spinner } from '~/components/common/Spinner'
-import { Input } from '~/components/form-elements/Input'
 import { formatDate } from '~/utilities/formatDate'
 
-import { DeletionModal } from './DeletionModal'
+import { DeletionModal } from '../modal/DeletionModal'
 import s from './SinglePost.module.scss'
 
 export function SinglePost() {

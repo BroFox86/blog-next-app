@@ -26,12 +26,7 @@ export function Button(props: Props) {
   }
 
   return as !== 'link' ? (
-    <button
-      className={clsx(s.button, s[variant], className)}
-      type={buttonType}
-      disabled={isDisabled}
-      onClick={onClick}
-    >
+    <button className={clsx(s.button, s[variant], className)} type={buttonType} disabled={isDisabled} onClick={onClick}>
       {label}
       {isPending ? <ButtonSpinner /> : null}
     </button>

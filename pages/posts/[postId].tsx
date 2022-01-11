@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
+import { Layout } from '~/components/common/Layout'
 import { SinglePost } from '~/components/posts/SinglePost'
-import { Layout } from '~/layouts/Layout'
 
 const PostPage: NextPage = () => {
   return (

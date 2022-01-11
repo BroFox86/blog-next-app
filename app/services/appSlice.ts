@@ -23,12 +23,12 @@ const appSlice = createSlice({
     setDarkTheme: (state, action) => {
       state.darkTheme = action.payload ? true : false
     },
-    setdeletionAlert: (state, action) => {
+    setDeletionAlert: (state, action) => {
       state.deletionAlert = action.payload
     },
   },
 })
 
-export const { setDarkTheme, setdeletionAlert } = appSlice.actions
+export const { setDarkTheme, setDeletionAlert } = appSlice.actions
 
 export default appSlice.reducer

@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router'
 import { MouseEventHandler, useEffect } from 'react'
 
-import { setdeletionAlert } from '~/app/services/appSlice'
+import { setDeletionAlert } from '~/app/services/appSlice'
 import { useDeletePostMutation } from '~/app/services/postApi'
 import { Button } from '~/components/common/Button'
 import { useAppDispatch } from '~/hooks/redux'
 
-import { Modal } from '../modal/Modal'
 import s from './DeletionModal.module.scss'
+import { Modal } from './Modal'
 
 type Props = {
   isActive: boolean
@@ -25,7 +25,7 @@ export function DeletionModal(props: Props) {
   async function handlePostDeletion() {
     try {
       await deletePost(props.postId)
-      dispatch(setdeletionAlert({ isActive: true, title: props.postTitle }))
+      dispatch(setDeletionAlert({ isActive: true, title: props.postTitle }))
       router.push('/')
     } catch (e: any) {}
   }

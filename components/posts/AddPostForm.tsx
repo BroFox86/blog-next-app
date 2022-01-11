@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import React from 'react'
 
-import { setdeletionAlert } from '~/app/services/appSlice'
+import { setDeletionAlert } from '~/app/services/appSlice'
 import { useAddPostMutation } from '~/app/services/postApi'
 import { Alert } from '~/components/common/Alert'
 import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
-import { Input } from '~/components/form-elements/Input'
+import { Input } from '~/components/common/Input'
 import { useAppDispatch, useAppSelector } from '~/hooks/redux'
 
 import s from './AddPostForm.module.scss'
@@ -27,7 +27,7 @@ export function AddPostForm() {
       setAlertMessages(
         alertMesages.concat(<Alert variant='warning'>Post &quot;{deletionAlert.title}&quot; has been deleted.</Alert>)
       )
-    dispatch(setdeletionAlert({ isActive: false, title: '' }))
+    dispatch(setDeletionAlert({ isActive: false, title: '' }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
