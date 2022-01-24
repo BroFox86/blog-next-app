@@ -1,5 +1,5 @@
-@import "~/styles/variables.scss";
-@import "~/styles/mixins.scss";
+@use 'variables' as *;
+@use 'mixins' as *;
 
 .formField {
   position: relative;
@@ -11,11 +11,11 @@
 .textareaField {
   --form-field-height: auto;
   --form-field-line-height: var(--form-field-height);
-  
+
   composes: formField;
 }
 
-.label { 
+.label {
   display: block;
   flex-shrink: 0;
   margin-bottom: 15px;
@@ -58,7 +58,7 @@
   }
 
   &:disabled {
-    opacity: .5;
+    opacity: 0.5;
   }
 
   .formField.isInvalid & {
@@ -67,7 +67,7 @@
 }
 
 .textareaInput {
-  composes: input; 
+  composes: input;
   height: auto;
   padding-top: 16px;
   padding-bottom: 16px;
@@ -87,19 +87,19 @@
     display: block;
   }
 
-  &[data-card-type="amex"] {
+  &[data-card-type='amex'] {
     background: yellow;
   }
 
-  &[data-card-type="visa"] {
+  &[data-card-type='visa'] {
     background: blue;
   }
 
-  &[data-card-type="mc"] { 
+  &[data-card-type='mc'] {
     background: red;
   }
 
-  &[data-card-type="discover"] {
+  &[data-card-type='discover'] {
     background: green;
   }
 }

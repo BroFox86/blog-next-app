@@ -1,7 +1,7 @@
-@use "sass:math";
-@use "sass:color";
-@import "~/styles/variables.scss";
-@import "~/styles/mixins.scss";
+@use 'sass:math';
+@use 'sass:color';
+@use 'variables' as *;
+@use 'mixins' as *;
 
 .container {
   @include multiscreenContainer();
@@ -62,7 +62,7 @@
   border-radius: 5px;
   background: color.scale(black, $alpha: -30%);
   color: white;
-  font-size: .9em;
+  font-size: 0.9em;
 
   @media (min-width: $medium-screen) {
     left: 25px;

@@ -1,5 +1,5 @@
-@import "~/styles/variables.scss";
-@import "~/styles/mixins.scss"; 
+@use 'variables' as *;
+@use 'mixins' as *;
 
 .header {
   position: fixed;
@@ -13,7 +13,7 @@
   box-shadow: $shadow-small;
   color: white;
 
-  @media print { 
+  @media print {
     display: none;
   }
 }
@@ -33,7 +33,7 @@
   text-decoration: none;
 
   &:hover {
-    opacity: .9;
+    opacity: 0.9;
   }
 }
 
@@ -48,4 +48,3 @@
   flex-shrink: 0;
   fill: var(--color-primary);
 }
-

@@ -1,4 +1,4 @@
-@import "~/styles/variables.scss";
+@use 'variables' as *;
 
 .container {
   display: flex;
@@ -19,7 +19,7 @@
   position: relative;
   width: 80px;
   height: 80px;
-  transform: scale(.9);
+  transform: scale(0.9);
 }
 
 .ldsRoller div {
@@ -28,7 +28,7 @@
 }
 
 .ldsRoller div:after {
-  content: " ";
+  content: ' ';
   display: block;
   position: absolute;
   width: 7px;

@@ -1,19 +1,16 @@
-@use "sass:math";
+@use 'sass:math';
+@use 'variables' as *;
 
 @mixin container($width, $exactWidth: null) {
-
   @if $width == fluid {
     width: $mobile-container;
-
   } @else if $width == large {
     width: $large-container;
-
   } @else if $width == wide {
     width: $wide-container;
-
   } @else {
     width: $exactWidth;
-  } 
+  }
 
   margin-left: auto;
   margin-right: auto;
@@ -100,9 +97,9 @@
 
 //
 // Transitions
-// 
+//
 
-@mixin hasHoverSupport() { 
+@mixin hasHoverSupport() {
   &:hover {
     @media (hover: hover) {
       @content;
@@ -110,7 +107,7 @@
   }
 }
 
-@mixin transparentize-on-hover($opacity: .85) {
+@mixin transparentize-on-hover($opacity: 0.85) {
   @include hasHoverSupport {
     opacity: $opacity;
   }
@@ -122,7 +119,7 @@
   }
 }
 
-@mixin scale-on-active($scale: .9) {
+@mixin scale-on-active($scale: 0.9) {
   transition: transform 150ms ease-in;
   will-change: transform;
 
@@ -135,7 +132,7 @@
 // Triangle
 //
 @mixin triangle($direction, $color, $sizeW, $sizeH: $sizeW) {
-  content: "";
+  content: '';
   display: inline-block;
   width: 0;
   height: 0;

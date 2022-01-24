@@ -1,5 +1,5 @@
-@import "~/styles/variables.scss";
-@import "~/styles/mixins.scss"; 
+@use 'variables' as *;
+@use 'mixins' as *;
 
 .modal {
   @include position(center, $position: fixed);
@@ -9,11 +9,11 @@
   display: grid;
   place-items: center;
   opacity: 0;
-  background: transparentize(black, .5);
+  background: transparentize(black, 0.5);
   transition-property: visibility, opacity;
-  transition-duration: .15s;
+  transition-duration: 0.15s;
   transition-timing-function: linear;
-  
+
   // @supports (backdrop-filter: blur(0)) {
   //   backdrop-filter: blur(20px);
   // }
@@ -23,7 +23,7 @@
   }
 
   &.hasDarkTheme {
-    background: transparentize(black, .3);
+    background: transparentize(black, 0.3);
   }
 }
 
@@ -43,7 +43,7 @@
   margin: 3vh auto 10px;
   padding: 30px;
   transform: translate(0, -25%);
-  transition: transform .3s ease-out;
+  transition: transform 0.3s ease-out;
   border-radius: 12px;
   background: white;
 
@@ -65,7 +65,7 @@
   @include place-center();
   @include circle(26px);
   @include scale-on-active();
-  position: absolute; 
+  position: absolute;
   top: 10px;
   right: 10px;
   background: none;
@@ -73,13 +73,13 @@
   @media (min-width: $medium-screen) {
     @include circle(36px);
   }
-  
+
   @include hasHoverSupport {
     background: whitesmoke;
   }
 }
 
-.closeIcon {  
+.closeIcon {
   @include square(25px);
   fill: grey;
 

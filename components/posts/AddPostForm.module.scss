@@ -1,7 +1,7 @@
-@use "sass:math";
-@use "sass:color";
-@import "~/styles/variables.scss";
-@import "~/styles/mixins.scss";
+@use 'sass:math';
+@use 'sass:color';
+@use 'variables' as *;
+@use 'mixins' as *;
 
 .container {
   @include multiscreenContainer();

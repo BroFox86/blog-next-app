@@ -1,7 +1,6 @@
 // Import global styles
 import 'normalize.scss/normalize.scss'
 import '~/styles/global.scss'
-import '~/styles/typography.scss'
 import '~/styles/variables.css'
 import '~/styles/quill.css'
 

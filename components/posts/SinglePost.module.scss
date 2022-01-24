@@ -1,6 +1,6 @@
-@use "sass:math";
-@import "~/styles/variables.scss";
-@import "~/styles/mixins.scss";
+@use 'sass:math';
+@use 'variables' as *;
+@use 'mixins' as *;
 
 .spinner {
   position: relative;
@@ -71,4 +71,3 @@
   justify-content: start;
   gap: 20px;
 }
-

@@ -1,4 +1,4 @@
-@import "~/styles/variables.scss";
+@use 'variables' as *;
 
 .error_404 {
   display: flex;
@@ -7,14 +7,14 @@
   justify-content: center;
   align-items: center;
   padding-top: 100px;
-  text-align: center;  
+  text-align: center;
   text-transform: uppercase;
   font-weight: 700;
 }
 
 .heading {
   margin: 0;
-  font-size: inherit; 
+  font-size: inherit;
   line-height: 1;
 }
 
