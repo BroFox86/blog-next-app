@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 import { getTransitionDuration } from '~/utilities/getStyleValue'
@@ -41,6 +42,14 @@ export function Alert({ className, variant, children }: Props) {
       </button>
     </div>
   ) : null
+}
+
+export function AlertLink({ href, children }: { href: string; children: string }) {
+  return (
+    <Link href={href}>
+      <a className={s.alertLink}>{children}</a>
+    </Link>
+  )
 }
 
 function CloseIcon({ className }: { className?: string }) {

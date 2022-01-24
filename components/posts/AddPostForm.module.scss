@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:color";
 @import "~/styles/variables.scss";
 @import "~/styles/mixins.scss";
 
@@ -25,11 +26,6 @@
   display: grid;
   gap: 20px;
   margin-bottom: 30px;
-}
-
-.alertLink {
-  color: inherit;
-  text-underline-offset: 1px;
 }
 
 .form {

@@ -1,11 +1,11 @@
 import { nanoid } from '@reduxjs/toolkit'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import React from 'react'
 
 import { setDeletionAlert } from '~/app/services/appSlice'
 import { useAddPostMutation } from '~/app/services/postApi'
 import { Alert } from '~/components/common/Alert'
+import { AlertLink } from '~/components/common/Alert'
 import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
 import { Input } from '~/components/common/Input'
@@ -54,11 +54,7 @@ export function AddPostForm() {
         alertMesages.concat(
           <Alert variant='success'>
             <span>
-              Post{' '}
-              <Link href={`/posts/${postId}`}>
-                <a className={s.alertLink}>{title}</a>
-              </Link>{' '}
-              has been added.
+              Post <AlertLink href={`/posts/${postId}`}>{title}</AlertLink> has been added.
             </span>
           </Alert>
         )
