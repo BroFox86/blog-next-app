@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from '~/hooks/redux'
 import { handleDarkTheme } from '~/hooks/useDarkTheme'
@@ -8,17 +7,11 @@ import { saveState } from '~/utilities/sessionStorage'
 import s from './ThemeSwitch.module.scss'
 
 export function ThemeSwitch() {
-  const isStateThemeDark = useAppSelector(state => state.app.darkTheme)
-  const [isThemeDark, setIsThemeDark] = useState<boolean>(isStateThemeDark)
+  const isThemeDark = useAppSelector(state => state.app.darkTheme)
   const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    setIsThemeDark(isStateThemeDark)
-  }, [isStateThemeDark])
 
   function handleClick() {
     handleDarkTheme(dispatch, isThemeDark ? false : true)
-    setIsThemeDark(isThemeDark ? false : true)
     saveState({ darkTheme: isThemeDark ? false : true })
   }
 
