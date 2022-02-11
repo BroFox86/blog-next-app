@@ -1,23 +1,27 @@
 import clsx from 'clsx'
+import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 
-import { useAppDispatch, useAppSelector } from '~/hooks/redux'
-import { handleDarkTheme } from '~/hooks/useDarkTheme'
+import { App } from '~/app/services/app'
+import { handleDarkTheme } from '~/hooks/common'
 import { saveState } from '~/utilities/sessionStorage'
 
 import s from './ThemeSwitch.module.scss'
 
-export function ThemeSwitch() {
-  const isStateThemeDark = useAppSelector(state => state.app.darkTheme)
+type Props = {
+  app: App
+}
+
+export const ThemeSwitch = observer(({ app }: Props) => {
+  const isStateThemeDark = app.darkTheme
   const [isThemeDark, setIsThemeDark] = useState<boolean>(isStateThemeDark)
-  const dispatch = useAppDispatch()
 
   useEffect(() => {
     setIsThemeDark(isStateThemeDark)
   }, [isStateThemeDark])
 
   function handleClick() {
-    handleDarkTheme(dispatch, isThemeDark ? false : true)
+    handleDarkTheme(app, isThemeDark ? false : true)
     setIsThemeDark(isThemeDark ? false : true)
     saveState({ darkTheme: isThemeDark ? false : true })
   }
@@ -34,4 +38,4 @@ export function ThemeSwitch() {
       <span className={s.sun}>🌞</span>
     </button>
   )
-}
+})

@@ -2,9 +2,9 @@ import parse from 'html-react-parser'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
+import { app } from '~/app/services/app'
 import { useGetAllPostsQuery, useGetPostQuery, useUpdatePostMutation } from '~/app/services/postApi'
 import { Alert } from '~/components/common/Alert'
 import { Button } from '~/components/common/Button'
@@ -125,6 +125,7 @@ export function SinglePost() {
                 />
               </div>
               <DeletionModal
+                app={app}
                 isActive={isModalActive}
                 toggleModal={toggleModal}
                 postId={postId}

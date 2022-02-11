@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { useRef, useState } from 'react'
 
-import { useAppSelector } from '~/hooks/redux'
 import { getTransitionDuration } from '~/utilities/getStyleValue'
 import { useAccessibleModal } from '~/utilities/useAccessibleModal'
 import { useScrollLock } from '~/utilities/useScrollLock'
@@ -23,7 +22,6 @@ export function Modal(props: Props) {
   const [isVisible, setIsVisible] = useState<boolean>(false)
   const isOpening = isActive && !isInitiated && !isVisible
   const isClosing = !isActive && isInitiated && isVisible
-  const hasDarkTheme = useAppSelector(state => state.app.darkTheme)
 
   if (isOpening) {
     setIsInitiated(true)
@@ -42,7 +40,7 @@ export function Modal(props: Props) {
 
   return isInitiated ? (
     <div
-      className={clsx(s.modal, className, hasDarkTheme && s.hasDarkTheme, isVisible && s.isVisible)}
+      className={clsx(s.modal, className, isVisible && s.isVisible)}
       ref={modalRef}
       role='dialog'
       aria-labelledby={ariaLabelledby}

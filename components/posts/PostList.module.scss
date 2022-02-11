@@ -39,10 +39,7 @@
   overflow: hidden;
   border-radius: 5px;
   box-shadow: $shadow-medium;
-
-  .container.hasDarkTheme & {
-    background: #222;
-  }
+  background:var(--content-bg-color);
 }
 
 .imageWrapper {

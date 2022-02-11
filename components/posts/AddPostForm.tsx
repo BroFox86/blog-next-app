@@ -1,33 +1,36 @@
 import { nanoid } from '@reduxjs/toolkit'
+import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import React from 'react'
 
-import { setDeletionAlert } from '~/app/services/appSlice'
+import { App } from '~/app/services/app'
 import { useAddPostMutation } from '~/app/services/postApi'
 import { Alert } from '~/components/common/Alert'
 import { AlertLink } from '~/components/common/Alert'
 import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
 import { Input } from '~/components/common/Input'
-import { useAppDispatch, useAppSelector } from '~/hooks/redux'
 
 import s from './AddPostForm.module.scss'
 
-export function AddPostForm() {
+type Props = {
+  app: App
+}
+
+export const AddPostForm = observer(({ app }: Props) => {
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
   const [alertMesages, setAlertMessages] = useState<Array<JSX.Element>>([])
   const [addPost, { isLoading }] = useAddPostMutation()
   const isFormValid: boolean = Boolean(title) && Boolean(content)
-  const deletionAlert = useAppSelector(state => state.app.deletionAlert)
-  const dispatch = useAppDispatch()
+  const deletionAlert = app.deletionAlert
 
   useEffect(() => {
-    deletionAlert.isActive &&
+    deletionAlert &&
       setAlertMessages(
-        alertMesages.concat(<Alert variant='warning'>Post &quot;{deletionAlert.title}&quot; has been deleted.</Alert>)
+        alertMesages.concat(<Alert variant='warning'>Post &quot;{deletionAlert}&quot; has been deleted.</Alert>)
       )
-    dispatch(setDeletionAlert({ isActive: false, title: '' }))
+    app.deletionAlert = ''
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -98,4 +101,4 @@ export function AddPostForm() {
       </form>
     </section>
   )
-}
+})

@@ -1,7 +1,7 @@
 // Import global styles
 import 'normalize.scss/normalize.scss'
 import '~/styles/global.scss'
-import '~/styles/variables.css'
+import '~/styles/css-variables.scss'
 import '~/styles/quill.css'
 
 import type { AppProps } from 'next/app'

@@ -1,18 +1,15 @@
-import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { PostState, useGetAllPostsQuery } from '~/app/services/postApi'
 import { Button } from '~/components/common/Button'
 import { Spinner } from '~/components/common/Spinner'
-import { useAppSelector } from '~/hooks/redux'
 import { formatDate } from '~/utilities/formatDate'
 
 import s from './PostList.module.scss'
 
 export function PostList() {
   const { data, isLoading } = useGetAllPostsQuery()
-  const hasDarkTheme = useAppSelector(state => state.app.darkTheme)
   const posts = data?.posts
   let sortedPosts
 
@@ -23,7 +20,7 @@ export function PostList() {
   }
 
   return (
-    <section className={clsx(s.container, hasDarkTheme && s.hasDarkTheme)}>
+    <section className={s.container}>
       <h2 className={s.title}>Your Posts</h2>
 
       {isLoading ? (
