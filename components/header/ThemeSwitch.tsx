@@ -21,9 +21,9 @@ export const ThemeSwitch = observer(({ app }: Props) => {
   }, [isStateThemeDark])
 
   function handleClick() {
-    handleDarkTheme(app, isThemeDark ? false : true)
-    setIsThemeDark(isThemeDark ? false : true)
-    saveState({ darkTheme: isThemeDark ? false : true })
+    handleDarkTheme(app, !isThemeDark)
+    setIsThemeDark(!isThemeDark)
+    saveState({ darkTheme: !isThemeDark })
   }
 
   return (

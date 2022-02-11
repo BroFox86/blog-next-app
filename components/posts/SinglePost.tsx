@@ -44,7 +44,7 @@ export function SinglePost() {
   }, [post])
 
   function toggleModal() {
-    setIsModalActive(isModalActive ? false : true)
+    setIsModalActive(!isModalActive)
   }
 
   async function handlePostUpdate() {
@@ -87,7 +87,7 @@ export function SinglePost() {
         </div>
         <div className={s.inner}>
           {alertMesages.length !== 0 && (
-            <div className={s.alertBox} hidden={isEditMode ? true : false}>
+            <div className={s.alertBox} hidden={isEditMode}>
               {alertMesages.map((item, index) => {
                 return <React.Fragment key={index}>{item}</React.Fragment>
               })}
