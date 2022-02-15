@@ -1,10 +1,8 @@
 import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
-import { useState } from 'react'
 
-import { handleDarkTheme } from '~/hooks/common'
 import { App } from '~/services/app'
-import { saveState } from '~/utilities/sessionStorage'
+import { handleDarkTheme } from '~/utilities/handleDarkTheme'
 
 import s from './ThemeSwitch.module.scss'
 
@@ -13,13 +11,10 @@ type Props = {
 }
 
 export const ThemeSwitch = observer(({ app }: Props) => {
-  const isStateThemeDark = app.darkTheme
-  const [isThemeDark, setIsThemeDark] = useState<boolean>(isStateThemeDark)
+  const isThemeDark = app.darkTheme
 
   function handleClick() {
     handleDarkTheme(app, !isThemeDark)
-    setIsThemeDark(!isThemeDark)
-    saveState({ darkTheme: !isThemeDark })
   }
 
   return (
