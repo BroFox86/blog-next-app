@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { App } from '~/app/services/app'
+import { App } from '~/services/app'
 import { loadState } from '~/utilities/sessionStorage'
 
 export function handleDarkTheme(app: App, isThemeDark: boolean) {
@@ -30,7 +30,7 @@ export function useDarkTheme(app: App) {
 
     // Add a listener
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      handleDarkTheme(app, e.matches ? true : false)
+      handleDarkTheme(app, !!e.matches)
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { app } from '~/app/services/app'
+import { AddPostForm } from '~/components/AddPostForm'
 import { Layout } from '~/components/common/Layout'
-import { AddPostForm } from '~/components/posts/AddPostForm'
-import { PostList } from '~/components/posts/PostList'
+import { PostList } from '~/components/PostList'
+import { app } from '~/services/app'
 
 const Home: NextPage = () => {
   return (

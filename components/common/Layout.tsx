@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite'
 
-import { App } from '~/app/services/app'
 import { Footer } from '~/components/footer/Footer'
 import { Header } from '~/components/header/Header'
 import { useDarkTheme } from '~/hooks/common'
+import { App } from '~/services/app'
 
 import s from './Layout.module.scss'
 

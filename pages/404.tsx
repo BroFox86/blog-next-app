@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { app } from '~/app/services/app'
 import { Layout } from '~/components/common/Layout'
 import { PageNotFound } from '~/components/common/PageNotFound'
+import { app } from '~/services/app'
 
 const Error404: NextPage = () => {
   return (

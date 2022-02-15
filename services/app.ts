@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 
 export class App {
   darkTheme = false
-  deletionAlert = ''
+  deletedPostTitle = ''
 
   constructor() {
     makeAutoObservable(this)

@@ -8,8 +8,8 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Provider } from 'react-redux'
 
-import store from '~/app/store'
 import { createMirageServer } from '~/mocks/server'
+import store from '~/services/store'
 
 // if (process.env.NODE_ENV === "development") {
 createMirageServer({ environment: 'development' })

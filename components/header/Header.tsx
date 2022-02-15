@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { app } from '~/app/services/app'
+import { app } from '~/services/app'
 
 import s from './Header.module.scss'
 import { ThemeSwitch } from './ThemeSwitch'

@@ -4,16 +4,16 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
-import { app } from '~/app/services/app'
-import { useGetAllPostsQuery, useGetPostQuery, useUpdatePostMutation } from '~/app/services/postApi'
 import { Alert } from '~/components/common/Alert'
 import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
 import { Input } from '~/components/common/Input'
 import { Spinner } from '~/components/common/Spinner'
+import { DeletionModal } from '~/components/modal/DeletionModal'
+import { app } from '~/services/app'
+import { useGetAllPostsQuery, useGetPostQuery, useUpdatePostMutation } from '~/services/postApi'
 import { formatDate } from '~/utilities/formatDate'
 
-import { DeletionModal } from '../modal/DeletionModal'
 import s from './SinglePost.module.scss'
 
 export function SinglePost() {

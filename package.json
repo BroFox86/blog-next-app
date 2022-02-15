@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "check-types": "tsc --noemit",
+    "lint": "next lint && npm run check-types"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",

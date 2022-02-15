@@ -3,13 +3,13 @@ import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import React from 'react'
 
-import { App } from '~/app/services/app'
-import { useAddPostMutation } from '~/app/services/postApi'
 import { Alert } from '~/components/common/Alert'
 import { AlertLink } from '~/components/common/Alert'
 import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
 import { Input } from '~/components/common/Input'
+import { App } from '~/services/app'
+import { useAddPostMutation } from '~/services/postApi'
 
 import s from './AddPostForm.module.scss'
 
@@ -23,14 +23,14 @@ export const AddPostForm = observer(({ app }: Props) => {
   const [alertMesages, setAlertMessages] = useState<Array<JSX.Element>>([])
   const [addPost, { isLoading }] = useAddPostMutation()
   const isFormValid: boolean = Boolean(title) && Boolean(content)
-  const deletionAlert = app.deletionAlert
+  const deletedPostTitle = app.deletedPostTitle
 
   useEffect(() => {
-    deletionAlert &&
+    deletedPostTitle &&
       setAlertMessages(
-        alertMesages.concat(<Alert variant='warning'>Post &quot;{deletionAlert}&quot; has been deleted.</Alert>)
+        alertMesages.concat(<Alert variant='warning'>Post &quot;{deletedPostTitle}&quot; has been deleted.</Alert>)
       )
-    app.deletionAlert = ''
+    app.deletedPostTitle = ''
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

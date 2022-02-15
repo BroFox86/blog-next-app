@@ -2,8 +2,8 @@ import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 
-import { App } from '~/app/services/app'
 import { handleDarkTheme } from '~/hooks/common'
+import { App } from '~/services/app'
 import { saveState } from '~/utilities/sessionStorage'
 
 import s from './ThemeSwitch.module.scss'

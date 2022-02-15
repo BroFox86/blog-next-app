@@ -1,6 +1,6 @@
 import { paragraph, sentence } from 'txtgen'
 
-import { PostState } from '~/app/services/postApi'
+import { PostState } from '~/services/postApi'
 
 export const posts: PostState[] = [
   {
