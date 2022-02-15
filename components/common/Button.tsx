@@ -4,7 +4,7 @@ import Link from 'next/link'
 import s from './Button.module.scss'
 
 type Props = {
-  className?: any
+  className?: string
   variant: string
   label: string
   as?: string

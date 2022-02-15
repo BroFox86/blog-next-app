@@ -1,14 +1,14 @@
-import { useEffect } from "react"
+import { useEffect } from 'react'
 
 /**
  * Trap focus within a DOM node.
  */
-export function useAccessibleModal(isActive: boolean, ref: any, closeModal: Function) {
+export function useAccessibleModal(isMounted: boolean, ref: any, toggleModal: Function) {
   useEffect(() => {
     let lastActiveElement: any
     let pressed: Set<string>
 
-    if (!isActive) return
+    if (!isMounted) return
 
     // Save last focused element.
     lastActiveElement = document.activeElement
@@ -20,7 +20,7 @@ export function useAccessibleModal(isActive: boolean, ref: any, closeModal: Func
       const firstFocusElement = focusElements[0]
       const lastFocusElement = focusElements[focusElements.length - 1]
       const isContains: boolean = ref.current.contains(e.target)
-      
+
       if (!isContains && e.relatedTarget === firstFocusElement) {
         return lastFocusElement.focus()
       }
@@ -30,7 +30,7 @@ export function useAccessibleModal(isActive: boolean, ref: any, closeModal: Func
       }
 
       if (!isContains) {
-        if (pressed.has("Shift")) {
+        if (pressed.has('Shift')) {
           lastFocusElement.focus()
         } else {
           firstFocusElement.focus()
@@ -39,39 +39,39 @@ export function useAccessibleModal(isActive: boolean, ref: any, closeModal: Func
     }
 
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        closeModal()
+      if (e.key === 'Escape') {
+        toggleModal()
       } else {
         pressed.add(e.key)
       }
     }
 
     function getFocusableElements(): HTMLElement[] {
-      return (ref.current.querySelectorAll(
+      return ref.current.querySelectorAll(
         `a,
          button:not(:disabled),
          input:not(:disabled),
          textarea:not(:disabled),
          select:not(:disabled),
          *[tabindex]:not(:disabled)`
-      ));
+      )
     }
 
     function clearPressed(e: KeyboardEvent) {
       pressed.delete(e.key)
     }
 
-    document.addEventListener("focusin", handleFocusIn)
-    document.addEventListener("keydown", handleKeyDown)
-    document.addEventListener("keyup", clearPressed)
+    document.addEventListener('focusin', handleFocusIn)
+    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('keyup', clearPressed)
 
     return () => {
-      document.removeEventListener("focusin", handleFocusIn)
-      document.removeEventListener("keydown", handleKeyDown)
-      document.removeEventListener("keyup", clearPressed)
+      document.removeEventListener('focusin', handleFocusIn)
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('keyup', clearPressed)
 
       lastActiveElement.focus()
     }
-
-  }, [isActive, ref, closeModal])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMounted, ref])
 }

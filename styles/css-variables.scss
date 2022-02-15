@@ -1,0 +1,26 @@
+body {
+  --header-height: 70px;
+
+  --main-bg-color: white;
+  --content-bg-color: white;
+  --footer-bg-color: ghostwhite;
+  --modal-overlay-color: #{transparentize(black, 0.5)};
+
+  --main-text-color: black;
+  --secondary-text-color: crimson;
+  --color-primary: #5031aa;
+  --color-secondary: #2e7d32;
+  --quill-toolbar-bg-color: white;
+
+  &.hasDarkTheme {
+    --main-bg-color: black;
+    --content-bg-color: #222;
+    --footer-bg-color: #1c1b1c;
+    --modal-overlay-color: #{transparentize(black, 0.3)};
+
+    --main-text-color: white;
+    --color-primary: #5e3aca;
+    --secondary-text-color: rgb(252, 135, 158);
+    --quill-toolbar-bg-color: lightGray;
+  }
+}

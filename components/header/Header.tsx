@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+import { app } from '~/services/app'
+
 import s from './Header.module.scss'
 import { ThemeSwitch } from './ThemeSwitch'
 
@@ -18,7 +20,7 @@ export function Header() {
             <span>Home</span>
           </a>
         </Link>
-        <ThemeSwitch />
+        <ThemeSwitch app={app} />
       </div>
     </header>
   )

@@ -2,18 +2,18 @@ import parse from 'html-react-parser'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { useGetAllPostsQuery, useGetPostQuery, useUpdatePostMutation } from '~/app/services/postApi'
 import { Alert } from '~/components/common/Alert'
 import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
 import { Input } from '~/components/common/Input'
 import { Spinner } from '~/components/common/Spinner'
+import { DeletionModal } from '~/components/modal/DeletionModal'
+import { app } from '~/services/app'
+import { useGetAllPostsQuery, useGetPostQuery, useUpdatePostMutation } from '~/services/postApi'
 import { formatDate } from '~/utilities/formatDate'
 
-import { DeletionModal } from '../modal/DeletionModal'
 import s from './SinglePost.module.scss'
 
 export function SinglePost() {
@@ -44,7 +44,7 @@ export function SinglePost() {
   }, [post])
 
   function toggleModal() {
-    setIsModalActive(isModalActive ? false : true)
+    setIsModalActive(!isModalActive)
   }
 
   async function handlePostUpdate() {
@@ -87,7 +87,7 @@ export function SinglePost() {
         </div>
         <div className={s.inner}>
           {alertMesages.length !== 0 && (
-            <div className={s.alertBox} hidden={isEditMode ? true : false}>
+            <div className={s.alertBox} hidden={isEditMode}>
               {alertMesages.map((item, index) => {
                 return <React.Fragment key={index}>{item}</React.Fragment>
               })}
@@ -125,6 +125,7 @@ export function SinglePost() {
                 />
               </div>
               <DeletionModal
+                app={app}
                 isActive={isModalActive}
                 toggleModal={toggleModal}
                 postId={postId}

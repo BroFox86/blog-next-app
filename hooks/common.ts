@@ -1,12 +1,10 @@
 import { useEffect } from 'react'
 
-import { setDarkTheme } from '~/app/services/appSlice'
-import { AppDispatch } from '~/app/store'
-import { useAppDispatch } from '~/hooks/redux'
+import { App } from '~/services/app'
 import { loadState } from '~/utilities/sessionStorage'
 
-export function handleDarkTheme(dispatchFunc: AppDispatch, isThemeDark: boolean) {
-  dispatchFunc(setDarkTheme(isThemeDark))
+export function handleDarkTheme(app: App, isThemeDark: boolean) {
+  app.darkTheme = isThemeDark
 
   if (isThemeDark) {
     document.body.classList.add('hasDarkTheme')
@@ -15,26 +13,24 @@ export function handleDarkTheme(dispatchFunc: AppDispatch, isThemeDark: boolean)
   }
 }
 
-export function useDarkTheme() {
-  const dispatch = useAppDispatch()
-
+export function useDarkTheme(app: App) {
   useEffect(() => {
     // Set previous theme choosed by a user
     if (loadState() && 'darkTheme' in loadState()) {
-      handleDarkTheme(dispatch, loadState().darkTheme)
+      handleDarkTheme(app, loadState().darkTheme)
       return
     }
 
     // Set theme for the first time
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      handleDarkTheme(dispatch, true)
+      handleDarkTheme(app, true)
     } else {
-      handleDarkTheme(dispatch, false)
+      handleDarkTheme(app, false)
     }
 
     // Add a listener
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      handleDarkTheme(dispatch, e.matches ? true : false)
+      handleDarkTheme(app, !!e.matches)
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

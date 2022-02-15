@@ -3,10 +3,11 @@ import Head from 'next/head'
 
 import { Layout } from '~/components/common/Layout'
 import { PageNotFound } from '~/components/common/PageNotFound'
+import { app } from '~/services/app'
 
 const Error404: NextPage = () => {
   return (
-    <Layout>
+    <Layout app={app}>
       <Head>
         <title>Page not found</title>
       </Head>

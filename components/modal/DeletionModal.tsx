@@ -1,15 +1,16 @@
+import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import { MouseEventHandler, useEffect } from 'react'
 
-import { setDeletionAlert } from '~/app/services/appSlice'
-import { useDeletePostMutation } from '~/app/services/postApi'
 import { Button } from '~/components/common/Button'
-import { useAppDispatch } from '~/hooks/redux'
+import { App } from '~/services/app'
+import { useDeletePostMutation } from '~/services/postApi'
 
 import s from './DeletionModal.module.scss'
 import { Modal } from './Modal'
 
 type Props = {
+  app: App
   isActive: boolean
   toggleModal: MouseEventHandler
   setIsDeleting: Function
@@ -17,15 +18,15 @@ type Props = {
   postTitle: string
 }
 
-export function DeletionModal(props: Props) {
+export const DeletionModal = observer((props: Props) => {
   const [deletePost, { isLoading: isDeleting }] = useDeletePostMutation()
   const router = useRouter()
-  const dispatch = useAppDispatch()
+  const app = props.app
 
   async function handlePostDeletion() {
     try {
       await deletePost(props.postId)
-      dispatch(setDeletionAlert({ isActive: true, title: props.postTitle }))
+      app.deletedPostTitle = props.postTitle
       router.push('/')
     } catch (e: any) {}
   }
@@ -41,7 +42,6 @@ export function DeletionModal(props: Props) {
       </p>
       <div className={s.buttonWrapper}>
         <Button
-          className={s.buttonWrapper}
           label='Confirm'
           variant='danger'
           type='button'
@@ -52,4 +52,4 @@ export function DeletionModal(props: Props) {
       </div>
     </Modal>
   )
-}
+})
