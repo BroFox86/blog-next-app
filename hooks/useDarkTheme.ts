@@ -6,10 +6,8 @@ import { loadState } from '~/utilities/sessionStorage'
 
 export function useDarkTheme(app: App) {
   useEffect(() => {
-    if (!loadState()) return
-
     // Set the last choosed theme
-    if ('darkTheme' in loadState()) {
+    if (loadState() && 'darkTheme' in loadState()) {
       return handleDarkTheme(app, loadState().darkTheme)
     }
 

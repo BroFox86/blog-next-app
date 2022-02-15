@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite'
 
 import { App } from '~/services/app'
 import { handleDarkTheme } from '~/utilities/handleDarkTheme'
+import { saveState } from '~/utilities/sessionStorage'
 
 import s from './ThemeSwitch.module.scss'
 
@@ -15,6 +16,7 @@ export const ThemeSwitch = observer(({ app }: Props) => {
 
   function handleClick() {
     handleDarkTheme(app, !isThemeDark)
+    saveState({ darkTheme: !isThemeDark })
   }
 
   return (
