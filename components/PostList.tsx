@@ -5,6 +5,7 @@ import { Button } from '~/components/common/Button'
 import { Spinner } from '~/components/common/Spinner'
 import { PostState, useGetAllPostsQuery } from '~/services/postApi'
 import { formatDate } from '~/utilities/formatDate'
+import { getTextExcerpt } from '~/utilities/getTextExcerpt'
 
 import s from './PostList.module.scss'
 
@@ -39,22 +40,11 @@ export function PostList() {
 }
 
 function Post({ id, date, image, title, content }: PostState) {
-  const formattedDate = formatDate(date)
-
-  // Add space instead of a closing tag, remove all tags, trim and reduce the text.
-  let excerpt = content.replace(/<\/[^>]*>/gm, ' ').replace(/<[^>]*>/gm, '')
-  excerpt = excerpt.slice(0, 200)
-  excerpt = excerpt.trim()
-
-  if (excerpt.length >= 190) {
-    excerpt += '...'
-  }
-
   return (
     <article className={s.post}>
       <div className={s.imageWrapper}>
         <Image src={image} sizes='(min-width: 700px) 432px, 340px' layout='fill' objectFit='cover' alt='' />
-        <div className={s.date}>{formattedDate}</div>
+        <div className={s.date}>{formatDate(date)}</div>
       </div>
       <div className={s.postInner}>
         <h3 className={s.postHeading}>
@@ -65,7 +55,7 @@ function Post({ id, date, image, title, content }: PostState) {
           </Link>
         </h3>
         <p className={s.excerpt} suppressHydrationWarning>
-          {excerpt}
+          {getTextExcerpt(content)}
         </p>
         <Button className={s.button} as='link' variant='primary' label='View post' href={`/posts/${id}`} />
       </div>

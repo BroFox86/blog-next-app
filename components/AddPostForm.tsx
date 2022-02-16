@@ -13,11 +13,7 @@ import { useAddPostMutation } from '~/services/postApi'
 
 import s from './AddPostForm.module.scss'
 
-type Props = {
-  app: App
-}
-
-export const AddPostForm = observer(({ app }: Props) => {
+export const AddPostForm = observer(({ app }: { app: App }) => {
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
   const [alertMesages, setAlertMessages] = useState<Array<JSX.Element>>([])

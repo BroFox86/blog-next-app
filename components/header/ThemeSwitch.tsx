@@ -7,15 +7,12 @@ import { saveState } from '~/utilities/sessionStorage'
 
 import s from './ThemeSwitch.module.scss'
 
-type Props = {
-  app: App
-}
-
-export const ThemeSwitch = observer(({ app }: Props) => {
+export const ThemeSwitch = observer(({ app }: { app: App }) => {
   const isThemeDark = app.darkTheme
 
   function handleClick() {
     handleDarkTheme(app, !isThemeDark)
+    // Keep latest user-chosen theme in local storage to load it after page refreshing.
     saveState({ darkTheme: !isThemeDark })
   }
 
