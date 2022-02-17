@@ -12,7 +12,7 @@ export const ThemeSwitch = observer(({ app }: { app: App }) => {
 
   function handleClick() {
     handleDarkTheme(app, !isThemeDark)
-    // Keep latest user-chosen theme in local storage to load it after page refreshing.
+    // Keep latest user-chosen theme in session storage to load it after page refreshing.
     saveState({ darkTheme: !isThemeDark })
   }
 
