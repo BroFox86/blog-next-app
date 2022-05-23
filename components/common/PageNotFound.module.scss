@@ -1,12 +1,17 @@
 @use 'variables' as *;
+@use 'mixins' as *;
 
 .error_404 {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 100%;
   justify-content: center;
-  align-items: center;
-  padding-top: 100px;
+  padding-left: calc(3vw + env(safe-area-inset-left));
+  padding-right: calc(3vw + env(safe-area-inset-right));
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;

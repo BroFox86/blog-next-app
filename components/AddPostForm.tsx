@@ -24,7 +24,7 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
   useEffect(() => {
     if (!deletedPostTitle) return
 
-    setAlerts(alerts.concat(<Alert variant='warning'>Post &quot;{deletedPostTitle}&quot; has been deleted.</Alert>))
+    setAlerts(alerts.concat(<Alert variant='warning'>The post &quot;{deletedPostTitle}&quot; has been deleted.</Alert>))
 
     app.deletedPostTitle = ''
     // eslint-disable-next-line react-hooks/exhaustive-deps

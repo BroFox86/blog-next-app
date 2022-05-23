@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite'
 
-import { Footer } from '~/components/footer/Footer'
 import { Header } from '~/components/header/Header'
 import { useDarkTheme } from '~/hooks/useDarkTheme'
 import { App } from '~/services/app'
 
+import { Footer } from './Footer'
 import s from './Layout.module.scss'
 
 type Props = {

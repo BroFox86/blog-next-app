@@ -3,11 +3,11 @@ import { useRouter } from 'next/router'
 import { MouseEventHandler, useEffect } from 'react'
 
 import { Button } from '~/components/common/Button'
+import { Modal } from '~/components/common/Modal'
 import { App } from '~/services/app'
 import { useDeletePostMutation } from '~/services/postApi'
 
-import s from './DeletionModal.module.scss'
-import { Modal } from './Modal'
+import s from './DeletePost.module.scss'
 
 type Props = {
   app: App
@@ -18,7 +18,7 @@ type Props = {
   postTitle: string
 }
 
-export const DeletionModal = observer((props: Props) => {
+export const DeletePost = observer((props: Props) => {
   const [deletePost, { isLoading: isDeleting }] = useDeletePostMutation()
   const router = useRouter()
   const app = props.app

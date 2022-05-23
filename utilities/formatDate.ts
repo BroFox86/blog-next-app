@@ -16,7 +16,7 @@ export function formatDate(isoDate: string, isShort?: boolean) {
     }
   }
 
-  formatter = new Intl.DateTimeFormat('en-US', options)
+  formatter = new Intl.DateTimeFormat('en-GB', options)
 
   return formatter.format(new Date(isoDate))
 }
