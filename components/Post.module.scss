@@ -2,12 +2,6 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-.spinner {
-  position: relative;
-  top: 40vh;
-  transform: scale(1.2);
-}
-
 .image {
   position: relative;
   width: 100%;

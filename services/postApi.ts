@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export type PostState = {
-  id?: string
+  id: string
   date: string
   updatedDate: string | null
   image: string

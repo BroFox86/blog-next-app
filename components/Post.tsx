@@ -1,36 +1,29 @@
 import parse from 'html-react-parser'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
 import { Alert } from '~/components/common/Alert'
 import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
 import { Input } from '~/components/common/Input'
-import { Spinner } from '~/components/common/Spinner'
-import { DeletionModal } from '~/components/modal/DeletionModal'
+import { DeletePost } from '~/components/DeletePost'
 import { app } from '~/services/app'
-import { useGetAllPostsQuery, useGetPostQuery, useUpdatePostMutation } from '~/services/postApi'
+import { PostState, useGetAllPostsQuery, useUpdatePostMutation } from '~/services/postApi'
 import { formatDate } from '~/utilities/formatDate'
 
-import s from './SinglePost.module.scss'
+import s from './Post.module.scss'
 
-export function SinglePost() {
+export function Post({ post }: { post: PostState }) {
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
   const [isEditMode, setIsEditMode] = useState<boolean>(false)
   const [isModalActive, setIsModalActive] = useState<boolean>(false)
   const [isDeleting, setIsDeleting] = useState<boolean>(false)
   const [alerts, setAlerts] = useState<Array<JSX.Element>>([])
-
-  const router = useRouter()
-  const postId = String(router.query.postId)
-  const { data, isLoading } = useGetPostQuery(postId)
   const [updatePost, { isLoading: isUpdating }] = useUpdatePostMutation()
 
   const isPending = isUpdating || isDeleting
-  const post = data?.post
   const isFormValid: boolean = Boolean(title) && Boolean(content)
 
   // Update PostList after editing
@@ -47,13 +40,13 @@ export function SinglePost() {
 
     try {
       await updatePost({
-        id: postId,
+        id: post.id,
         updatedDate: new Date().toISOString(),
         title,
         content,
       })
       setIsEditMode(false)
-      setAlerts(alerts.concat(<Alert variant='success'>Post has been updated.</Alert>))
+      setAlerts(alerts.concat(<Alert variant='success'>This post has been updated.</Alert>))
     } catch (e: any) {
       setAlerts(alerts.concat(<Alert variant='danger'>Error: {e.message}</Alert>))
     }
@@ -104,11 +97,11 @@ export function SinglePost() {
             onClick={toggleModal}
           />
         </div>
-        <DeletionModal
+        <DeletePost
           app={app}
           isActive={isModalActive}
           toggleModal={toggleModal}
-          postId={postId}
+          postId={post.id}
           postTitle={title}
           setIsDeleting={setIsDeleting}
         />
@@ -150,10 +143,6 @@ export function SinglePost() {
         </div>
       </form>
     )
-  }
-
-  if (!post || isLoading) {
-    return <Spinner className={s.spinner} />
   }
 
   return (
