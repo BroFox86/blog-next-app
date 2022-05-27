@@ -20,7 +20,7 @@
   color: var(--secondary-text-color);
   text-decoration: none;
 
-  &:hover {
+  @include onHover {
     text-decoration: underline;
   }
 }

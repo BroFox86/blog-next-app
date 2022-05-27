@@ -86,8 +86,9 @@
   text-decoration: none;
   color: inherit;
 
-  &:hover {
+  @include onHover {
     color: var(--color-primary);
+    text-decoration: underline;
   }
 }
 

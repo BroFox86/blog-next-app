@@ -51,7 +51,7 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
         alerts.concat(
           <Alert variant='success'>
             <span>
-              Post <AlertLink href={`/posts/${postId}`}>{title}</AlertLink> has been added.
+              The post <AlertLink href={`/posts/${postId}`}>{title}</AlertLink> has been added.
             </span>
           </Alert>
         )

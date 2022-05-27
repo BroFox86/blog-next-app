@@ -99,7 +99,7 @@
 // Transitions
 //
 
-@mixin hasHoverSupport() {
+@mixin onHover() {
   &:hover {
     @media (hover: hover) {
       @content;
@@ -108,13 +108,13 @@
 }
 
 @mixin transparentize-on-hover($opacity: 0.85) {
-  @include hasHoverSupport {
+  @include onHover {
     opacity: $opacity;
   }
 }
 
 @mixin brightness-on-hover($brightness) {
-  @include hasHoverSupport {
+  @include onHover {
     filter: brightness($brightness);
   }
 }
