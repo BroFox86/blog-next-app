@@ -19,10 +19,14 @@
 }
 
 .headerContainer {
-  @include multiscreenContainer();
+  @include container(fluid);
   display: flex;
   align-items: center;
   height: 100%;
+
+  @media (min-width: $large-screen) {
+    @include container(large);
+  }
 }
 
 .linkToHome {

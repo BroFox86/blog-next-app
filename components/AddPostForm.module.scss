@@ -4,11 +4,15 @@
 @use 'mixins' as *;
 
 .container {
-  @include multiscreenContainer();
+  @include container(fluid);
   margin-bottom: 30px;
 
   @media (min-width: $medium-screen) {
     margin-bottom: 60px;
+  }
+
+  @media (min-width: $large-screen) {
+    @include container(large);
   }
 }
 

@@ -12,8 +12,12 @@
 }
 
 .inner {
-  @include multiscreenContainer();
+  @include container(fluid);
   text-align: center;
+
+  @media (min-width: $large-screen) {
+    @include container(large);
+  }
 }
 
 .author {

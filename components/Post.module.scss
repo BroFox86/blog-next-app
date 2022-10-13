@@ -19,7 +19,11 @@
 }
 
 .inner {
-  @include multiscreenContainer();
+  @include container(fluid);
+
+  @media (min-width: $large-screen) {
+    @include container(large);
+  }
 }
 
 .alertBox {
