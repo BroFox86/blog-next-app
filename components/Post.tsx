@@ -7,7 +7,7 @@ import { Alert } from '~/components/common/Alert'
 import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
 import { Input } from '~/components/common/Input'
-import { DeletePost } from '~/components/DeletePost'
+import { DeletePostModal } from '~/components/DeletePostModal'
 import { app } from '~/services/app'
 import { PostState, useGetAllPostsQuery, useUpdatePostMutation } from '~/services/postApi'
 import { formatDate } from '~/utilities/formatDate'
@@ -97,7 +97,7 @@ export function Post({ post }: { post: PostState }) {
             onClick={toggleModal}
           />
         </div>
-        <DeletePost
+        <DeletePostModal
           app={app}
           isActive={isModalActive}
           toggleModal={toggleModal}

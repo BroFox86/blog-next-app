@@ -7,7 +7,7 @@ import { Modal } from '~/components/common/Modal'
 import { App } from '~/services/app'
 import { useDeletePostMutation } from '~/services/postApi'
 
-import s from './DeletePost.module.scss'
+import s from './DeletePostModal.module.scss'
 
 type Props = {
   app: App
@@ -18,7 +18,7 @@ type Props = {
   postTitle: string
 }
 
-export const DeletePost = observer((props: Props) => {
+export const DeletePostModal = observer((props: Props) => {
   const [deletePost, { isLoading: isDeleting }] = useDeletePostMutation()
   const router = useRouter()
   const app = props.app
