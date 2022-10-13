@@ -18,8 +18,6 @@ export function useDarkTheme(app: App) {
 
     // Add a listener
     mediaQueryList.addEventListener('change', e => {
-      if (loadState()) return
-
       handleDarkTheme(app, !!e.matches)
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps

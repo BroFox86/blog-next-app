@@ -8,7 +8,7 @@ import { app } from '~/services/app'
 
 const Home: NextPage = () => {
   return (
-    <Layout app={app}>
+    <Layout>
       <Head>
         <title>Mock Blog Application</title>
       </Head>

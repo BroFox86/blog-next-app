@@ -8,7 +8,9 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Provider } from 'react-redux'
 
+import { useDarkTheme } from '~/hooks/useDarkTheme'
 import { createMirageServer } from '~/mocks/server'
+import { app } from '~/services/app'
 import store from '~/services/store'
 
 // if (process.env.NODE_ENV === "development") {
@@ -16,6 +18,8 @@ createMirageServer({ environment: 'development' })
 // }
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useDarkTheme(app)
+
   return (
     <Provider store={store}>
       <Head>
