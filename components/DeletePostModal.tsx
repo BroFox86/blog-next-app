@@ -44,7 +44,6 @@ export const DeletePostModal = observer((props: Props) => {
         <Button
           label='Confirm'
           variant='danger'
-          type='button'
           isPending={isDeleting}
           isDisabled={isDeleting}
           onClick={handlePostDeletion}

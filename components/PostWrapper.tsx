@@ -9,7 +9,7 @@ import s from './PostWrapper.module.scss'
 
 export function PostWrapper() {
   const router = useRouter()
-  const postId = String(router.query.postId)
+  const postId = String(router.query.post)
   const { data, isLoading, isError } = useGetPostQuery(postId)
   const post = data?.post
 

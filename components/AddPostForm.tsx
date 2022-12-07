@@ -50,9 +50,9 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
       setAlerts(
         alerts.concat(
           <Alert variant='success'>
-            <span>
+            <>
               The post <AlertLink href={`/posts/${postId}`}>{title}</AlertLink> has been added.
-            </span>
+            </>
           </Alert>
         )
       )
@@ -86,7 +86,6 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
           className={s.button}
           label='Add Post'
           variant='primary'
-          type='button'
           isDisabled={!isFormValid || isLoading}
           isPending={isLoading}
           onClick={handlePostAdding}

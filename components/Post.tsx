@@ -30,10 +30,10 @@ export function Post({ post }: { post: PostState }) {
   useGetAllPostsQuery()
 
   useEffect(() => {
-    if (!post) return
     setTitle(post.title)
     setContent(post.content)
-  }, [post])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   async function handlePostUpdate() {
     if (!isFormValid) return
@@ -63,7 +63,7 @@ export function Post({ post }: { post: PostState }) {
     setIsModalActive(!isModalActive)
   }
 
-  function renderPostPanel() {
+  function renderPostBody() {
     if (!post) return
 
     return (
@@ -84,18 +84,10 @@ export function Post({ post }: { post: PostState }) {
             className={s.button}
             label='Edit'
             variant='primary'
-            type='button'
             isDisabled={isPending}
             onClick={() => setIsEditMode(true)}
           />
-          <Button
-            className={s.button}
-            label='Delete'
-            variant='primary'
-            type='button'
-            isDisabled={isPending}
-            onClick={toggleModal}
-          />
+          <Button className={s.button} label='Delete' variant='primary' isDisabled={isPending} onClick={toggleModal} />
         </div>
         <DeletePostModal
           app={app}
@@ -127,7 +119,6 @@ export function Post({ post }: { post: PostState }) {
             className={s.button}
             label='Save'
             variant='primary'
-            type='button'
             isDisabled={!isFormValid || isPending}
             isPending={isPending}
             onClick={handlePostUpdate}
@@ -136,7 +127,6 @@ export function Post({ post }: { post: PostState }) {
             className={s.button}
             label='Cancel'
             variant='primary'
-            type='button'
             isDisabled={isPending}
             onClick={cancelEditing}
           />
@@ -162,7 +152,7 @@ export function Post({ post }: { post: PostState }) {
               })}
             </div>
           )}
-          {!isEditMode ? renderPostPanel() : renderEditingForm()}
+          {!isEditMode ? renderPostBody() : renderEditingForm()}
         </div>
       </>
     </>
