@@ -4,7 +4,7 @@
 .layout {
   overflow-x: hidden;
   color: var(--main-text-color);
-  font-family: $font-primary;
+  font-family: var(--primary-font);
   font-size: $font-size-medium;
   line-height: $line-height;
 }

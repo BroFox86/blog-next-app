@@ -10,6 +10,7 @@
     "lint": "next lint && npm run check-types"
   },
   "dependencies": {
+    "@next/font": "^13.0.6",
     "@reduxjs/toolkit": "^1.8.6",
     "clsx": "^1.2.1",
     "html-react-parser": "^3.0.4",
