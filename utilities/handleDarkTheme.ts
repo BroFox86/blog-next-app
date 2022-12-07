@@ -3,7 +3,7 @@ import { App } from '~/services/app'
 export function handleDarkTheme(app: App, isThemeDark: boolean) {
   const root = document.documentElement
 
-  app.darkTheme = isThemeDark
+  app.switchTheme(isThemeDark)
 
   if (isThemeDark) {
     root.classList.add('hasDarkTheme')

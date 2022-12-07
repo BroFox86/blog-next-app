@@ -7,6 +7,14 @@ export class App {
   constructor() {
     makeAutoObservable(this)
   }
+
+  switchTheme(isThemeDark: boolean) {
+    this.darkTheme = isThemeDark
+  }
+
+  setDeletedPostTitle(title: string) {
+    this.deletedPostTitle = title
+  }
 }
 
 export const app = new App()

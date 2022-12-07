@@ -26,7 +26,7 @@ export const DeletePostModal = observer((props: Props) => {
   async function handlePostDeletion() {
     try {
       await deletePost(props.postId)
-      app.deletedPostTitle = props.postTitle
+      app.setDeletedPostTitle(props.postTitle)
       router.push('/')
     } catch (e: any) {}
   }
