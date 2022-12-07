@@ -4,6 +4,7 @@ import '~/styles/global.scss'
 import '~/styles/css-variables.scss'
 import '~/styles/quill.css'
 
+import { Roboto } from '@next/font/google'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Provider } from 'react-redux'
@@ -16,6 +17,28 @@ import store from '~/services/store'
 // if (process.env.NODE_ENV === "development") {
 createMirageServer({ environment: 'development' })
 // }
+
+export const robotoFont = Roboto({
+  variable: '--primary-font',
+  weight: ['400', '700'],
+  style: ['normal'],
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    'Arial',
+    'sans-serif',
+  ],
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
   useDarkTheme(app)
