@@ -46,8 +46,8 @@ export function Alert({ className, variant, children }: Props) {
 
 export function AlertLink({ href, children }: { href: string; children: string }) {
   return (
-    <Link href={href}>
-      <a className={s.alertLink}>{children}</a>
+    <Link className={s.alertLink} href={href}>
+      {children}
     </Link>
   )
 }

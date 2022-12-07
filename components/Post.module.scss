@@ -16,6 +16,10 @@
   @media (min-width: $large-screen) {
     height: 350px;
   }
+
+  img {
+    object-fit: cover;
+  }
 }
 
 .inner {

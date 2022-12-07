@@ -31,8 +31,8 @@ export function Button(props: Props) {
       {isPending ? <ButtonSpinner /> : null}
     </button>
   ) : (
-    <Link href={href || '/'}>
-      <a className={clsx(s.button, s[variant], className)}>{label}</a>
+    <Link className={clsx(s.button, s[variant], className)} href={href || '/'}>
+      {label}
     </Link>
   )
 }

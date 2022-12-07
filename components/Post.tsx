@@ -152,7 +152,7 @@ export function Post({ post }: { post: PostState }) {
       </Head>
       <>
         <div className={s.image}>
-          <Image src={post.image} sizes='100vw' layout='fill' objectFit='cover' priority alt='' />
+          <Image src={post.image} sizes='100vw' alt='' fill priority />
         </div>
         <div className={s.inner}>
           {alerts.length !== 0 && (

@@ -46,15 +46,13 @@ function Post({ id, date, image, title, content }: PostState) {
   return (
     <article className={s.post}>
       <div className={s.imageWrapper}>
-        <Image src={image} sizes='(min-width: 700px) 432px, 340px' layout='fill' objectFit='cover' alt='' />
+        <Image src={image} sizes='(min-width: 1000px) 432px, (min-width: 700px) 350px, 356px' alt='' fill />
         <div className={s.date}>{formatDate(date)}</div>
       </div>
       <div className={s.postInner}>
         <h3 className={s.postHeading}>
-          <Link href={`/posts/${id}`}>
-            <a className={s.link} suppressHydrationWarning>
-              {title}
-            </a>
+          <Link className={s.link} href={`/posts/${id}`} suppressHydrationWarning>
+            {title}
           </Link>
         </h3>
         <p className={s.excerpt} suppressHydrationWarning>
