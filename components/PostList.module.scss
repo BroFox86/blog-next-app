@@ -24,12 +24,12 @@
 
 .postList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(auto, 356px));
+  grid-template-columns: repeat(auto-fill, minmax(auto, 368px));
   justify-content: center;
   gap: 20px;
 
   @media (min-width: $medium-screen) {
-    grid-template-columns: repeat(auto-fill, 48%);
+    grid-template-columns: repeat(auto-fill, 354px);
   }
 
   @media (min-width: $large-screen) {
