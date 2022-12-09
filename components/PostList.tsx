@@ -46,7 +46,13 @@ function Post({ id, date, image, title, content }: PostState) {
   return (
     <article className={s.post}>
       <div className={s.imageWrapper}>
-        <Image src={image} sizes='(min-width: 1000px) 432px, (min-width: 700px) 354px, 368px' alt='' fill />
+        <Image
+          className={s.image}
+          src={image}
+          sizes='(min-width: 1000px) 432px, (min-width: 700px) 354px, 368px'
+          alt=''
+          fill
+        />
         <div className={s.date}>{formatDate(date)}</div>
       </div>
       <div className={s.postInner}>

@@ -2,7 +2,7 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-.image {
+.imageWrapper {
   position: relative;
   width: 100%;
   max-width: 1920px;
@@ -16,10 +16,10 @@
   @media (min-width: $large-screen) {
     height: 350px;
   }
+}
 
-  img {
-    object-fit: cover;
-  }
+.image {
+  object-fit: cover;
 }
 
 .inner {

@@ -54,10 +54,10 @@
   @media (min-width: $medium-screen) {
     height: 200px;
   }
+}
 
-  img {
-    object-fit: cover;
-  }
+.image {
+  object-fit: cover;
 }
 
 .date {
