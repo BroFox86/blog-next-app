@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker'
+import { paragraph, sentence } from 'txtgen'
 
 import { PostState } from '~/services/postApi'
 
@@ -8,9 +8,17 @@ export const posts: PostState[] = [
     date: '2021-09-14',
     updatedDate: null,
     image: '/images/cover_1.jpg',
-    title: faker.lorem.sentence(),
+    title: sentence(),
     content: `
-        <p>${faker.lorem.paragraphs(3, '<br/><br/>')}</p>
+        <p>${paragraph()}${paragraph()}</p>
+        <p><br /></p>
+        <ul>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+        </ul>
       `,
   },
   {
@@ -18,15 +26,16 @@ export const posts: PostState[] = [
     date: '2021-08-24',
     updatedDate: null,
     image: '/images/cover_2.jpg',
-    title: faker.lorem.sentence(),
+    title: sentence(),
     content: `
-        <p>${faker.lorem.paragraphs(3, '<br/><br/>')}</p>
+        <p>${paragraph()}${paragraph()}</p>
+        <p><br /></p>
         <ol>
-          <li>${faker.lorem.sentence()}</li>
-          <li>${faker.lorem.sentence()}</li>
-          <li>${faker.lorem.sentence()}</li>
-          <li>${faker.lorem.sentence()}</li>
-          <li>${faker.lorem.sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
         </ol>
       `,
   },
@@ -35,9 +44,17 @@ export const posts: PostState[] = [
     date: '2021-08-20',
     updatedDate: null,
     image: '/images/cover_3.jpg',
-    title: faker.lorem.sentence(),
+    title: sentence(),
     content: `
-        <p>${faker.lorem.paragraphs(5, '<br/><br/>')}</p>
+        <p>${paragraph()}${paragraph()}</p>
+        <p><br /></p>
+        <ol>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+        </ol>
       `,
   },
   {
@@ -45,9 +62,11 @@ export const posts: PostState[] = [
     date: '2021-08-13',
     updatedDate: null,
     image: '/images/cover_4.jpg',
-    title: faker.lorem.sentence(),
+    title: sentence(),
     content: `
-        <p>${faker.lorem.paragraphs(4, '<br/><br/>')}</p>
+        <p>${paragraph()}${paragraph()}</p>
+        <p><br /></p>
+        <p>${paragraph()}${paragraph()}</p>
       `,
   },
   {
@@ -55,15 +74,16 @@ export const posts: PostState[] = [
     date: '2021-07-18',
     updatedDate: null,
     image: '/images/cover_5.jpg',
-    title: faker.lorem.sentence(),
+    title: sentence(),
     content: `
-        <p>${faker.lorem.paragraphs(3, '<br/><br/>')}</p>
+        <p>${paragraph()}${paragraph()}</p>
+        <p><br /></p>
         <ol>
-          <li>${faker.lorem.sentence()}</li>
-          <li>${faker.lorem.sentence()}</li>
-          <li>${faker.lorem.sentence()}</li>
-          <li>${faker.lorem.sentence()}</li>
-          <li>${faker.lorem.sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
         </ol>
       `,
   },
@@ -72,9 +92,15 @@ export const posts: PostState[] = [
     date: '2020-09-25',
     updatedDate: null,
     image: '/images/cover_6.jpg',
-    title: faker.lorem.sentence(),
+    title: sentence(),
     content: `
-        <p>${faker.lorem.paragraphs(2, '<br/><br/>')}</p>
+        <p>${paragraph()}${paragraph()}</p>
+        <p><br /></p>
+        <ol>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+        </ol>
       `,
   },
   {
@@ -82,9 +108,17 @@ export const posts: PostState[] = [
     date: '2020-09-23',
     updatedDate: null,
     image: '/images/cover_1.jpg',
-    title: faker.lorem.sentence(),
+    title: sentence(),
     content: `
-        <p>${faker.lorem.paragraphs(4, '<br/><br/>')}</p>
+        <p>${paragraph()}${paragraph()}</p>
+        <p><br /></p>
+        <ol>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+        </ol>
       `,
   },
   {
@@ -92,9 +126,15 @@ export const posts: PostState[] = [
     date: '2020-08-11',
     updatedDate: null,
     image: '/images/cover_2.jpg',
-    title: faker.lorem.sentence(),
+    title: sentence(),
     content: `
-        <p>${faker.lorem.paragraphs(5, '<br/><br/>')}</p>
+        <p>${paragraph()}${paragraph()}</p>
+        <p><br /></p>
+        <ol>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+          <li>${sentence()}</li>
+        </ol>
       `,
   },
 ]
