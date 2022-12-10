@@ -5,6 +5,7 @@ import React from 'react'
 
 import { Alert } from '~/components/common/Alert'
 import { AlertLink } from '~/components/common/Alert'
+import { AlertBox } from '~/components/common/AlertBox'
 import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
 import { Input } from '~/components/common/Input'
@@ -13,7 +14,6 @@ import { useAddPostMutation } from '~/services/postApi'
 import { showAlert } from '~/utilities/showAlert'
 
 import s from './AddPostForm.module.scss'
-import { AlertBox } from './common/AlertBox'
 
 export const AddPostForm = observer(({ app }: { app: App }) => {
   const [title, setTitle] = useState<string>('')

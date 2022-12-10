@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 
-import { Header } from '~/components/header/Header'
 import { robotoFont } from '~/pages/_app'
 
 import { Footer } from './Footer'
+import { Header } from './Header'
 import s from './Layout.module.scss'
 
 type Props = {

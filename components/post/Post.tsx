@@ -4,16 +4,16 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
 import { Alert } from '~/components/common/Alert'
+import { AlertBox } from '~/components/common/AlertBox'
 import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
 import { Input } from '~/components/common/Input'
-import { PostDeletion } from '~/components/PostDeletion'
+import { PostDeletion } from '~/components/post/PostDeletion'
 import { app } from '~/services/app'
 import { PostState, useGetAllPostsQuery, useUpdatePostMutation } from '~/services/postApi'
 import { formatDate } from '~/utilities/formatDate'
 import { showAlert } from '~/utilities/showAlert'
 
-import { AlertBox } from './common/AlertBox'
 import s from './Post.module.scss'
 
 export function Post({ post }: { post: PostState }) {
