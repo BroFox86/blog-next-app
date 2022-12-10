@@ -11,7 +11,9 @@ import { PostDeletion } from '~/components/PostDeletion'
 import { app } from '~/services/app'
 import { PostState, useGetAllPostsQuery, useUpdatePostMutation } from '~/services/postApi'
 import { formatDate } from '~/utilities/formatDate'
+import { showAlert } from '~/utilities/showAlert'
 
+import { AlertBox } from './common/AlertBox'
 import s from './Post.module.scss'
 
 export function Post({ post }: { post: PostState }) {
@@ -45,8 +47,10 @@ export function Post({ post }: { post: PostState }) {
         title,
         content,
       })
+
       setIsEditMode(false)
-      setAlerts(alerts.concat(<Alert variant='success'>This post has been updated.</Alert>))
+
+      showAlert(alerts, setAlerts, 'success', 'This post has been updated.')
     } catch (e: any) {
       setAlerts(alerts.concat(<Alert variant='danger'>Error: {e.message}</Alert>))
     }
@@ -145,13 +149,7 @@ export function Post({ post }: { post: PostState }) {
           <Image className={s.image} src={post.image} sizes='100vw' alt='' fill priority />
         </div>
         <div className={s.inner}>
-          {alerts.length !== 0 && (
-            <div className={s.alertBox} hidden={isEditMode}>
-              {alerts.map((item, index) => {
-                return <React.Fragment key={index}>{item}</React.Fragment>
-              })}
-            </div>
-          )}
+          <AlertBox alerts={alerts} hidden={isEditMode} />
           {!isEditMode ? renderPostBody() : renderEditingForm()}
         </div>
       </>

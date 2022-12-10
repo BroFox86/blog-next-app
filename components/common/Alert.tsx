@@ -6,13 +6,13 @@ import { getTransitionDuration } from '~/utilities/getStyleValue'
 
 import s from './Alert.module.scss'
 
-interface Props {
+export interface AlertProps {
   className?: string
   variant: 'success' | 'warning' | 'danger'
   children: string | string[] | JSX.Element
 }
 
-export function Alert({ className, variant, children }: Props) {
+export function Alert({ className, variant, children }: AlertProps) {
   const [isMounted, setIsMounted] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false)
   const alertRef = useRef<HTMLDivElement>(null)

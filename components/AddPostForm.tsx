@@ -10,8 +10,10 @@ import { Editor } from '~/components/common/Editor'
 import { Input } from '~/components/common/Input'
 import { App } from '~/services/app'
 import { useAddPostMutation } from '~/services/postApi'
+import { showAlert } from '~/utilities/showAlert'
 
 import s from './AddPostForm.module.scss'
+import { AlertBox } from './common/AlertBox'
 
 export const AddPostForm = observer(({ app }: { app: App }) => {
   const [title, setTitle] = useState<string>('')
@@ -24,7 +26,7 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
   useEffect(() => {
     if (!deletedPostTitle) return
 
-    setAlerts(alerts.concat(<Alert variant='warning'>The post &quot;{deletedPostTitle}&quot; has been deleted.</Alert>))
+    showAlert(alerts, setAlerts, 'warning', `The post &quot;${deletedPostTitle}&quot; has been deleted.`)
 
     app.setDeletedPostTitle('')
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,14 +49,13 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
       setTitle('')
       setContent('')
 
-      setAlerts(
-        alerts.concat(
-          <Alert variant='success'>
-            <>
-              The post <AlertLink href={`/posts/${postId}`}>{title}</AlertLink> has been added.
-            </>
-          </Alert>
-        )
+      showAlert(
+        alerts,
+        setAlerts,
+        'success',
+        <>
+          The post <AlertLink href={`/posts/${postId}`}>{title}</AlertLink> has been added.
+        </>
       )
     } catch (e: any) {
       setAlerts(alerts.concat(<Alert variant='danger'>Error: {e.message}</Alert>))
@@ -64,13 +65,7 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
   return (
     <section className={s.container}>
       <h1 className={s.title}>Add a New Post</h1>
-      {alerts.length !== 0 && (
-        <div className={s.alertBox}>
-          {alerts.map((item, index) => {
-            return <React.Fragment key={index}>{item}</React.Fragment>
-          })}
-        </div>
-      )}
+      <AlertBox alerts={alerts} />
       <form className={s.form}>
         <Input
           label='Post title'
