@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { MouseEventHandler, useEffect } from 'react'
 
 import { Button } from '~/components/common/Button'
-import { Modal } from '~/components/common/Modal'
+import { Modal } from '~/components/post/Modal'
 import { App } from '~/services/app'
 import { useDeletePostMutation } from '~/services/postApi'
 

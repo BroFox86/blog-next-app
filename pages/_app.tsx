@@ -9,10 +9,10 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Provider } from 'react-redux'
 
-import { useDarkTheme } from '~/hooks/useDarkTheme'
 import { createMirageServer } from '~/mocks/server'
 import { app } from '~/services/app'
 import store from '~/services/store'
+import { useDarkTheme } from '~/utilities/useDarkTheme'
 
 // if (process.env.NODE_ENV === "development") {
 createMirageServer({ environment: 'development' })
