@@ -36,7 +36,7 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
     if (!isFormValid) return
 
     try {
-      const postId = nanoid()
+      const postId = `${title}-${nanoid()}`
 
       await addPost({
         id: postId,

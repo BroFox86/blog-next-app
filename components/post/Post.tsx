@@ -27,9 +27,6 @@ export function Post({ post }: { post: PostState }) {
   const isPending = isUpdating || isDeleting
   const isFormValid: boolean = Boolean(title) && Boolean(content)
 
-  // Update PostList after editing
-  useGetAllPostsQuery()
-
   useEffect(() => {
     setTitle(post.title)
     setContent(post.content)

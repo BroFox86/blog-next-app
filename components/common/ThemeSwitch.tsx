@@ -19,7 +19,7 @@ export const ThemeSwitch = observer(({ app }: { app: App }) => {
   return (
     // Prevent transition when page loads
     <>
-      {isThemeDark !== undefined && (
+      {isThemeDark !== null && (
         <button
           className={clsx(s.component, isThemeDark && s.hasDarkTheme)}
           type='button'
