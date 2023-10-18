@@ -16,8 +16,8 @@ import { showAlert } from '~/utilities/showAlert'
 import s from './AddPostForm.module.scss'
 
 export const AddPostForm = observer(({ app }: { app: App }) => {
-  const [title, setTitle] = useState<string>('')
-  const [content, setContent] = useState<string>('')
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
   const [alerts, setAlerts] = useState<Array<JSX.Element>>([])
   const [addPost, { isLoading }] = useAddPostMutation()
   const isFormValid: boolean = Boolean(title) && Boolean(content)
@@ -26,7 +26,7 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
   useEffect(() => {
     if (!deletedPostTitle) return
 
-    showAlert(alerts, setAlerts, 'warning', `The post &quot;${deletedPostTitle}&quot; has been deleted.`)
+    showAlert(alerts, setAlerts, 'warning', `The post "${deletedPostTitle}" has been deleted.`)
 
     app.setDeletedPostTitle('')
     // eslint-disable-next-line react-hooks/exhaustive-deps

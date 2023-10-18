@@ -5,9 +5,7 @@ export function getTextExcerpt(content: string) {
 
   span.innerHTML = content
 
-  textContent = span.textContent
-
-  if (!textContent) return
+  textContent = span.textContent!
 
   excerpt = textContent.trim().slice(0, 190)
 

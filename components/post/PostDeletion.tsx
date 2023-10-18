@@ -4,13 +4,12 @@ import { MouseEventHandler, useEffect } from 'react'
 
 import { Button } from '~/components/common/Button'
 import { Modal } from '~/components/post/Modal'
-import { App } from '~/services/app'
+import { app } from '~/services/app'
 import { useDeletePostMutation } from '~/services/postApi'
 
 import s from './PostDeletion.module.scss'
 
 type Props = {
-  app: App
   isActive: boolean
   toggleModal: MouseEventHandler
   setIsDeleting: Function
@@ -21,7 +20,6 @@ type Props = {
 export const PostDeletion = observer((props: Props) => {
   const [deletePost, { isLoading: isDeleting }] = useDeletePostMutation()
   const router = useRouter()
-  const app = props.app
 
   async function handlePostDeletion() {
     try {

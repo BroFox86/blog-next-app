@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx'
 
 export class App {
-  darkTheme = false
+  darkTheme: boolean | undefined = undefined
   deletedPostTitle = ''
 
   constructor() {
@@ -12,6 +12,7 @@ export class App {
     this.darkTheme = isThemeDark
   }
 
+  // Keep recently deleted post title for show it on home screen with an Alert message.
   setDeletedPostTitle(title: string) {
     this.deletedPostTitle = title
   }

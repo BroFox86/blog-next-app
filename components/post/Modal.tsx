@@ -18,8 +18,8 @@ type Props = {
 export function Modal(props: Props) {
   const { className, isActive, toggleModal, children, ariaLabelledby } = props
   const modalRef = useRef<HTMLDivElement>(null)
-  const [isInitiated, setIsInitiated] = useState<boolean>(false)
-  const [isVisible, setIsVisible] = useState<boolean>(false)
+  const [isInitiated, setIsInitiated] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
   const isOpening = isActive && !isInitiated && !isVisible
   const isClosing = !isActive && isInitiated && isVisible
 
@@ -36,7 +36,7 @@ export function Modal(props: Props) {
   }
 
   useAccessibleModal(isActive, modalRef, toggleModal)
-  useScrollLock('isFixedByModal', isActive)
+  useScrollLock('isFixedByModal', isInitiated)
 
   return isInitiated ? (
     <div

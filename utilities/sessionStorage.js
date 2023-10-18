@@ -5,11 +5,9 @@ export function saveState(state) {
 }
 
 export function loadState() {
-  const serializedState = sessionStorage.getItem('state')
+  if (typeof window !== 'undefined') {
+    const serializedState = sessionStorage.getItem('state')
 
-  if (serializedState !== null) {
     return JSON.parse(serializedState)
-  } else {
-    return null
   }
 }

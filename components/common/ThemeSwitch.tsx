@@ -17,15 +17,20 @@ export const ThemeSwitch = observer(({ app }: { app: App }) => {
   }
 
   return (
-    <button
-      className={clsx(s.component, isThemeDark && s.hasDarkTheme)}
-      type='button'
-      aria-label='Toggle night mode'
-      onClick={handleClick}
-    >
-      <span className={s.moon}>🌛</span>
-      <span className={s.slider} />
-      <span className={s.sun}>🌞</span>
-    </button>
+    // Prevent transition when page loads
+    <>
+      {isThemeDark !== undefined && (
+        <button
+          className={clsx(s.component, isThemeDark && s.hasDarkTheme)}
+          type='button'
+          aria-label='Toggle night mode'
+          onClick={handleClick}
+        >
+          <span className={s.moon}>🌛</span>
+          <span className={s.slider} />
+          <span className={s.sun}>🌞</span>
+        </button>
+      )}
+    </>
   )
 })

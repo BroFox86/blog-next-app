@@ -13,8 +13,8 @@ export interface AlertProps {
 }
 
 export function Alert({ className, variant, children }: AlertProps) {
-  const [isMounted, setIsMounted] = useState<boolean>(false)
-  const [isVisible, setIsVisible] = useState<boolean>(false)
+  const [isMounted, setIsMounted] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
   const alertRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -23,15 +23,11 @@ export function Alert({ className, variant, children }: AlertProps) {
   }, [])
 
   function handleClosing() {
-    if (alertRef.current === null) {
-      return
-    }
-
     setIsVisible(false)
 
     setTimeout(() => {
       setIsMounted(false)
-    }, getTransitionDuration(alertRef.current))
+    }, getTransitionDuration(alertRef.current!))
   }
 
   return isMounted ? (

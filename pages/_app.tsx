@@ -7,12 +7,14 @@ import '~/styles/quill.css'
 import { Roboto } from '@next/font/google'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { useEffect } from 'react'
 import { Provider } from 'react-redux'
 
 import { createMirageServer } from '~/mocks/server'
 import { app } from '~/services/app'
 import store from '~/services/store'
-import { useDarkTheme } from '~/utilities/useDarkTheme'
+import { handleDarkTheme } from '~/utilities/handleDarkTheme'
+import { loadState } from '~/utilities/sessionStorage'
 
 // if (process.env.NODE_ENV === "development") {
 createMirageServer({ environment: 'development' })
@@ -41,7 +43,22 @@ export const robotoFont = Roboto({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useDarkTheme(app)
+  useEffect(() => {
+    // Set the last choosed theme
+    if (loadState()) {
+      return handleDarkTheme(app, loadState().darkTheme)
+    }
+
+    const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
+
+    // Set theme for the first time
+    handleDarkTheme(app, mediaQueryList.matches)
+
+    // Add a listener
+    mediaQueryList.addEventListener('change', e => {
+      handleDarkTheme(app, !!e.matches)
+    })
+  }, [])
 
   return (
     <Provider store={store}>

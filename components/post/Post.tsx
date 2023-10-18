@@ -9,7 +9,6 @@ import { Button } from '~/components/common/Button'
 import { Editor } from '~/components/common/Editor'
 import { Input } from '~/components/common/Input'
 import { PostDeletion } from '~/components/post/PostDeletion'
-import { app } from '~/services/app'
 import { PostState, useGetAllPostsQuery, useUpdatePostMutation } from '~/services/postApi'
 import { formatDate } from '~/utilities/formatDate'
 import { showAlert } from '~/utilities/showAlert'
@@ -17,11 +16,11 @@ import { showAlert } from '~/utilities/showAlert'
 import s from './Post.module.scss'
 
 export function Post({ post }: { post: PostState }) {
-  const [title, setTitle] = useState<string>('')
-  const [content, setContent] = useState<string>('')
-  const [isEditMode, setIsEditMode] = useState<boolean>(false)
-  const [isModalActive, setIsModalActive] = useState<boolean>(false)
-  const [isDeleting, setIsDeleting] = useState<boolean>(false)
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [isEditMode, setIsEditMode] = useState(false)
+  const [isDeletionModalActive, setIsDeletionModalActive] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
   const [alerts, setAlerts] = useState<Array<JSX.Element>>([])
   const [updatePost, { isLoading: isUpdating }] = useUpdatePostMutation()
 
@@ -63,8 +62,8 @@ export function Post({ post }: { post: PostState }) {
     setContent(post.content)
   }
 
-  function toggleModal() {
-    setIsModalActive(!isModalActive)
+  function toggleDeletionModal() {
+    setIsDeletionModalActive(!isDeletionModalActive)
   }
 
   function renderPostBody() {
@@ -91,12 +90,17 @@ export function Post({ post }: { post: PostState }) {
             isDisabled={isPending}
             onClick={() => setIsEditMode(true)}
           />
-          <Button className={s.button} label='Delete' variant='primary' isDisabled={isPending} onClick={toggleModal} />
+          <Button
+            className={s.button}
+            label='Delete'
+            variant='primary'
+            isDisabled={isPending}
+            onClick={toggleDeletionModal}
+          />
         </div>
         <PostDeletion
-          app={app}
-          isActive={isModalActive}
-          toggleModal={toggleModal}
+          isActive={isDeletionModalActive}
+          toggleModal={toggleDeletionModal}
           postId={post.id}
           postTitle={title}
           setIsDeleting={setIsDeleting}

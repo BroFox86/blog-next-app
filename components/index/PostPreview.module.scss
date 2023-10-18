@@ -1,0 +1,74 @@
+@use 'sass:math';
+@use 'sass:color';
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: $shadow-medium;
+  background:var(--content-bg-color);
+}
+
+.imageWrapper {
+  position: relative;
+  height: 150px;
+
+  @media (min-width: $medium-screen) {
+    height: 200px;
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.date {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 3px 10px;
+  border-radius: 5px;
+  background: color.scale(black, $alpha: -30%);
+  color: white;
+  font-size: 0.9em;
+
+  @media (min-width: $medium-screen) {
+    left: 25px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 15px 15px 20px;
+
+  @media (min-width: $medium-screen) {
+    padding: 20px 25px 25px;
+  }
+}
+
+.heading {
+  margin: 0 0 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+
+  @include onHover {
+    color: var(--color-primary);
+  }
+}
+
+.excerpt {
+  margin-top: 0;
+}
+
+.button {
+  align-self: start;
+  margin-top: auto;
+}

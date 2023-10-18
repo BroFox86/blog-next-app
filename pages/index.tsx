@@ -2,9 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Layout } from '~/components/common/Layout'
-import { AddPostForm } from '~/components/index/AddPostForm'
-import { PostList } from '~/components/index/PostList'
-import { app } from '~/services/app'
+import { AddPostWrapper } from '~/components/index/AddPostWrapper'
 
 const Home: NextPage = () => {
   return (
@@ -12,8 +10,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Mock Blog Application</title>
       </Head>
-      <AddPostForm app={app} />
-      <PostList />
+      <AddPostWrapper />
     </Layout>
   )
 }
