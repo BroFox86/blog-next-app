@@ -1,5 +1,5 @@
-import { Alert } from '~/components/common/Alert'
-import { AlertProps } from '~/components/common/Alert'
+import { Alert } from '~/components/Alert'
+import { AlertProps } from '~/components/Alert'
 
 export function showAlert(
   alerts: Array<JSX.Element>,

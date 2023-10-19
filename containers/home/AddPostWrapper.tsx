@@ -1,5 +1,5 @@
-import { AddPostForm } from '~/components/index/AddPostForm'
-import { PostList } from '~/components/index/PostList'
+import { AddPostForm } from '~/containers/home/AddPostForm'
+import { PostList } from '~/containers/home/PostList'
 import { app } from '~/services/app'
 
 export function AddPostWrapper() {

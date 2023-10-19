@@ -2,8 +2,8 @@ import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import { MouseEventHandler, useEffect, useState } from 'react'
 
-import { Button } from '~/components/common/Button'
-import { Modal } from '~/components/post/Modal'
+import { Button } from '~/components/Button'
+import { Modal } from '~/components/Modal'
 import { app } from '~/services/app'
 import { useDeletePostMutation } from '~/services/postApi'
 

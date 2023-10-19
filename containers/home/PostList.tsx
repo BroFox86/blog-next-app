@@ -1,4 +1,4 @@
-import { Spinner } from '~/components/common/Spinner'
+import { Spinner } from '~/components/Spinner'
 import { useGetAllPostsQuery } from '~/services/postApi'
 
 import s from './PostList.module.scss'

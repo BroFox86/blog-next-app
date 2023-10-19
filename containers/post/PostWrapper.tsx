@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 
-import { PageNotFound } from '~/components/common/PageNotFound'
-import { Spinner } from '~/components/common/Spinner'
-import { Post } from '~/components/post/Post'
+import { PageNotFound } from '~/components/PageNotFound'
+import { Spinner } from '~/components/Spinner'
+import { Post } from '~/containers/post/Post'
 import { useGetPostQuery } from '~/services/postApi'
 
 import s from './PostWrapper.module.scss'

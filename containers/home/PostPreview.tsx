@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Button } from '~/components/common/Button'
+import { Button } from '~/components/Button'
 import { PostState } from '~/services/postApi'
 import { formatDate } from '~/utilities/formatDate'
 import { getTextExcerpt } from '~/utilities/getTextExcerpt'
