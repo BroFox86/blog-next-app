@@ -24,9 +24,8 @@
 
   &[disabled],
   &.isDisabled {
-    opacity: 0.6;
+    opacity: 0.65;
     pointer-events: none;
-    filter: grayscale(100%);
   }
 }
 
