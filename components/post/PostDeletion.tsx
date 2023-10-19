@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
-import { MouseEventHandler, useEffect } from 'react'
+import { MouseEventHandler, useEffect, useState } from 'react'
 
 import { Button } from '~/components/common/Button'
 import { Modal } from '~/components/post/Modal'
@@ -18,11 +18,13 @@ type Props = {
 }
 
 export const PostDeletion = observer((props: Props) => {
-  const [deletePost, { isLoading: isDeleting }] = useDeletePostMutation()
+  const [deletePost] = useDeletePostMutation()
+  const [isDeleting, setIsDeleting] = useState(false)
   const router = useRouter()
 
   async function handlePostDeletion() {
     try {
+      setIsDeleting(true)
       await deletePost(props.postId)
       app.setDeletedPostTitle(props.postTitle)
       router.push('/')
