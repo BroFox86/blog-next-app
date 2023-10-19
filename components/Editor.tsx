@@ -1,15 +1,10 @@
 import 'react-quill/dist/quill.snow.css'
 
 import dynamic from 'next/dynamic'
+import { useMemo } from 'react'
 
 import s from './Editor.module.scss'
 import { Spinner } from './Spinner'
-
-const QuillNoSSRWrapper = dynamic(import('react-quill'), {
-  ssr: false,
-  // eslint-disable-next-line react/display-name
-  loading: () => <Spinner label='Loading Quill editor' />,
-})
 
 type Props = {
   content: string
@@ -18,10 +13,14 @@ type Props = {
 
 export function Editor(props: Props) {
   const { content, setContent } = props
+  const ReactQuill = useMemo(
+    () => dynamic(() => import('react-quill'), { ssr: false, loading: () => <Spinner label='Loading Quill editor' /> }),
+    [],
+  )
 
   return (
     <div className={s.editorWrapper}>
-      <QuillNoSSRWrapper className={s.editor} theme='snow' value={content} onChange={setContent} />
+      <ReactQuill className={s.editor} theme='snow' value={content} onChange={setContent} />
     </div>
   )
 }
