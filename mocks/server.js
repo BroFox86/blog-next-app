@@ -3,7 +3,7 @@ import { createServer, Model } from 'miragejs'
 import { posts } from '~/mocks/posts'
 
 export function createMirageServer({ environment = 'test' } = {}) {
-  const TIMING = 500
+  const TIMING = 0
   const server = createServer({
     environment,
 
@@ -30,7 +30,7 @@ export function createMirageServer({ environment = 'test' } = {}) {
         schema => {
           return schema.posts.all()
         },
-        { timing: TIMING }
+        { timing: TIMING },
       )
 
       this.get(
@@ -39,7 +39,7 @@ export function createMirageServer({ environment = 'test' } = {}) {
           const id = request.params.id
           return schema.posts.find(id)
         },
-        { timing: TIMING }
+        { timing: TIMING },
       )
 
       this.post(
@@ -49,7 +49,7 @@ export function createMirageServer({ environment = 'test' } = {}) {
 
           return schema.posts.create(attrs)
         },
-        { timing: TIMING }
+        { timing: TIMING },
       )
 
       this.put(
@@ -61,7 +61,7 @@ export function createMirageServer({ environment = 'test' } = {}) {
 
           return schema.posts.find(id).update(attrs)
         },
-        { timing: TIMING }
+        { timing: TIMING },
       )
 
       this.del(
@@ -71,7 +71,7 @@ export function createMirageServer({ environment = 'test' } = {}) {
 
           return schema.posts.find(id).destroy()
         },
-        { timing: TIMING }
+        { timing: TIMING },
       )
 
       this.namespace = ''
