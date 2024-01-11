@@ -25,11 +25,10 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
   useEffect(() => {
     if (!deletedPostTitle) return
 
-    setAlerts(alerts.concat(<Alert variant='warning'>`The post ${deletedPostTitle} has been deleted.`</Alert>))
+    setAlerts(alerts.concat(<Alert variant='warning'>The post {deletedPostTitle} has been deleted.</Alert>))
 
     app.setDeletedPostTitle('')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [deletedPostTitle, alerts, app])
 
   function onTitleChange(e: EventFor<'input', 'onChange'>) {
     setTitle(e.target.value)

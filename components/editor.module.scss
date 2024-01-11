@@ -2,10 +2,18 @@
 @use 'variables' as *;
 
 .editorWrapper {
+  overflow: hidden;
   height: 280px;
+  border-radius: 8px;
+  border: 1px solid $color-border;
+  transition: border-color 250ms linear;
 
   @media (min-width: $medium-screen) {
     height: 300px;
+  }
+
+  &:focus-within {
+    border: 1px solid var(--color-primary);
   }
 }
 

@@ -3,14 +3,13 @@
 }
 
 .ql-container {
-  border-radius: 0 0 8px 8px;
-  border-color: rgb(180, 180, 180) !important;
+  border: none !important;
   font-size: inherit !important;
   line-height: inherit;
 }
 
 .ql-toolbar {
-  border-radius: 8px 8px 0 0;
-  border-color: rgb(180, 180, 180) !important;
+  border-width: 0 0 1px 0 !important;
+  border-color: #b4b4b4 !important;
   background: var(--quill-toolbar-bg-color);
 }
