@@ -1,12 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Button } from '~/components/Button'
-import { PostState } from '~/services/postApi'
-import { formatDate } from '~/utilities/formatDate'
-import { getTextExcerpt } from '~/utilities/getTextExcerpt'
+import { Button } from '~/components/button'
+import { PostState } from '~/services/post-api'
+import { formatDate } from '~/utilities/format-date'
 
-import s from './PostPreview.module.scss'
+import s from './post-preview.module.scss'
 
 export function PostPreview({ id, date, image, title, content }: PostState) {
   return (
@@ -16,6 +15,7 @@ export function PostPreview({ id, date, image, title, content }: PostState) {
           className={s.image}
           src={image}
           sizes='(min-width: 1000px) 432px, (min-width: 700px) 354px, 368px'
+          loading='lazy'
           alt=''
           fill
         />
@@ -34,4 +34,22 @@ export function PostPreview({ id, date, image, title, content }: PostState) {
       </div>
     </article>
   )
+}
+
+export function getTextExcerpt(content: string) {
+  const span = document.createElement('span')
+  let textContent
+  let excerpt
+
+  span.innerHTML = content
+
+  textContent = span.textContent!
+
+  excerpt = textContent.trim().slice(0, 190)
+
+  if (excerpt.length >= 190) {
+    excerpt += '...'
+  }
+
+  return excerpt || ''
 }

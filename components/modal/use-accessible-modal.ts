@@ -2,47 +2,52 @@ import { useEffect } from 'react'
 
 /**
  * Trap focus within a DOM node.
+ * @version 1.0.2
  */
-export function useAccessibleModal(isMounted: boolean, ref: any, toggleModal: Function) {
+export function useAccessibleModal(isMounted: boolean, ref: any, close: Function) {
   useEffect(() => {
     let lastActiveElement: any
-    let pressed: Set<string>
 
     if (!isMounted) return
 
     // Save last focused element.
     lastActiveElement = document.activeElement
 
-    pressed = new Set<string>()
-
-    function handleFocusIn(e: FocusEvent) {
+    function handleKeyDown(e: KeyboardEvent) {
       const focusElements = getFocusableElements()
       const firstFocusElement = focusElements[0]
       const lastFocusElement = focusElements[focusElements.length - 1]
       const isContains: boolean = ref.current.contains(e.target)
 
-      if (!isContains && e.relatedTarget === firstFocusElement) {
-        return lastFocusElement.focus()
+      if (e.key === 'Escape') {
+        close()
+        return
       }
 
-      if (!isContains && e.relatedTarget === lastFocusElement) {
-        return firstFocusElement.focus()
-      }
+      if (e.key !== 'Tab') return
 
       if (!isContains) {
-        if (pressed.has('Shift')) {
+        if (e.shiftKey) {
           lastFocusElement.focus()
-        } else {
-          firstFocusElement.focus()
+          e.preventDefault()
+          return
         }
+        firstFocusElement.focus()
+        e.preventDefault()
+        return
       }
-    }
 
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
-        toggleModal()
-      } else {
-        pressed.add(e.key)
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusElement) {
+          lastFocusElement.focus()
+          e.preventDefault()
+        }
+        return
+      }
+
+      if (document.activeElement === lastFocusElement) {
+        firstFocusElement.focus()
+        e.preventDefault()
       }
     }
 
@@ -53,22 +58,14 @@ export function useAccessibleModal(isMounted: boolean, ref: any, toggleModal: Fu
          input:not(:disabled),
          textarea:not(:disabled),
          select:not(:disabled),
-         *[tabindex]:not(:disabled)`
+         [tabindex]:not([tabindex="-1"]):not(:disabled)`,
       )
     }
 
-    function clearPressed(e: KeyboardEvent) {
-      pressed.delete(e.key)
-    }
-
-    document.addEventListener('focusin', handleFocusIn)
     document.addEventListener('keydown', handleKeyDown)
-    document.addEventListener('keyup', clearPressed)
 
     return () => {
-      document.removeEventListener('focusin', handleFocusIn)
       document.removeEventListener('keydown', handleKeyDown)
-      document.removeEventListener('keyup', clearPressed)
 
       lastActiveElement.focus()
     }

@@ -5,9 +5,5 @@ export function handleDarkTheme(app: App, isThemeDark: boolean) {
 
   app.switchTheme(isThemeDark)
 
-  if (isThemeDark) {
-    root.classList.add('hasDarkTheme')
-  } else {
-    root.classList.remove('hasDarkTheme')
-  }
+  isThemeDark ? root.classList.add('hasDarkTheme') : root.classList.remove('hasDarkTheme')
 }

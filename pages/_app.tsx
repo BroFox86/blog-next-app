@@ -13,8 +13,8 @@ import { Provider } from 'react-redux'
 import { createMirageServer } from '~/mocks/server'
 import { app } from '~/services/app'
 import store from '~/services/store'
-import { handleDarkTheme } from '~/utilities/handleDarkTheme'
-import { loadState } from '~/utilities/sessionStorage'
+import { handleDarkTheme } from '~/utilities/handle-dark-theme'
+import { loadState } from '~/utilities/session-storage'
 
 // if (process.env.NODE_ENV === "development") {
 createMirageServer({ environment: 'development' })

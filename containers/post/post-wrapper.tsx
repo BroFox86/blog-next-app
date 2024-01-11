@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 
-import { PageNotFound } from '~/components/PageNotFound'
-import { Spinner } from '~/components/Spinner'
-import { Post } from '~/containers/post/Post'
-import { useGetPostQuery } from '~/services/postApi'
+import { PageNotFound } from '~/components/page-not-found'
+import { Spinner } from '~/components/spinner'
+import { Post } from '~/containers/post/post'
+import { useGetPostQuery } from '~/services/post-api'
 
-import s from './PostWrapper.module.scss'
+import s from './post-wrapper.module.scss'
 
 export function PostWrapper() {
   const router = useRouter()

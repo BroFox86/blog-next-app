@@ -3,17 +3,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
-import { Alert } from '~/components/Alert'
-import { AlertBox } from '~/components/AlertBox'
-import { Button } from '~/components/Button'
-import { Editor } from '~/components/Editor'
-import { Input } from '~/components/Input'
-import { PostDeletion } from '~/containers/post/PostDeletion'
-import { PostState, useUpdatePostMutation } from '~/services/postApi'
-import { formatDate } from '~/utilities/formatDate'
-import { showAlert } from '~/utilities/showAlert'
+import { Alert } from '~/components/alert'
+import { AlertBox } from '~/components/alert-box'
+import { Button } from '~/components/button'
+import { Editor } from '~/components/editor'
+import { Input } from '~/components/input'
+import { PostDeletion } from '~/containers/post/post-deletion'
+import { PostState, useUpdatePostMutation } from '~/services/post-api'
+import { EventFor } from '~/utilities/event-for'
+import { formatDate } from '~/utilities/format-date'
 
-import s from './Post.module.scss'
+import s from './post.module.scss'
 
 export function Post({ post }: { post: PostState }) {
   const [title, setTitle] = useState('')
@@ -33,6 +33,10 @@ export function Post({ post }: { post: PostState }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  function onTitleChange(e: EventFor<'input', 'onChange'>) {
+    setTitle(e.target.value)
+  }
+
   async function handlePostUpdate() {
     if (!isFormValid) return
 
@@ -46,7 +50,7 @@ export function Post({ post }: { post: PostState }) {
 
       setIsEditMode(false)
 
-      showAlert(alerts, setAlerts, 'success', 'This post has been updated.')
+      setAlerts(alerts.concat(<Alert variant='success'>This post has been updated.</Alert>))
     } catch (e: any) {
       setAlerts(alerts.concat(<Alert variant='danger'>Error: {e.message}</Alert>))
     }
@@ -115,7 +119,7 @@ export function Post({ post }: { post: PostState }) {
           autoComplete='off'
           placeholder=''
           value={title}
-          onChange={(e: any) => setTitle(e.target.value)}
+          onChange={onTitleChange}
           required
         />
         <Editor content={content} setContent={setContent} />
@@ -145,15 +149,13 @@ export function Post({ post }: { post: PostState }) {
       <Head>
         <title>{post.title}</title>
       </Head>
-      <>
-        <div className={s.imageWrapper}>
-          <Image className={s.image} src={post.image} sizes='100vw' alt='' fill priority />
-        </div>
-        <div className={s.inner}>
-          <AlertBox alerts={alerts} hidden={isEditMode} />
-          {!isEditMode ? renderPostBody() : renderEditingForm()}
-        </div>
-      </>
+      <div className={s.imageWrapper}>
+        <Image className={s.image} src={post.image} sizes='100vw' alt='' fill priority />
+      </div>
+      <div className={s.inner}>
+        <AlertBox alerts={alerts} hidden={isEditMode} />
+        {!isEditMode ? renderPostBody() : renderEditingForm()}
+      </div>
     </>
   )
 }

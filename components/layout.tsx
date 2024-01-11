@@ -3,9 +3,9 @@ import { observer } from 'mobx-react-lite'
 
 import { robotoFont } from '~/pages/_app'
 
-import { Footer } from './Footer'
-import { Header } from './Header'
-import s from './Layout.module.scss'
+import { Footer } from './footer'
+import { Header } from './header'
+import s from './layout.module.scss'
 
 type Props = {
   children: JSX.Element | JSX.Element[]

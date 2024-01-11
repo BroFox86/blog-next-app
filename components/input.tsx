@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
-import s from './Input.module.scss'
+import s from './input.module.scss'
 
 export type Props = {
   className?: string

@@ -1,6 +1,8 @@
-import { paragraph, sentence } from 'txtgen'
+import { faker } from '@faker-js/faker'
 
-import { PostState } from '~/services/postApi'
+import { PostState } from '~/services/post-api'
+
+const { sentence, paragraphs } = faker.lorem
 
 export const posts: PostState[] = [
   {
@@ -10,15 +12,7 @@ export const posts: PostState[] = [
     image: '/images/cover_1.jpg',
     title: sentence(),
     content: `
-        <p>${paragraph()}${paragraph()}</p>
-        <p><br /></p>
-        <ul>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-        </ul>
+        <p>${paragraphs(3, '<br/><br/>')}</p>
       `,
   },
   {
@@ -28,8 +22,7 @@ export const posts: PostState[] = [
     image: '/images/cover_2.jpg',
     title: sentence(),
     content: `
-        <p>${paragraph()}${paragraph()}</p>
-        <p><br /></p>
+        <p>${paragraphs(3, '<br/><br/>')}</p>
         <ol>
           <li>${sentence()}</li>
           <li>${sentence()}</li>
@@ -46,15 +39,7 @@ export const posts: PostState[] = [
     image: '/images/cover_3.jpg',
     title: sentence(),
     content: `
-        <p>${paragraph()}${paragraph()}</p>
-        <p><br /></p>
-        <ol>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-        </ol>
+        <p>${paragraphs(5, '<br/><br/>')}</p>
       `,
   },
   {
@@ -64,9 +49,7 @@ export const posts: PostState[] = [
     image: '/images/cover_4.jpg',
     title: sentence(),
     content: `
-        <p>${paragraph()}${paragraph()}</p>
-        <p><br /></p>
-        <p>${paragraph()}${paragraph()}</p>
+        <p>${paragraphs(4, '<br/><br/>')}</p>
       `,
   },
   {
@@ -76,8 +59,7 @@ export const posts: PostState[] = [
     image: '/images/cover_5.jpg',
     title: sentence(),
     content: `
-        <p>${paragraph()}${paragraph()}</p>
-        <p><br /></p>
+        <p>${paragraphs(3, '<br/><br/>')}</p>
         <ol>
           <li>${sentence()}</li>
           <li>${sentence()}</li>
@@ -94,13 +76,7 @@ export const posts: PostState[] = [
     image: '/images/cover_6.jpg',
     title: sentence(),
     content: `
-        <p>${paragraph()}${paragraph()}</p>
-        <p><br /></p>
-        <ol>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-        </ol>
+        <p>${paragraphs(2, '<br/><br/>')}</p>
       `,
   },
   {
@@ -110,15 +86,7 @@ export const posts: PostState[] = [
     image: '/images/cover_1.jpg',
     title: sentence(),
     content: `
-        <p>${paragraph()}${paragraph()}</p>
-        <p><br /></p>
-        <ol>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-        </ol>
+        <p>${paragraphs(4, '<br/><br/>')}</p>
       `,
   },
   {
@@ -128,13 +96,7 @@ export const posts: PostState[] = [
     image: '/images/cover_2.jpg',
     title: sentence(),
     content: `
-        <p>${paragraph()}${paragraph()}</p>
-        <p><br /></p>
-        <ol>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-          <li>${sentence()}</li>
-        </ol>
+        <p>${paragraphs(5, '<br/><br/>')}</p>
       `,
   },
 ]

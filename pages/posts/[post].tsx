@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
-import { Layout } from '~/components/Layout'
-import { PostWrapper } from '~/containers/post/PostWrapper'
+import { Layout } from '~/components/layout'
+import { PostWrapper } from '~/containers/post/post-wrapper'
 
 const PostPage: NextPage = () => {
   return (

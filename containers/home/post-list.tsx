@@ -1,8 +1,8 @@
-import { Spinner } from '~/components/Spinner'
-import { useGetAllPostsQuery } from '~/services/postApi'
+import { Spinner } from '~/components/spinner'
+import { useGetAllPostsQuery } from '~/services/post-api'
 
-import s from './PostList.module.scss'
-import { PostPreview } from './PostPreview'
+import s from './post-list.module.scss'
+import { PostPreview } from './post-preview'
 
 export function PostList() {
   const { data, isLoading } = useGetAllPostsQuery()

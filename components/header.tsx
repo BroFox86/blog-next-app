@@ -2,8 +2,8 @@ import Link from 'next/link'
 
 import { app } from '~/services/app'
 
-import s from './Header.module.scss'
-import { ThemeSwitch } from './ThemeSwitch'
+import s from './header.module.scss'
+import { ThemeSwitch } from './theme-switch'
 
 export function Header() {
   return (

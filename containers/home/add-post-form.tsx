@@ -3,17 +3,16 @@ import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import React from 'react'
 
-import { Alert } from '~/components/Alert'
-import { AlertLink } from '~/components/Alert'
-import { AlertBox } from '~/components/AlertBox'
-import { Button } from '~/components/Button'
-import { Editor } from '~/components/Editor'
-import { Input } from '~/components/Input'
+import { Alert, AlertLink } from '~/components/alert'
+import { AlertBox } from '~/components/alert-box'
+import { Button } from '~/components/button'
+import { Editor } from '~/components/editor'
+import { Input } from '~/components/input'
 import { App } from '~/services/app'
-import { useAddPostMutation } from '~/services/postApi'
-import { showAlert } from '~/utilities/showAlert'
+import { useAddPostMutation } from '~/services/post-api'
+import { EventFor } from '~/utilities/event-for'
 
-import s from './AddPostForm.module.scss'
+import s from './add-post-form.module.scss'
 
 export const AddPostForm = observer(({ app }: { app: App }) => {
   const [title, setTitle] = useState('')
@@ -26,13 +25,17 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
   useEffect(() => {
     if (!deletedPostTitle) return
 
-    showAlert(alerts, setAlerts, 'warning', `The post "${deletedPostTitle}" has been deleted.`)
+    setAlerts(alerts.concat(<Alert variant='warning'>`The post ${deletedPostTitle} has been deleted.`</Alert>))
 
     app.setDeletedPostTitle('')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  async function handlePostAdding() {
+  function onTitleChange(e: EventFor<'input', 'onChange'>) {
+    setTitle(e.target.value)
+  }
+
+  async function handlePostAdd() {
     if (!isFormValid) return
 
     try {
@@ -49,13 +52,14 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
       setTitle('')
       setContent('')
 
-      showAlert(
-        alerts,
-        setAlerts,
-        'success',
-        <>
-          The post <AlertLink href={`/posts/${postId}`}>{title}</AlertLink> has been added.
-        </>
+      setAlerts(
+        alerts.concat(
+          <Alert variant='success'>
+            <>
+              The post <AlertLink href={`/posts/${postId}`}>{title}</AlertLink> has been added.
+            </>
+          </Alert>,
+        ),
       )
     } catch (e: any) {
       setAlerts(alerts.concat(<Alert variant='danger'>Error: {e.message}</Alert>))
@@ -73,7 +77,7 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
           autoComplete='off'
           placeholder=''
           value={title}
-          onChange={(e: any) => setTitle(e.target.value)}
+          onChange={onTitleChange}
           required
         />
         <Editor content={content} setContent={setContent} />
@@ -83,7 +87,7 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
           variant='primary'
           isDisabled={!isFormValid || isLoading}
           isPending={isLoading}
-          onClick={handlePostAdding}
+          onClick={handlePostAdd}
         />
       </form>
     </section>

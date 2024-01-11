@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 
-import s from './Button.module.scss'
+import s from './button.module.scss'
 
 type CommonProps = {
   className?: any

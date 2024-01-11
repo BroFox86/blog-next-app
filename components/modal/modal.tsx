@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import { useRef, useState } from 'react'
 
-import { getTransitionDuration } from '~/utilities/getStyleValue'
-import { useAccessibleModal } from '~/utilities/useAccessibleModal'
-import { useScrollLock } from '~/utilities/useScrollLock'
+import { getTransitionDuration } from '~/utilities/get-style-value'
 
-import s from './Modal.module.scss'
+import s from './modal.module.scss'
+import { useAccessibleModal } from './use-accessible-modal'
+import { useScrollLock } from './use-scroll-lock'
 
 type Props = {
   className?: string
