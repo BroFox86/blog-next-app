@@ -3,31 +3,16 @@ import React from 'react'
 
 import s from './input.module.scss'
 
-export type Props = {
-  className?: string
+interface Props {
   label?: string
-  name: string
-  type?: 'text' | 'email' | 'number' | 'button' | 'submit' | 'password'
-  maxLength?: number
-  min?: number
-  max?: number
-  inputMode?: 'text' | 'none' | 'url' | 'tel' | 'email' | 'numeric' | 'decimal' | 'search'
-  pattern?: string
-  autoComplete?: string
-  placeholder?: string
-  readOnly?: boolean
-  isDisabled?: boolean
-  children?: any
-  required?: boolean
-  value?: string
-  defaultValue?: string
-  ariaLabel?: string
-  onChange: React.ChangeEventHandler
-  onFocus?: React.FocusEventHandler
-  onBlur?: React.FocusEventHandler
 }
 
-export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
+export interface InputProps extends Props, React.InputHTMLAttributes<HTMLInputElement> {
+  hasButton?: boolean
+  component?: JSX.Element
+}
+
+export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
     <div className={clsx(s.formField, props.className)}>
       {props.label && (
@@ -51,10 +36,10 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
           placeholder={props.placeholder}
           value={props.value}
           defaultValue={props.defaultValue}
-          aria-label={props.ariaLabel}
+          aria-label={props['aria-label']}
           required={props.required}
           readOnly={props.readOnly}
-          disabled={props.isDisabled}
+          disabled={props.disabled}
           onChange={props.onChange}
           onFocus={props.onFocus}
           onBlur={props.onBlur}

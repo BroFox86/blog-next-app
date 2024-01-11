@@ -104,7 +104,8 @@ export function Post({ post }: { post: PostState }) {
           toggleModal={toggleDeletionModal}
           postId={post.id}
           postTitle={title}
-          setIsDeleting={setIsDeleting}
+          onDelete={setIsDeleting}
+          isDeleting={isDeleting}
         />
       </>
     )

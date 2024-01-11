@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
-import { MouseEventHandler, useEffect, useState } from 'react'
+import { MouseEventHandler } from 'react'
 
 import { Button } from '~/components/button'
 import { Modal } from '~/components/modal/modal'
@@ -12,28 +12,24 @@ import s from './post-deletion.module.scss'
 type Props = {
   isActive: boolean
   toggleModal: MouseEventHandler
-  setIsDeleting: Function
   postId: string
   postTitle: string
+  onDelete: Function
+  isDeleting: boolean
 }
 
 export const PostDeletion = observer((props: Props) => {
   const [deletePost] = useDeletePostMutation()
-  const [isDeleting, setIsDeleting] = useState(false)
   const router = useRouter()
 
   async function handlePostDeletion() {
     try {
-      setIsDeleting(true)
+      props.onDelete(true)
       await deletePost(props.postId)
       app.setDeletedPostTitle(props.postTitle)
       router.push('/')
     } catch (e: any) {}
   }
-
-  useEffect(() => {
-    props.setIsDeleting(isDeleting)
-  }, [props, isDeleting])
 
   return (
     <Modal isActive={props.isActive} toggleModal={props.toggleModal} ariaLabelledby='modalHeading'>
@@ -44,8 +40,8 @@ export const PostDeletion = observer((props: Props) => {
         <Button
           label='Confirm'
           variant='danger'
-          isPending={isDeleting}
-          isDisabled={isDeleting}
+          isPending={props.isDeleting}
+          isDisabled={props.isDeleting}
           onClick={handlePostDeletion}
         />
       </div>
