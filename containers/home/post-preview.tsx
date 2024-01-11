@@ -14,7 +14,7 @@ export function PostPreview({ id, date, image, title, content }: PostState) {
         <Image
           className={s.image}
           src={image}
-          sizes='(min-width: 1000px) 432px, (min-width: 700px) 354px, 368px'
+          sizes='(min-width: 1000px) 432px, (min-width: 700px) calc((95vw / 2) - 10px), (min-width: 460px) 432px, 95vw'
           loading='lazy'
           alt=''
           fill
