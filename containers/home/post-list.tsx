@@ -31,7 +31,7 @@ export function PostList() {
 
   return (
     <section className={s.container}>
-      <h2 className={s.title}>Your Posts</h2>
+      <h2 className={s.title}>All Posts</h2>
       {isLoading ? <Spinner /> : renderResult()}
     </section>
   )

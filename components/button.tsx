@@ -3,31 +3,28 @@ import Link from 'next/link'
 
 import s from './button.module.scss'
 
-type CommonProps = {
-  className?: any
+interface CommonProps {
   label: string
   variant: 'primary' | 'danger'
   fullWidth?: boolean
+  children?: JSX.Element | string
 }
 
-type LinkProps = {
+interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   as: 'link'
-  href: string
+  disabled?: never
+  pending?: never
   external?: boolean
   type?: never
-  isDisabled?: never
-  isPending?: never
   onClick?: never
 }
 
-type ButtonProps = {
-  onClick: React.MouseEventHandler
-  type?: 'button' | 'submit' | 'reset' | undefined
-  isDisabled?: boolean
-  isPending?: boolean
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  pending?: boolean
+  disabled?: boolean
   as?: never
-  external?: never
   href?: never
+  external?: never
 }
 
 type ConditionalProps = LinkProps | ButtonProps
@@ -35,13 +32,13 @@ type ConditionalProps = LinkProps | ButtonProps
 type Props = CommonProps & ConditionalProps
 
 export function Button(props: Props) {
-  const { className, as, label, type = 'button', href, isDisabled, isPending, onClick } = props
+  const { className, as, label, type = 'button', href, disabled, pending, onClick } = props
   const variant: string = props.variant.toLowerCase()
 
   return as !== 'link' ? (
-    <button className={clsx(s.button, s[variant], className)} type={type} disabled={isDisabled} onClick={onClick}>
+    <button className={clsx(s.button, s[variant], className)} type={type} disabled={disabled} onClick={onClick}>
       {label}
-      {isPending ? <ButtonSpinner /> : null}
+      {pending ? <ButtonSpinner /> : null}
     </button>
   ) : (
     <Link className={clsx(s.button, s[variant], className)} href={href || '/'}>

@@ -40,8 +40,8 @@ export const PostDeletion = observer((props: Props) => {
         <Button
           label='Confirm'
           variant='danger'
-          isPending={props.isDeleting}
-          isDisabled={props.isDeleting}
+          pending={props.isDeleting}
+          disabled={props.isDeleting}
           onClick={handlePostDeletion}
         />
       </div>

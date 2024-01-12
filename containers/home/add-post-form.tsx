@@ -84,8 +84,8 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
           className={s.button}
           label='Add Post'
           variant='primary'
-          isDisabled={!isFormValid || isLoading}
-          isPending={isLoading}
+          disabled={!isFormValid || isLoading}
+          pending={isLoading}
           onClick={handlePostAdd}
         />
       </form>

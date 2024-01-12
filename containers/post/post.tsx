@@ -72,14 +72,16 @@ export function Post({ post }: { post: PostState }) {
 
     return (
       <>
-        <h1 className={s.title}>{title}</h1>
-        <p className={s.postInfo}>
-          {formatDate(post.date)}{' '}
-          <span className={s.updatedDate}>
-            {post.updatedDate && `(edited on ${formatDate(post.updatedDate, true)})`}
-          </span>{' '}
-          by&nbsp;<span className={s.author}>Guest</span>
-        </p>
+        <header>
+          <h1 className={s.title}>{title}</h1>
+          <p className={s.postInfo}>
+            {formatDate(post.date)}{' '}
+            <span className={s.updatedDate}>
+              {post.updatedDate && `(edited on ${formatDate(post.updatedDate, true)})`}
+            </span>{' '}
+            by&nbsp;<span className={s.author}>Guest</span>
+          </p>
+        </header>
         <hr />
         <div className='postBody'>{parse(content)}</div>
         <hr className={s.buttonsDivider} />
@@ -88,14 +90,14 @@ export function Post({ post }: { post: PostState }) {
             className={s.button}
             label='Edit'
             variant='primary'
-            isDisabled={isPending}
+            disabled={isPending}
             onClick={() => setIsEditMode(true)}
           />
           <Button
             className={s.button}
             label='Delete'
             variant='primary'
-            isDisabled={isPending}
+            disabled={isPending}
             onClick={toggleDeletionModal}
           />
         </div>
@@ -129,17 +131,11 @@ export function Post({ post }: { post: PostState }) {
             className={s.button}
             label='Save'
             variant='primary'
-            isDisabled={!isFormValid || isPending}
-            isPending={isPending}
+            disabled={!isFormValid || isPending}
+            pending={isPending}
             onClick={handlePostUpdate}
           />
-          <Button
-            className={s.button}
-            label='Cancel'
-            variant='primary'
-            isDisabled={isPending}
-            onClick={cancelEditing}
-          />
+          <Button className={s.button} label='Cancel' variant='primary' disabled={isPending} onClick={cancelEditing} />
         </div>
       </form>
     )

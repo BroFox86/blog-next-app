@@ -33,7 +33,7 @@
 }
 
 .title {
-  margin: 0;
+  margin: 0 0 10px;
   font-size: 25px;
 
   @media (min-width: $medium-screen) {
@@ -42,6 +42,7 @@
 }
 
 .postInfo {
+  margin: 0;
   color: #777;
 }
 
