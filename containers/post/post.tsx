@@ -25,8 +25,11 @@ export function Post({ post }: { post: PostState }) {
   const [alerts, setAlerts] = useState<Array<JSX.Element>>([])
   const [updatePost, { isLoading: isUpdating }] = useUpdatePostMutation()
 
+  const isNotEmpty = Boolean(title) && Boolean(getCleanText(content))
+  const hasDifference = post.title !== title || getCleanText(post.content).trim() !== getCleanText(content).trim()
+  const isFormValid = isNotEmpty && hasDifference
+
   const isPending = isUpdating || isDeleting
-  const isFormValid: boolean = Boolean(title) && Boolean(getCleanText(content))
 
   useEffect(() => {
     setTitle(post.title)
