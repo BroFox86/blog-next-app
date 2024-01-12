@@ -11,6 +11,7 @@ import { Input } from '~/components/input'
 import { App } from '~/services/app'
 import { useAddPostMutation } from '~/services/post-api'
 import { EventFor } from '~/utilities/event-for'
+import { getCleanText } from '~/utilities/get-clean-text'
 
 import s from './add-post-form.module.scss'
 
@@ -19,7 +20,7 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
   const [content, setContent] = useState('')
   const [alerts, setAlerts] = useState<Array<JSX.Element>>([])
   const [addPost, { isLoading }] = useAddPostMutation()
-  const isFormValid: boolean = Boolean(title) && Boolean(content)
+  const isFormValid = Boolean(title) && Boolean(getCleanText(content))
   const deletedPostTitle = app.deletedPostTitle
 
   useEffect(() => {

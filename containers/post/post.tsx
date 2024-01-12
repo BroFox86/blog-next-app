@@ -12,6 +12,7 @@ import { PostDeletion } from '~/containers/post/post-deletion'
 import { PostState, useUpdatePostMutation } from '~/services/post-api'
 import { EventFor } from '~/utilities/event-for'
 import { formatDate } from '~/utilities/format-date'
+import { getCleanText } from '~/utilities/get-clean-text'
 
 import s from './post.module.scss'
 
@@ -25,7 +26,7 @@ export function Post({ post }: { post: PostState }) {
   const [updatePost, { isLoading: isUpdating }] = useUpdatePostMutation()
 
   const isPending = isUpdating || isDeleting
-  const isFormValid: boolean = Boolean(title) && Boolean(content)
+  const isFormValid: boolean = Boolean(title) && Boolean(getCleanText(content))
 
   useEffect(() => {
     setTitle(post.title)
