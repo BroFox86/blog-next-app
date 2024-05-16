@@ -1,6 +1,6 @@
 import { createServer, Model } from 'miragejs'
 
-import { posts } from '~/mocks/posts'
+import { posts } from '~/mirage/posts'
 
 export function createMirageServer({ environment = 'test' } = {}) {
   const TIMING = 0

@@ -10,7 +10,7 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 import { Provider } from 'react-redux'
 
-import { createMirageServer } from '~/mocks/server'
+import { createMirageServer } from '~/mirage/server'
 import { app } from '~/services/app'
 import store from '~/services/store'
 import { handleDarkTheme } from '~/utilities/handle-dark-theme'
