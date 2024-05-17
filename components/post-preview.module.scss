@@ -34,6 +34,7 @@
   background: color.scale(black, $alpha: -30%);
   color: white;
   font-size: 0.9em;
+  pointer-events: none;
 
   @media (min-width: $medium-screen) {
     left: 25px;

@@ -10,26 +10,26 @@ import s from './post-preview.module.scss'
 export function PostPreview({ id, date, image, title, content }: PostState) {
   return (
     <article className={s.container}>
-      <div className={s.imageWrapper}>
+      <Link className={s.imageWrapper} href={`/posts/${id}`}>
         <Image
           className={s.image}
           src={image}
-          sizes='(min-width: 1000px) 432px, (min-width: 700px) calc((95vw / 2) - 10px), (min-width: 460px) 432px, 95vw'
+          sizes='(min-width: 1000px) 432px, (min-width: 700px) calc((95vw / 2) - 20px), (min-width: 460px) 432px, 95vw'
           loading='lazy'
           alt=''
           fill
         />
-        <div className={s.date}>{formatDate(date)}</div>
-      </div>
+        <time className={s.date} dateTime={date}>
+          {formatDate(date)}
+        </time>
+      </Link>
       <div className={s.inner}>
         <h3 className={s.heading}>
-          <Link className={s.link} href={`/posts/${id}`} suppressHydrationWarning>
+          <Link className={s.link} href={`/posts/${id}`}>
             {title}
           </Link>
         </h3>
-        <p className={s.excerpt} suppressHydrationWarning>
-          {getTextExcerpt(content)}
-        </p>
+        <p className={s.excerpt}>{getTextExcerpt(content)}</p>
         <Button className={s.button} as='link' variant='primary' label='View post' href={`/posts/${id}`} />
       </div>
     </article>
