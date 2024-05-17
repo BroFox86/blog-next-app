@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 
 import { Layout } from '~/components/layout'
-import { PageNotFound } from '~/components/page-not-found'
+import { NotFound } from '~/containers/not-found'
 
 const Error404: NextPage = () => {
   return (
     <Layout>
-      <PageNotFound />
+      <NotFound />
     </Layout>
   )
 }

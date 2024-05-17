@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
-import { PageNotFound } from '~/components/page-not-found'
 import { Spinner } from '~/components/spinner'
+import { NotFound } from '~/containers/not-found'
 import { Post } from '~/containers/post/post'
 import { useGetPostQuery } from '~/services/post-api'
 
@@ -22,7 +22,7 @@ export function PostWrapper() {
   }
 
   if (!post) {
-    return <PageNotFound />
+    return <NotFound />
   }
 
   return <Post post={post} />

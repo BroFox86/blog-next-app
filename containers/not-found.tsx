@@ -1,8 +1,8 @@
 import Head from 'next/head'
 
-import s from './page-not-found.module.scss'
+import s from './not-found.module.scss'
 
-export function PageNotFound() {
+export function NotFound() {
   return (
     <>
       <Head>
@@ -12,7 +12,7 @@ export function PageNotFound() {
         <h1 className={s.heading}>Oops! Page not found</h1>
         <h2 className={s.errorNumber}>404</h2>
         <p className={s.message}>
-          We are sorry, but the page you requested
+          I am sorry, but the page you requested
           <br /> was not found
         </p>
       </div>
