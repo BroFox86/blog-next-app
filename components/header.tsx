@@ -14,6 +14,8 @@ export function Header() {
   function submitSearchQuery(e: any) {
     e.preventDefault()
 
+    if (searchQuery === '') return
+
     router.push(`/search?query=${searchQuery}`)
   }
 
