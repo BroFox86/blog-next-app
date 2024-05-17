@@ -1,24 +1,5 @@
 @use 'variables' as *;
-@use 'mixins' as *;
-
-.container {
-  @include container(fluid);
-
-  @media (min-width: $large-screen) {
-    @include container(large);
-  }
-}
-
-.title {
-  margin: 0 0 30px;
-  text-align: center;
-  font-size: 30px;
-}
-
-.noPostsMessage {
-  text-align: center;
-  font-size: 18px;
-}
+@use 'utilities' as *;
 
 .postList {
   display: grid;
@@ -34,8 +15,4 @@
     grid-template-columns: repeat(auto-fill, 432px);
     gap: 30px;
   }
-}
-
-.noPostsMessage {
-  text-align: center;
 }

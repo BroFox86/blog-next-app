@@ -13,9 +13,9 @@ import { useAddPostMutation } from '~/services/post-api'
 import { EventFor } from '~/utilities/event-for'
 import { getCleanText } from '~/utilities/get-clean-text'
 
-import s from './add-post-form.module.scss'
+import s from './post-creation.module.scss'
 
-export const AddPostForm = observer(({ app }: { app: App }) => {
+export const PostCreation = observer(({ app }: { app: App }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [alerts, setAlerts] = useState<Array<JSX.Element>>([])
@@ -67,8 +67,7 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
   }
 
   return (
-    <section className={s.container}>
-      <h1 className={s.title}>Add a New Post</h1>
+    <>
       <AlertBox alerts={alerts} />
       <form className={s.form}>
         <Input
@@ -90,6 +89,6 @@ export const AddPostForm = observer(({ app }: { app: App }) => {
           onClick={handlePostAdd}
         />
       </form>
-    </section>
+    </>
   )
 })

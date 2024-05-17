@@ -27,6 +27,10 @@ export const postApi = createApi({
       query: id => `posts/${id}`,
       providesTags: ['PostState'],
     }),
+    searchPost: builder.query<PostResponse, string>({
+      query: query => `posts/search/${query}`,
+      providesTags: ['PostState'],
+    }),
     addPost: builder.mutation<PostResponse, Partial<PostState>>({
       query: body => ({
         url: 'posts/',
@@ -60,8 +64,9 @@ export const postApi = createApi({
 
 export const {
   useGetAllPostsQuery,
-  useAddPostMutation,
   useGetPostQuery,
+  useSearchPostQuery,
+  useAddPostMutation,
   useUpdatePostMutation,
   useDeletePostMutation,
 } = postApi

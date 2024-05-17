@@ -1,0 +1,19 @@
+@use 'variables' as *;
+@use 'utilities' as *;
+@use 'elements' as *;
+
+.container {
+  @include container(fluid);
+
+  @media (min-width: $large-screen) {
+    @include container(large);
+  }
+}
+
+.title {
+  @include sectionTitle;
+}
+
+.noPostsMessage {
+  text-align: center;
+}

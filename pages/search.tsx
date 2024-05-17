@@ -2,17 +2,17 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Layout } from '~/components/layout'
-import { Home } from '~/containers/home/home'
+import { Search } from '~/containers/search/search'
 
-const HomePage: NextPage = () => {
+const SearchPage: NextPage = () => {
   return (
     <Layout>
       <Head>
         <title>Mock Blog Application</title>
       </Head>
-      <Home />
+      <Search />
     </Layout>
   )
 }
 
-export default HomePage
+export default SearchPage

@@ -42,6 +42,25 @@ export function createMirageServer({ environment = 'test' } = {}) {
         { timing: TIMING },
       )
 
+      this.get(
+        '/posts/search/:query',
+        (schema, request) => {
+          const query = request.params.query
+          let posts = schema.posts.all()
+
+          function checkString(string) {
+            return string.toLowerCase().indexOf(query.toLowerCase()) >= 0
+          }
+
+          posts = posts.filter(post => {
+            return checkString(post.title) || checkString(post.content)
+          })
+
+          return posts
+        },
+        { timing: TIMING },
+      )
+
       this.post(
         '/posts',
         (schema, request) => {

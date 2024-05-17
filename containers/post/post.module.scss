@@ -1,6 +1,6 @@
 @use 'sass:math';
 @use 'variables' as *;
-@use 'mixins' as *;
+@use 'utilities' as *;
 
 .imageWrapper {
   position: relative;

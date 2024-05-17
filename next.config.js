@@ -7,7 +7,8 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  images: {
-    domains: ['placeimg.com'],
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
   },
 }
