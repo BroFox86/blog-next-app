@@ -25,10 +25,12 @@
 .inner {
   @include container(fluid);
 
-  padding-top: 30px;
+  padding-top: 18px;
 
   @media (min-width: $large-screen) {
     @include container(large);
+
+    padding-top: 25px;
   }
 }
 

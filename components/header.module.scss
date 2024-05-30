@@ -80,6 +80,8 @@
   background: var(--main-bg-color);
 
   @media (min-width: $medium-screen) {
+    width: 180px;
+    height: 40px;
     margin-left: 30px;
   }
 }
