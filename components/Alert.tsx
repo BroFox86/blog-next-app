@@ -2,9 +2,9 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
-import { getTransitionDuration } from '~/utilities/get-style-value'
+import { getTransitionDuration } from '~/utilities/getStyleValue'
 
-import s from './alert.module.scss'
+import s from './Alert.module.scss'
 
 export interface AlertProps {
   className?: string

@@ -2,10 +2,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-import { app } from '~/services/app'
+import { app } from '~/services/App'
 
-import s from './header.module.scss'
-import { ThemeSwitch } from './theme-switch'
+import s from './Header.module.scss'
+import { ThemeSwitch } from './ThemeSwitch'
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState('')

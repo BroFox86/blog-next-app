@@ -11,9 +11,9 @@ import { useEffect } from 'react'
 import { Provider } from 'react-redux'
 
 import { createMirageServer } from '~/mirage/server'
-import { app } from '~/services/app'
+import { app } from '~/services/App'
 import store from '~/services/store'
-import { handleDarkTheme } from '~/utilities/handle-dark-theme'
+import { handleDarkTheme } from '~/utilities/handleDarkTheme'
 import { loadState } from '~/utilities/session-storage'
 
 // if (process.env.NODE_ENV === "development") {

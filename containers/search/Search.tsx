@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 
-import { PostList } from '~/components/post-list'
-import { Spinner } from '~/components/spinner'
-import { useSearchPostQuery } from '~/services/post-api'
+import { PostList } from '~/components/PostList'
+import { Spinner } from '~/components/Spinner'
+import { useSearchPostQuery } from '~/services/postApi'
 
-import s from './search.module.scss'
+import s from './Search.module.scss'
 
 export function Search() {
   const router = useRouter()

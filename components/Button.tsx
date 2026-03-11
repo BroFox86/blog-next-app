@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 
-import s from './button.module.scss'
+import s from './Button.module.scss'
 
 interface CommonProps {
   label: string

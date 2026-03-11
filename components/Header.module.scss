@@ -46,7 +46,7 @@
 .logoWrapper {
   @include circle(35px);
   @include place-center();
-  
+
   background: white;
 
   @media (min-width: $medium-screen) {
@@ -61,7 +61,7 @@
 
 .homeLabel {
   display: none;
-  
+
   @media (min-width: $medium-screen) {
     display: block;
     margin-left: 10px;
@@ -93,6 +93,7 @@
   border: none;
   border-radius: inherit;
   color: var(--main-text-color);
+  background: transparent;
   outline: none;
 }
 

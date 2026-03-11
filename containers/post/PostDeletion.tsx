@@ -2,12 +2,12 @@ import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 import { MouseEventHandler } from 'react'
 
-import { Button } from '~/components/button'
-import { Modal } from '~/components/modal/modal'
-import { app } from '~/services/app'
-import { useDeletePostMutation } from '~/services/post-api'
+import { Button } from '~/components/Button'
+import { Modal } from '~/components/modal/Modal'
+import { app } from '~/services/App'
+import { useDeletePostMutation } from '~/services/postApi'
 
-import s from './post-deletion.module.scss'
+import s from './PostDeletion.module.scss'
 
 type Props = {
   isActive: boolean

@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 
-import s from './input.module.scss'
+import s from './Input.module.scss'
 
 interface Props {
   label?: string

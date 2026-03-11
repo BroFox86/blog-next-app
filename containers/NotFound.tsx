@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import s from './not-found.module.scss'
+import s from './NotFound.module.scss'
 
 export function NotFound() {
   return (

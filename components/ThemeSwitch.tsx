@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 
-import { App } from '~/services/app'
-import { handleDarkTheme } from '~/utilities/handle-dark-theme'
+import { App } from '~/services/App'
+import { handleDarkTheme } from '~/utilities/handleDarkTheme'
 import { saveState } from '~/utilities/session-storage'
 
-import s from './theme-switch.module.scss'
+import s from './ThemeSwitch.module.scss'
 
 export const ThemeSwitch = observer(({ app }: { app: App }) => {
   const isThemeDark = app.darkTheme

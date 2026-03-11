@@ -1,4 +1,4 @@
-import { App } from '~/services/app'
+import { App } from '~/services/App'
 
 export function handleDarkTheme(app: App, isThemeDark: boolean) {
   const root = document.documentElement

@@ -1,7 +1,7 @@
-import { PostState } from '~/services/post-api'
+import { PostState } from '~/services/PostApi'
 
-import s from './post-list.module.scss'
-import { PostPreview } from './post-preview'
+import s from './PostList.module.scss'
+import { PostPreview } from './PostPreview'
 
 export function PostList({ posts }: { posts: PostState[] }) {
   // Sort items

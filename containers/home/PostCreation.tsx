@@ -3,17 +3,17 @@ import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import React from 'react'
 
-import { Alert, AlertLink } from '~/components/alert'
-import { AlertBox } from '~/components/alert-box'
-import { Button } from '~/components/button'
-import { Editor } from '~/components/editor'
-import { Input } from '~/components/input'
-import { App } from '~/services/app'
-import { useAddPostMutation } from '~/services/post-api'
-import { EventFor } from '~/utilities/event-for'
-import { getCleanText } from '~/utilities/get-clean-text'
+import { Alert, AlertLink } from '~/components/Alert'
+import { AlertBox } from '~/components/AlertBox'
+import { Button } from '~/components/Button'
+import { Editor } from '~/components/Editor'
+import { Input } from '~/components/Input'
+import { App } from '~/services/App'
+import { useAddPostMutation } from '~/services/postApi'
+import { EventFor } from '~/utilities/EventFor'
+import { getCleanText } from '~/utilities/getCleanText'
 
-import s from './post-creation.module.scss'
+import s from './PostCreation.module.scss'
 
 export const PostCreation = observer(({ app }: { app: App }) => {
   const [title, setTitle] = useState('')

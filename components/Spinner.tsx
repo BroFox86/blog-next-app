@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 
-import s from './spinner.module.scss'
+import s from './Spinner.module.scss'
 
 type Props = {
   className?: string

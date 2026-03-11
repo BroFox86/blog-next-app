@@ -1,10 +1,10 @@
-import { PostList } from '~/components/post-list'
-import { Spinner } from '~/components/spinner'
-import { PostCreation } from '~/containers/home/post-creation'
-import { app } from '~/services/app'
-import { useGetAllPostsQuery } from '~/services/post-api'
+import { PostList } from '~/components/PostList'
+import { Spinner } from '~/components/Spinner'
+import { PostCreation } from '~/containers/home/PostCreation'
+import { app } from '~/services/App'
+import { useGetAllPostsQuery } from '~/services/postApi'
 
-import s from './home.module.scss'
+import s from './Home.module.scss'
 
 export function Home() {
   const { data, isLoading } = useGetAllPostsQuery()

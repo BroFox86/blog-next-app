@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
-import { Layout } from '~/components/layout'
-import { NotFound } from '~/containers/not-found'
+import { Layout } from '~/components/Layout'
+import { NotFound } from '~/containers/NotFound'
 
 const Error404: NextPage = () => {
   return (

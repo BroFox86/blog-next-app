@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { Layout } from '~/components/layout'
-import { Search } from '~/containers/search/search'
+import { Layout } from '~/components/Layout'
+import { Search } from '~/containers/search/Search'
 
 const SearchPage: NextPage = () => {
   return (

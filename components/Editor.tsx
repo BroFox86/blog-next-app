@@ -3,8 +3,8 @@ import 'react-quill/dist/quill.snow.css'
 import dynamic from 'next/dynamic'
 import { useMemo } from 'react'
 
-import s from './editor.module.scss'
-import { Spinner } from './spinner'
+import s from './Editor.module.scss'
+import { Spinner } from './Spinner'
 
 type Props = {
   content: string

@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Button } from '~/components/button'
-import { PostState } from '~/services/post-api'
-import { formatDate } from '~/utilities/format-date'
+import { Button } from '~/components/Button'
+import { PostState } from '~/services/postApi'
+import { formatDate } from '~/utilities/formatDate'
 
-import s from './post-preview.module.scss'
+import s from './PostPreview.module.scss'
 
 export function PostPreview({ id, date, image, title, content }: PostState) {
   return (

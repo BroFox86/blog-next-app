@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 
-import { PostState } from '~/services/post-api'
+import { PostState } from '~/services/postApi'
 
 const { sentence, paragraphs } = faker.lorem
 
