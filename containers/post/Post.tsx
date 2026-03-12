@@ -1,6 +1,7 @@
 import parse from 'html-react-parser'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
 import { Alert } from '~/components/Alert'
@@ -9,7 +10,7 @@ import { Button } from '~/components/Button'
 import { Editor } from '~/components/Editor'
 import { Input } from '~/components/Input'
 import { PostDeletion } from '~/containers/post/PostDeletion'
-import { PostState, useUpdatePostMutation } from '~/services/postApi'
+import { updatePostAction } from '~/server/actions'
 import { EventFor } from '~/utilities/EventFor'
 import { formatDate } from '~/utilities/formatDate'
 import { getCleanText } from '~/utilities/getCleanText'
@@ -23,13 +24,11 @@ export function Post({ post }: { post: PostState }) {
   const [isDeletionModalActive, setIsDeletionModalActive] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
   const [alerts, setAlerts] = useState<Array<JSX.Element>>([])
-  const [updatePost, { isLoading: isUpdating }] = useUpdatePostMutation()
-
   const isNotEmpty = Boolean(title) && Boolean(getCleanText(content))
   const hasDifference = post.title !== title || getCleanText(post.content).trim() !== getCleanText(content).trim()
   const isFormValid = isNotEmpty && hasDifference
-
-  const isPending = isUpdating || isDeleting
+  const isPending = false
+  const router = useRouter()
 
   useEffect(() => {
     setTitle(post.title)
@@ -41,22 +40,22 @@ export function Post({ post }: { post: PostState }) {
     setTitle(e.target.value)
   }
 
-  async function handlePostUpdate() {
+  function handlePostUpdate() {
     if (!isFormValid) return
 
     try {
-      await updatePost({
+      updatePostAction({
         id: post.id,
-        updatedDate: new Date().toISOString(),
+        // updatedDate: new Date().toISOString(),
         title,
         content,
       })
 
-      setIsEditMode(false)
-
       setAlerts(alerts.concat(<Alert variant='success'>This post has been updated.</Alert>))
     } catch (e: any) {
       setAlerts(alerts.concat(<Alert variant='danger'>Error: {e.message}</Alert>))
+    } finally {
+      setIsEditMode(false)
     }
   }
 

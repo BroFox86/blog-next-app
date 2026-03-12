@@ -1,19 +1,18 @@
 import { PostList } from '~/components/PostList'
 import { Spinner } from '~/components/Spinner'
 import { PostCreation } from '~/containers/home/PostCreation'
+import { getAllPostsAction } from '~/server/actions'
 import { app } from '~/services/App'
-import { useGetAllPostsQuery } from '~/services/postApi'
 
 import s from './Home.module.scss'
 
 export function Home() {
-  const { data, isLoading } = useGetAllPostsQuery()
-  let posts = data?.posts
+  let posts = getAllPostsAction()
 
   function renderContent() {
-    if (isLoading) {
-      return <Spinner />
-    }
+    // if (isLoading) {
+    //   return <Spinner />
+    // }
 
     if (posts && posts.length !== 0) {
       return <PostList posts={posts} />

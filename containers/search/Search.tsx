@@ -2,20 +2,19 @@ import { useRouter } from 'next/router'
 
 import { PostList } from '~/components/PostList'
 import { Spinner } from '~/components/Spinner'
-import { useSearchPostQuery } from '~/services/postApi'
+import { searchPostAction } from '~/server/actions'
 
 import s from './Search.module.scss'
 
 export function Search() {
   const router = useRouter()
   const { query }: any = router.query
-  const { data, isLoading } = useSearchPostQuery(query)
-  const posts = data?.posts
+  const posts = searchPostAction(String(query))
 
   function renderContent() {
-    if (isLoading) {
-      return <Spinner />
-    }
+    // if (isLoading) {
+    //   return <Spinner />
+    // }
 
     if (query === '' || !query) {
       return <p className={s.noPostsMessage}>No query, no results.</p>

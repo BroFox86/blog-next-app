@@ -1,5 +1,5 @@
-import { nanoid } from '@reduxjs/toolkit'
 import { observer } from 'mobx-react-lite'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import React from 'react'
 
@@ -8,8 +8,8 @@ import { AlertBox } from '~/components/AlertBox'
 import { Button } from '~/components/Button'
 import { Editor } from '~/components/Editor'
 import { Input } from '~/components/Input'
+import { addPostAction } from '~/server/actions'
 import { App } from '~/services/App'
-import { useAddPostMutation } from '~/services/postApi'
 import { EventFor } from '~/utilities/EventFor'
 import { getCleanText } from '~/utilities/getCleanText'
 
@@ -19,9 +19,10 @@ export const PostCreation = observer(({ app }: { app: App }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [alerts, setAlerts] = useState<Array<JSX.Element>>([])
-  const [addPost, { isLoading }] = useAddPostMutation()
   const isFormValid = Boolean(title) && Boolean(getCleanText(content))
   const deletedPostTitle = app.deletedPostTitle
+  const isLoading = false
+  const router = useRouter()
 
   useEffect(() => {
     if (!deletedPostTitle) return
@@ -35,14 +36,11 @@ export const PostCreation = observer(({ app }: { app: App }) => {
     setTitle(e.target.value)
   }
 
-  async function handlePostAdd() {
+  function handlePostAdd() {
     if (!isFormValid) return
 
     try {
-      const postId = `${title}-${nanoid()}`
-
-      await addPost({
-        id: postId,
+      addPostAction({
         date: new Date().toISOString(),
         image: '/images/cover-7.jpg',
         title: title,
@@ -51,6 +49,8 @@ export const PostCreation = observer(({ app }: { app: App }) => {
 
       setTitle('')
       setContent('')
+
+      router.replace('/')
 
       setAlerts(
         alerts.concat(

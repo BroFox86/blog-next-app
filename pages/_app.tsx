@@ -8,16 +8,12 @@ import type { AppProps } from 'next/app'
 import { Roboto } from 'next/font/google'
 import Head from 'next/head'
 import { useEffect } from 'react'
-import { Provider } from 'react-redux'
 
-import { createMirageServer } from '~/mirage/server'
 import { app } from '~/services/App'
-import store from '~/services/store'
 import { handleDarkTheme } from '~/utilities/handleDarkTheme'
 import { loadState } from '~/utilities/session-storage'
 
 // if (process.env.NODE_ENV === "development") {
-createMirageServer({ environment: 'development' })
 // }
 
 export const robotoFont = Roboto({
@@ -61,14 +57,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <Provider store={store}>
+    <>
       <Head>
         <meta name='robots' content='noindex' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0, viewport-fit=cover' />
         <meta name='theme-color' content='#5031aa' />
       </Head>
       <Component {...pageProps} />
-    </Provider>
+    </>
   )
 }
 export default MyApp

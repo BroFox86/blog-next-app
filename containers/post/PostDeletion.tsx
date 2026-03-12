@@ -4,8 +4,8 @@ import { MouseEventHandler } from 'react'
 
 import { Button } from '~/components/Button'
 import { Modal } from '~/components/modal/Modal'
+import { deletePostAction } from '~/server/actions'
 import { app } from '~/services/App'
-import { useDeletePostMutation } from '~/services/postApi'
 
 import s from './PostDeletion.module.scss'
 
@@ -19,13 +19,12 @@ type Props = {
 }
 
 export const PostDeletion = observer((props: Props) => {
-  const [deletePost] = useDeletePostMutation()
   const router = useRouter()
 
-  async function handlePostDeletion() {
+  function handlePostDeletion() {
     try {
       props.onDelete(true)
-      await deletePost(props.postId)
+      deletePostAction(props.postId)
       app.setDeletedPostTitle(props.postTitle)
       router.push('/')
     } catch (e: any) {}
