@@ -23,7 +23,7 @@ export function PostDeleteModal({ postTitle }: { postTitle: string }) {
           <span>{postTitle}?</span>
         </p>
         <div className={s.buttonWrapper}>
-          <Button label='Confirm' type='submit' variant='danger' />
+          <Button label='Confirm' type='submit' variant='danger' form='delete-post-form' />
         </div>
       </Modal>
     </>

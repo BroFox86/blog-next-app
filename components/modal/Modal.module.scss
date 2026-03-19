@@ -42,7 +42,7 @@
   max-width: var(--modal-max-width);
   border-radius: 16px;
   opacity: 0;
-  background: white;
+  background: var(--bg-color-inner);
   transition-property: opacity;
   transition-duration: 300ms;
   transition-timing-function: ease-out;

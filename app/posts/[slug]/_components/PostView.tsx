@@ -27,7 +27,7 @@ export function PostView({ slug, post: { title, content, date, editedDate }, han
       <hr />
       <div className='postBody'>{parse(content)}</div>
       <hr />
-      <form className={s.buttons} action={handleDeletePost}>
+      <form className={s.buttons} action={handleDeletePost} id='delete-post-form'>
         <Button className={s.button} as='link' href={`/posts/${slug}?edit=true`} label='Edit' variant='primary' />
         <PostDeleteModal postTitle={title} />
       </form>
