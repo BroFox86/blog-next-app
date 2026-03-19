@@ -1,0 +1,12 @@
+.text {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+}

@@ -9,12 +9,12 @@ interface Props {
 
 export interface InputProps extends Props, React.InputHTMLAttributes<HTMLInputElement> {
   hasButton?: boolean
-  component?: JSX.Element
+  component?: React.ReactNode
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
-    <div className={clsx(s.formField, props.className)}>
+    <div className={clsx(s.root, props.className)}>
       {props.label && (
         <label className={s.label} htmlFor={props.name}>
           {props.label}

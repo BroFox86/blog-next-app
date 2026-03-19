@@ -1,28 +1,63 @@
+@use 'sass:color';
+
+/* stylelint-disable custom-property-empty-line-before */
 :root {
   color-scheme: light;
 
   --header-height: 70px;
 
-  --main-bg-color: white;
-  --content-bg-color: white;
-  --footer-bg-color: ghostwhite;
-  --modal-overlay-color: #{transparentize(black, 0.5)};
-  --main-text-color: black;
-  --secondary-text-color: crimson;
+  --bg-color: white;
+  --bg-color-inner: white;
+  --bg-color-secondary: ghostwhite;
+  --bg-color-skeleton: #eee;
+
+  --text-color: black;
+
   --color-primary: #5031aa;
+  --color-primary-hover: #5d43ac;
   --color-secondary: #2e7d32;
+  --color-tertiary: crimson;
+
+  --color-link: var(--color-primary);
+  --color-link-hover: var(--color-primary-hover);
+  --color-overlay: #{color.adjust(black, $alpha: -0.5)};
+  --color-border: lightgray;
+  --color-dimmed: #666;
+
   --quill-toolbar-bg-color: white;
+
+  --shadow-small: 0 1.6px 4px 0 rgb(0 0 0 / 7.5%);
+  --shadow-medium: 0 8px 16px 0 rgb(0 0 0 / 15%);
+  --shadow-large: 0 16px 48px 0 rgb(0 0 0 / 17%);
+
+  --font-size-medium: 16px;
+  --line-height-medium: 1.6;
+
+  // PostPreview
+  --post-preview-title-color-hover: var(--color-primary);
 
   &.hasDarkTheme {
     color-scheme: dark;
 
-    --main-bg-color: black;
-    --content-bg-color: #222;
-    --footer-bg-color: #1c1b1c;
-    --modal-overlay-color: #{transparentize(black, 0.3)};
-    --main-text-color: white;
+    --bg-color: black;
+    --bg-color-inner: #222;
+    --bg-color-secondary: #1c1b1c;
+    --bg-color-skeleton: dimgray;
+
+    --text-color: white;
+
     --color-primary: #5e3aca;
-    --secondary-text-color: rgb(252, 135, 158);
-    --quill-toolbar-bg-color: lightGray;
+    --color-primary-hover: #8a77c1;
+    --color-tertiary: rgb(252 135 158);
+
+    --color-link: var(--color-primary);
+    --color-link-hover: var(--color-primary-hover);
+    --color-overlay: #{color.adjust(black, $alpha: -0.3)};
+    --color-border: gray;
+    --color-dimmed: white;
+
+    --quill-toolbar-bg-color: lightgray;
+
+    --post-preview-title-color-hover: rgb(255 255 255 / 70%);
   }
 }

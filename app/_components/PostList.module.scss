@@ -1,0 +1,19 @@
+.root {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(auto, 432px));
+  justify-content: center;
+  gap: 20px;
+
+  @media (min-width: $medium-screen) {
+    grid-template-columns: repeat(auto-fill, calc(50% - 10px));
+  }
+
+  @media (min-width: $wide-screen) {
+    grid-template-columns: repeat(auto-fill, calc((100% / 3) - (30px * (3 - 1) / 3)));
+    gap: 30px;
+  }
+}
+
+.noPostsMessage {
+  text-align: center;
+}

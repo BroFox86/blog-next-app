@@ -1,63 +1,67 @@
 import clsx from 'clsx'
-import { useRef, useState } from 'react'
+import { ReactPortal, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 
-import { getTransitionDuration } from '~/utilities/getStyleValue'
+import { useScrollLock } from '@/utils/useScrollLock'
 
 import s from './Modal.module.scss'
-import { useAccessibleModal } from './useAccessibleModal'
-import { useScrollLock } from './useScrollLock'
+import { handleTransitionEnd, useModalLogic } from './useModalLogic'
 
 type Props = {
   className?: string
-  isActive: boolean
-  toggleModal: React.MouseEventHandler
-  ariaLabelledby: string
-  children: JSX.Element[]
+  variant: 'small'
+  label: string
+  animation: 'zoomIn'
+  open: boolean
+  onClose: React.MouseEventHandler
+  children: React.ReactNode
 }
 
-export function Modal(props: Props) {
-  const { className, isActive, toggleModal, children, ariaLabelledby } = props
-  const modalRef = useRef<HTMLDivElement>(null)
-  const [isInitiated, setIsInitiated] = useState(false)
+export function Modal({ className, label, variant, animation, open, onClose, children }: Props): ReactPortal | null {
+  const [isMounted, setIsMounted] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
-  const isOpening = isActive && !isInitiated && !isVisible
-  const isClosing = !isActive && isInitiated && isVisible
+  const initialFocusRef = useRef<HTMLElement | null>(null)
 
-  if (isOpening) {
-    setIsInitiated(true)
-    setTimeout(() => setIsVisible(true), 20)
+  useModalLogic(open, setIsMounted, setIsVisible, initialFocusRef)
+
+  useScrollLock(open, 'isFixedByModal')
+
+  if (!isMounted) {
+    return null
   }
 
-  if (isClosing && modalRef.current !== null) {
-    const duration: number = getTransitionDuration(modalRef.current)
-
-    setIsVisible(false)
-    setTimeout(() => setIsInitiated(false), duration)
-  }
-
-  useAccessibleModal(isActive, modalRef, toggleModal)
-  useScrollLock('isFixedByModal', isInitiated)
-
-  return isInitiated ? (
-    <div
-      className={clsx(s.modal, className, isVisible && s.isVisible)}
-      ref={modalRef}
-      role='dialog'
-      aria-labelledby={ariaLabelledby}
-      aria-modal
-    >
-      <div className={s.closeBtnOuter} onClick={toggleModal} />
-      <div className={s.modalContainer}>
-        <button className={s.closeBtnInner} type='button' aria-label='Close' onClick={toggleModal}>
-          <ClosingIcon className={s.closeIcon} />
-        </button>
-        {children}
+  const modalElement = (
+    <>
+      <div
+        className={clsx(s.root, s[variant], s[animation], className, isVisible && s.isVisible)}
+        role='dialog'
+        aria-modal='true'
+        aria-labelledby='modalHeading'
+      >
+        <div
+          className={clsx(s.inner, isVisible && s.isVisible)}
+          onTransitionEnd={e => handleTransitionEnd(e, isVisible, setIsMounted, initialFocusRef)}
+        >
+          <header className={s.header}>
+            <h2 className={s.heading} id='modalHeading'>
+              {label}
+            </h2>
+            <button className={s.closeButton} type='button' aria-label='Close' onClick={onClose}>
+              <CloseIcon className={s.closeIcon} />
+            </button>
+          </header>
+          <div className={s.content}>{children}</div>
+        </div>
+        <div className={s.sublayer} aria-hidden='true' onClick={onClose} />
       </div>
-    </div>
-  ) : null
+      <div className={s.backdrop} />
+    </>
+  )
+
+  return createPortal(modalElement, document.body)
 }
 
-function ClosingIcon({ className }: { className: string }) {
+function CloseIcon({ className }: { className?: string }) {
   return (
     <svg
       className={className}

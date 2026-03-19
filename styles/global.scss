@@ -1,17 +1,17 @@
 html {
   overscroll-behavior: none;
+  scrollbar-gutter: stable;
 }
 
 body {
   box-sizing: border-box;
-  background: var(--main-bg-color);
-  word-wrap: break-word;
-
+  background: var(--bg-color);
+  overflow-wrap: break-word;
+  text-wrap: pretty;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  &.isFixedByModal,
-  &.isFixedByNav {
+  &.isFixedByModal {
     overflow: hidden;
   }
 }
@@ -29,12 +29,6 @@ body {
   }
 }
 
-// More info here: www.industrialempathy.com/posts/image-optimizations
-main img,
-footer img {
-  content-visibility: auto;
-}
-
 img {
   display: block;
 }
@@ -44,12 +38,26 @@ button:focus:not(:focus-visible) {
   outline: none;
 }
 
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px dotted var(--color-primary);
+}
+
 a,
 button {
   touch-action: manipulation;
 }
 
 a {
+  color: var(--color-link);
+  text-decoration-line: none;
+  text-underline-offset: 3px;
+
+  @include on-hocus {
+    color: var(--color-link-hover);
+  }
+
   @media print {
     text-decoration: underline;
 
@@ -82,6 +90,10 @@ h6 {
 hr {
   height: 1px;
   margin: 18px 0;
-  background: gainsboro;
+  background: var(--color-border);
   border: none;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
 }

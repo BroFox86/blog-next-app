@@ -1,0 +1,11 @@
+.container {
+  @include container;
+
+  @media (min-width: $large-screen) {
+    @include container(large);
+  }
+}
+
+.title {
+  @include section-title;
+}

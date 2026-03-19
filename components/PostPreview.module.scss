@@ -1,15 +1,13 @@
 @use 'sass:math';
 @use 'sass:color';
-@use 'variables' as *;
-@use 'utilities' as *;
 
-.container {
+.root {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   border-radius: 5px;
-  box-shadow: $shadow-medium;
-  background:var(--content-bg-color);
+  box-shadow: var(--shadow-medium);
+  background: var(--bg-color-inner);
 }
 
 .imageWrapper {
@@ -18,6 +16,10 @@
 
   @media (min-width: $medium-screen) {
     height: 200px;
+  }
+
+  .root.isSkeleton & {
+    @include skeleton-styles(0);
   }
 }
 
@@ -54,22 +56,36 @@
 
 .heading {
   margin: 0 0 15px;
+
+  .root.isSkeleton & {
+    @include skeleton-styles;
+  }
 }
 
 .link {
-  text-decoration: none;
+  text-decoration-line: none;
   color: inherit;
 
-  @include onHover {
-    color: var(--color-primary);
+  @include on-hocus {
+    color: var(--post-preview-title-color-hover);
   }
 }
 
 .excerpt {
   margin-top: 0;
+
+  .root.isSkeleton & {
+    @include skeleton-styles;
+  }
 }
 
 .button {
   align-self: start;
   margin-top: auto;
+
+  .root.isSkeleton & {
+    @include skeleton-styles;
+  }
 }
+
+@include pulse;

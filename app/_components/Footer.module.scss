@@ -1,0 +1,28 @@
+.root {
+  padding-top: 40px;
+  padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  background: var(--bg-color-secondary);
+
+  @media print {
+    display: none;
+  }
+}
+
+.inner {
+  @include container;
+
+  text-align: center;
+
+  @media (min-width: $large-screen) {
+    @include container(large);
+  }
+}
+
+.author {
+  color: var(--color-tertiary);
+
+  @include on-hocus {
+    color: var(--color-tertiary);
+    text-decoration-line: underline;
+  }
+}

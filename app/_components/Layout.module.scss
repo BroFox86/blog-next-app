@@ -1,0 +1,13 @@
+.layout {
+  overflow-x: hidden;
+  color: var(--text-color);
+  font-family: var(--primary-font, monospace);
+  font-size: var(--font-size-medium);
+  line-height: var(--line-height-medium);
+}
+
+.main {
+  min-height: 100vh;
+  padding-top: calc(var(--header-height));
+  padding-bottom: 50px;
+}

@@ -1,0 +1,21 @@
+export function formatDate(isoDate: string, isShort?: boolean) {
+  let options = {}
+
+  if (!isShort) {
+    options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }
+  } else {
+    options = {
+      year: '2-digit',
+      month: '2-digit',
+      day: '2-digit'
+    }
+  }
+
+  const formatter = new Intl.DateTimeFormat('en-GB', options)
+
+  return formatter.format(new Date(isoDate))
+}

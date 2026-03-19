@@ -1,0 +1,68 @@
+@use 'sass:math';
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  height: 150px;
+  margin: auto;
+
+  @media (min-width: $medium-screen) {
+    height: 300px;
+  }
+
+  @media (min-width: $large-screen) {
+    height: 350px;
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.inner {
+  @include container;
+
+  padding-top: 25px;
+
+  @media (min-width: $large-screen) {
+    @include container(large);
+
+    padding-top: 50px;
+  }
+}
+
+.title {
+  margin: 0 0 10px;
+  font-size: 25px;
+
+  @media (min-width: $medium-screen) {
+    font-size: 30px;
+  }
+}
+
+.postInfo {
+  margin: 0;
+  color: var(--color-dimmed);
+}
+
+.editedDate {
+  font-style: italic;
+}
+
+.author {
+  color: var(--color-tertiary);
+}
+
+.editForm {
+  display: grid;
+  gap: 20px;
+  padding: 30px 0;
+}
+
+.buttons {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  gap: 20px;
+}

@@ -1,36 +1,60 @@
-import clsx from 'clsx'
-import { observer } from 'mobx-react-lite'
+'use client'
 
-import { App } from '~/services/App'
-import { handleDarkTheme } from '~/utilities/handleDarkTheme'
-import { saveState } from '~/utilities/session-storage'
+import clsx from 'clsx'
+import { useEffect, useState } from 'react'
+
+import { loadThemeFromStorage } from '@/utils/theme'
+import { toggleThemeClassName } from '@/utils/theme'
+import { saveThemeToStorage } from '@/utils/theme'
 
 import s from './ThemeSwitch.module.scss'
 
-export const ThemeSwitch = observer(({ app }: { app: App }) => {
-  const isThemeDark = app.darkTheme
+export function ThemeSwitch() {
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const savedTheme = loadThemeFromStorage()
+
+    requestAnimationFrame(() => {
+      setIsDarkTheme(savedTheme ? savedTheme.dark : mediaQuery.matches)
+      toggleThemeClassName(savedTheme ? savedTheme.dark : mediaQuery.matches)
+
+      setIsMounted(true)
+    })
+
+    mediaQuery.addEventListener('change', e => {
+      if (loadThemeFromStorage()) {
+        return
+      }
+
+      toggleThemeClassName(!!e.matches)
+      setIsDarkTheme(!!e.matches)
+    })
+  }, [])
 
   function handleClick() {
-    handleDarkTheme(app, !isThemeDark)
-    // Keep latest user-chosen theme in session storage to load it after page refreshing.
-    saveState({ darkTheme: !isThemeDark })
+    setIsDarkTheme(!isDarkTheme)
+    toggleThemeClassName(!isDarkTheme)
+    // Keep latest user-chosen theme in session storage.
+    saveThemeToStorage({ dark: !isDarkTheme })
   }
 
+  if (!isMounted) return
+
   return (
-    // Prevent transition when page loads
     <>
-      {isThemeDark !== null && (
-        <button
-          className={clsx(s.component, isThemeDark && s.hasDarkTheme)}
-          type='button'
-          aria-label='Toggle night mode'
-          onClick={handleClick}
-        >
-          <span className={s.moon}>🌛</span>
-          <span className={s.slider} />
-          <span className={s.sun}>🌞</span>
-        </button>
-      )}
+      <button
+        className={clsx(s.root, isDarkTheme && s.hasDarkTheme)}
+        type='button'
+        aria-label='Toggle night mode'
+        onClick={handleClick}
+      >
+        <span className={s.moon}>🌛</span>
+        <span className={s.slider} />
+        <span className={s.sun}>🌞</span>
+      </button>
     </>
   )
-})
+}

@@ -1,17 +1,7 @@
-// SCSS Variables
-
-$medium-screen: 700px;
+/* stylelint-disable scss/dollar-variable-empty-line-before */
+$medium-screen: 768px;
 $large-screen: 1000px;
+$wide-screen: 1200px;
 
-$mobile-container: 95%;
-$large-container: 900px;
-
-$shadow-small: 0 1.6px 4px 0 rgba(0 0 0 / 7.5%);
-$shadow-medium: 0 8px 16px 0 rgba(0 0 0 / 15%);
-$shadow-large: 0 16px 48px 0 rgba(0 0 0 / 17%);
-
-$color-danger: crimson;
-$color-border: #b4b4b4;
-
-$font-size-medium: 16px;
-$line-height: 1.6;
+$large-container: 94%;
+$wide-container: 1128px;

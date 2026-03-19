@@ -2,36 +2,44 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
-import { getTransitionDuration } from '~/utilities/getStyleValue'
-
 import s from './Alert.module.scss'
 
 export interface AlertProps {
   className?: string
   variant: 'success' | 'warning' | 'danger'
-  children: string | string[] | JSX.Element
+  children: React.ReactNode
 }
 
 export function Alert({ className, variant, children }: AlertProps) {
-  const [isMounted, setIsMounted] = useState(false)
+  const [isMounted, setIsMounted] = useState(true)
   const [isVisible, setIsVisible] = useState(false)
   const alertRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setIsMounted(true)
-    setTimeout(() => setIsVisible(true), 20)
+    requestAnimationFrame(() => {
+      setIsVisible(true)
+    })
   }, [])
+
+  function handleTransitionEnd(e: React.TransitionEvent<HTMLDivElement>) {
+    if (isVisible || e.target !== e.currentTarget) {
+      return
+    }
+
+    setIsMounted(false)
+  }
 
   function handleClosing() {
     setIsVisible(false)
-
-    setTimeout(() => {
-      setIsMounted(false)
-    }, getTransitionDuration(alertRef.current!))
   }
 
   return isMounted ? (
-    <div className={clsx(s.alert, className, s[variant], isVisible && s.isVisible)} ref={alertRef} role='alert'>
+    <div
+      className={clsx(s.root, className, s[variant], isVisible && s.isVisible)}
+      ref={alertRef}
+      role='alert'
+      onTransitionEnd={handleTransitionEnd}
+    >
       <span>{children}</span>
       <button className={s.closeButton} type='button' aria-label='Close alert' onClick={handleClosing}>
         <CloseIcon className={s.closeIcon} />

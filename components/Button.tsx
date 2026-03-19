@@ -1,5 +1,10 @@
+'use client'
+
 import clsx from 'clsx'
 import Link from 'next/link'
+import { useFormStatus } from 'react-dom'
+
+import { Spinner } from '@/components/Spinner'
 
 import s from './Button.module.scss'
 
@@ -7,7 +12,7 @@ interface CommonProps {
   label: string
   variant: 'primary' | 'danger'
   fullWidth?: boolean
-  children?: JSX.Element | string
+  children?: React.ReactNode
 }
 
 interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -32,34 +37,23 @@ type ConditionalProps = LinkProps | ButtonProps
 type Props = CommonProps & ConditionalProps
 
 export function Button(props: Props) {
-  const { className, as, label, type = 'button', href, disabled, pending, onClick } = props
+  const { className, as, label, type = 'button', href, disabled, onClick } = props
+  const { pending } = useFormStatus()
   const variant: string = props.variant.toLowerCase()
 
   return as !== 'link' ? (
-    <button className={clsx(s.button, s[variant], className)} type={type} disabled={disabled} onClick={onClick}>
+    <button
+      className={clsx(s.button, s[variant], className)}
+      type={type}
+      disabled={pending || disabled}
+      onClick={onClick}
+    >
       {label}
-      {pending ? <ButtonSpinner /> : null}
+      {pending ? <Spinner small /> : null}
     </button>
   ) : (
     <Link className={clsx(s.button, s[variant], className)} href={href || '/'}>
       {label}
     </Link>
-  )
-}
-
-function ButtonSpinner() {
-  return (
-    <div className={s.spinnerWrapper}>
-      <div className={s.ldsRoller}>
-        <div />
-        <div />
-        <div />
-        <div />
-        <div />
-        <div />
-        <div />
-        <div />
-      </div>
-    </div>
   )
 }
