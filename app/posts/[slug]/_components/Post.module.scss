@@ -3,16 +3,15 @@
 .imageWrapper {
   position: relative;
   width: 100%;
-  max-width: 1920px;
-  height: 150px;
+  aspect-ratio: 2;
   margin: auto;
 
   @media (min-width: $medium-screen) {
-    height: 300px;
+    aspect-ratio: 3;
   }
 
-  @media (min-width: $large-screen) {
-    height: 350px;
+  @media (min-width: $wide-screen) {
+    aspect-ratio: 5;
   }
 }
 

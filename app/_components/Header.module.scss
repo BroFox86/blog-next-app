@@ -76,7 +76,7 @@
   padding-left: 8px;
   padding-right: 5px;
   border-radius: var(--border-radius-medium);
-  background: var(--bg-color);
+  background: var(--bg-color-inner);
 
   @media (min-width: $medium-screen) {
     width: 250px;
@@ -94,6 +94,10 @@
   color: var(--text-color);
   background: transparent;
   outline: none;
+
+  &::placeholder {
+    color: var(--color-dimmed);
+  }
 }
 
 .searchButton {

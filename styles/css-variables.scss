@@ -58,8 +58,8 @@
     --color-link: var(--color-primary);
     --color-link-hover: var(--color-primary-hover);
     --color-overlay: #{color.adjust(black, $alpha: -0.3)};
-    --color-border: gray;
-    --color-dimmed: white;
+    --color-border: #555;
+    --color-dimmed: #999;
 
     // Quill
     --quill-toolbar-bg-color: lightgray;
