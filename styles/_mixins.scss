@@ -142,10 +142,6 @@
   border-radius: 50%;
 }
 
-@mixin width-in-list($amount, $gap: #{var(--gap)}) {
-  width: calc((100% / $amount) - ($gap * ($amount - 1) / $amount));
-}
-
 @mixin sr-only {
   position: absolute;
   width: 1px;
@@ -153,7 +149,6 @@
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
 }
@@ -174,14 +169,16 @@
   animation: pulse 1.5s infinite ease-in-out;
 }
 
-@mixin pulse {
+@mixin pulse-keyframes {
   @keyframes pulse {
     0% {
       opacity: 1;
     }
+
     50% {
       opacity: 0.4;
     }
+
     100% {
       opacity: 1;
     }

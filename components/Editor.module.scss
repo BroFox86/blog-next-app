@@ -3,10 +3,9 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   overflow: hidden;
   height: 280px;
-  border-radius: 8px;
+  border-radius: var(--border-radius-medium);
   border: 1px solid var(--color-border);
   transition: border-color 250ms linear;
 
