@@ -53,12 +53,13 @@ export async function updatePostAction(id: number, formData: FormData) {
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error'
 
-    redirect(`?status=error&message=${encodeURIComponent(errorMessage)}`)
+    redirect(`./?status=error&message=${encodeURIComponent(errorMessage)}`)
   }
 
   if (success) {
-    revalidatePath(`/pages/${sluggedTitle}`)
-    redirect(`${sluggedTitle}?status=success-update&message=${title}`)
+    revalidatePath(`/`)
+    revalidatePath(`/posts/${sluggedTitle}`)
+    redirect(`/posts/${sluggedTitle}?status=success-update&message=${title}`)
   }
 }
 
@@ -74,12 +75,12 @@ export async function deletePostAction(id: number) {
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error'
 
-    redirect(`${id}?status=error&message=${encodeURIComponent(errorMessage)}`)
+    redirect(`./${id}?status=error&message=${encodeURIComponent(errorMessage)}`)
   }
 
   if (success) {
-    revalidatePath(`/pages/${deletedPost.slug}`)
     revalidatePath('/')
+    revalidatePath(`/posts/${deletedPost.slug}`)
     redirect(`/?status=success-delete&message=${deletedPost.title}`)
   }
 }

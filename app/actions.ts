@@ -19,9 +19,7 @@ export async function getAllPostsAction() {
       }
     })
   } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
-
-    redirect(`?status=error&message=${encodeURIComponent(errorMessage)}`)
+    console.error('Database Error:', e)
   }
 }
 
@@ -59,12 +57,12 @@ export async function addPostAction(formData: FormData) {
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error'
 
-    redirect(`?status=error&message=${encodeURIComponent(errorMessage)}`)
+    redirect(`./?status=error&message=${encodeURIComponent(errorMessage)}`)
   }
 
   if (success) {
     revalidatePath('/')
-    redirect(`?status=success-add&message=${title}`)
+    redirect(`./?status=success-add&message=${title}`)
   }
 }
 
@@ -81,10 +79,10 @@ export async function handleSearchQuery(formData: FormData) {
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error'
 
-    redirect(`/?status=error&message=${encodeURIComponent(errorMessage)}`)
+    redirect(`./?status=error&message=${encodeURIComponent(errorMessage)}`)
   }
 
   if (success) {
-    redirect(`/search?query=${query}`)
+    redirect(`./search?query=${query}`)
   }
 }
