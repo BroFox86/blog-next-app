@@ -9,12 +9,12 @@ type Props = {
   searchParams: { [key: string]: string | undefined }
 }
 
-export default async function Page({ searchParams }: Props) {
-  const awaitedSearchParams = await searchParams
-  const { query } = awaitedSearchParams
+export default async function Page({ searchParams: searchParamsPromise }: Props) {
+  const searchParams = await searchParamsPromise
+  const { query } = searchParams
 
   return (
-    <SearchPage>
+    <SearchPage query={query}>
       <Suspense key={query} fallback={<Spinner />}>
         <PostList query={query} searchResults />
       </Suspense>

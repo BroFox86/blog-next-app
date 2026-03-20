@@ -10,7 +10,7 @@ import { wait } from '@/utils/wait'
 
 export async function getAllPostsAction() {
   try {
-    wait()
+    wait(500)
 
     return await db.post.findMany({
       // take: 3,
@@ -26,7 +26,8 @@ export async function getAllPostsAction() {
 export async function addPostAction(formData: FormData) {
   let title
   let sluggedTitle
-  let success
+  let errorOccurred
+  let errorMessage = ''
 
   try {
     title = formData.get('title') as string
@@ -34,12 +35,8 @@ export async function addPostAction(formData: FormData) {
     const content = formData.get('content') as string
     const contentWithoutTags = getCleanText(content)
 
-    if (title === '' || contentWithoutTags === '') {
-      throw new Error('Fill in all the fields')
-    }
-
-    if (title.length > 100) {
-      throw new Error('Title is too long')
+    if (title === '' || contentWithoutTags === '' || title.length > 100) {
+      return
     }
 
     await wait()
@@ -52,37 +49,38 @@ export async function addPostAction(formData: FormData) {
         imageUrl: '/images/cover-7.jpg'
       }
     })
-
-    success = true
   } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+    errorOccurred = true
+    errorMessage = e instanceof Error ? e.message : 'Unknown error'
+  }
 
+  if (errorOccurred) {
     redirect(`./?status=error&message=${encodeURIComponent(errorMessage)}`)
   }
 
-  if (success) {
-    revalidatePath('/')
-    redirect(`./?status=success-add&message=${title}`)
-  }
+  revalidatePath('/')
+  redirect(`./?status=success-add&message=${title}`)
 }
 
 export async function handleSearchQuery(formData: FormData) {
   let query
-  let success
+  let errorOccurred
+  let errorMessage = ''
 
   try {
     query = formData.get('search') as string
 
-    if (query.length < 2) return
-
-    success = true
+    if (query.length < 2) {
+      return
+    }
   } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+    errorOccurred = true
+    errorMessage = e instanceof Error ? e.message : 'Unknown error'
+  }
 
+  if (errorOccurred) {
     redirect(`./?status=error&message=${encodeURIComponent(errorMessage)}`)
   }
 
-  if (success) {
-    redirect(`./search?query=${query}`)
-  }
+  redirect(`./search?query=${query}`)
 }

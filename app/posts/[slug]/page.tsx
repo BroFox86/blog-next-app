@@ -10,9 +10,9 @@ export type Props = {
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default async function Page({ params, searchParams }: Props) {
+export default async function Page({ params, searchParams: searchParamsPromise }: Props) {
   const { slug } = await params
-  const awaitedSearchParams = await searchParams
+  const searchParams = await searchParamsPromise
   const post = await getPost(slug)
 
   if (!post) {
@@ -24,7 +24,7 @@ export default async function Page({ params, searchParams }: Props) {
       <Head>
         <title>{post.title}</title>
       </Head>
-      <Post searchParams={awaitedSearchParams} post={post} />
+      <Post searchParams={searchParams} post={post} />
     </>
   )
 }

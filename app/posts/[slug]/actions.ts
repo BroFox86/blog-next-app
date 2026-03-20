@@ -25,7 +25,8 @@ export async function getPost(slug: string) {
 export async function updatePostAction(id: number, formData: FormData) {
   let title
   let sluggedTitle
-  let success
+  let errorOccurred
+  let errorMessage = ''
 
   try {
     const content = formData.get('content') as string
@@ -35,7 +36,7 @@ export async function updatePostAction(id: number, formData: FormData) {
     sluggedTitle = getSluggedText(title)
 
     if (title === '' || contentWithoutTags === '') {
-      throw new Error('Fill in all the fields')
+      return
     }
 
     await wait()
@@ -48,39 +49,41 @@ export async function updatePostAction(id: number, formData: FormData) {
         content: content
       }
     })
-
-    success = true
   } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+    errorOccurred = true
+    errorMessage = e instanceof Error ? e.message : 'Unknown error'
+  }
 
+  if (errorOccurred) {
     redirect(`./?status=error&message=${encodeURIComponent(errorMessage)}`)
   }
 
-  if (success) {
-    revalidatePath(`/`)
-    revalidatePath(`/posts/${sluggedTitle}`)
-    redirect(`/posts/${sluggedTitle}?status=success-update&message=${title}`)
-  }
+  revalidatePath(`/`)
+  revalidatePath(`/posts/${sluggedTitle}`)
+  redirect(`/posts/${sluggedTitle}?status=success-update&message=${title}`)
 }
 
 export async function deletePostAction(id: number) {
   let deletedPost
-  let success
+  let errorOccurred
+  let errorMessage = ''
 
   await wait()
 
   try {
     deletedPost = await db.post.delete({ where: { id } })
-    success = true
   } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+    errorOccurred = true
+    errorMessage = e instanceof Error ? e.message : 'Unknown error'
+  }
 
+  if (errorOccurred) {
     redirect(`./${id}?status=error&message=${encodeURIComponent(errorMessage)}`)
   }
 
-  if (success) {
-    revalidatePath('/')
-    revalidatePath(`/posts/${deletedPost.slug}`)
-    redirect(`/?status=success-delete&message=${deletedPost.title}`)
-  }
+  if (!deletedPost) return
+
+  revalidatePath('/')
+  revalidatePath(`/posts/${deletedPost.slug}`)
+  redirect(`/?status=success-delete&message=${deletedPost.title}`)
 }

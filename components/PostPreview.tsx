@@ -59,7 +59,7 @@ export function PostPreview({ post, skeleton }: Props) {
             </Link>
           </h3>
           <p className={s.excerpt}>{getTextExcerpt(content)}</p>
-          <Button className={s.button} as='link' variant='primary' label='View post' href={`/posts/${slug}`} />
+          <Button className={s.button} as='link' variant='primary' label='View' href={`/posts/${slug}`} />
         </div>
       </article>
     )

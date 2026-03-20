@@ -7,10 +7,11 @@ import s from './Alert.module.scss'
 export interface AlertProps {
   className?: string
   variant: 'success' | 'warning' | 'danger'
+  onClose?: () => void
   children: React.ReactNode
 }
 
-export function Alert({ className, variant, children }: AlertProps) {
+export function Alert({ className, variant, onClose, children }: AlertProps) {
   const [isMounted, setIsMounted] = useState(true)
   const [isVisible, setIsVisible] = useState(false)
   const alertRef = useRef<HTMLDivElement>(null)
@@ -31,6 +32,10 @@ export function Alert({ className, variant, children }: AlertProps) {
 
   function handleClosing() {
     setIsVisible(false)
+
+    if (!onClose) return
+
+    onClose()
   }
 
   return isMounted ? (

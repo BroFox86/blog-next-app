@@ -25,7 +25,7 @@ export function Header() {
             type='text'
             name='search'
             minLength={2}
-            placeholder='Your text'
+            placeholder='Your search query'
             aria-label='Search'
             aria-describedby='submitButton'
           />
@@ -37,7 +37,6 @@ export function Header() {
             </svg>
           </button>
         </form>
-
         <ThemeSwitch />
       </div>
     </header>

@@ -24,14 +24,18 @@ export function ThemeSwitch() {
       setIsMounted(true)
     })
 
-    mediaQuery.addEventListener('change', e => {
+    function handleChangeTheme(e: MediaQueryListEvent) {
       if (loadThemeFromStorage()) {
         return
       }
 
       toggleThemeClassName(!!e.matches)
       setIsDarkTheme(!!e.matches)
-    })
+    }
+
+    mediaQuery.addEventListener('change', handleChangeTheme)
+
+    return () => mediaQuery.removeEventListener('change', handleChangeTheme)
   }, [])
 
   function handleClick() {

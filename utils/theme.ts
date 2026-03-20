@@ -21,3 +21,13 @@ export function toggleThemeClassName(isDarkTheme: boolean) {
     root.classList.remove('hasDarkTheme')
   }
 }
+
+export function isDarkThemeCheck() {
+  const root = document.documentElement
+
+  if (root.classList.contains('hasDarkTheme')) {
+    return true
+  } else {
+    return false
+  }
+}

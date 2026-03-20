@@ -14,13 +14,13 @@ export async function HomePage() {
     <>
       <section className={s.container}>
         <h1 className={s.title}>Add a New Post</h1>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense>
           <AlertBox />
         </Suspense>
         <form className={s.form} action={addPostAction}>
           <Input label='Post title' name='title' autoComplete='off' placeholder='' maxLength={100} required />
           <Editor />
-          <Button className={s.button} type='submit' label='Add Post' variant='primary' />
+          <Button className={s.button} type='submit' label='Add' variant='primary' />
         </form>
       </section>
       <section className={s.container}>
