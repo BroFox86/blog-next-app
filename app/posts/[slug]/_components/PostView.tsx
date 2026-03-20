@@ -1,27 +1,30 @@
 import parse from 'html-react-parser'
 
+import { deletePostAction } from '@/app/posts/[slug]/actions'
 import { Button } from '@/components/Button'
-import type { Post } from '@/lib/db'
+import type { Post } from '@/lib/generated/prisma/client'
 import { formatDate } from '@/utils/formatDate'
 
 import s from './Post.module.scss'
 import { PostDeleteModal } from './PostDeleteModal'
 
 type Props = {
-  slug: string
   post: Post
-  handleDeletePost: () => void
 }
 
-export function PostView({ slug, post: { title, content, date, editedDate }, handleDeletePost }: Props) {
+export function PostView({ post: { id, slug, title, content, createdAt } }: Props) {
+  const handleDeletePost = deletePostAction.bind(null, id)
+  const createdAtString = createdAt.toISOString()
+  // const updatedAtString = updatedAt.toISOString()
+
   return (
     <>
       <header>
         <h1 className={s.title}>{title}</h1>
         <p className={s.postInfo}>
-          {formatDate(date)}{' '}
-          <span className={s.updatedDate}>{editedDate && `(edited on ${formatDate(editedDate, true)})`}</span> by&nbsp;
-          <span className={s.author}>Guest</span>
+          {formatDate(createdAtString)}{' '}
+          {/* <span className={s.updatedAt}>{updatedAt && `(edited on ${formatDate(updatedAtString, true)})`}</span> by&nbsp; */}
+          {/* <span className={s.author}>Guest</span> */}
         </p>
       </header>
       <hr />

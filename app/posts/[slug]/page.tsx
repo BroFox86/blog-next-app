@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { notFound } from 'next/navigation'
 
-import { db } from '@/lib/db'
+import { getPost } from '@/app/posts/[slug]/actions'
 
 import { Post } from './_components/Post'
 
@@ -13,7 +13,7 @@ export type Props = {
 export default async function Page({ params, searchParams }: Props) {
   const { slug } = await params
   const awaitedSearchParams = await searchParams
-  const post = await db.getPost(slug)
+  const post = await getPost(slug)
 
   if (!post) {
     notFound()
@@ -24,7 +24,7 @@ export default async function Page({ params, searchParams }: Props) {
       <Head>
         <title>{post.title}</title>
       </Head>
-      <Post slug={slug} searchParams={awaitedSearchParams} post={post} />
+      <Post searchParams={awaitedSearchParams} post={post} />
     </>
   )
 }

@@ -1,6 +1,6 @@
+import { getAllPostsAction } from '@/app/actions'
+import { searchPostAction } from '@/app/search/actions'
 import { PostPreview } from '@/components/PostPreview'
-import { wait } from '@/lib/actions'
-import { db } from '@/lib/db'
 
 import s from './PostList.module.scss'
 
@@ -24,14 +24,12 @@ export async function PostList({ skeleton, query, searchResults }: Props) {
   }
 
   if (searchResults && query) {
-    await wait()
-    posts = await db.searchPosts(query)
+    posts = await searchPostAction(query)
   } else {
-    await wait()
-    posts = await db.getAllPosts()
+    posts = await getAllPostsAction()
   }
 
-  if (posts.length === 0) {
+  if (!posts || posts.length === 0) {
     return <p className={s.noPostsMessage}>{query ? 'Found 0 matches.' : 'There are no posts...'}</p>
   }
 
@@ -39,13 +37,9 @@ export async function PostList({ skeleton, query, searchResults }: Props) {
     return <p className={s.noPostsMessage}>No query, no results...</p>
   }
 
-  const sortedPosts = posts.slice().sort((a, b) => {
-    return b.date.localeCompare(a.date)
-  })
-
   return (
     <div className={s.root}>
-      {sortedPosts.map((post, index) => (
+      {posts.map((post, index) => (
         <PostPreview key={index} post={post} />
       ))}
     </div>

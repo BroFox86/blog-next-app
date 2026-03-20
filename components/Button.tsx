@@ -23,6 +23,7 @@ interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   type?: never
   onClick?: never
   form?: never
+  formAction?: never
 }
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -32,6 +33,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href?: never
   external?: never
   form?: string
+  formAction?: (formData: FormData) => Promise<void>
 }
 
 type ConditionalProps = LinkProps | ButtonProps
@@ -39,7 +41,7 @@ type ConditionalProps = LinkProps | ButtonProps
 type Props = CommonProps & ConditionalProps
 
 export function Button(props: Props) {
-  const { className, as, label, type = 'button', href, disabled, form, onClick } = props
+  const { className, as, label, type = 'button', href, disabled, form, formAction, onClick } = props
   const { pending } = useFormStatus()
   const variant: string = props.variant.toLowerCase()
 
@@ -49,6 +51,7 @@ export function Button(props: Props) {
       type={type}
       disabled={pending || disabled}
       form={form}
+      formAction={formAction}
       onClick={onClick}
     >
       {label}

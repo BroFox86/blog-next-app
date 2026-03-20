@@ -6,12 +6,13 @@ type Props = {
   className?: string
   label?: string
   small?: boolean
+  placeCenter?: boolean
 }
 
-export function Spinner(props: Props) {
+export function Spinner({ className, label, small, placeCenter }: Props) {
   return (
-    <div className={clsx(s.root, props.small && s.small, props.className)}>
-      <div className={s.text}>{props.label || 'Loading'}</div>
+    <div className={clsx(s.root, className, small && s.small, placeCenter && s.placeCenter)}>
+      <div className={s.text}>{label || 'Loading'}</div>
       <div className={s.ldsRoller}>
         <div />
         <div />

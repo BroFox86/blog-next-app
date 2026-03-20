@@ -2,10 +2,10 @@ import { Suspense } from 'react'
 
 import { AlertBox } from '@/app/_components/AlertBox'
 import { PostList } from '@/app/_components/PostList'
+import { addPostAction } from '@/app/actions'
 import { Button } from '@/components/Button'
 import { Editor } from '@/components/Editor'
 import { Input } from '@/components/Input'
-import { addPostAction } from '@/lib/actions'
 
 import s from './HomePage.module.scss'
 

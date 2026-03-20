@@ -20,7 +20,11 @@ export function Editor(props: Props) {
   }
 
   const ReactQuill = useMemo(
-    () => dynamic(() => import('react-quill-new'), { ssr: false, loading: () => <Spinner label='Loading Quill...' /> }),
+    () =>
+      dynamic(() => import('react-quill-new'), {
+        ssr: false,
+        loading: () => <Spinner label='Loading Quill...' placeCenter />
+      }),
     []
   )
 

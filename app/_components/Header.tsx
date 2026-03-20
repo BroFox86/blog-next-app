@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
+import { handleSearchQuery } from '@/app/actions'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
-import { searchPostAction } from '@/lib/actions'
 
 import s from './Header.module.scss'
 
@@ -19,7 +19,7 @@ export function Header() {
           <span className={s.homeLabel}>Home</span>
         </Link>
 
-        <form className={s.searchBox} action={searchPostAction}>
+        <form className={s.searchBox} action={handleSearchQuery}>
           <input
             className={s.searchInput}
             type='text'
