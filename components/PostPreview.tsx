@@ -70,9 +70,9 @@ export function PostPreview({ post, skeleton }: Props) {
 
 function getTextExcerpt(content: string) {
   const plainText = content.replace(/<\/?[^>]+(>|$)/g, '').replace(/&nbsp;/g, ' ')
-  let excerpt = plainText.trim().slice(0, 190)
+  let excerpt = plainText.trim().slice(0, 170)
 
-  if (plainText.length > 190) {
+  if (plainText.length > 170) {
     excerpt += '...'
   }
 

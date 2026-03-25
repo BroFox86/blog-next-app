@@ -5,23 +5,12 @@ import { PostPreview } from '@/components/PostPreview'
 import s from './PostList.module.scss'
 
 type Props = {
-  skeleton?: boolean
   searchResults?: boolean
   query?: string
 }
 
-export async function PostList({ skeleton, query, searchResults }: Props) {
+export async function PostList({ query, searchResults }: Props) {
   let posts
-
-  if (skeleton) {
-    return (
-      <div className={s.root}>
-        {Array.from({ length: 3 }).map((post, index) => (
-          <PostPreview key={index} skeleton />
-        ))}
-      </div>
-    )
-  }
 
   if (searchResults && query) {
     posts = await searchPostAction(query)
@@ -41,6 +30,16 @@ export async function PostList({ skeleton, query, searchResults }: Props) {
     <div className={s.root}>
       {posts.map((post, index) => (
         <PostPreview key={index} post={post} />
+      ))}
+    </div>
+  )
+}
+
+export function PostListSkeleton() {
+  return (
+    <div className={s.root}>
+      {Array.from({ length: 3 }).map((post, index) => (
+        <PostPreview key={index} skeleton />
       ))}
     </div>
   )

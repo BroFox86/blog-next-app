@@ -1,9 +1,8 @@
 import { Suspense } from 'react'
 
 import { PostList } from '@/app/_components/PostList'
+import { SearchPage } from '@/app/search/_components/SearchPage'
 import { Spinner } from '@/components/Spinner'
-
-import { SearchPage } from './_components/SearchPage'
 
 type Props = {
   searchParams: { [key: string]: string | undefined }
