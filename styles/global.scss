@@ -89,11 +89,11 @@ h6 {
 
 hr {
   height: 1px;
-  margin: 18px 0;
+  margin: 25px 0;
   background: var(--color-border);
   border: none;
 }
 
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px var(--bg-color-inner) inset;
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-surface) inset;
 }

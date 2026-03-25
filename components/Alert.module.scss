@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
   padding: 13px 16px;
   opacity: 0;
   border-radius: var(--border-radius-medium);
@@ -15,39 +14,24 @@
       transform 300ms ease-out;
   }
 
-  &:last-child {
-    margin-bottom: 30px;
-  }
-
   &.isVisible {
     opacity: 1;
     transform: scale(1);
   }
 
-  &.success {
+  &.primary {
     background: #d1e7dd;
     color: #0f5132;
   }
 
-  &.warning {
+  &.attention {
     background: #fff3cd;
     color: #664d03;
   }
 
-  &.danger {
+  &.error {
     background: #f8d7da;
     color: #842029;
-  }
-}
-
-.rootLink {
-  color: inherit;
-  text-decoration-line: none;
-  font-weight: 700;
-
-  @include on-hocus {
-    text-decoration: underline;
-    text-underline-offset: 2px;
   }
 }
 

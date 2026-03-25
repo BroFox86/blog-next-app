@@ -72,11 +72,11 @@
   align-items: center;
   width: 200px;
   height: 35px;
-  margin-left: 15px;
+  margin: 0 15px;
   padding-left: 8px;
   padding-right: 5px;
   border-radius: var(--border-radius-medium);
-  background: var(--bg-color-inner);
+  background: var(--bg-surface);
 
   @media (min-width: $medium-screen) {
     width: 250px;

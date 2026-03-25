@@ -43,7 +43,7 @@
   padding: 0 25px;
   border-radius: var(--border-radius-large);
   opacity: 0;
-  background: var(--bg-color-inner);
+  background: var(--bg-surface);
   transition-property: opacity;
   transition-duration: 300ms;
   transition-timing-function: ease-out;
@@ -138,6 +138,6 @@
   transition: background-color 300ms ease-out;
 
   .root.isVisible + & {
-    background-color: color.adjust(black, $alpha: -0.5);
+    background-color: var(--modal-overlay);
   }
 }

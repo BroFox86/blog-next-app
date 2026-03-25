@@ -7,9 +7,8 @@
   --header-height: 70px;
 
   --bg-color: white;
-  --bg-color-inner: white;
-  --bg-color-secondary: ghostwhite;
-  --bg-color-skeleton: #eee;
+  --bg-surface: white;
+  --bg-overlay: ghostwhite;
 
   --text-color: black;
 
@@ -20,7 +19,6 @@
 
   --color-link: var(--color-primary);
   --color-link-hover: var(--color-primary-hover);
-  --color-overlay: #{color.adjust(black, $alpha: -0.5)};
   --color-border: lightgray;
   --color-dimmed: #666;
 
@@ -37,17 +35,20 @@
 
   // Quill
   --quill-toolbar-bg-color: white;
+  --quill-picker-bg-color: white;
 
   // PostPreview
   --post-preview-title-color-hover: var(--color-primary);
 
+  // Modal
+  --modal-overlay: #{color.adjust(black, $alpha: -0.4)};
+
   &.hasDarkTheme {
     color-scheme: dark;
 
-    --bg-color: black;
-    --bg-color-inner: #222;
-    --bg-color-secondary: #1c1b1c;
-    --bg-color-skeleton: dimgray;
+    --bg-color: #121212;
+    --bg-surface: #1e1e1e;
+    --bg-overlay: #2c2c2c;
 
     --text-color: white;
 
@@ -57,14 +58,17 @@
 
     --color-link: var(--color-primary);
     --color-link-hover: var(--color-primary-hover);
-    --color-overlay: #{color.adjust(black, $alpha: -0.3)};
-    --color-border: #555;
+    --color-border: #444;
     --color-dimmed: #999;
 
     // Quill
     --quill-toolbar-bg-color: lightgray;
+    --quill-picker-bg-color: var(--bg-overlay);
 
     // PostPreview
     --post-preview-title-color-hover: rgb(255 255 255 / 70%);
+
+    // Modal
+    --modal-overlay: #{color.adjust(black, $alpha: -0.2)};
   }
 }

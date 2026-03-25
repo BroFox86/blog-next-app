@@ -29,13 +29,13 @@
 // States
 @mixin on-hocus($selector: false) {
   @if $selector {
-    #{$selector}:hover & {
+    .#{$selector}:hover & {
       @media (any-hover: hover) {
         @content;
       }
     }
 
-    #{$selector}:focus-visible & {
+    .#{$selector}:focus-visible & {
       @content;
     }
   } @else {
@@ -161,7 +161,7 @@
 
 @mixin skeleton-styles($radius: 4px) {
   border-radius: $radius;
-  background: var(--bg-color-skeleton);
+  background: #eee;
   color: transparent;
   cursor: none;
   pointer-events: none;
