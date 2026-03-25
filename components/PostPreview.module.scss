@@ -66,7 +66,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  text-box: trim-both cap alphabetic;
 
   .root.isSkeleton & {
     @include skeleton-styles;

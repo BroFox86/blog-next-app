@@ -5,14 +5,12 @@ import { revalidatePath } from 'next/cache'
 
 import type { AlertData } from '@/app/_components/AlertProvider'
 import { db } from '@/lib/db'
+import type { Post } from '@/lib/generated/prisma/client'
 import { getCleanText } from '@/utils/getCleanText'
 import { getSluggedText } from '@/utils/getSluggedText'
-import { wait } from '@/utils/wait'
-import type { Post } from '@/lib/generated/prisma/client'
+// import { wait } from '@/utils/wait'
 
 export async function getPost(slug: string) {
-  await wait(500)
-
   return await db.post.findUnique({
     where: {
       slug: slug
@@ -80,8 +78,7 @@ export async function deletePostAction(id: number) {
 
   if (!deletedPost) return
 
-  revalidatePath('/')
-  revalidatePath(`/posts/${deletedPost.slug}`)
+  revalidatePath('/', 'layout')
 
   return {
     type: 'attention',

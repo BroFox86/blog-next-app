@@ -12,7 +12,7 @@ import { wait } from '@/utils/wait'
 import type { AlertData } from './_components/AlertProvider'
 
 export async function getAllPostsAction() {
-  wait(500)
+  // wait(500)
 
   return await db.post.findMany({
     // take: 3,
@@ -33,8 +33,8 @@ export async function addPostAction(initialState: unknown, formData: FormData) {
     const content = formData.get('content') as string
     const textContent = getCleanText(content)
 
-    if (title === '' || textContent === '' || title.length > 100) {
-      return
+    if (title === '' || textContent === '') {
+      return { type: 'error', message: 'Fill out all the fields', id: randomUUID() } as AlertData
     }
 
     await db.post.create({
