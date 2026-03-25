@@ -1,15 +1,17 @@
 'use server'
 
+import { randomUUID } from 'crypto'
 import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
 
+import type { AlertData } from '@/app/_components/AlertProvider'
 import { db } from '@/lib/db'
 import { getCleanText } from '@/utils/getCleanText'
 import { getSluggedText } from '@/utils/getSluggedText'
 import { wait } from '@/utils/wait'
+import type { Post } from '@/lib/generated/prisma/client'
 
 export async function getPost(slug: string) {
-  await wait()
+  await wait(500)
 
   return await db.post.findUnique({
     where: {
@@ -18,15 +20,10 @@ export async function getPost(slug: string) {
   })
 }
 
-// export async function cancelEditAction(slug: string) {
-//   redirect(`/posts/${slug}`, RedirectType.replace)
-// }
-
-export async function updatePostAction(id: number, formData: FormData) {
+export async function updatePostAction(post: Post, formData: FormData) {
+  const { id, title: oldTitle, content: oldContent } = post
   let title
   let sluggedTitle
-  let errorOccurred
-  let errorMessage = ''
 
   try {
     const content = formData.get('content') as string
@@ -36,10 +33,12 @@ export async function updatePostAction(id: number, formData: FormData) {
     sluggedTitle = getSluggedText(title)
 
     if (title === '' || contentWithoutTags === '') {
-      return
+      return { alertData: { type: 'error', message: 'Fill out all the fields', id: randomUUID() } as AlertData }
     }
 
-    await wait()
+    if (title === oldTitle && content === oldContent) {
+      return { alertData: { type: 'error', message: 'There are no changes', id: randomUUID() } as AlertData }
+    }
 
     await db.post.update({
       where: { id: id },
@@ -50,40 +49,43 @@ export async function updatePostAction(id: number, formData: FormData) {
       }
     })
   } catch (e) {
-    errorOccurred = true
-    errorMessage = e instanceof Error ? e.message : 'Unknown error'
-  }
+    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
 
-  if (errorOccurred) {
-    redirect(`./?status=error&message=${encodeURIComponent(errorMessage)}`)
+    return { alertData: { type: 'error', message: errorMessage, id: randomUUID() } as AlertData }
   }
 
   revalidatePath(`/`)
   revalidatePath(`/posts/${sluggedTitle}`)
-  redirect(`/posts/${sluggedTitle}?status=success-update&message=${title}`)
+
+  return {
+    slug: sluggedTitle,
+    alertData: {
+      type: 'primary',
+      message: `The post ${title} has been updated`,
+      id: randomUUID()
+    } as AlertData
+  }
 }
 
 export async function deletePostAction(id: number) {
   let deletedPost
-  let errorOccurred
-  let errorMessage = ''
-
-  await wait()
 
   try {
     deletedPost = await db.post.delete({ where: { id } })
   } catch (e) {
-    errorOccurred = true
-    errorMessage = e instanceof Error ? e.message : 'Unknown error'
-  }
+    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
 
-  if (errorOccurred) {
-    redirect(`./${id}?status=error&message=${encodeURIComponent(errorMessage)}`)
+    return { type: 'error', message: errorMessage, id: randomUUID() } as AlertData
   }
 
   if (!deletedPost) return
 
   revalidatePath('/')
   revalidatePath(`/posts/${deletedPost.slug}`)
-  redirect(`/?status=success-delete&message=${deletedPost.title}`)
+
+  return {
+    type: 'attention',
+    message: `The post ${deletedPost.title} has been removed.`,
+    id: randomUUID()
+  } as AlertData
 }

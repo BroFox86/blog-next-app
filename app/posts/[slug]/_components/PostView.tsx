@@ -1,19 +1,17 @@
 import parse from 'html-react-parser'
 
-import { deletePostAction } from '@/app/posts/[slug]/actions'
-import { Button } from '@/components/Button'
 import type { Post } from '@/lib/generated/prisma/client'
 import { formatDate } from '@/utils/formatDate'
 
 import s from './Post.module.scss'
-import { PostDeleteModal } from './PostDeleteModal'
+import { PostViewForm } from './PostViewForm'
 
 type Props = {
   post: Post
 }
 
-export function PostView({ post: { id, slug, title, content, createdAt } }: Props) {
-  const handleDeletePost = deletePostAction.bind(null, id)
+export function PostView({ post }: Props) {
+  const { title, content, createdAt } = post
   const createdAtString = createdAt.toISOString()
   // const updatedAtString = updatedAt.toISOString()
 
@@ -30,10 +28,7 @@ export function PostView({ post: { id, slug, title, content, createdAt } }: Prop
       <hr />
       <div className='postBody'>{parse(content)}</div>
       <hr />
-      <form className={s.buttons} action={handleDeletePost} id='delete-post-form'>
-        <Button className={s.button} as='link' href={`/posts/${slug}?edit=true`} label='Edit' variant='primary' />
-        <PostDeleteModal postTitle={title} />
-      </form>
+      <PostViewForm post={post} />
     </>
   )
 }

@@ -1,5 +1,6 @@
 'use server'
 
+import { randomUUID } from 'crypto'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
@@ -8,38 +9,33 @@ import { getCleanText } from '@/utils/getCleanText'
 import { getSluggedText } from '@/utils/getSluggedText'
 import { wait } from '@/utils/wait'
 
-export async function getAllPostsAction() {
-  try {
-    wait(500)
+import type { AlertData } from './_components/AlertProvider'
 
-    return await db.post.findMany({
-      // take: 3,
-      orderBy: {
-        createdAt: 'desc'
-      }
-    })
-  } catch (e) {
-    console.error('Database Error:', e)
-  }
+export async function getAllPostsAction() {
+  wait(500)
+
+  return await db.post.findMany({
+    // take: 3,
+    orderBy: {
+      createdAt: 'desc'
+    }
+  })
 }
 
-export async function addPostAction(formData: FormData) {
+export async function addPostAction(initialState: unknown, formData: FormData) {
   let title
   let sluggedTitle
-  let errorOccurred
-  let errorMessage = ''
 
   try {
     title = formData.get('title') as string
     sluggedTitle = getSluggedText(title)
-    const content = formData.get('content') as string
-    const contentWithoutTags = getCleanText(content)
 
-    if (title === '' || contentWithoutTags === '' || title.length > 100) {
+    const content = formData.get('content') as string
+    const textContent = getCleanText(content)
+
+    if (title === '' || textContent === '' || title.length > 100) {
       return
     }
-
-    await wait()
 
     await db.post.create({
       data: {
@@ -50,36 +46,21 @@ export async function addPostAction(formData: FormData) {
       }
     })
   } catch (e) {
-    errorOccurred = true
-    errorMessage = e instanceof Error ? e.message : 'Unknown error'
-  }
+    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
 
-  if (errorOccurred) {
-    redirect(`./?status=error&message=${encodeURIComponent(errorMessage)}`)
+    return { type: 'error', message: errorMessage, id: randomUUID() } as AlertData
   }
 
   revalidatePath('/')
-  redirect(`./?status=success-add&message=${title}`)
+
+  return { type: 'primary', message: `The post ${title} has been added`, id: randomUUID() } as AlertData
 }
 
 export async function handleSearchQuery(formData: FormData) {
-  let query
-  let errorOccurred
-  let errorMessage = ''
+  const query = formData.get('search') as string
 
-  try {
-    query = formData.get('search') as string
-
-    if (query.length < 2) {
-      return
-    }
-  } catch (e) {
-    errorOccurred = true
-    errorMessage = e instanceof Error ? e.message : 'Unknown error'
-  }
-
-  if (errorOccurred) {
-    redirect(`./?status=error&message=${encodeURIComponent(errorMessage)}`)
+  if (query.length < 2) {
+    return
   }
 
   redirect(`./search?query=${query}`)

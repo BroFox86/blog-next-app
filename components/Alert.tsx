@@ -1,25 +1,35 @@
 import clsx from 'clsx'
-import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 import s from './Alert.module.scss'
 
-export interface AlertProps {
+export type AlertProps = {
   className?: string
-  variant: 'success' | 'warning' | 'danger'
+  type: 'primary' | 'attention' | 'error'
+  timer?: number
   onClose?: () => void
   children: React.ReactNode
 }
 
-export function Alert({ className, variant, onClose, children }: AlertProps) {
-  const [isMounted, setIsMounted] = useState(true)
+export function Alert({ className, type, timer = 6000, onClose, children }: AlertProps) {
   const [isVisible, setIsVisible] = useState(false)
   const alertRef = useRef<HTMLDivElement>(null)
+
+  function handleClosing() {
+    setIsVisible(false)
+  }
 
   useEffect(() => {
     requestAnimationFrame(() => {
       setIsVisible(true)
     })
+
+    const timeout = setTimeout(() => {
+      handleClosing()
+    }, timer)
+
+    return () => clearTimeout(timeout)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function handleTransitionEnd(e: React.TransitionEvent<HTMLDivElement>) {
@@ -27,20 +37,14 @@ export function Alert({ className, variant, onClose, children }: AlertProps) {
       return
     }
 
-    setIsMounted(false)
-  }
-
-  function handleClosing() {
-    setIsVisible(false)
-
     if (!onClose) return
 
     onClose()
   }
 
-  return isMounted ? (
+  return (
     <div
-      className={clsx(s.root, className, s[variant], isVisible && s.isVisible)}
+      className={clsx(s.root, className, s[type], isVisible && s.isVisible)}
       ref={alertRef}
       role='alert'
       onTransitionEnd={handleTransitionEnd}
@@ -50,14 +54,6 @@ export function Alert({ className, variant, onClose, children }: AlertProps) {
         <CloseIcon className={s.closeIcon} />
       </button>
     </div>
-  ) : null
-}
-
-export function AlertLink({ href, children }: { href: string; children: string }) {
-  return (
-    <Link className={s.alertLink} href={href}>
-      {children}
-    </Link>
   )
 }
 

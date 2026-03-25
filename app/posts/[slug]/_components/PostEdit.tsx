@@ -1,7 +1,9 @@
-// import { redirect, RedirectType } from 'next/navigation'
+'use client'
 
+import { useRouter } from 'next/navigation'
+
+import { useAlert } from '@/app/_components/AlertProvider'
 import { updatePostAction } from '@/app/posts/[slug]/actions'
-// import { cancelEditAction } from '@/app/posts/[slug]/actions'
 import { Button } from '@/components/Button'
 import { Editor } from '@/components/Editor'
 import { Input } from '@/components/Input'
@@ -13,9 +15,24 @@ type Props = {
   post: Post
 }
 
-export function PostEdit({ post: { id, slug, title, content } }: Props) {
-  // const handleCancelEdit = cancelEditAction.bind(null, slug)
-  const handleUpdatePost = updatePostAction.bind(null, id)
+export function PostEdit({ post }: Props) {
+  const { slug, title, content } = post
+  const { dispatch } = useAlert()
+  const router = useRouter()
+
+  async function formAction(formData: FormData) {
+    const handleUpdatePost = updatePostAction.bind(null, post)
+    const response = await handleUpdatePost(formData)
+    const { slug, alertData } = response
+
+    dispatch({ type: 'ADD_ALERT', payload: alertData })
+
+    if (alertData.type === 'error') {
+      return
+    }
+
+    router.push(`./${slug}`)
+  }
 
   return (
     <form className={s.editForm}>
@@ -30,16 +47,8 @@ export function PostEdit({ post: { id, slug, title, content } }: Props) {
       />
       <Editor content={content} />
       <div className={s.buttons}>
-        <Button className={s.button} type='submit' formAction={handleUpdatePost} variant='primary' label='Save' />
-        <Button
-          className={s.button}
-          as='link'
-          // type='submit'
-          // formAction={handleCancelEdit}
-          href={`/posts/${slug}`}
-          variant='primary'
-          label='Cancel'
-        />
+        <Button className={s.button} type='submit' formAction={formAction} variant='primary' label='Save' />
+        <Button className={s.button} as='link' href={`/posts/${slug}`} variant='primary' label='Cancel' />
       </div>
     </form>
   )

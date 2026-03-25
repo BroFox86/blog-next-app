@@ -1,58 +1,40 @@
 'use client'
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { createPortal } from 'react-dom'
 
 import { Alert } from '@/components/Alert'
 
+import { useAlert } from './AlertProvider'
+
 export function AlertBox() {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+  const [isMounted, setIsMounted] = useState(false)
+  const { state, dispatch } = useAlert()
 
-  const status = searchParams.get('status')
-  const message = searchParams.get('message') || ''
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      setIsMounted(true)
+    })
+  }, [])
 
-  function closeAlert() {
-    const params = new URLSearchParams(searchParams.toString())
-
-    params.delete('status')
-    params.delete('message')
-
-    router.replace(`${pathname}?${params}`, { scroll: false })
+  function handleClose(id: string) {
+    dispatch({ type: 'REMOVE_ALERT', payload: id })
   }
 
-  if (!status) return null
+  const alerts = state.alerts.map(item => {
+    return (
+      <Alert key={item.id} type={item.type} onClose={() => handleClose(item.id)}>
+        {item.message}
+      </Alert>
+    )
+  })
 
-  const getAlert = () => {
-    switch (status) {
-      case 'success-add':
-        return (
-          <Alert variant='success' onClose={closeAlert}>
-            The post {message} has been added.
-          </Alert>
-        )
-      case 'success-update':
-        return (
-          <Alert variant='success' onClose={closeAlert}>
-            The post {message} has been updated.
-          </Alert>
-        )
-      case 'success-delete':
-        return (
-          <Alert variant='warning' onClose={closeAlert}>
-            The post {message} has been deleted.
-          </Alert>
-        )
-      case 'error':
-        return (
-          <Alert variant='danger' onClose={closeAlert}>
-            Error: {message}
-          </Alert>
-        )
-      default:
-        return null
-    }
-  }
+  if (!isMounted) return
 
-  return <div>{getAlert()}</div>
+  const container = document.body.querySelector('#alert-portal')
+
+  if (!container) return
+
+  return createPortal(alerts, container)
 }

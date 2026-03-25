@@ -1,6 +1,5 @@
 import Image from 'next/image'
 
-import { AlertBox } from '@/app/_components/AlertBox'
 import type { Post } from '@/lib/generated/prisma/client'
 
 import s from './Post.module.scss'
@@ -20,10 +19,7 @@ export function Post({ searchParams, post }: Props) {
       <div className={s.imageWrapper}>
         <Image className={s.image} src={post.imageUrl || ''} sizes='100vw' alt='' fill priority />
       </div>
-      <div className={s.inner}>
-        <AlertBox />
-        {edit === 'true' ? <PostEdit post={post} /> : <PostView post={post} />}
-      </div>
+      <div className={s.inner}>{edit === 'true' ? <PostEdit post={post} /> : <PostView post={post} />}</div>
     </>
   )
 }
