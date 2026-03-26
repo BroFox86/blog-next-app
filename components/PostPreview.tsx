@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { Button } from '@/components/Button'
 import type { Post } from '@/lib/generated/prisma/client'
-import { formatDate } from '@/utils/formatDate'
+import { formatDate } from '@/utils/format'
 
 import s from './PostPreview.module.scss'
 

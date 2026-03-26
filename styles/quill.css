@@ -18,7 +18,7 @@
   color: var(--color-dimmed);
 }
 
-.ql-snow.ql-toolbar button:hover,
+/* .ql-snow.ql-toolbar button:hover,
 .ql-snow .ql-toolbar button:hover,
 .ql-snow.ql-toolbar button:focus,
 .ql-snow .ql-toolbar button:focus,
@@ -33,9 +33,9 @@
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
   color: var(--color-tertiary) !important;
-}
+} */
 
-.ql-snow.ql-toolbar button:hover .ql-stroke,
+/* .ql-snow.ql-toolbar button:hover .ql-stroke,
 .ql-snow .ql-toolbar button:hover .ql-stroke,
 .ql-snow.ql-toolbar button:focus .ql-stroke,
 .ql-snow .ql-toolbar button:focus .ql-stroke,
@@ -64,9 +64,9 @@
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
   stroke: var(--color-tertiary) !important;
-}
+} */
 
-.ql-snow.ql-toolbar button:hover .ql-fill,
+/* .ql-snow.ql-toolbar button:hover .ql-fill,
 .ql-snow .ql-toolbar button:hover .ql-fill,
 .ql-snow.ql-toolbar button:focus .ql-fill,
 .ql-snow .ql-toolbar button:focus .ql-fill,
@@ -95,4 +95,4 @@
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill {
   fill: var(--color-tertiary) !important;
-}
+} */

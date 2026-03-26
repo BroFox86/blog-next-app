@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { PostList } from '@/app/_components/PostList'
+import { PostListQuery } from '@/app/_components/PostList'
 import { SearchPage } from '@/app/search/_components/SearchPage'
 import { Spinner } from '@/components/Spinner'
 
@@ -15,7 +15,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Props)
   return (
     <SearchPage query={query}>
       <Suspense key={query} fallback={<Spinner />}>
-        <PostList query={query} searchResults />
+        <PostListQuery query={query} />
       </Suspense>
     </SearchPage>
   )

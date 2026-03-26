@@ -2,8 +2,8 @@
 
 import clsx from 'clsx'
 import Link from 'next/link'
-import { useFormStatus } from 'react-dom'
 
+// import { useFormStatus } from 'react-dom'
 import { Spinner } from '@/components/Spinner'
 
 import s from './Button.module.scss'
@@ -18,7 +18,7 @@ interface CommonProps {
 interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   as: 'link'
   disabled?: never
-  pending?: never
+  pending?: boolean
   external?: boolean
   type?: never
   onClick?: never
@@ -41,8 +41,8 @@ type ConditionalProps = LinkProps | ButtonProps
 type Props = CommonProps & ConditionalProps
 
 export function Button(props: Props) {
-  const { className, as, label, type = 'button', href, disabled, form, formAction, onClick } = props
-  const { pending } = useFormStatus()
+  const { className, as, label, type = 'button', href, pending, disabled, form, formAction, onClick } = props
+  // const { pending } = useFormStatus()
   const variant: string = props.variant.toLowerCase()
 
   return as !== 'link' ? (
@@ -58,7 +58,7 @@ export function Button(props: Props) {
       {pending ? <Spinner small /> : null}
     </button>
   ) : (
-    <Link className={clsx(s.button, s[variant], className)} href={href || '/'}>
+    <Link className={clsx(s.button, s[variant], pending && s.isDisabled, className)} href={href || '/'}>
       {label}
     </Link>
   )

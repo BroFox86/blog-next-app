@@ -1,11 +1,13 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useTransition } from 'react'
 
 import { useAlert } from '@/app/_components/AlertProvider'
-import { deletePostAction } from '@/app/posts/[slug]/actions'
 import { Button } from '@/components/Button'
+import { deletePostAction } from '@/lib/actions'
 import type { Post } from '@/lib/generated/prisma/client'
+import { setErrorAlert, setRemovePostAlert } from '@/utils/alerts'
 
 import s from './Post.module.scss'
 import { PostDeleteModal } from './PostDeleteModal'
@@ -16,28 +18,39 @@ type Props = {
 
 export function PostViewForm({ post }: Props) {
   const { id, title, slug } = post
+  const [isPending, startTransition] = useTransition()
   const { dispatch } = useAlert()
   const router = useRouter()
 
-  async function formAction() {
-    const handleFormAction = deletePostAction.bind(null, id)
-    const alertData = await handleFormAction()
+  async function handleRemove() {
+    try {
+      startTransition(async () => {
+        const title = await deletePostAction(id)
 
-    if (!alertData) return
+        setRemovePostAlert(dispatch, title)
 
-    dispatch({ type: 'ADD_ALERT', payload: alertData })
+        router.push('/')
+      })
+    } catch (e) {
+      const errorMessage = e instanceof Error ? e.message : 'Unknown error'
 
-    if (alertData.type === 'error') {
-      return
+      console.log(errorMessage)
+
+      setErrorAlert(dispatch, 'Error: Unable to remove the post.')
     }
-
-    router.push('/')
   }
 
   return (
-    <form className={s.buttons} action={formAction} id='delete-post-form'>
-      <Button className={s.button} as='link' href={`/posts/${slug}?edit=true`} label='Edit' variant='primary' />
-      <PostDeleteModal postTitle={title} />
+    <form className={s.buttons}>
+      <Button
+        className={s.button}
+        as='link'
+        href={`/posts/${slug}?edit=true`}
+        label='Edit'
+        variant='primary'
+        pending={isPending}
+      />
+      <PostDeleteModal postTitle={title} pending={isPending} onRemovePost={handleRemove} />
     </form>
   )
 }

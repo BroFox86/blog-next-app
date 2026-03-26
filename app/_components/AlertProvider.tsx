@@ -1,7 +1,7 @@
 'use client'
 
+import type { Dispatch } from 'react'
 import { createContext, useContext, useReducer } from 'react'
-import { Dispatch } from 'react'
 
 import type { AlertProps } from '@/components/Alert'
 
@@ -17,7 +17,7 @@ type AlertState = {
   alerts: AlertData[]
 }
 
-type AlertAction = { type: 'ADD_ALERT'; payload: AlertData } | { type: 'REMOVE_ALERT'; payload: string }
+export type AlertAction = { type: 'ADD_ALERT'; payload: AlertData } | { type: 'REMOVE_ALERT'; payload: string }
 
 type AlertContextType = {
   state: AlertState

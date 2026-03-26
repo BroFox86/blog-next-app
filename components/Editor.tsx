@@ -3,22 +3,18 @@
 import 'react-quill-new/dist/quill.snow.css'
 
 import dynamic from 'next/dynamic'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
+import ReactQuill from 'react-quill-new'
 
 import s from './Editor.module.scss'
 import { Spinner } from './Spinner'
 
 type Props = {
   content?: string
+  onChange: ReactQuill.ReactQuillProps['onChange']
 }
 
-export function Editor(props: Props) {
-  const [content, setContent] = useState(props.content || '')
-
-  function handleSetContent(value: string) {
-    setContent(value)
-  }
-
+export function Editor({ content, onChange }: Props) {
   const ReactQuill = useMemo(
     () =>
       dynamic(() => import('react-quill-new'), {
@@ -30,8 +26,7 @@ export function Editor(props: Props) {
 
   return (
     <div className={s.wrapper}>
-      <ReactQuill className={s.editor} theme='snow' value={content} onChange={handleSetContent} />
-      <input type='hidden' name='content' value={content} />
+      <ReactQuill className={s.editor} theme='snow' value={content} onChange={onChange} />
     </div>
   )
 }

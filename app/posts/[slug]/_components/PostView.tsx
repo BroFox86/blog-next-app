@@ -1,7 +1,7 @@
 import parse from 'html-react-parser'
 
 import type { Post } from '@/lib/generated/prisma/client'
-import { formatDate } from '@/utils/formatDate'
+import { formatDate } from '@/utils/format'
 
 import s from './Post.module.scss'
 import { PostViewForm } from './PostViewForm'

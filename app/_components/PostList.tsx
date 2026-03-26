@@ -1,35 +1,57 @@
-import { getAllPostsAction } from '@/app/actions'
+import { PostListError } from '@/app/_components/PostListError'
 import { searchPostAction } from '@/app/search/actions'
 import { PostPreview } from '@/components/PostPreview'
+import { getAllPostsAction } from '@/lib/actions'
 
 import s from './PostList.module.scss'
 
-type Props = {
-  searchResults?: boolean
-  query?: string
-}
-
-export async function PostList({ query, searchResults }: Props) {
+export async function PostList() {
   let posts
 
-  if (searchResults && query) {
-    posts = await searchPostAction(query)
-  } else {
+  try {
     posts = await getAllPostsAction()
+  } catch (e) {
+    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+
+    return <PostListError error={errorMessage} />
   }
 
-  if (!posts || posts.length === 0) {
-    return <p className={s.noPostsMessage}>{query ? 'Found 0 matches.' : 'There are no posts...'}</p>
-  }
-
-  if (searchResults && !query) {
-    return <p className={s.noPostsMessage}>No query, no results...</p>
+  if (!posts.length) {
+    return <p className={s.noPostsMessage}>There are no posts...</p>
   }
 
   return (
     <div className={s.root}>
-      {posts.map((post, index) => (
-        <PostPreview key={index} post={post} />
+      {posts.map(post => (
+        <PostPreview key={post.id} post={post} />
+      ))}
+    </div>
+  )
+}
+
+export async function PostListQuery({ query }: { query?: string }) {
+  let posts
+
+  if (!query) {
+    return <p className={s.noPostsMessage}>No query, no results...</p>
+  }
+
+  try {
+    posts = await searchPostAction(query)
+  } catch (e) {
+    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+
+    return <PostListError error={errorMessage} />
+  }
+
+  if (!posts.length) {
+    return <p className={s.noPostsMessage}>Found 0 matches.</p>
+  }
+
+  return (
+    <div className={s.root}>
+      {posts.map(post => (
+        <PostPreview key={post.id} post={post} />
       ))}
     </div>
   )

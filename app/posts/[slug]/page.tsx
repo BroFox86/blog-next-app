@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { notFound } from 'next/navigation'
 
-import { getPost } from '@/app/posts/[slug]/actions'
+import { getPost } from '@/lib/actions'
 
 import { Post } from './_components/Post'
 

@@ -11,7 +11,7 @@ export type AlertProps = {
   children: React.ReactNode
 }
 
-export function Alert({ className, type, timer = 6000, onClose, children }: AlertProps) {
+export function Alert({ className, type, timer = 8000, onClose, children }: AlertProps) {
   const [isVisible, setIsVisible] = useState(false)
   const alertRef = useRef<HTMLDivElement>(null)
 

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
-import { handleSearchQuery } from '@/app/actions'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
+import { handleSearchQuery } from '@/lib/actions'
 
 import s from './Header.module.scss'
 

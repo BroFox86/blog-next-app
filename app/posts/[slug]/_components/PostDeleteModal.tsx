@@ -7,7 +7,13 @@ import { Modal } from '@/components/modal/Modal'
 
 import s from './PostDeleteModal.module.scss'
 
-export function PostDeleteModal({ postTitle }: { postTitle: string }) {
+type Props = {
+  postTitle: string
+  pending: boolean
+  onRemovePost: React.MouseEventHandler
+}
+
+export function PostDeleteModal({ postTitle, pending, onRemovePost }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   function handleToggleModal() {
@@ -16,13 +22,13 @@ export function PostDeleteModal({ postTitle }: { postTitle: string }) {
 
   return (
     <>
-      <Button className={s.button} label='Delete' variant='primary' onClick={handleToggleModal} />
+      <Button className={s.button} label='Delete' variant='primary' onClick={handleToggleModal} pending={pending} />
       <Modal open={isModalOpen} variant='small' animation='zoomIn' onClose={handleToggleModal} label='Confirmation'>
         <p className={s.text}>
           <span>Delete {postTitle}?</span>
         </p>
         <div className={s.buttonWrapper}>
-          <Button label='Confirm' type='submit' variant='danger' form='delete-post-form' />
+          <Button label='Confirm' variant='danger' pending={pending} onClick={onRemovePost} />
         </div>
       </Modal>
     </>
