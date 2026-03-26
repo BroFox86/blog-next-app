@@ -2,6 +2,7 @@
   padding-top: 40px;
   padding-bottom: calc(40px + env(safe-area-inset-bottom));
   background: var(--bg-overlay);
+  font-size: var(--font-size-small);
 
   @media print {
     display: none;

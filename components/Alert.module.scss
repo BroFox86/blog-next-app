@@ -2,9 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 13px 16px;
+  padding: 15px 20px;
   opacity: 0;
   border-radius: var(--border-radius-medium);
+  overflow-wrap: anywhere;
   transform: scale(0.9);
   will-change: transform;
 
@@ -44,15 +45,15 @@
   background: transparent;
 
   @include on-hocus {
-    .root.success & {
+    .root.primary & {
       background: #badbcc;
     }
 
-    .root.warning & {
+    .root.attention & {
       background: #ffecb5;
     }
 
-    .root.danger & {
+    .root.error & {
       background: #f5c2c7;
     }
   }
