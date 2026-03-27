@@ -14,6 +14,29 @@ type Props = {
   onChange: ReactQuill.ReactQuillProps['onChange']
 }
 
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    [{ indent: '-1' }, { indent: '+1' }],
+    // ['link', 'image'],
+    ['link'],
+    ['clean']
+  ],
+  keyboard: {
+    bindings: {
+      tab: {
+        key: 9,
+        handler: function () {
+          // Allows the Tab key to move focus to the next element
+          return true
+        }
+      }
+    }
+  }
+}
+
 export function Editor({ content, onChange }: Props) {
   const ReactQuill = useMemo(
     () =>
@@ -26,7 +49,7 @@ export function Editor({ content, onChange }: Props) {
 
   return (
     <div className={s.wrapper}>
-      <ReactQuill className={s.editor} theme='snow' value={content} onChange={onChange} />
+      <ReactQuill className={s.editor} theme='snow' modules={modules} value={content} onChange={onChange} />
     </div>
   )
 }
