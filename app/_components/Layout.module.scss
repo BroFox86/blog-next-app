@@ -13,7 +13,7 @@
 }
 
 .alerts {
-  @include position(top, calc(var(--header-height) + 10px), fixed);
+  @include position(top, calc(var(--header-height) + 15px), fixed);
   @include container;
 
   z-index: 900;

@@ -9,6 +9,7 @@
   --bg-color: white;
   --bg-surface: white;
   --bg-overlay: ghostwhite;
+  --bg-skeleton: #eee;
 
   --text-color: black;
 
@@ -50,6 +51,7 @@
     --bg-color: #121212;
     --bg-surface: #1e1e1e;
     --bg-overlay: #2c2c2c;
+    --bg-skeleton: var(--bg-overlay);
 
     --text-color: white;
 

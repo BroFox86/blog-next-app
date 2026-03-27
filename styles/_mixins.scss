@@ -165,7 +165,7 @@
 
 @mixin skeleton-styles($radius: 4px) {
   border-radius: $radius;
-  background: #eee;
+  background: var(--bg-skeleton);
   color: transparent;
   cursor: none;
   pointer-events: none;

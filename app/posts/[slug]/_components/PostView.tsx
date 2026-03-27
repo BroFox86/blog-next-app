@@ -25,9 +25,7 @@ export function PostView({ post }: Props) {
           {/* <span className={s.author}>Guest</span> */}
         </p>
       </header>
-      <hr />
-      <div className='postBody'>{parse(content)}</div>
-      <hr />
+      <div className={s.postBody}>{parse(content)}</div>
       <PostViewForm post={post} />
     </>
   )
