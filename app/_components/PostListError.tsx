@@ -7,7 +7,7 @@ import { setErrorAlert } from '@/utils/alerts'
 
 import s from './PostList.module.scss'
 
-export function PostListError({ error }: { error: string }) {
+export function PostListError() {
   const hasFired = useRef(false)
   const { dispatch } = useAlert()
 
@@ -17,9 +17,7 @@ export function PostListError({ error }: { error: string }) {
     hasFired.current = true
 
     setErrorAlert(dispatch, 'Error: Unable to load posts.')
-
-    console.log(error)
-  }, [dispatch, error])
+  }, [dispatch])
 
   return <p className={s.noPostsMessage}>Something went wrong. Please try again later.</p>
 }

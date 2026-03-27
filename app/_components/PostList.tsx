@@ -13,7 +13,9 @@ export async function PostList() {
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error'
 
-    return <PostListError error={errorMessage} />
+    console.log(errorMessage)
+
+    return <PostListError />
   }
 
   if (!posts.length) {
@@ -41,7 +43,9 @@ export async function PostListQuery({ query }: { query?: string }) {
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error'
 
-    return <PostListError error={errorMessage} />
+    console.log(errorMessage)
+
+    return <PostListError />
   }
 
   if (!posts.length) {

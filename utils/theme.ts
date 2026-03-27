@@ -1,4 +1,4 @@
-export function loadThemeFromStorage() {
+export function getThemeFromStorage() {
   const serializedState = sessionStorage.getItem('theme')
 
   if (!serializedState) return
@@ -6,13 +6,13 @@ export function loadThemeFromStorage() {
   return JSON.parse(serializedState)
 }
 
-export function saveThemeToStorage(state: object) {
+export function setThemeToStorage(state: object) {
   const serializedState = JSON.stringify(state)
 
   sessionStorage.setItem('theme', serializedState)
 }
 
-export function toggleThemeClassName(isDarkTheme: boolean) {
+export function setDarkTheme(isDarkTheme: boolean) {
   const root = document.documentElement
 
   if (isDarkTheme) {
@@ -22,7 +22,7 @@ export function toggleThemeClassName(isDarkTheme: boolean) {
   }
 }
 
-export function isDarkThemeCheck() {
+export function checkDarkTheme() {
   const root = document.documentElement
 
   if (root.classList.contains('hasDarkTheme')) {

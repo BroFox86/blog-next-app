@@ -3,9 +3,9 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 
-import { loadThemeFromStorage } from '@/utils/theme'
-import { toggleThemeClassName } from '@/utils/theme'
-import { saveThemeToStorage } from '@/utils/theme'
+import { getThemeFromStorage } from '@/utils/theme'
+import { setDarkTheme } from '@/utils/theme'
+import { setThemeToStorage } from '@/utils/theme'
 
 import s from './ThemeSwitch.module.scss'
 
@@ -15,21 +15,21 @@ export function ThemeSwitch() {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const savedTheme = loadThemeFromStorage()
+    const savedTheme = getThemeFromStorage()
 
     requestAnimationFrame(() => {
       setIsDarkTheme(savedTheme ? savedTheme.dark : mediaQuery.matches)
-      toggleThemeClassName(savedTheme ? savedTheme.dark : mediaQuery.matches)
+      setDarkTheme(savedTheme ? savedTheme.dark : mediaQuery.matches)
 
       setIsMounted(true)
     })
 
     function handleChangeTheme(e: MediaQueryListEvent) {
-      if (loadThemeFromStorage()) {
+      if (getThemeFromStorage()) {
         return
       }
 
-      toggleThemeClassName(!!e.matches)
+      setDarkTheme(!!e.matches)
       setIsDarkTheme(!!e.matches)
     }
 
@@ -40,9 +40,9 @@ export function ThemeSwitch() {
 
   function handleClick() {
     setIsDarkTheme(!isDarkTheme)
-    toggleThemeClassName(!isDarkTheme)
+    setDarkTheme(!isDarkTheme)
     // Keep latest user-chosen theme in session storage.
-    saveThemeToStorage({ dark: !isDarkTheme })
+    setThemeToStorage({ dark: !isDarkTheme })
   }
 
   if (!isMounted) return
