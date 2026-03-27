@@ -1,7 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { Alert } from '@/components/Alert'
@@ -22,7 +21,7 @@ export function AlertBox() {
     dispatch({ type: 'REMOVE_ALERT', payload: id })
   }
 
-  const alerts = state.alerts.map(item => {
+  const elements = state.alerts.map(item => {
     return (
       <Alert key={item.id} type={item.type} onClose={() => handleClose(item.id)}>
         {item.message}
@@ -36,5 +35,5 @@ export function AlertBox() {
 
   if (!container) return
 
-  return createPortal(alerts, container)
+  return createPortal(elements, container)
 }

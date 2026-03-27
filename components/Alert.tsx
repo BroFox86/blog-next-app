@@ -1,11 +1,13 @@
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 
+import { useAlert } from '@/app/_components/AlertProvider'
+
 import s from './Alert.module.scss'
 
 export type AlertProps = {
   className?: string
-  type: 'primary' | 'attention' | 'error'
+  type: 'success' | 'warning' | 'error'
   timer?: number
   onClose?: () => void
   children: React.ReactNode
@@ -13,6 +15,7 @@ export type AlertProps = {
 
 export function Alert({ className, type, timer = 8000, onClose, children }: AlertProps) {
   const [isVisible, setIsVisible] = useState(false)
+  const { dispatch } = useAlert()
   const alertRef = useRef<HTMLDivElement>(null)
 
   function handleClosing() {
@@ -23,6 +26,12 @@ export function Alert({ className, type, timer = 8000, onClose, children }: Aler
     requestAnimationFrame(() => {
       setIsVisible(true)
     })
+
+    dispatch({ type: 'PENDING', payload: true })
+
+    setTimeout(() => {
+      dispatch({ type: 'PENDING', payload: false })
+    }, 2000)
 
     const timeout = setTimeout(() => {
       handleClosing()

@@ -5,14 +5,14 @@ import type { AlertAction } from '@/app/_components/AlertProvider'
 export function setFillOutAlert(dispatch: Dispatch<AlertAction>) {
   dispatch({
     type: 'ADD_ALERT',
-    payload: { message: 'Fill out all the fields', type: 'error', id: `${Date.now()}` }
+    payload: { message: 'Fill out at least one field.', type: 'error', id: `${Date.now()}` }
   })
 }
 
 export function setNoChangesAlert(dispatch: Dispatch<AlertAction>) {
   dispatch({
     type: 'ADD_ALERT',
-    payload: { message: 'There are no changes', type: 'attention', id: `${Date.now()}` }
+    payload: { message: 'There are no changes.', type: 'warning', id: `${Date.now()}` }
   })
 }
 
@@ -26,20 +26,20 @@ export function setErrorAlert(dispatch: Dispatch<AlertAction>, errorMessage: str
 export function setAddPostAlert(dispatch: Dispatch<AlertAction>, title: string) {
   dispatch({
     type: 'ADD_ALERT',
-    payload: { message: `The post ${title} has been added`, type: 'primary', id: `${Date.now()}` }
+    payload: { message: `The post ${title} has been added.`, type: 'success', id: `${Date.now()}` }
   })
 }
 
 export function setUpdatePostAlert(dispatch: Dispatch<AlertAction>, title: string) {
   dispatch({
     type: 'ADD_ALERT',
-    payload: { message: `The post ${title} has been updated`, type: 'primary', id: `${Date.now()}` }
+    payload: { message: `The post ${title} has been updated.`, type: 'success', id: `${Date.now()}` }
   })
 }
 
 export function setRemovePostAlert(dispatch: Dispatch<AlertAction>, title: string) {
   dispatch({
     type: 'ADD_ALERT',
-    payload: { message: `The post ${title} has been removed.`, type: 'attention', id: `${Date.now()}` }
+    payload: { message: `The post ${title} has been removed.`, type: 'warning', id: `${Date.now()}` }
   })
 }

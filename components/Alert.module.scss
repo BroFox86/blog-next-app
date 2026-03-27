@@ -20,12 +20,12 @@
     transform: scale(1);
   }
 
-  &.primary {
+  &.success {
     background: #d1e7dd;
     color: #0f5132;
   }
 
-  &.attention {
+  &.warning {
     background: #fff3cd;
     color: #664d03;
   }
@@ -45,11 +45,11 @@
   background: transparent;
 
   @include on-hocus {
-    .root.primary & {
+    .root.success & {
       background: #badbcc;
     }
 
-    .root.attention & {
+    .root.warning & {
       background: #ffecb5;
     }
 

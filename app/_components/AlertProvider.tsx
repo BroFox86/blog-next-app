@@ -15,9 +15,13 @@ export type AlertData = {
 
 type AlertState = {
   alerts: AlertData[]
+  isPending: boolean
 }
 
-export type AlertAction = { type: 'ADD_ALERT'; payload: AlertData } | { type: 'REMOVE_ALERT'; payload: string }
+export type AlertAction =
+  | { type: 'ADD_ALERT'; payload: AlertData }
+  | { type: 'REMOVE_ALERT'; payload: string }
+  | { type: 'PENDING'; payload: boolean }
 
 type AlertContextType = {
   state: AlertState
@@ -29,6 +33,7 @@ const AlertContext = createContext<AlertContextType | null>(null)
 function reducer(state: AlertState, action: AlertAction): AlertState {
   switch (action.type) {
     case 'ADD_ALERT':
+      if (state.isPending) return state
       return {
         ...state,
         alerts: [...state.alerts, action.payload]
@@ -38,6 +43,11 @@ function reducer(state: AlertState, action: AlertAction): AlertState {
         ...state,
         alerts: state.alerts.filter(alert => alert.id !== action.payload)
       }
+    case 'PENDING':
+      return {
+        ...state,
+        isPending: action.payload
+      }
     default:
       return state
   }
@@ -45,7 +55,8 @@ function reducer(state: AlertState, action: AlertAction): AlertState {
 
 export function AlertProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
-    alerts: []
+    alerts: [],
+    isPending: false
   })
 
   return (

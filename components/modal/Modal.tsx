@@ -13,7 +13,7 @@ type Props = {
   label: string
   animation: 'zoomIn'
   open: boolean
-  onClose: React.MouseEventHandler
+  onClose: () => void
   children: React.ReactNode
 }
 
@@ -26,6 +26,12 @@ export function Modal({ className, label, variant, animation, open, onClose, chi
 
   useScrollLock(open, 'isFixedByModal')
 
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.key !== 'Escape') return
+
+    onClose()
+  }
+
   if (!isMounted) {
     return null
   }
@@ -37,6 +43,7 @@ export function Modal({ className, label, variant, animation, open, onClose, chi
         role='dialog'
         aria-modal='true'
         aria-labelledby='modalHeading'
+        onKeyDown={handleKeyDown}
       >
         <div
           className={clsx(s.inner, isVisible && s.isVisible)}
