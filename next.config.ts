@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
   sassOptions: {
     includePaths: [join(process.cwd(), 'styles')],
     prependData: `@use "@/styles/_variables.scss" as *; @use "@/styles/_mixins.scss" as *;`
-  }
+  },
+  serverExternalPackages: ['sanitize-html']
 }
 
 export default nextConfig

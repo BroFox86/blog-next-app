@@ -1,24 +1,13 @@
 'use server'
 
-import createDOMPurify from 'dompurify'
-import { JSDOM } from 'jsdom'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import * as z from 'zod'
 
 import { db } from '@/lib/db'
+import { getSafeHtml } from '@/utils/format'
 import { getSluggedText } from '@/utils/format'
 import { wait } from '@/utils/wait'
-
-const window = new JSDOM('').window
-const purify = createDOMPurify(window)
-
-const sanitizeHtml = async (html: string): Promise<string> => {
-  return purify.sanitize(html, {
-    ALLOWED_TAGS: ['h1', 'h2', 'p', 'strong', 'em', 'ul', 'ol', 'li', 'blockquote', 's', 'u'],
-    ALLOWED_ATTR: ['class', 'href', 'target', 'rel', 'data-list']
-  })
-}
 
 const PostSchema = z.object({
   slug: z.string(),
@@ -73,7 +62,7 @@ export async function addPostAction(rawTitle: string, rawContent: string) {
       data: {
         slug: slug,
         title: title,
-        content: await sanitizeHtml(content),
+        content: await getSafeHtml(content),
         imageUrl: '/images/cover-7.jpg'
       }
     })
@@ -119,7 +108,7 @@ export async function updatePostAction(id: number, rawTitle: string, rawContent:
       data: {
         slug: slug,
         title: title,
-        content: await sanitizeHtml(content)
+        content: await getSafeHtml(content)
       }
     })
   } catch (e) {
