@@ -5,7 +5,9 @@ import { SearchPage } from '@/app/search/_components/SearchPage'
 import { Spinner } from '@/components/Spinner'
 
 type Props = {
-  searchParams: { [key: string]: string | undefined }
+  searchParams: {
+    query: string
+  }
 }
 
 export default async function Page({ searchParams: searchParamsPromise }: Props) {

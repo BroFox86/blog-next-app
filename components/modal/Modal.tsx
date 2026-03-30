@@ -22,7 +22,7 @@ export function Modal({ className, label, variant, animation, open, onClose, chi
   const [isVisible, setIsVisible] = useState(false)
   const initialFocusRef = useRef<HTMLElement | null>(null)
 
-  useModalLogic(open, setIsMounted, setIsVisible, initialFocusRef)
+  useModalLogic({ open, setIsMounted, setIsVisible, initialFocusRef })
 
   useScrollLock(open, 'isFixedByModal')
 
@@ -47,7 +47,7 @@ export function Modal({ className, label, variant, animation, open, onClose, chi
       >
         <div
           className={clsx(s.inner, isVisible && s.isVisible)}
-          onTransitionEnd={e => handleTransitionEnd(e, isVisible, setIsMounted, initialFocusRef)}
+          onTransitionEnd={e => handleTransitionEnd({ e, isVisible, setIsMounted, initialFocusRef })}
         >
           <header className={s.header}>
             <h2 className={s.heading} id='modalHeading'>

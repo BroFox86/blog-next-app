@@ -1,1 +1,1 @@
-export const wait = async (ms: number = 30) => new Promise(resolve => setTimeout(resolve, ms))
+export const wait = async (ms: number) => new Promise(resolve => setTimeout(resolve, ms))

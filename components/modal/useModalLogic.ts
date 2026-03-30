@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
 import { Dispatch, SetStateAction } from 'react'
 
-export function useModalLogic(
-  open: boolean,
-  setIsMounted: Dispatch<SetStateAction<boolean>>,
-  setIsVisible: Dispatch<SetStateAction<boolean>>,
+type ModalLogicProps = {
+  open: boolean
+  setIsMounted: Dispatch<SetStateAction<boolean>>
+  setIsVisible: Dispatch<SetStateAction<boolean>>
   initialFocusRef: React.Ref<HTMLElement | null>
-) {
+}
+
+export function useModalLogic({ open, setIsMounted, setIsVisible, initialFocusRef }: ModalLogicProps) {
   useEffect(() => {
     if (!open) {
       setIsVisible(false)
@@ -41,12 +43,14 @@ export function useModalLogic(
   }, [open, setIsMounted, setIsVisible, initialFocusRef])
 }
 
-export function handleTransitionEnd(
-  e: React.TransitionEvent<HTMLDivElement>,
-  isVisible: boolean,
-  setIsMounted: Dispatch<SetStateAction<boolean>>,
+type TransitionEndProps = {
+  e: React.TransitionEvent<HTMLDivElement>
+  isVisible: boolean
+  setIsMounted: Dispatch<SetStateAction<boolean>>
   initialFocusRef: React.Ref<HTMLElement | null>
-) {
+}
+
+export function handleTransitionEnd({ e, isVisible, setIsMounted, initialFocusRef }: TransitionEndProps) {
   if (isVisible || e.propertyName !== 'transform' || e.target !== e.currentTarget) {
     return
   }

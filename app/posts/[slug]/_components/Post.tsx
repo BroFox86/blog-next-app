@@ -7,7 +7,9 @@ import { PostEdit } from './PostEdit'
 import { PostView } from './PostView'
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: {
+    edit: string
+  }
   post: Post
 }
 

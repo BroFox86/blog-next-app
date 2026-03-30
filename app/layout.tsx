@@ -6,6 +6,8 @@ import '@/styles/quill.css'
 import { Metadata, Viewport } from 'next'
 import { Roboto } from 'next/font/google'
 
+import { themeScript } from '@/utils/theme'
+
 import { Layout } from './_components/Layout'
 
 export const viewport: Viewport = {
@@ -47,33 +49,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (() => {
-                const hasLocalTheme = JSON.parse(sessionStorage.getItem('theme'));
-                const hasMediaDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-                if (hasLocalTheme && hasLocalTheme.dark) {
-                  document.documentElement.classList.add('hasDarkTheme');
-
-                  return;
-                }
-
-                if (hasLocalTheme) {
-                  return;
-                }
-
-                if (hasMediaDarkTheme) {
-                  document.documentElement.classList.add('hasDarkTheme');
-                }
-              })()
-            `
-          }}
-        />
-      </head>
       <html className={robotoFont.variable} lang='en' suppressHydrationWarning>
+        <head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: themeScript
+            }}
+          />
+        </head>
         <Layout>{children}</Layout>
       </html>
     </>

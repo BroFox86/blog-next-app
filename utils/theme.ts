@@ -1,3 +1,24 @@
+export const themeScript = `
+  (() => {
+    const hasLocalTheme = JSON.parse(sessionStorage.getItem('theme'));
+    const hasMediaDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (hasLocalTheme && hasLocalTheme.dark) {
+      document.documentElement.classList.add('hasDarkTheme');
+
+      return;
+    }
+
+    if (hasLocalTheme) {
+      return;
+    }
+
+    if (hasMediaDarkTheme) {
+      document.documentElement.classList.add('hasDarkTheme');
+    }
+  })()
+`
+
 export function getThemeFromStorage() {
   const serializedState = sessionStorage.getItem('theme')
 

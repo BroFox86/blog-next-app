@@ -7,7 +7,9 @@ import { Post } from './_components/Post'
 
 export type Props = {
   params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: {
+    edit: string
+  }
 }
 
 export default async function Page({ params, searchParams: searchParamsPromise }: Props) {
