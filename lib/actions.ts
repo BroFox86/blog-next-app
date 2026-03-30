@@ -5,14 +5,14 @@ import { redirect } from 'next/navigation'
 import * as z from 'zod'
 
 import { db } from '@/lib/db'
-import { getSafeHtml } from '@/utils/format'
-import { getSluggedText } from '@/utils/format'
+import { TITLE_MAX_LENGTH, WAIT_DURATION } from '@/utils/constants'
+import { getSafeHtml, getSluggedText } from '@/utils/format'
 import { wait } from '@/utils/wait'
 
 const PostSchema = z.object({
   id: z.number().optional(),
   slug: z.string(),
-  title: z.string().min(2).max(100).trim(),
+  title: z.string().min(2).max(TITLE_MAX_LENGTH).trim(),
   content: z.string()
 })
 
@@ -21,7 +21,7 @@ const SearchSchema = z.object({
 })
 
 export async function getAllPostsAction() {
-  await wait(500)
+  await wait(WAIT_DURATION)
 
   try {
     return {
@@ -154,7 +154,7 @@ export async function handleSearchQuery(formData: FormData) {
 }
 
 export async function searchPostAction(query: string) {
-  await wait(500)
+  await wait(WAIT_DURATION)
 
   try {
     return {

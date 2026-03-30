@@ -2,13 +2,13 @@
 
 import { useState, useTransition } from 'react'
 
-import { useAlert } from '@/app/_components/AlertProvider'
 import { Button } from '@/components/Button'
 import { Editor } from '@/components/Editor'
 import { Input } from '@/components/Input'
 import { addPostAction } from '@/lib/actions'
 import { TITLE_MAX_LENGTH } from '@/utils/constants'
 import { getCleanText } from '@/utils/format'
+import { useNotify } from '@/utils/useNotify'
 
 import s from './HomePage.module.scss'
 
@@ -16,13 +16,13 @@ export function HomePostForm() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [isPending, startTransition] = useTransition()
-  const { dispatch } = useAlert()
+  const notify = useNotify()
 
   async function handleAddPost() {
     const textContent = getCleanText(content)
 
     if (title === '' || textContent === '') {
-      setFillOutAlert(dispatch)
+      notify.fillOut()
       return
     }
 
@@ -30,11 +30,11 @@ export function HomePostForm() {
       const result = await addPostAction(title, content)
 
       if (result?.error) {
-        setErrorAlert(dispatch, 'Error: Unable to add new post.')
+        notify.error('Error: Unable to add new post.')
         return
       }
 
-      setAddPostAlert(dispatch, title)
+      notify.addPost(title)
 
       setTitle('')
       setContent('')
