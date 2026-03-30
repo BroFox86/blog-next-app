@@ -1,7 +1,6 @@
 import { PostListError } from '@/app/_components/PostListError'
-import { searchPostAction } from '@/app/search/actions'
 import { PostPreview } from '@/components/PostPreview'
-import { getAllPostsAction } from '@/lib/actions'
+import { getAllPostsAction, searchPostAction } from '@/lib/actions'
 
 import s from './PostList.module.scss'
 
