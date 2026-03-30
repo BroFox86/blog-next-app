@@ -26,22 +26,19 @@ export function HomePostForm() {
       return
     }
 
-    try {
-      startTransition(async () => {
-        await addPostAction(title, content)
-      })
+    startTransition(async () => {
+      const result = await addPostAction(title, content)
+
+      if (result?.error) {
+        setErrorAlert(dispatch, 'Error: Unable to add new post.')
+        return
+      }
 
       setAddPostAlert(dispatch, title)
 
       setTitle('')
       setContent('')
-    } catch (e) {
-      const errorMessage = e instanceof Error ? e.message : 'Unknown error'
-
-      console.log(errorMessage)
-
-      setErrorAlert(dispatch, 'Error: unable to add new post.')
-    }
+    })
   }
 
   return (
@@ -50,6 +47,7 @@ export function HomePostForm() {
         label='Post title'
         autoComplete='off'
         placeholder='Title text'
+        minLength={2}
         maxLength={100}
         value={title}
         onChange={e => setTitle(e.target.value)}

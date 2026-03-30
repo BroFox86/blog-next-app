@@ -5,19 +5,15 @@ import { getAllPostsAction, searchPostAction } from '@/lib/actions'
 import s from './PostList.module.scss'
 
 export async function PostList() {
-  let posts
+  const result = await getAllPostsAction()
 
-  try {
-    posts = await getAllPostsAction()
-  } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
-
-    console.log(errorMessage)
-
+  if (result?.error) {
     return <PostListError />
   }
 
-  if (!posts.length) {
+  const posts = result.posts
+
+  if (!posts?.length) {
     return <p className={s.noPostsMessage}>There are no posts...</p>
   }
 
@@ -31,23 +27,19 @@ export async function PostList() {
 }
 
 export async function PostListQuery({ query }: { query?: string }) {
-  let posts
-
   if (!query) {
     return <p className={s.noPostsMessage}>No query, no results...</p>
   }
 
-  try {
-    posts = await searchPostAction(query)
-  } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+  const result = await searchPostAction(query)
 
-    console.log(errorMessage)
-
+  if (result.error) {
     return <PostListError />
   }
 
-  if (!posts.length) {
+  const posts = result.posts
+
+  if (!posts?.length) {
     return <p className={s.noPostsMessage}>Found 0 matches.</p>
   }
 

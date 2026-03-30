@@ -39,21 +39,18 @@ export function PostEdit({ post }: Props) {
       return
     }
 
-    try {
-      startTransition(async () => {
-        const newSlug = await updatePostAction(id, title, content)
+    startTransition(async () => {
+      const result = await updatePostAction(id, title, content)
 
-        setUpdatePostAlert(dispatch, title)
+      if (result?.error) {
+        setErrorAlert(dispatch, 'Error: Unable to update the post')
+        return
+      }
 
-        router.push(`./${newSlug}`)
-      })
-    } catch (e) {
-      const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+      setUpdatePostAlert(dispatch, title)
 
-      console.log(errorMessage)
-
-      setErrorAlert(dispatch, 'Error: Unable to update the post')
-    }
+      router.push(`./${result.slug}`)
+    })
   }
 
   return (

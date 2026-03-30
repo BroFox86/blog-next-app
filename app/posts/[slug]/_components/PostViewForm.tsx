@@ -23,21 +23,18 @@ export function PostViewForm({ post }: Props) {
   const router = useRouter()
 
   async function handleRemove() {
-    try {
-      startTransition(async () => {
-        const title = await deletePostAction(id)
+    startTransition(async () => {
+      const result = await deletePostAction(id)
 
-        setRemovePostAlert(dispatch, title)
+      if (result?.error) {
+        setErrorAlert(dispatch, 'Error: Unable to remove the post.')
+        return
+      }
 
-        router.push('/')
-      })
-    } catch (e) {
-      const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+      setRemovePostAlert(dispatch, result.title || '')
 
-      console.log(errorMessage)
-
-      setErrorAlert(dispatch, 'Error: Unable to remove the post.')
-    }
+      router.push('/')
+    })
   }
 
   return (
