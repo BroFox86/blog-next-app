@@ -7,7 +7,7 @@ import { Button } from '@/components/Button'
 import { Editor } from '@/components/Editor'
 import { Input } from '@/components/Input'
 import { addPostAction } from '@/lib/actions'
-import { setAddPostAlert, setErrorAlert, setFillOutAlert } from '@/utils/alerts'
+import { TITLE_MAX_LENGTH } from '@/utils/constants'
 import { getCleanText } from '@/utils/format'
 
 import s from './HomePage.module.scss'
@@ -48,7 +48,7 @@ export function HomePostForm() {
         autoComplete='off'
         placeholder='Title text'
         minLength={2}
-        maxLength={100}
+        maxLength={TITLE_MAX_LENGTH}
         value={title}
         onChange={e => setTitle(e.target.value)}
         required

@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import { Button } from '@/components/Button'
 import type { Post } from '@/lib/generated/prisma/client'
+import { BREAKPOINTS } from '@/utils/constants'
 import { formatDate } from '@/utils/format'
 
 import s from './PostPreview.module.scss'
@@ -43,7 +44,7 @@ export function PostPreview({ post, skeleton }: Props) {
           <Image
             className={s.image}
             src={imageUrl || ''}
-            sizes='(min-width: 1200px) 356px, (min-width: 768px) 45vw, (min-width: 470px) 432px, 91vw'
+            sizes={`(min-width: ${BREAKPOINTS.xl}) 356px, (min-width: ${BREAKPOINTS.md}) 45vw, (min-width: 470px) 432px, 91vw`}
             loading='lazy'
             alt=''
             fill

@@ -9,7 +9,7 @@ import { Editor } from '@/components/Editor'
 import { Input } from '@/components/Input'
 import { updatePostAction } from '@/lib/actions'
 import type { Post } from '@/lib/generated/prisma/client'
-import { setErrorAlert, setFillOutAlert, setNoChangesAlert, setUpdatePostAlert } from '@/utils/alerts'
+import { TITLE_MAX_LENGTH } from '@/utils/constants'
 import { getCleanText } from '@/utils/format'
 
 import s from './Post.module.scss'
@@ -58,7 +58,7 @@ export function PostEdit({ post }: Props) {
       <Input
         label='Post title'
         defaultValue={postTitle}
-        maxLength={100}
+        maxLength={TITLE_MAX_LENGTH}
         autoComplete='off'
         placeholder=''
         onChange={e => setTitle(e.target.value)}

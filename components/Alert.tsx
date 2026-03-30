@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 
 import { useAlert } from '@/app/_components/AlertProvider'
+import { ALERT_DURATION, ALERT_PENDING_DURATION } from '@/utils/constants'
 
 import s from './Alert.module.scss'
 
@@ -13,7 +14,7 @@ export type AlertProps = {
   children: React.ReactNode
 }
 
-export function Alert({ className, type, timer = 8000, onClose, children }: AlertProps) {
+export function Alert({ className, type, onClose, children }: AlertProps) {
   const [isVisible, setIsVisible] = useState(false)
   const { dispatch } = useAlert()
   const alertRef = useRef<HTMLDivElement>(null)
@@ -31,11 +32,11 @@ export function Alert({ className, type, timer = 8000, onClose, children }: Aler
 
     setTimeout(() => {
       dispatch({ type: 'PENDING', payload: false })
-    }, 2000)
+    }, ALERT_PENDING_DURATION)
 
     const timeout = setTimeout(() => {
       handleClosing()
-    }, timer)
+    }, ALERT_DURATION)
 
     return () => clearTimeout(timeout)
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { handleSearchQuery } from '@/lib/actions'
+import { SEARCH_MAX_LENGTH } from '@/utils/constants'
 
 import s from './Header.module.scss'
 
@@ -25,8 +26,8 @@ export function Header() {
             type='text'
             name='search'
             minLength={2}
-            maxLength={30}
-            placeholder='Your search query'
+            maxLength={SEARCH_MAX_LENGTH}
+            placeholder='Search query'
             aria-label='Search'
             aria-describedby='submitButton'
           />
