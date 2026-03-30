@@ -10,7 +10,7 @@ import { getSluggedText } from '@/utils/format'
 import { wait } from '@/utils/wait'
 
 const PostSchema = z.object({
-  id: z.number(),
+  id: z.number().optional(),
   slug: z.string(),
   title: z.string().min(2).max(100).trim(),
   content: z.string()
