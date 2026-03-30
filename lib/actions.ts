@@ -10,8 +10,9 @@ import { getSluggedText } from '@/utils/format'
 import { wait } from '@/utils/wait'
 
 const PostSchema = z.object({
+  id: z.number(),
   slug: z.string(),
-  title: z.string().min(2).max(10).trim(),
+  title: z.string().min(2).max(100).trim(),
   content: z.string()
 })
 
@@ -85,8 +86,9 @@ export async function getPost(slug: string) {
   })
 }
 
-export async function updatePostAction(id: number, rawTitle: string, rawContent: string) {
+export async function updatePostAction(rawId: number, rawTitle: string, rawContent: string) {
   const result = PostSchema.safeParse({
+    id: rawId,
     slug: getSluggedText(rawTitle),
     title: rawTitle,
     content: rawContent
@@ -100,7 +102,7 @@ export async function updatePostAction(id: number, rawTitle: string, rawContent:
     return { error: errorMessage }
   }
 
-  const { slug, title, content } = result.data
+  const { id, slug, title, content } = result.data
 
   try {
     await db.post.update({
