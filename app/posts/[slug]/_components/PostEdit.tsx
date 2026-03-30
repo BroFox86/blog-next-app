@@ -9,7 +9,7 @@ import { Input } from '@/components/Input'
 import { updatePostAction } from '@/lib/actions'
 import type { Post } from '@/lib/generated/prisma/client'
 import { TITLE_MAX_LENGTH } from '@/utils/constants'
-import { getCleanText } from '@/utils/format'
+import { getCleanText, getSafeHtml } from '@/utils/format'
 import { useNotify } from '@/utils/useNotify'
 
 import s from './Post.module.scss'
@@ -27,14 +27,15 @@ export function PostEdit({ post }: Props) {
   const router = useRouter()
 
   async function handleUpdate() {
-    const textContent = getCleanText(content)
+    const cleanContent = getCleanText(content)
+    const safeContent = getSafeHtml(content)
 
-    if (title === '' || textContent === '') {
+    if (title === '' || cleanContent === '') {
       notify.fillOut()
       return
     }
 
-    if (title === postTitle && content === postContent) {
+    if (title === postTitle && safeContent === postContent) {
       notify.noChanges()
       return
     }
@@ -47,7 +48,7 @@ export function PostEdit({ post }: Props) {
         return
       }
 
-      notify.addPost(title)
+      notify.updatePost(title)
 
       router.push(`./${result.slug}`)
     })

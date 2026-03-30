@@ -19,9 +19,9 @@ export function HomePostForm() {
   const notify = useNotify()
 
   async function handleAddPost() {
-    const textContent = getCleanText(content)
+    const cleanContent = getCleanText(content)
 
-    if (title === '' || textContent === '') {
+    if (title === '' || cleanContent === '') {
       notify.fillOut()
       return
     }
