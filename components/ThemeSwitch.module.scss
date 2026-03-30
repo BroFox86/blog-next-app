@@ -1,11 +1,19 @@
 .root {
+  --diameter: 35px;
+
   flex-shrink: 0;
   position: relative;
-  width: 60px;
-  height: 30px;
+  width: 65px;
+  height: var(--diameter);
   margin-left: auto;
   border-radius: 30px;
   background: #555;
+
+  @media (min-width: $medium-screen) {
+    --diameter: 40px;
+
+    width: 70px;
+  }
 
   &:focus-visible {
     outline-color: white;
@@ -13,7 +21,7 @@
 }
 
 .slider {
-  @include circle(30px);
+  @include circle(var(--diameter));
 
   position: absolute;
   z-index: 2;
@@ -30,7 +38,7 @@
   }
 
   .root.hasDarkTheme & {
-    left: calc(100% - 30px);
+    left: calc(100% - var(--diameter));
   }
 }
 
@@ -38,13 +46,13 @@
 .sun {
   z-index: 1;
   font-size: 20px;
-  line-height: 31px;
+  line-height: var(--diameter);
 }
 
 .moon {
-  @include position(left, 3px);
+  @include position(left, 5px);
 }
 
 .sun {
-  @include position(right, 3px);
+  @include position(right, 5px);
 }
