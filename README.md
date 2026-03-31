@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 🛠 About This Project
 
-## Getting Started
+This application serves as a **technical showcase and a development playground**. While my primary commercial work is protected by **strict NDAs**, this project is an open-source demonstration of my architectural approach, coding standards, and mastery of the modern Next.js ecosystem.
 
-First, run the development server:
+It is designed as a **continuous learning sandbox** where I implement and refine advanced full-stack patterns—from rigorous server-side security to complex state management—ensuring every feature adheres to industry best practices before being applied in production environments.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### 🚀 Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A high-performance blogging platform demo built with Next.js 16+, focusing on server-side efficiency, robust data validation, and a seamless user experience.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Framework: Next.js (App Router) – Leveraging Server Components, Streaming, and Server Actions.
+- Database: Neon (PostgreSQL) – Serverless Postgres with instant branching.
+- ORM: Prisma – Type-safe database client and migrations.
+- Styling: SCSS Modules – Encapsulated styles with mixins and custom design tokens.
+- Validation: Zod – Strict schema validation for Server Actions.
+- Editor: ReactQuill – Powerful Rich Text editor for content creation.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## ✨ Key Features
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 🔔 Custom Alert System
 
-## Learn More
+Developed a specialized notification engine using React Context and useReducer.
 
-To learn more about Next.js, take a look at the following resources:
+- Anti-Spam Logic: Integrated isPending state blocking to prevent duplicate notifications during rapid interactions.
+- Smart Auto-dismiss: Alerts persist for 6 seconds with manual close support.
+- Flash Messages: Reliable notification delivery across page redirects via Server Actions and client-side state synchronization.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🌓 Advanced Theming (Dark Mode)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Zero-Flash Injection: Implemented a blocking inline script in the <head> to prevent the "white flash" (FOUC) during initial page loads.
+- Persistence: Automatic user preference synchronization with localStorage.
 
-## Deploy on Vercel
+### 🛡 Security & Server-Side Validation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- HTML Sanitization: All editor content is processed via sanitize-html on the server before database persistence, neutralizing XSS threats while maintaining formatting.
+- Schema Enforcement: Zod validation layers in Server Actions reject malformed requests that bypass client-side HTML restrictions.
+- End-to-End Type Safety: Used TypeScript interfaces and Prisma-generated types to ensure data consistency from the database layer to the UI components.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### ♿ Accessibility (WAI-ARIA)
+
+Designed with inclusivity and standard web patterns in mind:
+
+- Keyboard Navigation: Full support for Esc key modal closing and Tab focus management.
+- Semantic HTML: Strict adherence to HTML5 structural tags and ARIA roles.
+- Hydration Safety: Used suppressHydrationWarning to manage theme mismatches gracefully.
+
+### 🎨 Custom Design & Performance
+
+- Original UI: A unique visual identity built from scratch without pre-made UI kits.
+- Responsive Layout: Mobile-first architecture with custom breakpoints synchronized across JS and SCSS.
+- Layout Stability: Skeleton loaders prevent layout shifts (CLS) during data fetching.
