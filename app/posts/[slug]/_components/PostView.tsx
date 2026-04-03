@@ -11,18 +11,19 @@ type Props = {
 }
 
 export function PostView({ post }: Props) {
-  const { title, content, createdAt } = post
-  const createdAtString = createdAt.toISOString()
-  // const updatedAtString = updatedAt.toISOString()
+  const { title, content, createdAt, updatedAt } = post
+  const createdAtIso = createdAt.toISOString()
+  const updatedAtIso = updatedAt.toISOString()
+  const isEdited = updatedAt.getTime() > createdAt.getTime()
 
   return (
     <>
       <header>
         <h1 className={s.title}>{title}</h1>
         <p className={s.postInfo}>
-          {formatDate(createdAtString)}{' '}
-          {/* <span className={s.updatedAt}>{updatedAt && `(edited on ${formatDate(updatedAtString, true)})`}</span> by&nbsp; */}
-          {/* <span className={s.author}>Guest</span> */}
+          {formatDate(createdAtIso)}{' '}
+          <span className={s.updatedAt}>{isEdited && `(edited on ${formatDate(updatedAtIso)})`}</span> by{' '}
+          <span className={s.author}>Guest</span>
         </p>
       </header>
       <div className={s.postBody}>{parse(content)}</div>

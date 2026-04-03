@@ -24,24 +24,12 @@ export function getSluggedText(text: string) {
   return sluggedText + '-' + Math.random().toString(36).replace('0.', '').slice(0, 5)
 }
 
-export function formatDate(isoDate: string, isShort?: boolean) {
-  let options = {}
-
-  if (!isShort) {
-    options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    }
-  } else {
-    options = {
-      year: '2-digit',
-      month: '2-digit',
-      day: '2-digit'
-    }
-  }
-
-  const formatter = new Intl.DateTimeFormat('en-GB', options)
+export function formatDate(isoDate: string) {
+  const formatter = new Intl.DateTimeFormat('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
 
   return formatter.format(new Date(isoDate))
 }
