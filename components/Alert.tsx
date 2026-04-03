@@ -39,8 +39,7 @@ export function Alert({ className, type, onClose, children }: AlertProps) {
     }, ALERT_DURATION)
 
     return () => clearTimeout(timeout)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [dispatch])
 
   function handleTransitionEnd(e: React.TransitionEvent<HTMLDivElement>) {
     if (isVisible || e.target !== e.currentTarget) {

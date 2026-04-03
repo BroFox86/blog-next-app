@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { ReactPortal, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { useScrollLock } from '@/utils/useScrollLock'
@@ -17,7 +17,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export function Modal({ className, label, variant, animation, open, onClose, children }: Props): ReactPortal | null {
+export function Modal({ className, label, variant, animation, open, onClose, children }: Props) {
   const [isMounted, setIsMounted] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
   const initialFocusRef = useRef<HTMLElement | null>(null)
