@@ -8,7 +8,7 @@ export function useNotify() {
       dispatch({
         type: 'ADD_ALERT',
         payload: {
-          message: 'Fill out at least one field.',
+          message: 'Error: Fill out at least one field.',
           type: 'error',
           id: `${Date.now()}`
         }
@@ -17,7 +17,7 @@ export function useNotify() {
     noChanges: () => {
       dispatch({
         type: 'ADD_ALERT',
-        payload: { message: 'There are no changes.', type: 'warning', id: `${Date.now()}` }
+        payload: { message: 'Warning: There are no changes.', type: 'warning', id: `${Date.now()}` }
       })
     },
     error: (errorMessage: string) => {
@@ -29,19 +29,19 @@ export function useNotify() {
     addPost: (title: string) => {
       dispatch({
         type: 'ADD_ALERT',
-        payload: { message: `The post ${title} has been added.`, type: 'success', id: `${Date.now()}` }
+        payload: { message: `Success: The post ${title} has been added.`, type: 'success', id: `${Date.now()}` }
       })
     },
     updatePost: (title: string) => {
       dispatch({
         type: 'ADD_ALERT',
-        payload: { message: `The post ${title} has been updated.`, type: 'success', id: `${Date.now()}` }
+        payload: { message: `Success: The post ${title} has been updated.`, type: 'success', id: `${Date.now()}` }
       })
     },
     removePost: (title: string) => {
       dispatch({
         type: 'ADD_ALERT',
-        payload: { message: `The post ${title} has been removed.`, type: 'warning', id: `${Date.now()}` }
+        payload: { message: `Success: The post ${title} has been removed.`, type: 'warning', id: `${Date.now()}` }
       })
     }
   }

@@ -58,6 +58,7 @@ export function PostEdit({ post }: Props) {
     <form className={s.editForm}>
       <Input
         label='Post title'
+        name='post-title'
         defaultValue={postTitle}
         maxLength={TITLE_MAX_LENGTH}
         autoComplete='off'
@@ -67,7 +68,7 @@ export function PostEdit({ post }: Props) {
       />
       <Editor content={content} onChange={setContent} />
       <div className={s.buttons}>
-        <Button className={s.button} variant='primary' label='Save' pending={isPending} onClick={handleUpdate} />
+        <Button className={s.button} variant='primary' label='Update' pending={isPending} onClick={handleUpdate} />
         <Button
           className={s.button}
           as='link'

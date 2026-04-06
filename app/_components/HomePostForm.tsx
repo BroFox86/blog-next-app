@@ -45,6 +45,7 @@ export function HomePostForm() {
     <form className={s.form}>
       <Input
         label='Post title'
+        name='post-title'
         autoComplete='off'
         placeholder='Title text'
         minLength={2}

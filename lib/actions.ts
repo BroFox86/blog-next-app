@@ -73,6 +73,8 @@ export async function addPostAction(rawTitle: string, rawContent: string) {
   }
 
   revalidatePath('/')
+
+  return { success: true }
 }
 
 export async function getPost(slug: string) {

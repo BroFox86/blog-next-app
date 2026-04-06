@@ -8,12 +8,12 @@ It is designed as a **continuous learning sandbox** where I implement and refine
 
 A high-performance blogging platform demo built with Next.js 16+, focusing on server-side efficiency, robust data validation, and a seamless user experience.
 
-- Framework: Next.js (App Router) – Leveraging Server Components, Streaming, and Server Actions.
-- Database: Neon (PostgreSQL) – Serverless Postgres with instant branching.
-- ORM: Prisma – Type-safe database client and migrations.
+- Framework: [Next.js](https://nextjs.org) (App Router) – Leveraging Server Components, Streaming, and Server Actions.
+- Database: [Neon](https://neon.com) (PostgreSQL) – Serverless Postgres with instant branching.
+- ORM: [Prisma](https://www.prisma.io) – Type-safe database client and migrations.
 - Styling: SCSS Modules – Encapsulated styles with mixins and custom design tokens.
-- Validation: Zod – Strict schema validation for Server Actions.
-- Editor: ReactQuill – Powerful Rich Text editor for content creation.
+- Validation: [Zod](https://zod.dev) – Strict schema validation for Server Actions.
+- Editor: [Quill](https://quilljs.com) – Powerful Rich Text editor for content creation.
 
 ## ✨ Key Features
 
@@ -30,12 +30,6 @@ Developed a specialized notification engine using React Context and useReducer.
 - Zero-Flash Injection: Implemented a blocking inline script in the <head> to prevent the "white flash" (FOUC) during initial page loads.
 - Persistence: Automatic user preference synchronization with localStorage.
 
-### 🛡 Security & Server-Side Validation
-
-- HTML Sanitization: All editor content is processed via sanitize-html on the server before database persistence, neutralizing XSS threats while maintaining formatting.
-- Schema Enforcement: Zod validation layers in Server Actions reject malformed requests that bypass client-side HTML restrictions.
-- End-to-End Type Safety: Used TypeScript interfaces and Prisma-generated types to ensure data consistency from the database layer to the UI components.
-
 ### ♿ Accessibility (WAI-ARIA)
 
 Designed with inclusivity and standard web patterns in mind:
@@ -49,3 +43,20 @@ Designed with inclusivity and standard web patterns in mind:
 - Original UI: A unique visual identity built from scratch without pre-made UI kits.
 - Responsive Layout: Mobile-first architecture with custom breakpoints synchronized across JS and SCSS.
 - Layout Stability: Skeleton loaders prevent layout shifts (CLS) during data fetching.
+
+### 🛡 Security & Server-Side Validation
+
+- End-to-End Type Safety: Used TypeScript interfaces and Prisma-generated types to ensure data consistency from the database layer to the UI components.
+- Schema Enforcement: Zod validation layers in Server Actions reject malformed requests that bypass client-side HTML restrictions.
+- HTML Sanitization: All editor content is processed via sanitize-html on the server before database persistence, neutralizing XSS threats while maintaining formatting.
+
+### 🧪 Test Suite & Quality Assurance
+
+The project features an Integration Testing strategy focused on user outcomes and UI reliability.
+
+- Runner: [Vitest](https://vitest.dev) for high-performance execution and seamless Vite integration.
+- DOM Testing: [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for interacting with components as a user would.
+- User Simulation: user-event to handle realistic keyboard and mouse interactions.
+- Environment: [Happy DOM](https://github.com/capricorn86/happy-dom) to provide a browser-like Web API layer in Node.js.
+- Mocking: Custom global setup for Server Actions and third-party Rich Text Editors using Vitest's mocking engine.
+- Assertions: jest-dom for descriptive, "human-readable" expectations (e.g., .toBeInTheDocument()).
