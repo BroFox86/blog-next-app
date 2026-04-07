@@ -8,7 +8,10 @@ export const getSafeHtml = (html: string) => {
       a: ['href', 'target', 'rel'],
       li: ['data-list']
     },
-    allowedSchemes: ['http', 'https', 'mailto', 'tel']
+    allowedSchemes: ['http', 'https', 'mailto', 'tel'],
+    textFilter: text => {
+      return text.replace(/\u00A0/g, ' ')
+    }
   })
 }
 
