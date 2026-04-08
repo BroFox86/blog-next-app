@@ -45,8 +45,11 @@
 .moon,
 .sun {
   z-index: 1;
+  display: block;
+  width: 20px;
+  height: 20px;
   font-size: 20px;
-  line-height: var(--diameter);
+  line-height: 1;
 }
 
 .moon {
