@@ -2,11 +2,11 @@
 
 This application serves as a **technical showcase and a development playground**. While my primary commercial work is protected by **strict NDAs**, this project is an open-source demonstration of my architectural approach, coding standards, and mastery of the modern Next.js ecosystem.
 
-It is designed as a **continuous learning sandbox** where I implement and refine advanced full-stack patterns—from rigorous server-side security to complex state management—ensuring every feature adheres to industry best practices before being applied in production environments.
+It is designed as a **continuous learning sandbox** where I implement and refine advanced full-stack patterns — from rigorous server-side security to complex state management — ensuring every feature adheres to industry best practices before being applied in production environments.
 
 ### 🚀 Tech Stack
 
-A high-performance blogging platform demo built with Next.js 16+, focusing on server-side efficiency, robust data validation, and a seamless user experience.
+A high-performance blogging platform demo built with Next.js 16, focusing on server-side efficiency, robust data validation, and a seamless user experience.
 
 - Framework: [Next.js](https://nextjs.org) (App Router) – Leveraging Server Components, Streaming, and Server Actions.
 - Database: [Neon](https://neon.com) (PostgreSQL) – Serverless Postgres with instant branching.
@@ -36,7 +36,6 @@ Designed with inclusivity and standard web patterns in mind:
 
 - Keyboard Navigation: Full support for Esc key modal closing and Tab focus management.
 - Semantic HTML: Strict adherence to HTML5 structural tags and ARIA roles.
-- Hydration Safety: Used suppressHydrationWarning to manage theme mismatches gracefully.
 
 ### 🎨 Custom Design & Performance
 
@@ -56,7 +55,6 @@ The project features an Integration Testing strategy focused on user outcomes an
 
 - Runner: [Vitest](https://vitest.dev) for high-performance execution and seamless Vite integration.
 - DOM Testing: [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for interacting with components as a user would.
-- User Simulation: user-event to handle realistic keyboard and mouse interactions.
 - Environment: [Happy DOM](https://github.com/capricorn86/happy-dom) to provide a browser-like Web API layer in Node.js.
 - Mocking: Custom global setup for Server Actions and third-party Rich Text Editors using Vitest's mocking engine.
 - Assertions: jest-dom for descriptive, "human-readable" expectations (e.g., .toBeInTheDocument()).
