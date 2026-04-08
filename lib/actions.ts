@@ -28,13 +28,12 @@ export async function getAllPostsAction() {
       posts: await db.post.findMany({
         // take: 3,
         orderBy: {
-          createdAt: 'desc'
+          createdAt: sort === 'date_asc' ? 'asc' : 'desc'
         }
       })
     }
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error'
-    console.log(errorMessage)
 
     return { error: errorMessage }
   }
@@ -49,7 +48,6 @@ export async function addPostAction(rawTitle: string, rawContent: string) {
 
   if (!result.success) {
     const errorMessage = result.error.message
-    console.log(errorMessage)
 
     return { error: errorMessage }
   }
@@ -67,7 +65,6 @@ export async function addPostAction(rawTitle: string, rawContent: string) {
     })
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error'
-    console.log(errorMessage)
 
     return { error: errorMessage }
   }
@@ -95,7 +92,6 @@ export async function updatePostAction(rawId: number, rawTitle: string, rawConte
 
   if (!result.success) {
     const errorMessage = result.error.message
-    console.log(errorMessage)
 
     return { error: errorMessage }
   }
@@ -113,7 +109,6 @@ export async function updatePostAction(rawId: number, rawTitle: string, rawConte
     })
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error'
-    console.log(errorMessage)
 
     return { error: errorMessage }
   }
@@ -131,7 +126,6 @@ export async function deletePostAction(id: number) {
     deletedPost = await db.post.delete({ where: { id } })
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error'
-    console.log(errorMessage)
 
     return { error: errorMessage }
   }
@@ -171,7 +165,6 @@ export async function searchPostAction(query: string) {
     }
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : 'Unknown error'
-    console.log(errorMessage)
 
     return { error: errorMessage }
   }

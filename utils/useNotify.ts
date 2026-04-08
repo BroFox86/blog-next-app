@@ -20,12 +20,6 @@ export function useNotify() {
         payload: { message: 'Warning: There are no changes.', type: 'warning', id: `${Date.now()}` }
       })
     },
-    error: (errorMessage: string) => {
-      dispatch({
-        type: 'ADD_ALERT',
-        payload: { message: errorMessage, type: 'error', id: `${Date.now()}` }
-      })
-    },
     addPost: (title: string) => {
       dispatch({
         type: 'ADD_ALERT',
@@ -42,6 +36,12 @@ export function useNotify() {
       dispatch({
         type: 'ADD_ALERT',
         payload: { message: `Success: The post ${title} has been removed.`, type: 'warning', id: `${Date.now()}` }
+      })
+    },
+    error: (errorMessage: string) => {
+      dispatch({
+        type: 'ADD_ALERT',
+        payload: { message: errorMessage, type: 'error', id: `${Date.now()}` }
       })
     }
   }

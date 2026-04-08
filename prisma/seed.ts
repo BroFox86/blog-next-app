@@ -66,7 +66,7 @@ async function runSeed() {
           <ul>
             <li><strong>Database:</strong> Neon (PostgreSQL) with Prisma 7</li>
             <li><strong>Frontend:</strong> Next.js App Router</li>
-            <li><strong>Styling:</strong> Tailwind CSS + Quill Theme</li>
+            <li><strong>Styling:</strong> SCSS Modules + Quill Theme</li>
           </ul>
 
           <p>One of the most important patterns is <strong>Incremental Static Regeneration (ISR)</strong>. It allows you to:</p>
