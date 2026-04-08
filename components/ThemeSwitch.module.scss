@@ -50,9 +50,9 @@
 }
 
 .moon {
-  @include position(left, 5px);
+  @include position(left, 6px);
 }
 
 .sun {
-  @include position(right, 5px);
+  @include position(right, 6px);
 }

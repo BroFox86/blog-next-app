@@ -35,15 +35,14 @@
   --font-size-small: 16px;
   --line-height-medium: 1.5;
 
-  // Quill
-  --quill-toolbar-bg-color: white;
-  --quill-picker-bg-color: white;
-
   // PostPreview
   --post-preview-title-color-hover: var(--color-primary);
 
   // Modal
   --modal-overlay: #{color.adjust(black, $alpha: -0.4)};
+
+  // Footer
+  --footer-bg-color: var(--bg-overlay);
 
   &.hasDarkTheme {
     color-scheme: dark;
@@ -64,14 +63,13 @@
     --color-border: #444;
     --color-dimmed: #999;
 
-    // Quill
-    --quill-toolbar-bg-color: lightgray;
-    --quill-picker-bg-color: var(--bg-overlay);
-
     // PostPreview
     --post-preview-title-color-hover: rgb(255 255 255 / 70%);
 
     // Modal
     --modal-overlay: #{color.adjust(black, $alpha: -0.2)};
+
+    // Footer
+    --footer-bg-color: var(--bg-surface);
   }
 }

@@ -60,10 +60,13 @@
 }
 
 .homeLabel {
-  display: none;
+  @include sr-only;
 
   @media (min-width: $medium-screen) {
-    display: block;
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
     margin-left: 10px;
   }
 }

@@ -1,7 +1,7 @@
 .root {
   padding-top: 40px;
   padding-bottom: calc(40px + env(safe-area-inset-bottom));
-  background: var(--bg-overlay);
+  background: var(--footer-bg-color);
   font-size: var(--font-size-small);
 
   @media print {

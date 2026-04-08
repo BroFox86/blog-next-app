@@ -1,3 +1,17 @@
+:root {
+  --quill-toolbar-bg-color: white;
+  --quill-picker-bg-color: white;
+  --quill-code-bg-color: #f0f0f0;
+  --quill-picker-expanded-color: #ccc;
+}
+
+:root.hasDarkTheme {
+  --quill-toolbar-bg-color: lightgray;
+  --quill-picker-bg-color: var(--bg-overlay);
+  --quill-code-bg-color: #555;
+  --quill-picker-expanded-color: var(--color-dimmed);
+}
+
 .ql-container {
   border: none !important;
   font-size: inherit !important;
@@ -23,6 +37,10 @@
   color: var(--text-color);
 }
 
-.hasDarkTheme .ql-picker.ql-expanded .ql-picker-label {
-  color: var(--color-dimmed) !important;
+.ql-picker.ql-expanded .ql-picker-label {
+  color: var(--quill-picker-expanded-color) !important;
+}
+
+.ql-editor code {
+  background-color: var(--quill-code-bg-color) !important;
 }
