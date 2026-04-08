@@ -10,7 +10,7 @@ describe('PostList', () => {
   it('shows post', async () => {
     vi.mocked(getAllPostsAction).mockResolvedValue({ posts: [post] })
 
-    const ResolvedComponent = await PostList()
+    const ResolvedComponent = await PostList({})
 
     render(ResolvedComponent)
 
@@ -20,7 +20,7 @@ describe('PostList', () => {
   it('shows no posts', async () => {
     vi.mocked(getAllPostsAction).mockResolvedValue({ posts: [] })
 
-    const ResolvedComponent = await PostList()
+    const ResolvedComponent = await PostList({})
 
     render(ResolvedComponent)
 
@@ -30,7 +30,7 @@ describe('PostList', () => {
   it('shows server error alert', async () => {
     vi.mocked(getAllPostsAction).mockResolvedValue({ error: 'Server error message' })
 
-    const ResolvedComponent = await PostList()
+    const ResolvedComponent = await PostList({})
 
     render(<AlertProvider>{ResolvedComponent}</AlertProvider>)
 
@@ -62,7 +62,7 @@ describe('PostList', () => {
   it('shows no query', async () => {
     vi.mocked(searchPostAction).mockResolvedValue({ posts: [] })
 
-    const ResolvedComponent = await PostListQuery({})
+    const ResolvedComponent = await PostListQuery({ query: '' })
 
     render(ResolvedComponent)
 

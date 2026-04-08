@@ -1,6 +1,14 @@
-import { HomePage } from './_components/HomePage'
+import { HomePage } from '@/app/_components/HomePage'
 export const dynamic = 'force-dynamic'
 
-export default async function Page() {
-  return <HomePage />
+type HomePageProps = {
+  searchParams: {
+    sort: string
+  }
+}
+
+export default async function Page({ searchParams: searchParamsPromise }: HomePageProps) {
+  const searchParams = await searchParamsPromise
+
+  return <HomePage sort={searchParams.sort} />
 }

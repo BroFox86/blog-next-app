@@ -1,0 +1,114 @@
+.root {
+  display: flex;
+  align-items: center;
+
+  @media (min-width: $large-screen) {
+    @include position(right);
+  }
+}
+
+.toggleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: inherit;
+  line-height: normal;
+  text-transform: none;
+  cursor: pointer;
+  appearance: button;
+
+  @include on-hocus {
+    color: var(--color-primary);
+  }
+}
+
+.toggleIcon {
+  @media (prefers-reduced-motion: no-preference) {
+    transition: all 200ms;
+  }
+
+  .toggleButton[aria-expanded='true'] & {
+    transform: rotate(180deg);
+  }
+}
+
+.toggleIconPath {
+  fill: black;
+
+  @include on-hocus(toggleButton) {
+    fill: var(--color-primary);
+  }
+}
+
+.dropdown {
+  z-index: 10;
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  visibility: hidden;
+  width: 150px;
+  border-radius: var(--border-radius-medium);
+  background: white;
+  opacity: 0;
+  // font-size: var(--font-size-small);
+  line-height: 1;
+  box-shadow: var(--shadow-medium);
+  transform-origin: top right;
+  transition-property: visibility, opacity;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transform: scale(0.95);
+    transition-property: visibility, opacity, transform;
+  }
+
+  &.isVisible {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dropdownInner {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0;
+  padding: 20px;
+  list-style: none;
+}
+
+.dropdownButton {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: normal;
+  text-transform: none;
+  cursor: pointer;
+  appearance: button;
+
+  @include on-hocus {
+    color: var(--color-primary);
+  }
+}

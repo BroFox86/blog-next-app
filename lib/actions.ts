@@ -20,7 +20,7 @@ const SearchSchema = z.object({
   query: z.string().min(2).max(30).trim()
 })
 
-export async function getAllPostsAction() {
+export async function getAllPostsAction(sort: string) {
   await wait(WAIT_DURATION)
 
   try {
@@ -149,7 +149,7 @@ export async function handleSearchQuery(formData: FormData) {
   redirect(`/search?query=${query}`)
 }
 
-export async function searchPostAction(query: string) {
+export async function searchPostAction(query: string, sort: string) {
   await wait(WAIT_DURATION)
 
   try {
@@ -160,6 +160,9 @@ export async function searchPostAction(query: string) {
             { title: { contains: query, mode: 'insensitive' } },
             { content: { contains: query, mode: 'insensitive' } }
           ]
+        },
+        orderBy: {
+          createdAt: sort === 'date_asc' ? 'asc' : 'desc'
         }
       })
     }

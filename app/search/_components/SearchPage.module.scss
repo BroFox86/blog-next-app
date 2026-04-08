@@ -6,6 +6,16 @@
   }
 }
 
+.titleWrapper {
+  @include title-wrapper;
+}
+
 .title {
-  @include section-title;
+  margin: 0;
+  text-align: center;
+  font-size: 30px;
+
+  @media (min-width: $large-screen) {
+    max-width: 400px;
+  }
 }

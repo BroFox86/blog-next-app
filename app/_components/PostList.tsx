@@ -4,12 +4,14 @@ import { getAllPostsAction, searchPostAction } from '@/lib/actions'
 
 import s from './PostList.module.scss'
 
-export async function PostList() {
-  const result = await getAllPostsAction()
+type PostListProps = {
+  sort?: string
+}
 
-  if (result?.error) {
-    return <PostListError />
-  }
+export async function PostList({ sort }: PostListProps) {
+  const result = await getAllPostsAction(sort ? sort : '')
+
+  if (result?.error) return <PostListError />
 
   const posts = result.posts
 
@@ -26,16 +28,19 @@ export async function PostList() {
   )
 }
 
-export async function PostListQuery({ query }: { query?: string }) {
+type PostListQueryProps = {
+  query: string
+  sort?: string
+}
+
+export async function PostListQuery({ query, sort }: PostListQueryProps) {
   if (!query) {
     return <p className={s.noPostsMessage}>No query, no results...</p>
   }
 
-  const result = await searchPostAction(query)
+  const result = await searchPostAction(query, sort ? sort : '')
 
-  if (result.error) {
-    return <PostListError />
-  }
+  if (result.error) return <PostListError />
 
   const posts = result.posts
 

@@ -153,10 +153,13 @@
   border: 0;
 }
 
-@mixin section-title {
+@mixin title-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   margin: 30px 0;
-  text-align: center;
-  font-size: 30px;
 
   @media (min-width: $medium-screen) {
     margin: 40px 0;
