@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 /**
- * Hide the element when clicking outside of his markup.
+ * Hide the element when the user clicks outside of its markup.
  */
 export function useOutsideClicks(selector: string, handleVisibility: (isVisible: boolean) => void) {
   useEffect(() => {

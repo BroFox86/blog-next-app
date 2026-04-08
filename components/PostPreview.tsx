@@ -45,7 +45,7 @@ export function PostPreview({ post, skeleton }: Props) {
             className={s.image}
             src={imageUrl || ''}
             sizes={`(min-width: ${BREAKPOINTS.xl}) 356px, (min-width: ${BREAKPOINTS.md}) 45vw, (min-width: 470px) 432px, 91vw`}
-            loading='lazy'
+            loading='eager'
             alt=''
             fill
           />

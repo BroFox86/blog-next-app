@@ -79,7 +79,7 @@
   color: inherit;
 
   @include on-hocus {
-    color: var(--post-preview-title-color-hover);
+    color: var(--color-link-hover);
   }
 }
 

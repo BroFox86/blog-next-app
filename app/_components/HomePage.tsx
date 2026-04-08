@@ -23,7 +23,7 @@ export async function HomePage({ sort }: Props) {
           <h2 className={clsx(s.title, s.hasNoMargin)}>All Posts</h2>
           <PostSorter className={s.postSorter} />
         </div>
-        <Suspense fallback={<PostListSkeleton />}>
+        <Suspense key={sort} fallback={<PostListSkeleton />}>
           <PostList sort={sort} />
         </Suspense>
       </section>

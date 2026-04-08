@@ -7,7 +7,8 @@ import * as z from 'zod'
 import { db } from '@/lib/db'
 import { TITLE_MAX_LENGTH, WAIT_DURATION } from '@/utils/constants'
 import { getSafeHtml, getSluggedText } from '@/utils/format'
-import { wait } from '@/utils/wait'
+
+export const wait = async (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 const PostSchema = z.object({
   id: z.number().optional(),

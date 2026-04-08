@@ -35,9 +35,6 @@
   --font-size-small: 16px;
   --line-height-medium: 1.5;
 
-  // PostPreview
-  --post-preview-title-color-hover: var(--color-primary);
-
   // Modal
   --modal-overlay: #{color.adjust(black, $alpha: -0.4)};
 
@@ -56,15 +53,11 @@
 
     --color-primary: #5e3aca;
     --color-primary-hover: #8a77c1;
-    // --color-tertiary: rgb(252 135 158);
 
     --color-link: var(--color-primary);
-    --color-link-hover: var(--color-primary-hover);
+    --color-link-hover: rgb(255 255 255 / 70%);
     --color-border: #444;
     --color-dimmed: #999;
-
-    // PostPreview
-    --post-preview-title-color-hover: rgb(255 255 255 / 70%);
 
     // Modal
     --modal-overlay: #{color.adjust(black, $alpha: -0.2)};

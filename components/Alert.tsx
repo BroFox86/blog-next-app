@@ -9,8 +9,7 @@ import s from './Alert.module.scss'
 export type AlertProps = {
   className?: string
   type: 'success' | 'warning' | 'error'
-  timer?: number
-  onClose?: () => void
+  onClose: () => void
   children: React.ReactNode
 }
 

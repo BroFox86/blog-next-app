@@ -14,10 +14,11 @@ type Props = {
 export default async function Page({ searchParams: searchParamsPromise }: Props) {
   const searchParams = await searchParamsPromise
   const { query, sort } = searchParams
+  const suspenseKey = `${query}-${sort}`
 
   return (
     <SearchPage query={query}>
-      <Suspense key={query} fallback={<Spinner />}>
+      <Suspense key={suspenseKey} fallback={<Spinner />}>
         <PostListQuery query={query} sort={sort} />
       </Suspense>
     </SearchPage>
