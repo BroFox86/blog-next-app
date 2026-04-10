@@ -7,14 +7,16 @@ import { getAllPostsAction, searchPostAction } from '@/lib/actions'
 import { post } from '@/tests/test-utils'
 
 describe('PostList', () => {
-  it('shows post', async () => {
+  it('links entire card to post detail', async () => {
     vi.mocked(getAllPostsAction).mockResolvedValue({ posts: [post] })
 
     const ResolvedComponent = await PostList({})
 
     render(ResolvedComponent)
 
-    expect(screen.getByText(/view/i)).toBeInTheDocument()
+    const link = screen.getByRole('link', { name: new RegExp(post.title, 'i') })
+
+    expect(link).toHaveAttribute('href', expect.stringContaining(post.slug))
   })
 
   it('shows no posts', async () => {
@@ -39,14 +41,16 @@ describe('PostList', () => {
     expect(alert).toBeInTheDocument()
   })
 
-  it('shows post with query', async () => {
+  it('links preview to post detail with query', async () => {
     vi.mocked(searchPostAction).mockResolvedValue({ posts: [post] })
 
     const ResolvedComponent = await PostListQuery({ query: 'mock-query' })
 
     render(ResolvedComponent)
 
-    expect(screen.getByText(/view/i)).toBeInTheDocument()
+    const link = screen.getByRole('link', { name: new RegExp(post.title, 'i') })
+
+    expect(link).toHaveAttribute('href', expect.stringContaining(post.slug))
   })
 
   it('shows no posts with query', async () => {

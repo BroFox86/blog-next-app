@@ -1,0 +1,115 @@
+.root {
+  --bg-mask: rgb(0 0 0 / 70%);
+
+  color: white;
+  background: var(--bg-mask);
+}
+
+.inner {
+  position: relative;
+  display: block;
+}
+
+.container {
+  @include container;
+
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  @media (min-width: $large-screen) {
+    @include container(large);
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-wrap: balance;
+
+  @media (min-width: $medium-screen) {
+    gap: 15px;
+    width: fit-content;
+    max-width: 650px;
+    padding: 40px 50px;
+    border-radius: var(--border-radius-medium);
+    background: var(--bg-mask);
+  }
+
+  @media (min-width: $wide-screen) {
+    max-width: 800px;
+  }
+
+  > * {
+    margin: 0;
+  }
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 800;
+
+  @media (min-width: $medium-screen) {
+    font-size: 50px;
+  }
+
+  @media (min-width: $wide-screen) {
+    font-size: 60px;
+  }
+}
+
+.postInfo {
+  font-size: var(--font-size-small);
+
+  @media (min-width: $medium-screen) {
+    font-size: 20px;
+  }
+}
+
+.updatedAt {
+  font-style: italic;
+}
+
+.author {
+  color: var(--color-tertiary);
+  font-weight: 700;
+}
+
+.imageWrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  aspect-ratio: 2;
+
+  @media (min-width: $large-screen) {
+    aspect-ratio: 3;
+  }
+}
+
+.imageWrapper::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-mask);
+
+  @media (min-width: $medium-screen) {
+    background: rgb(0 0 0 / 30%);
+  }
+}
+
+.image {
+  z-index: 1;
+  object-fit: cover;
+}

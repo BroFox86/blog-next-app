@@ -4,7 +4,7 @@
 :root {
   color-scheme: light;
 
-  --header-height: 70px;
+  --header-height: 60px;
 
   --bg-color: white;
   --bg-surface: white;
@@ -16,12 +16,12 @@
   --color-primary: #5031aa;
   --color-primary-hover: #5d43ac;
   --color-secondary: #2e7d32;
-  --color-tertiary: crimson;
-
-  --color-link: var(--color-primary);
-  --color-link-hover: var(--color-primary-hover);
+  --color-tertiary: #d24a01;
   --color-border: lightgray;
   --color-dimmed: #666;
+
+  --link-color: var(--color-primary);
+  --link-color-hover: var(--color-primary-hover);
 
   --border-radius-small: 5px;
   --border-radius-medium: 8px;
@@ -35,11 +35,9 @@
   --font-size-small: 16px;
   --line-height-medium: 1.5;
 
-  // Modal
-  --modal-overlay: #{color.adjust(black, $alpha: -0.4)};
-
-  // Footer
-  --footer-bg-color: var(--bg-overlay);
+  @media (min-width: $medium-screen) {
+    --header-height: 70px;
+  }
 
   &.hasDarkTheme {
     color-scheme: dark;
@@ -52,17 +50,11 @@
     --text-color: white;
 
     --color-primary: #5e3aca;
-    --color-primary-hover: #8a77c1;
-
-    --color-link: var(--color-primary);
-    --color-link-hover: rgb(255 255 255 / 70%);
+    --color-primary-hover: #784aff;
     --color-border: #444;
     --color-dimmed: #999;
 
-    // Modal
-    --modal-overlay: #{color.adjust(black, $alpha: -0.2)};
-
-    // Footer
-    --footer-bg-color: var(--bg-surface);
+    --link-color: var(--color-primary);
+    --link-color-hover: var(--color-primary-hover);
   }
 }

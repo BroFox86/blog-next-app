@@ -1,6 +1,8 @@
 @use 'sass:color';
 
 .root {
+  --modal-overlay-bg: #{color.adjust(black, $alpha: -0.4)};
+
   @include position(center, $position: fixed);
 
   overflow-y: auto;
@@ -32,6 +34,10 @@
     @media (orientation: landscape) and (min-width: $large-screen) {
       justify-content: center;
     }
+  }
+
+  :global(.hasDarkTheme) & {
+    --modal-overlay-bg: #{color.adjust(black, $alpha: -0.2)};
   }
 }
 
@@ -138,6 +144,6 @@
   transition: background-color 300ms ease-out;
 
   .root.isVisible + & {
-    background-color: var(--modal-overlay);
+    background-color: var(--modal-overlay-bg);
   }
 }

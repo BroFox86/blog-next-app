@@ -1,20 +1,5 @@
 @use 'sass:math';
 
-.imageWrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3;
-  margin: auto;
-
-  @media (min-width: $large-screen) {
-    aspect-ratio: 5;
-  }
-}
-
-.image {
-  object-fit: cover;
-}
-
 .inner {
   @include container;
 
@@ -25,50 +10,30 @@
 
     padding-top: 40px;
   }
-
-  > * {
-    margin: 0;
-  }
-}
-
-.title {
-  margin: 0 0 10px;
-  font-size: 25px;
-
-  @media (min-width: $medium-screen) {
-    font-size: 30px;
-  }
-}
-
-.postInfo {
-  margin: 0;
-  color: var(--color-dimmed);
-  font-size: var(--font-size-small);
-}
-
-.updatedAt {
-  font-style: italic;
-}
-
-.author {
-  color: var(--color-tertiary);
 }
 
 .postBody {
-  margin: 25px 0;
-  padding: 5px 0;
-  border-top: 1px solid var(--color-border);
+  margin-bottom: 25px;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--color-border);
 
   @media (min-width: $medium-screen) {
-    margin: 35px 0;
-    padding: 10px 0;
+    margin-bottom: 35px;
+    padding-bottom: 30px;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
   }
 }
 
 .editForm {
   display: grid;
-  gap: 20px;
+  gap: 25px;
 }
 
 .buttons {

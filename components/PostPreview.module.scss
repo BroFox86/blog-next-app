@@ -2,13 +2,29 @@
 @use 'sass:color';
 
 .root {
+  --post-preview-border: #eee;
+
   display: flex;
   flex-direction: column;
   overflow: hidden;
   max-width: 400px;
   border-radius: var(--border-radius-large);
-  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--post-preview-border);
+  box-shadow: var(--shadow-small);
   background: var(--bg-surface);
+
+  @include on-hocus {
+    box-shadow: var(--shadow-medium);
+  }
+
+  :global(.hasDarkTheme) & {
+    --post-preview-border: #333;
+  }
+}
+
+.wrapper {
+  display: block;
+  color: inherit;
 }
 
 .imageWrapper {
@@ -24,7 +40,7 @@
 .image {
   object-fit: cover;
 
-  @include on-hocus(imageWrapper) {
+  @include on-hocus(wrapper) {
     transform: scale(1.1);
   }
 
@@ -41,7 +57,7 @@
   border-radius: var(--border-radius-small);
   background: color.scale(black, $alpha: -30%);
   color: white;
-  font-size: 0.9em;
+  font-size: var(--font-size-small);
   pointer-events: none;
 
   @media (min-width: $medium-screen) {
@@ -49,7 +65,7 @@
   }
 }
 
-.inner {
+.text {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -65,7 +81,7 @@
   margin: 0;
   overflow: hidden;
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
   text-overflow: ellipsis;
 
@@ -74,28 +90,11 @@
   }
 }
 
-.link {
-  text-decoration-line: none;
-  color: inherit;
-
-  @include on-hocus {
-    color: var(--color-link-hover);
-  }
-}
-
 .excerpt {
   overflow: hidden;
   height: calc((var(--font-size-medium) * var(--line-height-medium)) * 4);
   margin: 0;
-
-  .root.isSkeleton & {
-    @include skeleton-styles;
-  }
-}
-
-.button {
-  align-self: start;
-  margin-top: auto;
+  color: var(--text-color);
 
   .root.isSkeleton & {
     @include skeleton-styles;

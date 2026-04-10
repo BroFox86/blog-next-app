@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Button } from '@/components/Button'
 import type { Post } from '@/lib/generated/prisma/client'
 import { BREAKPOINTS } from '@/utils/constants'
 import { formatDate } from '@/utils/format'
@@ -18,15 +17,16 @@ export function PostPreview({ post, skeleton }: Props) {
   function renderSkeleton() {
     return (
       <article className={clsx(s.root, s.isSkeleton)} aria-hidden>
-        <div className={s.imageWrapper} />
-        <div className={s.inner}>
-          <h3 className={s.heading}>Placeholder</h3>
-          <p className={s.excerpt}>
-            {getTextExcerpt(
-              'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet iure natus veritatis maxime tempore a earum dolor dicta, repellat quod corrupti minus odit sequi asperiores sapiente exercitationem ducimus laboriosam minima.'
-            )}
-          </p>
-          <Button className={clsx(s.button, skeleton && s.isSkeleton)} as='link' variant='primary' label='View post' />
+        <div className={s.wrapper}>
+          <div className={s.imageWrapper} />
+          <div className={s.text}>
+            <h3 className={s.heading}>Placeholder</h3>
+            <p className={s.excerpt}>
+              {getTextExcerpt(
+                'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet iure natus veritatis maxime tempore a earum dolor dicta, repellat quod corrupti minus odit sequi asperiores sapiente exercitationem ducimus laboriosam minima.'
+              )}
+            </p>
+          </div>
         </div>
       </article>
     )
@@ -40,28 +40,25 @@ export function PostPreview({ post, skeleton }: Props) {
 
     return (
       <article className={s.root}>
-        <Link className={s.imageWrapper} href={`/posts/${slug}`}>
-          <Image
-            className={s.image}
-            src={imageUrl || ''}
-            sizes={`(min-width: ${BREAKPOINTS.xl}) 356px, (min-width: ${BREAKPOINTS.md}) 45vw, (min-width: 470px) 432px, 91vw`}
-            loading='eager'
-            alt=''
-            fill
-          />
-          <time className={s.date} dateTime={createdAtString}>
-            {formatDate(createdAtString)}
-          </time>
+        <Link className={s.wrapper} href={`/posts/${slug}`}>
+          <div className={s.imageWrapper}>
+            <Image
+              className={s.image}
+              src={imageUrl || ''}
+              sizes={`(min-width: ${BREAKPOINTS.xl}) 356px, (min-width: ${BREAKPOINTS.md}) 45vw, (min-width: 470px) 432px, 91vw`}
+              loading='eager'
+              alt=''
+              fill
+            />
+            <time className={s.date} dateTime={createdAtString}>
+              {formatDate(createdAtString)}
+            </time>
+          </div>
+          <div className={s.text}>
+            <h3 className={s.heading}>{title}</h3>
+            <p className={s.excerpt}>{getTextExcerpt(content)}</p>
+          </div>
         </Link>
-        <div className={s.inner}>
-          <h3 className={s.heading}>
-            <Link className={s.link} href={`/posts/${slug}`}>
-              {title}
-            </Link>
-          </h3>
-          <p className={s.excerpt}>{getTextExcerpt(content)}</p>
-          <Button className={s.button} as='link' variant='primary' label='View' href={`/posts/${slug}`} />
-        </div>
       </article>
     )
   }

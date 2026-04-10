@@ -32,7 +32,7 @@
   appearance: button;
 
   @include on-hocus {
-    color: var(--color-link-hover);
+    color: var(--link-color-hover);
   }
 }
 
@@ -50,7 +50,7 @@
   fill: var(--text-color);
 
   @include on-hocus(toggleButton) {
-    fill: var(--color-link-hover);
+    fill: var(--link-color-hover);
   }
 }
 
@@ -109,6 +109,6 @@
   appearance: button;
 
   @include on-hocus {
-    color: var(--color-link-hover);
+    color: var(--link-color-hover);
   }
 }

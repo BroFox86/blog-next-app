@@ -1,4 +1,6 @@
 .root {
+  --footer-bg-color: var(--bg-overlay);
+
   padding-top: 40px;
   padding-bottom: calc(40px + env(safe-area-inset-bottom));
   background: var(--footer-bg-color);
@@ -6,6 +8,10 @@
 
   @media print {
     display: none;
+  }
+
+  :global(.hasDarkTheme) & {
+    --footer-bg-color: var(--bg-surface);
   }
 }
 

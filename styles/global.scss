@@ -35,6 +35,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: var(--heading-font);
   line-height: 1.2;
   font-weight: 700;
 }
@@ -60,12 +61,12 @@ button {
 }
 
 a {
-  color: var(--color-link);
+  color: var(--link-color);
   text-decoration-line: none;
   text-underline-offset: 3px;
 
   @include on-hocus {
-    color: var(--color-link-hover);
+    color: var(--link-color-hover);
   }
 
   @media print {

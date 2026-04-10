@@ -24,6 +24,12 @@
         "ignoreProperties": ["composes"]
       }
     ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ],
     "value-keyword-case": [
       "lower",
       {

@@ -19,11 +19,6 @@
     padding-left: 0;
     padding-right: 0;
   }
-
-  @if $width == wide {
-    width: $wide-container;
-    max-width: none;
-  }
 }
 
 // States

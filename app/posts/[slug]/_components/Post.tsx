@@ -1,5 +1,4 @@
-import Image from 'next/image'
-
+import { PostHero } from '@/components/PostHero'
 import type { Post } from '@/lib/generated/prisma/client'
 
 import s from './Post.module.scss'
@@ -18,9 +17,7 @@ export function Post({ searchParams, post }: Props) {
 
   return (
     <>
-      <div className={s.imageWrapper}>
-        <Image className={s.image} src={post.imageUrl || ''} sizes='100vw' alt='' fill priority />
-      </div>
+      <PostHero post={post} />
       <div className={s.inner}>{edit === 'true' ? <PostEdit post={post} /> : <PostView post={post} />}</div>
     </>
   )
