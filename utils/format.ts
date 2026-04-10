@@ -2,7 +2,7 @@ import sanitize from 'sanitize-html'
 
 export const getSafeHtml = (html: string) => {
   return sanitize(html, {
-    allowedTags: ['h1', 'h2', 'p', 'strong', 'em', 'ul', 'ol', 'li', 'blockquote', 's', 'u'],
+    allowedTags: ['h1', 'h2', 'p', 'strong', 'em', 'ul', 'ol', 'li', 'blockquote', 's', 'u', 'code'],
     allowedAttributes: {
       p: ['class'],
       a: ['href', 'target', 'rel'],

@@ -60,7 +60,7 @@ export async function PostListQuery({ query, sort }: PostListQueryProps) {
 export function PostListSkeleton() {
   return (
     <div className={s.root}>
-      {Array.from({ length: 3 }).map((post, index) => (
+      {Array.from({ length: 6 }).map((post, index) => (
         <PostPreview key={index} skeleton />
       ))}
     </div>
