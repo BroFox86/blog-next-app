@@ -10,11 +10,7 @@ import { useOutsideClicks } from '@/utils/useOutsideClick'
 
 import s from './PostSorter.module.scss'
 
-type Props = {
-  className?: string
-}
-
-export function PostSorter({ className }: Props) {
+export function PostSorter({ className }: { className?: string }) {
   const [isVisible, setIsVisible] = useState(false)
   const [label, setLabel] = useState('Newest First')
   const router = useRouter()

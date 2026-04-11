@@ -1,5 +1,5 @@
 .root {
-  --bg-mask: rgb(0 0 0 / 70%);
+  --bg-mask: rgb(0 0 0 / 80%);
 
   color: white;
   background: var(--bg-mask);
@@ -53,7 +53,7 @@
 }
 
 .title {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 800;
 
   @media (min-width: $medium-screen) {
@@ -73,12 +73,16 @@
   }
 }
 
+.date {
+  white-space: pre;
+}
+
 .updatedAt {
   font-style: italic;
 }
 
 .author {
-  color: var(--color-tertiary);
+  color: var(--color-secondary);
   font-weight: 700;
 }
 

@@ -6,9 +6,7 @@ import { PostEdit } from './PostEdit'
 import { PostView } from './PostView'
 
 type Props = {
-  searchParams: {
-    edit: string
-  }
+  searchParams: { edit: string }
   post: Post
 }
 

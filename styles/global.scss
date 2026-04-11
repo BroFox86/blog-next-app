@@ -113,6 +113,17 @@ hr {
   border: none;
 }
 
+code {
+  padding: 2px 4px;
+  border-radius: var(--border-radius-small);
+  background: #eee;
+  font-size: var(--font-size-small);
+
+  :root.hasDarkTheme & {
+    background: var(--bg-overlay);
+  }
+}
+
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px var(--bg-surface) inset;
 }

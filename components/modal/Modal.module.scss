@@ -1,8 +1,14 @@
 @use 'sass:color';
 
-.root {
+:global(:root) {
   --modal-overlay-bg: #{color.adjust(black, $alpha: -0.4)};
+}
 
+:global(.hasDarkTheme) {
+  --modal-overlay-bg: #{color.adjust(black, $alpha: -0.2)};
+}
+
+.root {
   @include position(center, $position: fixed);
 
   overflow-y: auto;
@@ -34,10 +40,6 @@
     @media (orientation: landscape) and (min-width: $large-screen) {
       justify-content: center;
     }
-  }
-
-  :global(.hasDarkTheme) & {
-    --modal-overlay-bg: #{color.adjust(black, $alpha: -0.2)};
   }
 }
 

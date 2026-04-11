@@ -11,11 +11,7 @@ import { useNotify } from '@/utils/useNotify'
 import s from './Post.module.scss'
 import { PostDeleteModal } from './PostDeleteModal'
 
-type Props = {
-  post: Post
-}
-
-export function PostViewForm({ post }: Props) {
+export function PostViewForm({ post }: { post: Post }) {
   const { id, title, slug } = post
   const [isPending, startTransition] = useTransition()
   const notify = useNotify()

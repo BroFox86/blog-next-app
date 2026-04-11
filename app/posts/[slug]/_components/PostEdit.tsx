@@ -14,11 +14,7 @@ import { useNotify } from '@/utils/useNotify'
 
 import s from './Post.module.scss'
 
-type Props = {
-  post: Post
-}
-
-export function PostEdit({ post }: Props) {
+export function PostEdit({ post }: { post: Post }) {
   const { id, slug, title: postTitle, content: postContent } = post
   const [title, setTitle] = useState(postTitle)
   const [content, setContent] = useState(postContent)

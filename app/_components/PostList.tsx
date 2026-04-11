@@ -4,11 +4,7 @@ import { getAllPostsAction, searchPostAction } from '@/lib/actions'
 
 import s from './PostList.module.scss'
 
-type PostListProps = {
-  sort?: string
-}
-
-export async function PostList({ sort }: PostListProps) {
+export async function PostList({ sort }: { sort?: string }) {
   const result = await getAllPostsAction(sort ? sort : '')
 
   if (result?.error) return <PostListError />

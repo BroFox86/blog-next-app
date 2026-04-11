@@ -26,10 +26,10 @@
 }
 
 .author {
-  color: var(--color-tertiary);
+  color: var(--color-secondary);
 
   @include on-hocus {
-    color: var(--color-tertiary);
+    color: var(--color-secondary);
     text-decoration-line: underline;
   }
 }

@@ -1,14 +1,20 @@
-import Head from 'next/head'
 import { notFound } from 'next/navigation'
 
 import { getPost } from '@/lib/actions'
 
 import { Post } from './_components/Post'
 
-export type Props = {
+type Props = {
   params: { slug: string }
-  searchParams: {
-    edit: string
+  searchParams: { edit: string }
+}
+
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params
+  const post = await getPost(slug)
+
+  return {
+    title: post?.title || 'Post Not Found'
   }
 }
 
@@ -17,16 +23,7 @@ export default async function Page({ params, searchParams: searchParamsPromise }
   const searchParams = await searchParamsPromise
   const post = await getPost(slug)
 
-  if (!post) {
-    notFound()
-  }
+  if (!post) notFound()
 
-  return (
-    <>
-      <Head>
-        <title>{post.title}</title>
-      </Head>
-      <Post searchParams={searchParams} post={post} />
-    </>
-  )
+  return <Post searchParams={searchParams} post={post} />
 }

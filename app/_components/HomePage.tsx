@@ -7,11 +7,7 @@ import { PostSorter } from '@/components/PostSorter'
 import s from './HomePage.module.scss'
 import { HomePostForm } from './HomePostForm'
 
-type Props = {
-  sort: string
-}
-
-export async function HomePage({ sort }: Props) {
+export async function HomePage({ sort }: { sort: string }) {
   return (
     <>
       <section className={s.container}>

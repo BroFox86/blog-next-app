@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import * as z from 'zod'
+import * as zod from 'zod'
 
 import { db } from '@/lib/db'
 import { TITLE_MAX_LENGTH, WAIT_DURATION } from '@/utils/constants'
@@ -10,15 +10,19 @@ import { getSafeHtml, getSluggedText } from '@/utils/format'
 
 export const wait = async (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
-const PostSchema = z.object({
-  id: z.number().optional(),
-  slug: z.string(),
-  title: z.string().min(2).max(TITLE_MAX_LENGTH).trim(),
-  content: z.string()
+function random(min: number, max: number) {
+  return min + Math.floor(Math.random() * (max - min + 1))
+}
+
+const PostSchema = zod.object({
+  id: zod.number().optional(),
+  slug: zod.string(),
+  title: zod.string().min(2).max(TITLE_MAX_LENGTH).trim(),
+  content: zod.string()
 })
 
-const SearchSchema = z.object({
-  query: z.string().min(2).max(30).trim()
+const SearchSchema = zod.object({
+  query: zod.string().min(2).max(30).trim()
 })
 
 export async function getAllPostsAction(sort: string) {
@@ -34,9 +38,9 @@ export async function getAllPostsAction(sort: string) {
       })
     }
   } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+    const message = e instanceof Error ? e.message : 'Database connection failed'
 
-    return { error: errorMessage }
+    return { error: message }
   }
 }
 
@@ -48,9 +52,7 @@ export async function addPostAction(rawTitle: string, rawContent: string) {
   })
 
   if (!result.success) {
-    const errorMessage = result.error.message
-
-    return { error: errorMessage }
+    return { error: result.error.message }
   }
 
   const { slug, title, content } = result.data
@@ -61,13 +63,13 @@ export async function addPostAction(rawTitle: string, rawContent: string) {
         slug: slug,
         title: title,
         content: await getSafeHtml(content),
-        imageUrl: '/images/cover-7.jpg'
+        imageUrl: `/images/cover-${random(1, 6)}.jpg`
       }
     })
   } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+    const message = e instanceof Error ? e.message : 'Database connection failed'
 
-    return { error: errorMessage }
+    return { error: message }
   }
 
   revalidatePath('/')
@@ -92,9 +94,7 @@ export async function updatePostAction(rawId: number, rawTitle: string, rawConte
   })
 
   if (!result.success) {
-    const errorMessage = result.error.message
-
-    return { error: errorMessage }
+    return { error: result.error.message }
   }
 
   const { id, slug, title, content } = result.data
@@ -109,9 +109,9 @@ export async function updatePostAction(rawId: number, rawTitle: string, rawConte
       }
     })
   } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+    const message = e instanceof Error ? e.message : 'Database connection failed'
 
-    return { error: errorMessage }
+    return { error: message }
   }
 
   revalidatePath(`/`)
@@ -126,9 +126,9 @@ export async function deletePostAction(id: number) {
   try {
     deletedPost = await db.post.delete({ where: { id } })
   } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+    const message = e instanceof Error ? e.message : 'Database connection failed'
 
-    return { error: errorMessage }
+    return { error: message }
   }
 
   revalidatePath('/', 'layout')
@@ -141,9 +141,7 @@ export async function handleSearchQuery(formData: FormData) {
     query: formData.get('search')
   })
 
-  if (!result.success) {
-    return
-  }
+  if (!result.success) return
 
   const { query } = result.data
 
@@ -168,8 +166,8 @@ export async function searchPostAction(query: string, sort: string) {
       })
     }
   } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : 'Unknown error'
+    const message = e instanceof Error ? e.message : 'Database connection failed'
 
-    return { error: errorMessage }
+    return { error: message }
   }
 }

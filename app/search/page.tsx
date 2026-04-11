@@ -11,14 +11,27 @@ type Props = {
   }
 }
 
+export async function generateMetadata({ searchParams: searchParamsPromise }: Props) {
+  const { query } = await searchParamsPromise
+  let pageTitle
+
+  if (query) {
+    pageTitle = `Search results for ${query}`
+  } else {
+    pageTitle = 'No query provided'
+  }
+
+  return { title: pageTitle }
+}
+
 export default async function Page({ searchParams: searchParamsPromise }: Props) {
   const searchParams = await searchParamsPromise
   const { query, sort } = searchParams
-  const suspenseKey = `${query}-${sort}`
+  // const suspenseKey = `${query}-${sort}`
 
   return (
     <SearchPage query={query}>
-      <Suspense key={suspenseKey} fallback={<Spinner />}>
+      <Suspense key={query} fallback={<Spinner />}>
         <PostListQuery query={query} sort={sort} />
       </Suspense>
     </SearchPage>
