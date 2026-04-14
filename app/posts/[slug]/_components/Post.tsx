@@ -5,12 +5,7 @@ import s from './Post.module.scss'
 import { PostEdit } from './PostEdit'
 import { PostView } from './PostView'
 
-type Props = {
-  searchParams: { edit: string }
-  post: Post
-}
-
-export function Post({ searchParams, post }: Props) {
+export function Post({ searchParams, post }: { searchParams: { edit: string }; post: Post }) {
   const { edit } = searchParams
 
   return (

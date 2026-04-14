@@ -2,12 +2,7 @@ import { PostSorter } from '@/components/PostSorter'
 
 import s from './SearchPage.module.scss'
 
-type Props = {
-  query?: string
-  children: React.ReactNode
-}
-
-export function SearchPage({ query, children }: Props) {
+export function SearchPage({ query, children }: { query?: string; children: React.ReactNode }) {
   return (
     <section className={s.container}>
       <div className={s.titleWrapper}>

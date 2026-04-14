@@ -8,12 +8,7 @@ import { formatDate } from '@/utils/format'
 
 import s from './PostPreview.module.scss'
 
-type Props = {
-  post?: Post
-  skeleton?: boolean
-}
-
-export function PostPreview({ post, skeleton }: Props) {
+export function PostPreview({ post, skeleton }: { post?: Post; skeleton?: boolean }) {
   function renderSkeleton() {
     return (
       <article className={clsx(s.root, s.isSkeleton)} aria-hidden>
@@ -45,8 +40,8 @@ export function PostPreview({ post, skeleton }: Props) {
             <Image
               className={s.image}
               src={imageUrl || ''}
-              sizes={`(min-width: ${BREAKPOINTS.xl}) 356px, (min-width: ${BREAKPOINTS.md}) 45vw, (min-width: 470px) 432px, 91vw`}
-              loading='eager'
+              sizes={`(min-width: ${BREAKPOINTS.xl}) 354px, (min-width: ${BREAKPOINTS.lg}) 400px, (min-width: ${BREAKPOINTS.md}) 45vw, (min-width: 450px) 400px, 91vw`}
+              loading='lazy'
               alt=''
               fill
             />

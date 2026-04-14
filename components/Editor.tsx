@@ -9,11 +9,6 @@ import ReactQuill from 'react-quill-new'
 import s from './Editor.module.scss'
 import { Spinner } from './Spinner'
 
-type Props = {
-  content?: string
-  onChange: ReactQuill.ReactQuillProps['onChange']
-}
-
 const modules = {
   toolbar: [
     [{ header: [1, 2, false] }],

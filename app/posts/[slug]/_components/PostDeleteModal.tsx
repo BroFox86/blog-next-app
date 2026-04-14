@@ -7,13 +7,15 @@ import { Modal } from '@/components/modal/Modal'
 
 import s from './PostDeleteModal.module.scss'
 
-type Props = {
+export function PostDeleteModal({
+  postTitle,
+  pending,
+  onRemovePost
+}: {
   postTitle: string
   pending: boolean
   onRemovePost: React.MouseEventHandler
-}
-
-export function PostDeleteModal({ postTitle, pending, onRemovePost }: Props) {
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   function handleToggleModal() {

@@ -21,7 +21,10 @@ export async function generateMetadata({ searchParams: searchParamsPromise }: Pr
     pageTitle = 'No query provided'
   }
 
-  return { title: pageTitle }
+  return {
+    title: pageTitle,
+    description: ''
+  }
 }
 
 export default async function Page({ searchParams: searchParamsPromise }: Props) {

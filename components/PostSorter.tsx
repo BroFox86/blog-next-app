@@ -14,7 +14,7 @@ export function PostSorter({ className }: { className?: string }) {
   const [isVisible, setIsVisible] = useState(false)
   const [label, setLabel] = useState('Newest First')
   const router = useRouter()
-  const pathname = usePathname()
+  const path = usePathname()
   const createQueryString = useCreateQueryString()
   const id = useId()
 
@@ -22,7 +22,7 @@ export function PostSorter({ className }: { className?: string }) {
     setIsVisible(isExpanded)
   }
 
-  function setOption(path: string, e: MouseEvent<HTMLButtonElement>) {
+  function setOption(e: MouseEvent<HTMLButtonElement>, param: string) {
     const target = e.target
 
     if (!(target instanceof Element)) return
@@ -38,7 +38,7 @@ export function PostSorter({ className }: { className?: string }) {
 
     toggleDropdown(false)
 
-    router.replace(pathname + '?' + createQueryString('sort', path), { scroll: false })
+    router.replace(path + '?' + createQueryString('sort', param), { scroll: false })
   }
 
   useOutsideClicks('[data-component="PostSorter"]', toggleDropdown)
@@ -65,8 +65,8 @@ export function PostSorter({ className }: { className?: string }) {
 
       <div className={clsx(s.dropdown, isVisible && s.isVisible)}>
         <ul className={s.dropdownInner} id={`sort-list-${id}`} role='menu' aria-labelledby={`selected-label-${id}`}>
-          <DropdownItem onClick={e => setOption('date_desc', e)}>Newest First</DropdownItem>
-          <DropdownItem onClick={e => setOption('date_asc', e)}>Oldest First</DropdownItem>
+          <DropdownItem onClick={e => setOption(e, 'date_desc')}>Newest First</DropdownItem>
+          <DropdownItem onClick={e => setOption(e, 'date_asc')}>Oldest First</DropdownItem>
         </ul>
       </div>
     </div>

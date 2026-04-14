@@ -32,9 +32,7 @@ export function Modal({ className, label, variant, animation, open, onClose, chi
     onClose()
   }
 
-  if (!isMounted) {
-    return null
-  }
+  if (!isMounted) return null
 
   const modalElement = (
     <>

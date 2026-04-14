@@ -14,7 +14,8 @@ export async function generateMetadata({ params }: Props) {
   const post = await getPost(slug)
 
   return {
-    title: post?.title || 'Post Not Found'
+    title: post?.title || 'Post Not Found',
+    description: ''
   }
 }
 

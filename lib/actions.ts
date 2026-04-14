@@ -85,7 +85,15 @@ export async function getPost(slug: string) {
   })
 }
 
-export async function updatePostAction(rawId: number, rawTitle: string, rawContent: string) {
+export async function updatePostAction({
+  id: rawId,
+  title: rawTitle,
+  content: rawContent
+}: {
+  id: number
+  title: string
+  content: string
+}) {
   const result = PostSchema.safeParse({
     id: rawId,
     slug: getSluggedText(rawTitle),

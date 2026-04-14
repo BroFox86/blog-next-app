@@ -37,7 +37,7 @@ export function PostEdit({ post }: { post: Post }) {
     }
 
     startTransition(async () => {
-      const result = await updatePostAction(id, title, content)
+      const result = await updatePostAction({ id, title, content })
 
       if (result?.error) {
         notify.error('Error: Unable to update the post')
