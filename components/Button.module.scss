@@ -1,14 +1,16 @@
 .button {
+  --spinner-color: white;
+
   @include scale-on-active;
 
-  display: inline-grid;
-  grid-auto-flow: column;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   flex-shrink: 0;
   min-width: 120px;
   padding: 11px 20px;
-  border-radius: var(--border-radius-medium);
+  border-radius: 100px;
   border: 2px solid transparent;
   color: white;
   text-align: center;
@@ -33,6 +35,8 @@
   background: var(--color-primary);
 
   @include on-hocus {
+    --spinner-color: var(--color-primary);
+
     border-color: var(--color-primary);
     background: white;
     color: var(--color-primary);
@@ -44,6 +48,8 @@
   background: var(--color-tertiary);
 
   @include on-hocus {
+    --spinner-color: var(--color-tertiary);
+
     border-color: var(--color-tertiary);
     background: white;
     color: var(--color-tertiary);

@@ -7,7 +7,7 @@
   height: var(--diameter);
   margin-left: auto;
   border-radius: 30px;
-  background: #555;
+  background: var(--color-grey-85);
 
   @media (min-width: $medium-screen) {
     --diameter: 40px;

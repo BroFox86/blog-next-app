@@ -116,7 +116,7 @@ hr {
 code {
   padding: 2px 4px;
   border-radius: var(--border-radius-small);
-  background: #eee;
+  background: var(--color-grey-238);
   font-size: var(--font-size-small);
 
   :root.hasDarkTheme & {

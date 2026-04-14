@@ -6,6 +6,10 @@
   background: var(--footer-bg-color);
   font-size: var(--font-size-small);
 
+  @media (min-width: $medium-screen) {
+    padding-bottom: 40px;
+  }
+
   @media print {
     display: none;
   }
