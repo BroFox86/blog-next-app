@@ -25,13 +25,13 @@ const SearchSchema = zod.object({
   query: zod.string().min(2).max(30).trim()
 })
 
-export async function getAllPostsAction(sort: string) {
+export async function getAllPostsAction({ sort, limit }: { sort?: string; limit: number }) {
   await wait(WAIT_DURATION)
 
   try {
     return {
       posts: await db.post.findMany({
-        // take: 3,
+        take: limit,
         orderBy: {
           createdAt: sort === 'date_asc' ? 'asc' : 'desc'
         }
@@ -148,12 +148,13 @@ export async function handleSearchQuery(formData: FormData) {
   redirect(`/search?query=${query}`)
 }
 
-export async function searchPostAction(query: string, sort: string) {
+export async function searchPostAction({ query, sort, limit }: { query: string; sort?: string; limit: number }) {
   await wait(WAIT_DURATION)
 
   try {
     return {
       posts: await db.post.findMany({
+        take: limit,
         where: {
           OR: [
             { title: { contains: query, mode: 'insensitive' } },

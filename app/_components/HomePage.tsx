@@ -1,13 +1,14 @@
 import clsx from 'clsx'
 import { Suspense } from 'react'
 
-import { PostList, PostListSkeleton } from '@/app/_components/PostList'
+import { PostList } from '@/app/_components/PostList'
+import { PostListSkeleton } from '@/app/_components/PostListSkeleton'
 import { PostSorter } from '@/components/PostSorter'
 
 import s from './HomePage.module.scss'
 import { HomePostForm } from './HomePostForm'
 
-export async function HomePage({ sort }: { sort: string }) {
+export async function HomePage({ sort, limit }: { sort: string; limit: string }) {
   return (
     <>
       <section className={s.container}>
@@ -19,8 +20,8 @@ export async function HomePage({ sort }: { sort: string }) {
           <h2 className={clsx(s.title, s.hasNoMargin)}>All Posts</h2>
           <PostSorter className={s.postSorter} />
         </div>
-        <Suspense key={sort} fallback={<PostListSkeleton />}>
-          <PostList sort={sort} />
+        <Suspense key={sort} fallback={<PostListSkeleton limit={limit} />}>
+          <PostList sort={sort} limit={limit} />
         </Suspense>
       </section>
     </>

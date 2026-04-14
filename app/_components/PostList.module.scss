@@ -17,6 +17,17 @@
   }
 }
 
+.loadMoreWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+
+  @media (min-width: $medium-screen) {
+    margin-top: 60px;
+  }
+}
+
 .noPostsMessage {
+  margin: 100px 0 50px;
   text-align: center;
 }
