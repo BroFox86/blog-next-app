@@ -33,7 +33,26 @@ const modules = {
   }
 }
 
-export function Editor({ content, onChange }: Props) {
+export function Editor({ content, onChange }: { content?: string; onChange: ReactQuill.ReactQuillProps['onChange'] }) {
+  // Solve accessibility warnings
+  const quillRef = (node: HTMLDivElement) => {
+    if (node === null) return
+
+    const headingSelect = document.querySelector('select.ql-header')
+    const previewLink = document.querySelector('.ql-preview')
+    const previewInput = document.querySelector('.ql-tooltip input')
+    const qlActionLink = document.querySelector('.ql-action')
+    const qlRemoveLink = document.querySelector('.ql-remove')
+
+    if (!headingSelect || !previewLink || !previewInput || !qlActionLink || !qlRemoveLink) return
+
+    headingSelect.setAttribute('aria-label', 'Headings')
+    previewLink.setAttribute('aria-label', 'Tooltip link')
+    previewInput.setAttribute('aria-label', 'Tooltip input')
+    qlActionLink.setAttribute('href', '')
+    qlRemoveLink.setAttribute('href', '')
+  }
+
   const ReactQuill = useMemo(
     () =>
       dynamic(() => import('react-quill-new'), {
@@ -44,7 +63,7 @@ export function Editor({ content, onChange }: Props) {
   )
 
   return (
-    <div className={s.wrapper}>
+    <div className={s.wrapper} ref={quillRef}>
       <ReactQuill className={s.editor} theme='snow' modules={modules} value={content} onChange={onChange} />
     </div>
   )
