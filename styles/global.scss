@@ -6,7 +6,8 @@ html {
 body {
   box-sizing: border-box;
   background: var(--bg-color);
-  overflow-wrap: break-word;
+  word-break: break-all;
+  overflow-wrap: anywhere;
   text-wrap: pretty;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

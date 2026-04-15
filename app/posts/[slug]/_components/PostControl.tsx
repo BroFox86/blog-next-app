@@ -47,7 +47,7 @@ export function PostControl({ post }: { post: Post }) {
         <p className={s.deleteText}>
           <span>Delete {title}?</span>
         </p>
-        <Button label='Confirm' variant='danger' justify='center' pending={isPending} onClick={handleRemove} />
+        <Button label='Confirm' variant='danger' pending={isPending} onClick={handleRemove} />
       </Modal>
     </>
   )

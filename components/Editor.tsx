@@ -41,16 +41,14 @@ export function Editor({ content, onChange }: { content?: string; onChange: Reac
     const headingSelect = document.querySelector('select.ql-header')
     const previewLink = document.querySelector('.ql-preview')
     const previewInput = document.querySelector('.ql-tooltip input')
-    const qlActionLink = document.querySelector('.ql-action')
-    const qlRemoveLink = document.querySelector('.ql-remove')
 
-    if (!headingSelect || !previewLink || !previewInput || !qlActionLink || !qlRemoveLink) return
+    if (!headingSelect || !previewLink || !previewInput) return
 
     headingSelect.setAttribute('aria-label', 'Headings')
     previewLink.setAttribute('aria-label', 'Tooltip link')
     previewInput.setAttribute('aria-label', 'Tooltip input')
-    qlActionLink.setAttribute('href', '')
-    qlRemoveLink.setAttribute('href', '')
+
+    console.log('LINKS')
   }
 
   const ReactQuill = useMemo(

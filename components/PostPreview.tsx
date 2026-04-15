@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import type { Post } from '@/lib/generated/prisma/client'
 import { BREAKPOINTS } from '@/utils/constants'
-import { formatDate } from '@/utils/format'
+import { formatDate, getTextExcerpt } from '@/utils/format'
 
 import s from './PostPreview.module.scss'
 
@@ -16,11 +16,7 @@ export function PostPreview({ post, skeleton }: { post?: Post; skeleton?: boolea
           <div className={s.imageWrapper} />
           <div className={s.text}>
             <h3 className={s.heading}>Placeholder</h3>
-            <p className={s.excerpt}>
-              {getTextExcerpt(
-                'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet iure natus veritatis maxime tempore a earum dolor dicta, repellat quod corrupti minus odit sequi asperiores sapiente exercitationem ducimus laboriosam minima.'
-              )}
-            </p>
+            <p className={s.excerpt} />
           </div>
         </div>
       </article>
@@ -59,15 +55,4 @@ export function PostPreview({ post, skeleton }: { post?: Post; skeleton?: boolea
   }
 
   return skeleton ? renderSkeleton() : renderComponent()
-}
-
-function getTextExcerpt(content: string) {
-  const plainText = content.replace(/<\/?[^>]+(>|$)/g, '').replace(/&nbsp;/g, ' ')
-  let excerpt = plainText.trim().slice(0, 170)
-
-  if (plainText.length > 170) {
-    excerpt += '...'
-  }
-
-  return excerpt || ''
 }

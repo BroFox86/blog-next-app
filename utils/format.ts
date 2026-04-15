@@ -40,3 +40,13 @@ export function formatDate(isoDate: string) {
 export function getCleanText(text: string) {
   return text.replace(/<\/?[^>]+(>|$)/g, '')
 }
+
+export function getTextExcerpt(content: string) {
+  const plainText = content
+    .replace(/<\/?[^>]+(>|$)/g, ' ')
+    .replace(/ \. /g, '. ')
+    .replace(/ \, /g, ', ')
+  const excerpt = plainText.trim().slice(0, 170)
+
+  return excerpt
+}

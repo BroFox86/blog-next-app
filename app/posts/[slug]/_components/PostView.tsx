@@ -1,9 +1,9 @@
 import parse from 'html-react-parser'
 
+import { PostControl } from '@/app/posts/[slug]/_components/PostControl'
 import type { Post } from '@/lib/generated/prisma/client'
 
 import s from './Post.module.scss'
-import { PostControl } from './PostControl'
 
 export function PostView({ post }: { post: Post }) {
   const { content } = post

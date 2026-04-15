@@ -33,7 +33,7 @@
   overflow: hidden;
   position: relative;
   aspect-ratio: 2;
-  background: var(--color-grey-238);
+  background: var(--bg-skeleton);
 
   .root.isSkeleton & {
     @include skeleton-styles(0);

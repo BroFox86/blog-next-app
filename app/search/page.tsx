@@ -1,10 +1,9 @@
 import { Suspense } from 'react'
 
 import { SearchPage } from '@/app/search/_components/SearchPage'
+import ScrollManager from '@/app/search/template'
 import { Spinner } from '@/components/Spinner'
 import { PostListQuery } from '@/shared/PostList'
-
-import ScrollManager from './template'
 
 type Props = {
   searchParams: {

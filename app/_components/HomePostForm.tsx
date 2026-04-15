@@ -55,7 +55,7 @@ export function HomePostForm() {
         required
       />
       <Editor content={content} onChange={setContent} />
-      <Button variant='primary' justify='start' label='Add' pending={isPending} onClick={handleAddPost} />
+      <Button variant='primary' label='Add' pending={isPending} onClick={handleAddPost} />
     </form>
   )
 }

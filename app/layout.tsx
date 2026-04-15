@@ -7,9 +7,8 @@ import clsx from 'clsx'
 import { Metadata, Viewport } from 'next'
 import { Inter, Roboto } from 'next/font/google'
 
+import { MainLayout } from '@/layout/MainLayout'
 import { themeScript } from '@/utils/theme'
-
-import { MainLayout } from '../layout/MainLayout'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -64,8 +63,9 @@ const interFont = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Home',
-  description: ''
+  title: 'Demo Blog App',
+  description:
+    'It is designed as a continuous learning sandbox where I implement and refine advanced full-stack patterns — from rigorous server-side security to complex state management — ensuring every feature adheres to industry best practices before being applied in production environments'
   // robots: 'noindex'
 }
 

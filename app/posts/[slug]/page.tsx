@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 
 import { getPost } from '@/lib/actions'
+import type { Post as PostType } from '@/lib/generated/prisma/client'
+import { getTextExcerpt } from '@/utils/format'
 
 import { Post } from './_components/Post'
 
@@ -13,9 +15,13 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const post = await getPost(slug)
 
+  if (!post) return
+
+  const { title, content } = post as PostType
+
   return {
-    title: post?.title || 'Post Not Found',
-    description: ''
+    title: title,
+    description: getTextExcerpt(content)
   }
 }
 

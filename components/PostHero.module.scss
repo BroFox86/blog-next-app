@@ -1,8 +1,12 @@
 .root {
-  --bg-mask: rgb(0 0 0 / 80%);
+  --bg-mask: rgb(0 0 0 / 60%);
 
   color: white;
   background: var(--bg-mask);
+
+  @media (min-width: $medium-screen) {
+    --bg-mask: rgb(0 0 0 / 80%);
+  }
 }
 
 .inner {
@@ -111,7 +115,7 @@
   background: var(--bg-mask);
 
   @media (min-width: $medium-screen) {
-    background: rgb(0 0 0 / 30%);
+    background: none;
   }
 }
 

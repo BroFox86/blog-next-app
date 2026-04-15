@@ -4,10 +4,10 @@
   @include scale-on-active;
 
   display: flex;
-  align-items: center;
   justify-content: center;
   gap: 10px;
   flex-shrink: 0;
+  width: fit-content;
   min-width: 120px;
   padding: 11px 20px;
   border-radius: 100px;
@@ -27,14 +27,6 @@
   &.isDisabled {
     opacity: 0.65;
     pointer-events: none;
-  }
-
-  &.start {
-    justify-self: flex-start;
-  }
-
-  &.center {
-    justify-self: center;
   }
 }
 

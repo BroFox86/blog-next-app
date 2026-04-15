@@ -7,7 +7,7 @@ import { useTransition } from 'react'
 import { Button } from '@/components/Button'
 import { useCreateQueryString } from '@/utils/useCreateQueryString'
 
-export function LoadMoreButton({ nextLimit }: { nextLimit: number }) {
+export function LoadMoreButton({ className, nextLimit }: { className: string; nextLimit: number }) {
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
   const path = usePathname()
@@ -19,5 +19,13 @@ export function LoadMoreButton({ nextLimit }: { nextLimit: number }) {
     })
   }
 
-  return <Button variant='primary' label='Load more' pending={isPending} onClick={handleIncreaseLimit} />
+  return (
+    <Button
+      className={className}
+      variant='primary'
+      label='Load more'
+      pending={isPending}
+      onClick={handleIncreaseLimit}
+    />
+  )
 }

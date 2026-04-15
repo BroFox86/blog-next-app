@@ -64,11 +64,7 @@ function PostListMarkup({ posts, hasMore, limit }: { posts: Post[]; hasMore: boo
           <PostPreview key={post.id} post={post} />
         ))}
       </div>
-      {hasMore && (
-        <div className={s.loadMoreWrapper}>
-          <LoadMoreButton nextLimit={limit + POST_LIST_INCREMENT} />
-        </div>
-      )}
+      {hasMore && <LoadMoreButton className={s.loadMoreButton} nextLimit={limit + POST_LIST_INCREMENT} />}
     </>
   )
 }
