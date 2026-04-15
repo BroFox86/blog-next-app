@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-.inner {
+.root {
   @include container;
 
   padding-top: 25px;
@@ -32,13 +32,19 @@
 }
 
 .editForm {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   gap: 25px;
 }
 
-.buttons {
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: start;
+.controlButtons {
+  display: flex;
   gap: 20px;
+}
+
+.deleteText {
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 20px;
 }

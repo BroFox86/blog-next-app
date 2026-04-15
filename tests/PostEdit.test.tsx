@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
-import { AlertProvider } from '@/app/_components/AlertProvider'
 import { PostEdit } from '@/app/posts/[slug]/_components/PostEdit'
 import { updatePostAction } from '@/lib/actions'
+import { AlertProvider } from '@/shared/AlertProvider'
 import { post } from '@/tests/test-utils'
 
 describe('PostEdit', () => {

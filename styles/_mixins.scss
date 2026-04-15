@@ -1,9 +1,7 @@
-/* stylelint-disable declaration-block-no-redundant-longhand-properties */
-/* stylelint-disable scss/selector-no-redundant-nesting-selector */
 @use 'sass:math';
 @use 'variables' as *;
 
-// Components
+// Helpers
 @mixin container($width: small) {
   @if $width == small {
     width: 100%;
@@ -21,65 +19,6 @@
   }
 }
 
-// States
-@mixin on-hocus($selector: false) {
-  @if $selector {
-    .#{$selector}:hover & {
-      @media (any-hover: hover) {
-        @content;
-      }
-    }
-
-    .#{$selector}:focus-visible & {
-      @content;
-    }
-  } @else {
-    &:hover {
-      @media (any-hover: hover) {
-        @content;
-      }
-    }
-
-    &:focus-visible {
-      @content;
-    }
-  }
-}
-
-// Transitions
-@mixin transparentize-on-hocus($opacity: 0.7) {
-  @include on-hocus {
-    opacity: $opacity;
-  }
-}
-
-@mixin brightness-on-hocus($brightness) {
-  @include on-hocus {
-    filter: brightness($brightness);
-  }
-}
-
-@mixin scale-on-active($scale: 0.97) {
-  @media (prefers-reduced-motion: no-preference) {
-    transition: transform 150ms;
-  }
-
-  &:active {
-    transform: scale($scale);
-  }
-}
-
-@mixin scale-on-hocus($scale: 0.97) {
-  @media (prefers-reduced-motion: no-preference) {
-    transition: transform 150ms ease-in;
-  }
-
-  @include on-hocus {
-    transform: scale($scale);
-  }
-}
-
-// Helpers
 @mixin place-center($inline: false) {
   @if $inline {
     display: inline-flex;
@@ -96,38 +35,23 @@
   margin: auto;
 
   @if $direction == center {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
   }
 
   @if $direction == top {
-    top: $offset;
-    right: 0;
-    bottom: auto;
-    left: 0;
+    inset: $offset 0 auto 0;
   }
 
   @if $direction == right {
-    top: 0;
-    right: $offset;
-    bottom: 0;
-    left: auto;
+    inset: 0 $offset 0 auto;
   }
 
   @if $direction == bottom {
-    top: auto 0 $offset;
-    right: 0;
-    bottom: $offset;
-    left: 0;
+    inset: auto 0 $offset;
   }
 
   @if $direction == left {
-    top: 0;
-    right: auto;
-    bottom: 0;
-    left: $offset;
+    inset: 0 auto 0 $offset;
   }
 }
 
@@ -191,5 +115,56 @@
     100% {
       opacity: 1;
     }
+  }
+}
+
+// States
+@mixin on-hocus($selector: false) {
+  @if $selector {
+    .#{$selector}:hover & {
+      @media (any-hover: hover) {
+        @content;
+      }
+    }
+
+    .#{$selector}:focus-visible & {
+      @content;
+    }
+  } @else {
+    &:hover {
+      @media (any-hover: hover) {
+        @content;
+      }
+    }
+
+    &:focus-visible {
+      @content;
+    }
+  }
+}
+
+@mixin transparentize-on-hocus($opacity: 0.7) {
+  @include on-hocus {
+    opacity: $opacity;
+  }
+}
+
+@mixin scale-on-active($scale: 0.97) {
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 150ms;
+  }
+
+  &:active {
+    transform: scale($scale);
+  }
+}
+
+@mixin scale-on-hocus($scale: 0.97) {
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 150ms ease-in;
+  }
+
+  @include on-hocus {
+    transform: scale($scale);
   }
 }

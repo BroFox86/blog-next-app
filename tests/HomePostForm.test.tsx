@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
-import { AlertProvider } from '@/app/_components/AlertProvider'
 import { HomePostForm } from '@/app/_components/HomePostForm'
 import { addPostAction } from '@/lib/actions'
+import { AlertProvider } from '@/shared/AlertProvider'
 
 describe('HomePostForm', () => {
   it('shows error alert after empty title', async () => {

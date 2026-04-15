@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { AlertProvider } from '@/app/_components/AlertProvider'
-import { PostList, PostListQuery } from '@/app/_components/PostList'
 import { getAllPostsAction, searchPostAction } from '@/lib/actions'
+import { AlertProvider } from '@/shared/AlertProvider'
+import { PostList, PostListQuery } from '@/shared/PostList'
 import { post } from '@/tests/test-utils'
 
 describe('PostList', () => {

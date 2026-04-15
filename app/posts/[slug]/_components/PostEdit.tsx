@@ -63,16 +63,9 @@ export function PostEdit({ post }: { post: Post }) {
         required
       />
       <Editor content={content} onChange={setContent} />
-      <div className={s.buttons}>
-        <Button className={s.button} variant='primary' label='Update' pending={isPending} onClick={handleUpdate} />
-        <Button
-          className={s.button}
-          as='link'
-          href={`/posts/${slug}`}
-          variant='primary'
-          label='Cancel'
-          pending={isPending}
-        />
+      <div className={s.controlButtons}>
+        <Button variant='primary' label='Update' pending={isPending} onClick={handleUpdate} />
+        <Button as='link' href={`/posts/${slug}`} variant='primary' label='Cancel' pending={isPending} />
       </div>
     </form>
   )

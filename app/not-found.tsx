@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 
-import { PostNotFound } from './_components/PostNotFound'
+import { PostNotFound } from '../shared/PostNotFound'
 
 export const metadata: Metadata = {
   title: 'Page not found',

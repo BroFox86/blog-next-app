@@ -1,4 +1,4 @@
-import { useAlert } from '@/app/_components/AlertProvider'
+import { useAlert } from '@/shared/AlertProvider'
 
 export function useNotify() {
   const { dispatch } = useAlert()

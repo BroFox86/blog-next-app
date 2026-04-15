@@ -11,7 +11,7 @@ export function Post({ searchParams, post }: { searchParams: { edit: string }; p
   return (
     <>
       <PostHero post={post} />
-      <div className={s.inner}>{edit === 'true' ? <PostEdit post={post} /> : <PostView post={post} />}</div>
+      <div className={s.root}>{edit === 'true' ? <PostEdit post={post} /> : <PostView post={post} />}</div>
     </>
   )
 }

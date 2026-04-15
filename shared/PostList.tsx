@@ -1,8 +1,8 @@
-import { LoadMoreButton } from '@/app/_components/LoadMoreButton'
-import { PostListError } from '@/app/_components/PostListError'
 import { PostPreview } from '@/components/PostPreview'
 import { getAllPostsAction, searchPostAction } from '@/lib/actions'
 import type { Post } from '@/lib/generated/prisma/client'
+import { LoadMoreButton } from '@/shared/LoadMoreButton'
+import { PostListError } from '@/shared/PostListError'
 import { POST_LIST_INCREMENT, POST_LIST_LIMIT } from '@/utils/constants'
 
 import s from './PostList.module.scss'

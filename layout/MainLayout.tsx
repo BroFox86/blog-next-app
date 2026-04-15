@@ -1,11 +1,11 @@
-import { AlertProvider } from '@/app/_components/AlertProvider'
-import { Footer } from '@/app/_components/Footer'
-import { Header } from '@/app/_components/Header'
 import { ViewportSize } from '@/components/ViewportSize'
+import { Footer } from '@/layout/Footer'
+import { Header } from '@/layout/Header'
+import { AlertProvider } from '@/shared/AlertProvider'
 
-import s from './Layout.module.scss'
+import s from './MainLayout.module.scss'
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <body className={s.layout}>
       <Header />

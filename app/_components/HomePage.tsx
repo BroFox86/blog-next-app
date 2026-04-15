@@ -1,9 +1,9 @@
 import clsx from 'clsx'
 import { Suspense } from 'react'
 
-import { PostList } from '@/app/_components/PostList'
-import { PostListSkeleton } from '@/app/_components/PostListSkeleton'
 import { PostSorter } from '@/components/PostSorter'
+import { PostList } from '@/shared/PostList'
+import { PostListSkeleton } from '@/shared/PostListSkeleton'
 
 import s from './HomePage.module.scss'
 import { HomePostForm } from './HomePostForm'

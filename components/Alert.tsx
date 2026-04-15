@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 
-import { useAlert } from '@/app/_components/AlertProvider'
+import { useAlert } from '@/shared/AlertProvider'
 import { ALERT_DURATION, ALERT_PENDING_DURATION } from '@/utils/constants'
 
 import s from './Alert.module.scss'

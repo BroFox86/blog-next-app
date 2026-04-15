@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
-import { AlertProvider } from '@/app/_components/AlertProvider'
-import { PostViewForm } from '@/app/posts/[slug]/_components/PostViewForm'
+import { PostControl } from '@/app/posts/[slug]/_components/PostControl'
 import { deletePostAction } from '@/lib/actions'
+import { AlertProvider } from '@/shared/AlertProvider'
 import { post } from '@/tests/test-utils'
 
 describe('PostViewForm', () => {
@@ -13,7 +13,7 @@ describe('PostViewForm', () => {
 
     render(
       <AlertProvider>
-        <PostViewForm post={post} />
+        <PostControl post={post} />
       </AlertProvider>
     )
 
@@ -32,7 +32,7 @@ describe('PostViewForm', () => {
 
     render(
       <AlertProvider>
-        <PostViewForm post={post} />
+        <PostControl post={post} />
       </AlertProvider>
     )
 

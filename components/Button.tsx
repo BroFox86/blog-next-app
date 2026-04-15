@@ -11,6 +11,7 @@ import s from './Button.module.scss'
 interface CommonProps {
   label: string
   variant: 'primary' | 'danger'
+  justify?: 'start' | 'center'
   fullWidth?: boolean
   children?: React.ReactNode
 }
@@ -41,13 +42,13 @@ type ConditionalProps = LinkProps | ButtonProps
 type Props = CommonProps & ConditionalProps
 
 export function Button(props: Props) {
-  const { className, as, label, type = 'button', href, pending, disabled, form, formAction, onClick } = props
+  const { className, as, label, justify, type = 'button', href, pending, disabled, form, formAction, onClick } = props
   // const { pending } = useFormStatus()
   const variant: string = props.variant.toLowerCase()
 
   return as !== 'link' ? (
     <button
-      className={clsx(s.button, s[variant], className)}
+      className={clsx(s.button, s[variant], justify && s[justify], className)}
       type={type}
       disabled={pending || disabled}
       form={form}

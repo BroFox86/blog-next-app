@@ -9,7 +9,7 @@ import { Inter, Roboto } from 'next/font/google'
 
 import { themeScript } from '@/utils/theme'
 
-import { Layout } from './_components/Layout'
+import { MainLayout } from '../layout/MainLayout'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -80,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
           />
         </head>
-        <Layout>{children}</Layout>
+        <MainLayout>{children}</MainLayout>
       </html>
     </>
   )
