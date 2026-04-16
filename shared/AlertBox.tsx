@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { Alert } from '@/components/Alert'
+import { useAlert } from '@/shared/AlertProvider'
 
-import { useAlert } from './AlertProvider'
+import s from './AlertBox.module.scss'
 
 export function AlertBox() {
   const [isMounted, setIsMounted] = useState(false)
@@ -35,5 +36,5 @@ export function AlertBox() {
 
   if (!container) return
 
-  return createPortal(elements, container)
+  return createPortal(<div className={s.root}>{elements}</div>, container)
 }

@@ -31,7 +31,7 @@ export function PostControl({ post }: { post: Post }) {
         return
       }
 
-      notify.removePost(result.title || '')
+      notify.removePost()
 
       router.push('/')
     })

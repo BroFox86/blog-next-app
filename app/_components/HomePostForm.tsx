@@ -34,7 +34,7 @@ export function HomePostForm() {
         return
       }
 
-      notify.addPost(title)
+      notify.addPost()
 
       setTitle('')
       setContent('')

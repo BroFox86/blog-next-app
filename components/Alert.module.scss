@@ -2,17 +2,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   padding: 15px 20px;
   opacity: 0;
+  border: 1px solid rgb(0 0 0 / 5%);
   border-radius: var(--border-radius-medium);
   overflow-wrap: anywhere;
+  box-shadow: var(--shadow-small);
   transform: scale(0.9);
   will-change: transform;
 
   @media (prefers-reduced-motion: no-preference) {
     transition:
       opacity 300ms ease-out,
-      transform 300ms ease-out;
+      transform 300ms ease-out,
+      width 300ms ease-out,
+      margin 300ms ease-out;
   }
 
   &.isVisible {

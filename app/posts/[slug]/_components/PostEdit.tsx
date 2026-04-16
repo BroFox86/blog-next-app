@@ -44,7 +44,7 @@ export function PostEdit({ post }: { post: Post }) {
         return
       }
 
-      notify.updatePost(title)
+      notify.updatePost()
 
       router.push(`./${result.slug}`)
     })

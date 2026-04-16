@@ -1,0 +1,50 @@
+.root {
+  --increase: 3%;
+
+  @include position(top, calc(var(--header-height) + 15px), fixed);
+  @include container;
+
+  width: calc(100vw - 8vw - env(safe-area-inset-left) - env(safe-area-inset-right));
+  max-width: 600px;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @media (min-width: $large-screen) {
+    width: 100%;
+  }
+
+  > * {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  > *:nth-child(2) {
+    margin-top: 10px;
+
+    @media (min-width: $medium-screen) {
+      width: calc(100% + var(--increase));
+      margin-left: calc(var(--increase) / 2 * -1);
+    }
+  }
+
+  > *:nth-child(3) {
+    margin-top: 20px;
+
+    @media (min-width: $medium-screen) {
+      width: calc(100% + var(--increase) * 2);
+      margin-left: calc(var(--increase) * 2 / 2 * -1);
+    }
+  }
+
+  > *:nth-child(4) {
+    margin-top: 30px;
+
+    @media (min-width: $medium-screen) {
+      width: calc(100% + var(--increase) * 3);
+      margin-left: calc(var(--increase) * 3 / 2 * -1);
+    }
+  }
+}

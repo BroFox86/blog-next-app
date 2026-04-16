@@ -13,7 +13,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
         <main className={s.main}>{children}</main>
       </AlertProvider>
       <Footer />
-      <div className={s.alerts} id='alert-portal' />
+      <div id='alert-portal' />
       {process.env.NODE_ENV === 'development' && <ViewportSize />}
     </body>
   )

@@ -15,17 +15,3 @@
     padding-bottom: 80px;
   }
 }
-
-.alerts {
-  @include position(top, calc(var(--header-height) + 15px), fixed);
-  @include container;
-
-  z-index: 900;
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 10px;
-
-  @media (min-width: $large-screen) {
-    width: 700px;
-  }
-}

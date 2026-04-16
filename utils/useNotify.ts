@@ -20,22 +20,22 @@ export function useNotify() {
         payload: { message: 'Warning: There are no changes.', type: 'warning', id: `${Date.now()}` }
       })
     },
-    addPost: (title: string) => {
+    addPost: () => {
       dispatch({
         type: 'ADD_ALERT',
-        payload: { message: `Success: The post ${title} has been added.`, type: 'success', id: `${Date.now()}` }
+        payload: { message: `Success: Post has been added.`, type: 'success', id: `${Date.now()}` }
       })
     },
-    updatePost: (title: string) => {
+    updatePost: () => {
       dispatch({
         type: 'ADD_ALERT',
-        payload: { message: `Success: The post ${title} has been updated.`, type: 'success', id: `${Date.now()}` }
+        payload: { message: `Success: Post has been updated.`, type: 'success', id: `${Date.now()}` }
       })
     },
-    removePost: (title: string) => {
+    removePost: () => {
       dispatch({
         type: 'ADD_ALERT',
-        payload: { message: `Success: The post ${title} has been removed.`, type: 'warning', id: `${Date.now()}` }
+        payload: { message: `Success: Post has been removed.`, type: 'warning', id: `${Date.now()}` }
       })
     },
     error: (errorMessage: string) => {
