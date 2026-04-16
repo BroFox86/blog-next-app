@@ -9,6 +9,7 @@ type Props = {
   searchParams: {
     query: string
     sort: string
+    limit: string
   }
 }
 
@@ -30,14 +31,14 @@ export async function generateMetadata({ searchParams: searchParamsPromise }: Pr
 
 export default async function Page({ searchParams: searchParamsPromise }: Props) {
   const searchParams = await searchParamsPromise
-  const { query, sort } = searchParams
+  const { query, sort, limit } = searchParams
   const key = `${query}-${sort}`
 
   return (
     <ScrollManager>
       <SearchPage query={query}>
         <Suspense key={key} fallback={<Spinner />}>
-          <PostListQuery query={query} sort={sort} />
+          <PostListQuery query={query} sort={sort} limit={limit} />
         </Suspense>
       </SearchPage>
     </ScrollManager>

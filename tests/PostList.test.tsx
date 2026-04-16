@@ -10,7 +10,7 @@ describe('PostList', () => {
   it('links entire card to post detail', async () => {
     vi.mocked(getAllPostsAction).mockResolvedValue({ posts: [post] })
 
-    const ResolvedComponent = await PostList({})
+    const ResolvedComponent = await PostList({ sort: '', limit: '6' })
 
     render(ResolvedComponent)
 
@@ -22,7 +22,7 @@ describe('PostList', () => {
   it('shows no posts', async () => {
     vi.mocked(getAllPostsAction).mockResolvedValue({ posts: [] })
 
-    const ResolvedComponent = await PostList({})
+    const ResolvedComponent = await PostList({ sort: '', limit: '6' })
 
     render(ResolvedComponent)
 
@@ -32,7 +32,7 @@ describe('PostList', () => {
   it('shows server error alert', async () => {
     vi.mocked(getAllPostsAction).mockResolvedValue({ error: 'Server error message' })
 
-    const ResolvedComponent = await PostList({})
+    const ResolvedComponent = await PostList({ sort: '', limit: '6' })
 
     render(<AlertProvider>{ResolvedComponent}</AlertProvider>)
 
@@ -44,7 +44,7 @@ describe('PostList', () => {
   it('links preview to post detail with query', async () => {
     vi.mocked(searchPostAction).mockResolvedValue({ posts: [post] })
 
-    const ResolvedComponent = await PostListQuery({ query: 'mock-query' })
+    const ResolvedComponent = await PostListQuery({ query: 'mock-query', sort: '', limit: '6' })
 
     render(ResolvedComponent)
 
@@ -56,7 +56,7 @@ describe('PostList', () => {
   it('shows no posts with query', async () => {
     vi.mocked(searchPostAction).mockResolvedValue({ posts: [] })
 
-    const ResolvedComponent = await PostListQuery({ query: 'mock-query' })
+    const ResolvedComponent = await PostListQuery({ query: 'mock-query', sort: '', limit: '6' })
 
     render(ResolvedComponent)
 
@@ -66,7 +66,7 @@ describe('PostList', () => {
   it('shows no query', async () => {
     vi.mocked(searchPostAction).mockResolvedValue({ posts: [] })
 
-    const ResolvedComponent = await PostListQuery({ query: '' })
+    const ResolvedComponent = await PostListQuery({ query: '', sort: '', limit: '6' })
 
     render(ResolvedComponent)
 
@@ -76,7 +76,7 @@ describe('PostList', () => {
   it('shows server error alert with query', async () => {
     vi.mocked(searchPostAction).mockResolvedValue({ error: 'Server error message' })
 
-    const ResolvedComponent = await PostListQuery({ query: 'mock-query' })
+    const ResolvedComponent = await PostListQuery({ query: 'mock-query', sort: '', limit: '6' })
 
     render(<AlertProvider>{ResolvedComponent}</AlertProvider>)
 

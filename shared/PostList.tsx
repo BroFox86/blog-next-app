@@ -7,7 +7,7 @@ import { POST_LIST_INCREMENT, POST_LIST_LIMIT } from '@/utils/constants'
 
 import s from './PostList.module.scss'
 
-export async function PostList({ sort, limit = POST_LIST_LIMIT.toString() }: { sort?: string; limit?: string }) {
+export async function PostList({ sort, limit = POST_LIST_LIMIT.toString() }: { sort: string; limit: string }) {
   const currentLimit = +limit
   const result = await getAllPostsAction({ sort, limit: currentLimit + 1 })
 
@@ -30,9 +30,9 @@ export async function PostListQuery({
   sort,
   limit = POST_LIST_LIMIT.toString()
 }: {
-  query?: string
-  sort?: string
-  limit?: string
+  query: string
+  sort: string
+  limit: string
 }) {
   const currentLimit = +limit
 
