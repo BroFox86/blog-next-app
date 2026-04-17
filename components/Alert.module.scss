@@ -1,9 +1,10 @@
 .root {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 15px 20px;
+  padding: 10px 7px 10px 15px;
   opacity: 0;
   border: 1px solid rgb(0 0 0 / 5%);
   border-radius: var(--border-radius-medium);
@@ -16,8 +17,7 @@
     transition:
       opacity 300ms ease-out,
       transform 300ms ease-out,
-      width 300ms ease-out,
-      margin 300ms ease-out;
+      width 300ms ease-out;
   }
 
   &.isVisible {
@@ -41,10 +41,14 @@
   }
 }
 
+.message {
+  @include line-clamp(1);
+}
+
 .closeButton {
   @include place-center;
 
-  margin-left: 1rem;
+  margin-left: 1ch;
   padding: 3px;
   border-radius: 50%;
   background: transparent;

@@ -47,8 +47,6 @@ export function Editor({ content, onChange }: { content?: string; onChange: Reac
     headingSelect.setAttribute('aria-label', 'Headings')
     previewLink.setAttribute('aria-label', 'Tooltip link')
     previewInput.setAttribute('aria-label', 'Tooltip input')
-
-    console.log('LINKS')
   }
 
   const ReactQuill = useMemo(

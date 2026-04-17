@@ -22,9 +22,12 @@ export function AlertBox() {
     dispatch({ type: 'REMOVE_ALERT', payload: id })
   }
 
-  const elements = state.alerts.map(item => {
+  const elements = state.alerts.map((item, idx) => {
+    const amount = state.alerts.length - 1
+    const stackStyles = getStackStyles(amount, idx)
+
     return (
-      <Alert key={item.id} type={item.type} onClose={() => handleClose(item.id)}>
+      <Alert key={item.id} type={item.type} onClose={() => handleClose(item.id)} style={stackStyles}>
         {item.message}
       </Alert>
     )
@@ -37,4 +40,15 @@ export function AlertBox() {
   if (!container) return
 
   return createPortal(<div className={s.root}>{elements}</div>, container)
+}
+
+function getStackStyles(amount: number, idx: number) {
+  const widthStep = 3
+  const minWidth = 100 - widthStep * amount
+  const bottomStep = 40
+
+  return {
+    width: minWidth + widthStep * idx + '%',
+    bottom: bottomStep * idx + 'px'
+  }
 }

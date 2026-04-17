@@ -9,11 +9,12 @@ import s from './Alert.module.scss'
 export type AlertProps = {
   className?: string
   type: 'success' | 'warning' | 'error'
+  style: React.CSSProperties
   onClose: () => void
   children: React.ReactNode
 }
 
-export function Alert({ className, type, onClose, children }: AlertProps) {
+export function Alert({ className, type, style, onClose, children }: AlertProps) {
   const [isVisible, setIsVisible] = useState(false)
   const { dispatch } = useAlert()
   const alertRef = useRef<HTMLDivElement>(null)
@@ -55,9 +56,10 @@ export function Alert({ className, type, onClose, children }: AlertProps) {
       className={clsx(s.root, className, s[type], isVisible && s.isVisible)}
       ref={alertRef}
       role='alert'
+      style={style}
       onTransitionEnd={handleTransitionEnd}
     >
-      <span>{children}</span>
+      <span className={s.message}>{children}</span>
       <button className={s.closeButton} type='button' aria-label='Close alert' onClick={handleClosing}>
         <CloseIcon className={s.closeIcon} />
       </button>
