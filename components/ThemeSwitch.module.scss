@@ -1,16 +1,20 @@
 .root {
-  --diameter: 35px;
+  --theme-switch-height: 35px;
+  --theme-switch-slider-diameter: 30px;
+  --theme-swicth-offset: 3px;
+  --theme-swicth-background-color: var(--color-grey-102);
 
   flex-shrink: 0;
   position: relative;
   width: 65px;
-  height: var(--diameter);
+  height: var(--theme-switch-height);
   margin-left: auto;
-  border-radius: 30px;
-  background: var(--color-grey-85);
+  border-radius: 18px;
+  background: var(--theme-swicth-background-color);
 
   @media (min-width: $medium-screen) {
-    --diameter: 40px;
+    --theme-switch-height: 40px;
+    --theme-switch-slider-diameter: 35px;
 
     width: 70px;
   }
@@ -18,15 +22,22 @@
   &:focus-visible {
     outline-color: white;
   }
+
+  :global(.hasDarkTheme) & {
+    --theme-swicth-background-color: var(--color-grey-85);
+  }
 }
 
 .slider {
-  @include circle(var(--diameter));
+  @include circle(var(--theme-switch-slider-diameter));
 
   position: absolute;
+  border-radius: 16px;
   z-index: 2;
   top: 0;
-  left: 0;
+  left: var(--theme-swicth-offset);
+  bottom: 0;
+  margin: auto;
   background: white;
 
   @media (prefers-reduced-motion: no-preference) {
@@ -38,24 +49,23 @@
   }
 
   .root.hasDarkTheme & {
-    left: calc(100% - var(--diameter));
+    left: calc(100% - var(--theme-switch-slider-diameter) - var(--theme-swicth-offset));
   }
 }
 
 .moon,
 .sun {
+  position: relative;
   z-index: 1;
   display: block;
   width: 20px;
   height: 20px;
-  font-size: 20px;
-  line-height: 1;
 }
 
 .moon {
-  @include position(left, 6px);
+  @include position(left, 7px);
 }
 
 .sun {
-  @include position(right, 6px);
+  @include position(right, 7px);
 }

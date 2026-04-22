@@ -1,6 +1,7 @@
 'use client'
 
 import clsx from 'clsx'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 import { getThemeFromStorage } from '@/utils/theme'
@@ -48,17 +49,19 @@ export function ThemeSwitch() {
   if (!isMounted) return
 
   return (
-    <>
-      <button
-        className={clsx(s.root, isDarkTheme && s.hasDarkTheme)}
-        type='button'
-        aria-label='Toggle night mode'
-        onClick={handleClick}
-      >
-        <span className={s.moon}>🌛</span>
-        <span className={s.slider} />
-        <span className={s.sun}>🌞</span>
-      </button>
-    </>
+    <button
+      className={clsx(s.root, isDarkTheme && s.hasDarkTheme)}
+      type='button'
+      aria-label='Toggle night mode'
+      onClick={handleClick}
+    >
+      <span className={s.moon}>
+        <Image src='/images/moon.svg' objectFit='contain' loading='lazy' alt='' fill />
+      </span>
+      <span className={s.slider} />
+      <span className={s.sun}>
+        <Image src='/images/sun.svg' objectFit='contain' loading='lazy' alt='' fill />
+      </span>
+    </button>
   )
 }
