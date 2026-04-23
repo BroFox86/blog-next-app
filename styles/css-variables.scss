@@ -6,7 +6,8 @@
 
   --header-height: 60px;
 
-  --bg-color: white;
+  --bg-body: ghostwhite;
+  --bg-main: white;
   --bg-surface: white;
   --bg-overlay: ghostwhite;
   --bg-skeleton: #eee;
@@ -51,7 +52,8 @@
   &.hasDarkTheme {
     color-scheme: dark;
 
-    --bg-color: #121212;
+    --bg-body: #1e1e1e;
+    --bg-main: #121212;
     --bg-surface: #1e1e1e;
     --bg-overlay: #2c2c2c;
     --bg-skeleton: var(--bg-overlay);

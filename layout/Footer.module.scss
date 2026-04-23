@@ -1,9 +1,6 @@
 .root {
-  --footer-bg-color: var(--bg-overlay);
-
   padding-top: 40px;
   padding-bottom: calc(40px + env(safe-area-inset-bottom));
-  background: var(--footer-bg-color);
   font-size: var(--font-size-small);
 
   @media (min-width: $medium-screen) {
@@ -12,10 +9,6 @@
 
   @media print {
     display: none;
-  }
-
-  :global(.hasDarkTheme) & {
-    --footer-bg-color: var(--bg-surface);
   }
 }
 

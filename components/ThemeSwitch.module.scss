@@ -1,8 +1,8 @@
 .root {
   --theme-switch-height: 35px;
   --theme-switch-slider-diameter: 30px;
-  --theme-swicth-offset: 3px;
-  --theme-swicth-background-color: var(--color-grey-102);
+  --theme-switch-offset: 3px;
+  --theme-switch-bg-color: var(--color-grey-102);
 
   flex-shrink: 0;
   position: relative;
@@ -10,7 +10,7 @@
   height: var(--theme-switch-height);
   margin-left: auto;
   border-radius: 18px;
-  background: var(--theme-swicth-background-color);
+  background: var(--theme-switch-bg-color);
 
   @media (min-width: $medium-screen) {
     --theme-switch-height: 40px;
@@ -24,7 +24,7 @@
   }
 
   :global(.hasDarkTheme) & {
-    --theme-swicth-background-color: var(--color-grey-85);
+    --theme-switch-bg-color: var(--color-grey-85);
   }
 }
 
@@ -35,7 +35,7 @@
   border-radius: 16px;
   z-index: 2;
   top: 0;
-  left: var(--theme-swicth-offset);
+  left: var(--theme-switch-offset);
   bottom: 0;
   margin: auto;
   background: white;
@@ -49,7 +49,7 @@
   }
 
   .root.hasDarkTheme & {
-    left: calc(100% - var(--theme-switch-slider-diameter) - var(--theme-swicth-offset));
+    left: calc(100% - var(--theme-switch-slider-diameter) - var(--theme-switch-offset));
   }
 }
 
