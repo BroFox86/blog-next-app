@@ -36,7 +36,10 @@ export function PostPreview({ post, skeleton }: { post?: Post; skeleton?: boolea
             <Image
               className={s.image}
               src={imageUrl || ''}
-              sizes={`(min-width: ${BREAKPOINTS.xl}) 354px, (min-width: ${BREAKPOINTS.lg}) 400px, (min-width: ${BREAKPOINTS.md}) 45vw, (min-width: 450px) 400px, 91vw`}
+              sizes={`
+                 (min-width: ${BREAKPOINTS.xl}) 356px, 
+                 (min-width: ${BREAKPOINTS.lg}) 30vw,
+                 (min-width: 674px) 44vw, 91vw`}
               loading='lazy'
               alt=''
               fill
