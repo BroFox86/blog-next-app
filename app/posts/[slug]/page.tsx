@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props) {
 
   if (!post) return
 
-  const { title, content } = post as PostType
+  const { title, content }: PostType = post
 
   return {
     title: title,
