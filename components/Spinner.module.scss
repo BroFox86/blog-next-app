@@ -6,7 +6,6 @@
   &.small {
     position: relative;
     width: 24px;
-    height: 100%;
   }
 
   &.placeCenter {
@@ -17,8 +16,8 @@
 .text {
   margin-right: 10px;
   color: var(--color-primary);
-  font-size: 25px;
-  font-weight: 700;
+  font-size: rem(23);
+  font-weight: 500;
 
   .root.small & {
     display: none;
@@ -34,7 +33,6 @@
 
   .root.small & {
     position: absolute;
-    top: -30px;
     left: 0;
     transform: scale(0.3);
     transform-origin: 0 50%;

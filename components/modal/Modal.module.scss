@@ -29,7 +29,7 @@
   }
 
   &.small {
-    --modal-max-width: 330px;
+    --modal-max-width: 360px;
 
     justify-content: center;
 
@@ -95,7 +95,7 @@
 
 .heading {
   margin: 0 1rem 0 0;
-  font-size: 22px;
+  font-size: rem(22);
   font-weight: 500;
 }
 

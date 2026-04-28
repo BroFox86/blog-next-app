@@ -13,10 +13,10 @@
 .title {
   margin: 30px auto;
   text-align: center;
-  font-size: 30px;
+  font-size: rem(30);
 
   @media (min-width: $medium-screen) {
-    max-width: 300px;
+    max-width: 340px;
     margin: 40px auto;
   }
 

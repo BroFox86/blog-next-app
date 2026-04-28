@@ -18,11 +18,9 @@ export function PostHero({ post }: { post: Post }) {
           <div className={s.content}>
             <h1 className={s.title}>{title}</h1>
             <p className={s.postInfo}>
-              <span className={s.date}>
-                {formatDate(createdAtIso)}
-                {isEdited && <span className={s.updatedAt}> {`(edited on ${formatDate(updatedAtIso)})`}</span>}
-              </span>{' '}
-              by <span className={s.author}>Guest</span>
+              {formatDate(createdAtIso)}
+              {isEdited && <span className={s.updatedAt}> {`(edited on ${formatDate(updatedAtIso)})`}</span>} by{' '}
+              <span className={s.author}>Guest</span>
             </p>
           </div>
         </header>

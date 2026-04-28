@@ -53,14 +53,14 @@ export function Editor({ content, onChange }: { content?: string; onChange: Reac
     () =>
       dynamic(() => import('react-quill-new'), {
         ssr: false,
-        loading: () => <Spinner label='Loading Quill...' placeCenter />
+        loading: () => <Spinner className={s.spinner} label='Loading Quill...' placeCenter />
       }),
     []
   )
 
   return (
     <div className={s.wrapper} ref={quillRef}>
-      <ReactQuill className={s.editor} theme='snow' modules={modules} value={content} onChange={onChange} />
+      <ReactQuill theme='snow' modules={modules} value={content} onChange={onChange} />
     </div>
   )
 }

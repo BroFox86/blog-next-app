@@ -29,13 +29,18 @@
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
+  --gap: 5px;
+
+  @include scrollbar('dark');
+
+  overflow-y: auto;
   gap: 5px;
+  max-height: 85%;
   text-wrap: balance;
 
   @media (min-width: $medium-screen) {
-    gap: 15px;
+    --gap: 15px;
+
     width: fit-content;
     max-width: 700px;
     padding: 40px 50px;
@@ -48,14 +53,22 @@
   }
 
   > * {
-    margin: 0;
+    margin: var(--gap) 0;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
   }
 }
 
 .title {
   @include line-clamp(3);
 
-  font-size: 32px;
+  font-size: rem(32);
   font-weight: 800;
 
   @media (min-width: $medium-screen) {
@@ -71,12 +84,8 @@
   font-size: var(--font-size-small);
 
   @media (min-width: $medium-screen) {
-    font-size: 20px;
+    font-size: rem(20);
   }
-}
-
-.date {
-  white-space: pre;
 }
 
 .updatedAt {

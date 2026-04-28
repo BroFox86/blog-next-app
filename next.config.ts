@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   sassOptions: {
     includePaths: [join(process.cwd(), 'styles')],
-    prependData: `@use "@/styles/_variables.scss" as *; @use "@/styles/_mixins.scss" as *;`
+    prependData: `@use "@/styles/_variables.scss" as *; @use "@/styles/_utils.scss" as *;`
   },
   serverExternalPackages: ['sanitize-html']
 }

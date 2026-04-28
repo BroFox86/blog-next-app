@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use 'sass:color';
 @use 'variables' as *;
 
 // Helpers
@@ -116,6 +117,46 @@
       opacity: 1;
     }
   }
+}
+
+@mixin scrollbar($mode: 'light') {
+  $bg-color: null;
+  $thumb-color: null;
+
+  @if $mode == 'dark' {
+    $bg-color: color.adjust(white, $alpha: -0.9);
+    $thumb-color: color.adjust(white, $alpha: -0.4);
+  }
+
+  @if $mode == 'light' {
+    $bg-color: #f3f3f3;
+    $thumb-color: #ccc;
+  }
+
+  @supports (scrollbar-color: auto) {
+    scrollbar-width: thin;
+    scrollbar-color: $thumb-color $bg-color;
+  }
+
+  &::-webkit-scrollbar {
+    @supports selector(::-webkit-scrollbar) {
+      width: 6px;
+      height: auto;
+      border-radius: var(--border-radius-small);
+      background-color: $bg-color;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @supports selector(::-webkit-scrollbar) {
+      border-radius: var(--border-radius-small);
+      background-color: $thumb-color;
+    }
+  }
+}
+
+@function rem($pixels) {
+  @return $pixels / 16 * 1rem;
 }
 
 // States
