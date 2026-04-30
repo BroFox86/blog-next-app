@@ -32,9 +32,7 @@
 }
 
 .editForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  display: grid;
   gap: 25px;
 }
 

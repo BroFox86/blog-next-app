@@ -59,8 +59,8 @@ export function Editor({ content, onChange }: { content?: string; onChange: Reac
   )
 
   return (
-    <div className={s.wrapper} ref={quillRef}>
-      <ReactQuill theme='snow' modules={modules} value={content} onChange={onChange} />
+    <div className={s.root} ref={quillRef}>
+      <ReactQuill className={s.quill} theme='snow' modules={modules} value={content} onChange={onChange} />
     </div>
   )
 }
