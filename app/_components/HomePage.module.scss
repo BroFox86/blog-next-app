@@ -16,8 +16,11 @@
   font-size: rem(30);
 
   @media (min-width: $medium-screen) {
-    max-width: 340px;
     margin: 40px auto;
+  }
+
+  @media (min-width: $large-screen) {
+    max-width: 400px;
   }
 
   &.hasNoMargin {
