@@ -38,8 +38,8 @@ export function PostPreview({ post, skeleton }: { post?: Post; skeleton?: boolea
               src={imageUrl || ''}
               sizes={`
                  auto,
-                 (min-width: ${BREAKPOINTS.xl}) 356px, 
-                 (min-width: ${BREAKPOINTS.lg}) 30vw,
+                 (min-width: ${BREAKPOINTS.xl}px) 356px, 
+                 (min-width: ${BREAKPOINTS.lg}px) 30vw,
                  (min-width: 674px) 44vw, 91vw`}
               loading='lazy'
               alt=''
