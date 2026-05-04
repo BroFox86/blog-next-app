@@ -8,7 +8,7 @@ import { Editor } from '@/components/Editor'
 import { Input } from '@/components/Input'
 import { updatePostAction } from '@/lib/actions'
 import type { Post } from '@/lib/generated/prisma/client'
-import { TITLE_MAX_LENGTH } from '@/utils/constants'
+import { TITLE_MAX_LENGTH, TITLE_MIN_LENGTH } from '@/utils/constants'
 import { getCleanText, getSafeHtml } from '@/utils/format'
 import { useNotify } from '@/utils/useNotify'
 
@@ -23,21 +23,33 @@ export function PostEdit({ post }: { post: Post }) {
   const router = useRouter()
 
   async function handleUpdate() {
-    const cleanContent = getCleanText(content)
-    const safeContent = getSafeHtml(content)
+    const cleanTitle = title.trim()
+    const textContent = getCleanText(content)
 
-    if (title === '' || cleanContent === '') {
+    if (cleanTitle === '' || textContent === '') {
       notify.fillOut()
       return
     }
 
-    if (title === postTitle && safeContent === postContent) {
+    const safeContent = getSafeHtml(content)
+
+    if (cleanTitle === postTitle && safeContent === postContent) {
       notify.noChanges()
       return
     }
 
+    if (cleanTitle.length < TITLE_MIN_LENGTH) {
+      notify.shortTitle(TITLE_MIN_LENGTH)
+      return
+    }
+
+    if (cleanTitle.length > TITLE_MAX_LENGTH) {
+      notify.longTitle(TITLE_MAX_LENGTH)
+      return
+    }
+
     startTransition(async () => {
-      const result = await updatePostAction({ id, title, content })
+      const result = await updatePostAction({ id, title: cleanTitle, content })
 
       if (result?.error) {
         notify.error('Error: Unable to update the post')
@@ -56,6 +68,7 @@ export function PostEdit({ post }: { post: Post }) {
         label='Post title'
         name='post-title'
         defaultValue={postTitle}
+        minLength={TITLE_MIN_LENGTH}
         maxLength={TITLE_MAX_LENGTH}
         autoComplete='off'
         placeholder=''

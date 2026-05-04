@@ -4,6 +4,7 @@ export const BREAKPOINTS = {
   xl: 1200
 }
 
+export const TITLE_MIN_LENGTH = 2
 export const TITLE_MAX_LENGTH = 56
 export const SEARCH_MAX_LENGTH = 50
 

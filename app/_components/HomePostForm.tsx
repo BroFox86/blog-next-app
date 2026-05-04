@@ -6,7 +6,7 @@ import { Button } from '@/components/Button'
 import { Editor } from '@/components/Editor'
 import { Input } from '@/components/Input'
 import { addPostAction } from '@/lib/actions'
-import { TITLE_MAX_LENGTH } from '@/utils/constants'
+import { TITLE_MAX_LENGTH, TITLE_MIN_LENGTH } from '@/utils/constants'
 import { getCleanText } from '@/utils/format'
 import { useNotify } from '@/utils/useNotify'
 
@@ -19,15 +19,26 @@ export function HomePostForm() {
   const notify = useNotify()
 
   async function handleAddPost() {
-    const cleanContent = getCleanText(content)
+    const cleanTitle = title.trim()
+    const textContent = getCleanText(content)
 
-    if (title === '' || cleanContent === '') {
+    if (cleanTitle === '' || textContent === '') {
       notify.fillOut()
       return
     }
 
+    if (cleanTitle.length < TITLE_MIN_LENGTH) {
+      notify.shortTitle(TITLE_MIN_LENGTH)
+      return
+    }
+
+    if (cleanTitle.length > TITLE_MAX_LENGTH) {
+      notify.longTitle(TITLE_MAX_LENGTH)
+      return
+    }
+
     startTransition(async () => {
-      const result = await addPostAction(title, content)
+      const result = await addPostAction({ title: cleanTitle, content })
 
       if (result?.error) {
         notify.error('Error: Unable to add new post.')
@@ -48,7 +59,7 @@ export function HomePostForm() {
         name='post-title'
         autoComplete='off'
         placeholder='Title text'
-        minLength={2}
+        minLength={TITLE_MIN_LENGTH}
         maxLength={TITLE_MAX_LENGTH}
         value={title}
         onChange={e => setTitle(e.target.value)}

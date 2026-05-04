@@ -6,24 +6,9 @@ import { PostEdit } from '@/app/posts/[slug]/_components/PostEdit'
 import { updatePostAction } from '@/lib/actions'
 import { AlertProvider } from '@/shared/AlertProvider'
 import { post } from '@/tests/test-utils'
+import { TITLE_MIN_LENGTH } from '@/utils/constants'
 
 describe('PostEdit', () => {
-  it('shows warning alert after same title & content', async () => {
-    render(
-      <AlertProvider>
-        <PostEdit post={post} />
-      </AlertProvider>
-    )
-
-    const user = userEvent.setup()
-
-    await user.click(screen.getByRole('button', { name: /update/i }))
-
-    const alert = await screen.findByText(/warning/i)
-
-    expect(alert).toBeInTheDocument()
-  })
-
   it('shows error alert after empty title', async () => {
     render(
       <AlertProvider>
@@ -56,6 +41,42 @@ describe('PostEdit', () => {
     await user.click(screen.getByRole('button', { name: /update/i }))
 
     const alert = await screen.findByText(/fill out/i)
+
+    expect(alert).toBeInTheDocument()
+  })
+
+  it('shows warning alert after same title & content', async () => {
+    render(
+      <AlertProvider>
+        <PostEdit post={post} />
+      </AlertProvider>
+    )
+
+    const user = userEvent.setup()
+
+    await user.click(screen.getByRole('button', { name: /update/i }))
+
+    const alert = await screen.findByText(/warning/i)
+
+    expect(alert).toBeInTheDocument()
+  })
+
+  it('shows error alert after min title length', async () => {
+    render(
+      <AlertProvider>
+        <PostEdit post={post} />
+      </AlertProvider>
+    )
+
+    const user = userEvent.setup()
+    const title = 'a'.repeat(TITLE_MIN_LENGTH - 1)
+    const titleInput = screen.getByLabelText(/post title/i)
+
+    await user.clear(titleInput)
+    await user.type(titleInput, title)
+    await user.click(screen.getByRole('button', { name: /update/i }))
+
+    const alert = await screen.findByText(/short/i)
 
     expect(alert).toBeInTheDocument()
   })

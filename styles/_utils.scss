@@ -156,7 +156,7 @@
 }
 
 @function rem($pixels) {
-  @return $pixels / 16 * 1rem;
+  @return math.div($pixels, 16) * 1rem;
 }
 
 // States

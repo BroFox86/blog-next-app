@@ -8,10 +8,7 @@ export const getSafeHtml = (html: string) => {
       a: ['href', 'target', 'rel'],
       li: ['data-list']
     },
-    allowedSchemes: ['http', 'https', 'mailto', 'tel'],
-    textFilter: text => {
-      return text.replace(/\u00A0/g, ' ')
-    }
+    allowedSchemes: ['http', 'https', 'mailto', 'tel']
   })
 }
 
@@ -38,12 +35,16 @@ export function formatDate(isoDate: string) {
 }
 
 export function getCleanText(text: string) {
-  return text.replace(/<\/?[^>]+(>|$)/g, '')
+  return text
+    .replace(/<\/?[^>]+(>|$)/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .trim()
 }
 
 export function getTextExcerpt(content: string) {
   const plainText = content
     .replace(/<\/?[^>]+(>|$)/g, ' ')
+    .replace(/\u00A0/g, ' ')
     .replace(/ \. /g, '. ')
     .replace(/ \, /g, ', ')
   const excerpt = plainText.trim().slice(0, 170)

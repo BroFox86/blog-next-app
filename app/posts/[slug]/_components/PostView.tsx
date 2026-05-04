@@ -7,10 +7,12 @@ import s from './Post.module.scss'
 
 export function PostView({ post }: { post: Post }) {
   const { content } = post
+  const cleanContent = content.replace(/\u00A0/g, ' ')
+  const parsedContent = parse(cleanContent)
 
   return (
     <>
-      <div className={s.postBody}>{parse(content)}</div>
+      <div className={s.postBody}>{parsedContent}</div>
       <PostControl post={post} />
     </>
   )

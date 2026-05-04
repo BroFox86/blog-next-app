@@ -5,6 +5,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { HomePostForm } from '@/app/_components/HomePostForm'
 import { addPostAction } from '@/lib/actions'
 import { AlertProvider } from '@/shared/AlertProvider'
+import { TITLE_MIN_LENGTH } from '@/utils/constants'
 
 describe('HomePostForm', () => {
   it('shows error alert after empty title', async () => {
@@ -37,6 +38,25 @@ describe('HomePostForm', () => {
     await user.click(screen.getByRole('button', { name: /add/i }))
 
     const alert = await screen.findByText(/fill out/i)
+
+    expect(alert).toBeInTheDocument()
+  })
+
+  it('shows error alert after min title length', async () => {
+    render(
+      <AlertProvider>
+        <HomePostForm />
+      </AlertProvider>
+    )
+
+    const user = userEvent.setup()
+    const title = 'a'.repeat(TITLE_MIN_LENGTH - 1)
+
+    await user.type(screen.getByLabelText(/post title/i), title)
+    await user.type(screen.getByTestId('mock-editor'), 'Post content')
+    await user.click(screen.getByRole('button', { name: /add/i }))
+
+    const alert = await screen.findByText(/short/i)
 
     expect(alert).toBeInTheDocument()
   })

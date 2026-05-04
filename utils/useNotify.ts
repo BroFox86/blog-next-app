@@ -20,6 +20,26 @@ export function useNotify() {
         payload: { message: 'Warning: There are no changes.', type: 'warning', id: `${Date.now()}` }
       })
     },
+    shortTitle: (value: number) => {
+      dispatch({
+        type: 'ADD_ALERT',
+        payload: {
+          message: `Error: Title is too short (min ${value} characters).`,
+          type: 'error',
+          id: `${Date.now()}`
+        }
+      })
+    },
+    longTitle: (value: number) => {
+      dispatch({
+        type: 'ADD_ALERT',
+        payload: {
+          message: `Error: Title is too long (max ${value} characters).`,
+          type: 'error',
+          id: `${Date.now()}`
+        }
+      })
+    },
     addPost: () => {
       dispatch({
         type: 'ADD_ALERT',

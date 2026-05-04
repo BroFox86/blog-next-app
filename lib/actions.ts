@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 import * as zod from 'zod'
 
 import { db } from '@/lib/db'
-import { TITLE_MAX_LENGTH, WAIT_DURATION } from '@/utils/constants'
+import { TITLE_MAX_LENGTH, TITLE_MIN_LENGTH, WAIT_DURATION } from '@/utils/constants'
 import { getSafeHtml, getSluggedText } from '@/utils/format'
 
 export const wait = async (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
@@ -17,7 +17,7 @@ function random(min: number, max: number) {
 const PostSchema = zod.object({
   id: zod.number().optional(),
   slug: zod.string(),
-  title: zod.string().min(2).max(TITLE_MAX_LENGTH).trim(),
+  title: zod.string().min(TITLE_MIN_LENGTH).max(TITLE_MAX_LENGTH).trim(),
   content: zod.string()
 })
 
@@ -44,11 +44,11 @@ export async function getAllPostsAction({ sort, limit }: { sort?: string; limit:
   }
 }
 
-export async function addPostAction(rawTitle: string, rawContent: string) {
+export async function addPostAction({ title: rawTitle, content: rawContent }: { title: string; content: string }) {
   const result = PostSchema.safeParse({
     slug: getSluggedText(rawTitle),
     title: rawTitle,
-    content: rawContent
+    content: await getSafeHtml(rawContent)
   })
 
   if (!result.success) {
@@ -62,7 +62,7 @@ export async function addPostAction(rawTitle: string, rawContent: string) {
       data: {
         slug: slug,
         title: title,
-        content: await getSafeHtml(content),
+        content: content,
         imageUrl: `/images/cover-${random(1, 6)}.jpg`
       }
     })
@@ -98,7 +98,7 @@ export async function updatePostAction({
     id: rawId,
     slug: getSluggedText(rawTitle),
     title: rawTitle,
-    content: rawContent
+    content: await getSafeHtml(rawContent)
   })
 
   if (!result.success) {
@@ -113,7 +113,7 @@ export async function updatePostAction({
       data: {
         slug: slug,
         title: title,
-        content: await getSafeHtml(content)
+        content: content
       }
     })
   } catch (e) {
