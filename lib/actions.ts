@@ -25,25 +25,6 @@ const SearchSchema = zod.object({
   query: zod.string().min(2).max(30).trim()
 })
 
-export async function getAllPostsAction({ sort, limit }: { sort?: string; limit: number }) {
-  await wait(WAIT_DURATION)
-
-  try {
-    return {
-      posts: await db.post.findMany({
-        take: limit,
-        orderBy: {
-          createdAt: sort === 'date_asc' ? 'asc' : 'desc'
-        }
-      })
-    }
-  } catch (e) {
-    const message = e instanceof Error ? e.message : 'Database connection failed'
-
-    return { error: message }
-  }
-}
-
 export async function addPostAction({ title: rawTitle, content: rawContent }: { title: string; content: string }) {
   const result = PostSchema.safeParse({
     slug: getSluggedText(rawTitle),
@@ -75,14 +56,6 @@ export async function addPostAction({ title: rawTitle, content: rawContent }: { 
   revalidatePath('/')
 
   return { success: true }
-}
-
-export async function getPost(slug: string) {
-  return await db.post.findUnique({
-    where: {
-      slug: slug
-    }
-  })
 }
 
 export async function updatePostAction({
@@ -142,6 +115,33 @@ export async function deletePostAction(id: number) {
   revalidatePath('/', 'layout')
 
   return { title: deletedPost.title }
+}
+
+export async function getAllPostsAction({ sort, limit }: { sort?: string; limit: number }) {
+  await wait(WAIT_DURATION)
+
+  try {
+    return {
+      posts: await db.post.findMany({
+        take: limit,
+        orderBy: {
+          createdAt: sort === 'date_asc' ? 'asc' : 'desc'
+        }
+      })
+    }
+  } catch (e) {
+    const message = e instanceof Error ? e.message : 'Database connection failed'
+
+    return { error: message }
+  }
+}
+
+export async function getPost(slug: string) {
+  return await db.post.findUnique({
+    where: {
+      slug: slug
+    }
+  })
 }
 
 export async function handleSearchQuery(formData: FormData) {

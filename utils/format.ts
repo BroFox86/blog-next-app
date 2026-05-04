@@ -12,6 +12,13 @@ export const getSafeHtml = (html: string) => {
   })
 }
 
+export function getCleanText(text: string) {
+  return text
+    .replace(/<\/?[^>]+(>|$)/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .trim()
+}
+
 export function getSluggedText(text: string) {
   const sluggedText = text
     .toString()
@@ -32,13 +39,6 @@ export function formatDate(isoDate: string) {
   })
 
   return formatter.format(new Date(isoDate))
-}
-
-export function getCleanText(text: string) {
-  return text
-    .replace(/<\/?[^>]+(>|$)/g, '')
-    .replace(/&nbsp;/g, ' ')
-    .trim()
 }
 
 export function getTextExcerpt(content: string) {
