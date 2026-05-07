@@ -9,20 +9,6 @@ import { formatDate, getTextExcerpt } from '@/utils/format'
 import s from './PostPreview.module.scss'
 
 export function PostPreview({ post, skeleton }: { post?: Post; skeleton?: boolean }) {
-  function renderSkeleton() {
-    return (
-      <article className={clsx(s.root, s.isSkeleton)} aria-hidden>
-        <div className={s.wrapper}>
-          <div className={s.imageWrapper} />
-          <div className={s.text}>
-            <h3 className={s.heading}>Placeholder</h3>
-            <p className={s.excerpt} />
-          </div>
-        </div>
-      </article>
-    )
-  }
-
   function renderComponent() {
     if (!post) return
 
@@ -54,6 +40,20 @@ export function PostPreview({ post, skeleton }: { post?: Post; skeleton?: boolea
             <p className={s.excerpt}>{getTextExcerpt(content)}</p>
           </div>
         </Link>
+      </article>
+    )
+  }
+
+  function renderSkeleton() {
+    return (
+      <article className={clsx(s.root, s.isSkeleton)} aria-hidden>
+        <div className={s.wrapper}>
+          <div className={s.imageWrapper} />
+          <div className={s.text}>
+            <h3 className={s.heading}>Placeholder</h3>
+            <p className={s.excerpt} />
+          </div>
+        </div>
       </article>
     )
   }

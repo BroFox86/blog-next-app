@@ -7,7 +7,7 @@ import s from './Post.module.scss'
 
 export function PostView({ post }: { post: Post }) {
   const { content } = post
-  const cleanContent = content.replace(/\u00A0/g, ' ')
+  const cleanContent = content.replaceAll('\u00A0', ' ')
   const parsedContent = parse(cleanContent)
 
   return (

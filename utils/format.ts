@@ -15,7 +15,7 @@ export const getSafeHtml = (html: string) => {
 export function getCleanText(text: string) {
   return text
     .replace(/<\/?[^>]+(>|$)/g, '')
-    .replace(/&nbsp;/g, ' ')
+    .replaceAll('&nbsp;', ' ')
     .trim()
 }
 
@@ -44,9 +44,9 @@ export function formatDate(isoDate: string) {
 export function getTextExcerpt(content: string) {
   const plainText = content
     .replace(/<\/?[^>]+(>|$)/g, ' ')
-    .replace(/\u00A0/g, ' ')
-    .replace(/ \. /g, '. ')
-    .replace(/ \, /g, ', ')
+    .replaceAll('\u00A0', ' ')
+    .replaceAll(' . ', '. ')
+    .replaceAll(' , ', ', ')
   const excerpt = plainText.trim().slice(0, 170)
 
   return excerpt

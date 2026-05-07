@@ -27,7 +27,7 @@ export function Header() {
             name='search'
             minLength={2}
             maxLength={SEARCH_MAX_LENGTH}
-            placeholder='Search query'
+            placeholder='Search text'
             aria-label='Search'
             aria-describedby='submitButton'
           />
