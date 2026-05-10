@@ -112,7 +112,7 @@ export async function deletePostAction(id: number) {
     return { error: message }
   }
 
-  revalidatePath('/', 'layout')
+  revalidatePath('/')
 
   return { title: deletedPost.title }
 }
