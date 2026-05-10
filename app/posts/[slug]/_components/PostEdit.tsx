@@ -58,7 +58,7 @@ export function PostEdit({ post }: { post: Post }) {
 
       notify.updatePost()
 
-      router.push(`./${result.slug}`)
+      router.replace(`./${result.slug}`)
     })
   }
 

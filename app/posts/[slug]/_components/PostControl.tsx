@@ -33,7 +33,7 @@ export function PostControl({ post }: { post: Post }) {
 
       notify.removePost()
 
-      router.push('/')
+      router.replace('/')
     })
   }
 
