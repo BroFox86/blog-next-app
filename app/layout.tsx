@@ -3,6 +3,7 @@ import '@/styles/global.scss'
 import '@/styles/css-variables.scss'
 import '@/styles/quill.css'
 
+import { Analytics } from '@vercel/analytics/next'
 import clsx from 'clsx'
 import { Metadata, Viewport } from 'next'
 import { Inter, Roboto } from 'next/font/google'
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </head>
         <MainLayout>{children}</MainLayout>
+        <Analytics />
       </html>
     </>
   )

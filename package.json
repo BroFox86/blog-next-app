@@ -22,6 +22,7 @@
     "@prisma/adapter-neon": "^7.5.0",
     "@prisma/client": "^7.5.0",
     "@types/quill": "^2.0.14",
+    "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "html-react-parser": "^5.2.17",
     "next": "^16.1.6",
